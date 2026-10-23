@@ -583,6 +583,8 @@
     vertical-align: middle;
   }
   svg.vc-platform-mark { width: max(21px, 1.3125rem); }
+  /* image logos (LinkedIn's PNG) come in black and turn white in the dark theme */
+  img.vc-platform-mark { filter: var(--vc-platform-mark-filter, none); }
 
   /* ---------- Timeline: hexagon markers on a rail ---------- */
   .vc-timeline {

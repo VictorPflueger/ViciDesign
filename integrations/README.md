@@ -5,7 +5,7 @@ Edit the tokens, not these files.
 
 | Folder | File | Use |
 |---|---|---|
-| `streamlit/` | `config.toml`, `config-dark.toml` | Copy to `.streamlit/config.toml` in a Streamlit app. |
+| `streamlit/` | `config.toml`, `config-dark.toml`, `vici_byline.py` | Copy a config to `.streamlit/config.toml` in a Streamlit app. `vici_byline()` writes the "Built by" byline with Victor's portrait and LinkedIn's logo. |
 | `powerbi/` | `vici-light.json`, `vici-dark.json` | Power BI Desktop → View → Themes → Browse for themes. |
 | `python/` | `vici_palette.py` | `from vici_palette import CATEGORICAL, use_matplotlib, plotly_template` |
 | `tailwind/` | `vici-theme.css` | `@import "tailwindcss"; @import "./vici-theme.css";` (Tailwind CSS v4) |

@@ -17,9 +17,10 @@ First release.
 - Logo: Vertex, with colour, dark and mono versions, lockups, app icon, favicon and the wordmark. Five monogram options
   (Ligature, Stem, Cell, Seal, Initials), each in colour, dark, mono and as an avatar tile. Facet and Honeycomb are
   archived.
-- Profile links: a "Built by" byline with a hexagon portrait, profile links for footers and contact sections, rules for
-  other brands' logos (unchanged files in black or white via `--vc-platform-mark`), and GitHub's Invertocat in
-  `assets/marks/`.
+- Profile links: a "Built by" byline with Victor's portrait in a hexagon and LinkedIn's [in] logo, profile links for
+  footers and contact sections, a Streamlit byline helper, rules for other brands' logos (their unchanged files, black or
+  white via `--vc-platform-mark` and `--vc-platform-mark-filter`), with LinkedIn's [in] logo and GitHub's Invertocat in
+  `assets/marks/` and the portrait in `assets/brand/`.
 - Licence: MIT for code, tokens, icons and docs; Victor Pflüger's name, logo, monogram and wordmarks reserved; fonts
   under the SIL Open Font License.
 - Starters: app prototype, dashboard, personal landing page, blank page.

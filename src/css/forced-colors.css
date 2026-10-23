@@ -186,7 +186,15 @@
     .vc-chip:focus-visible { outline: 2px solid Highlight; }
 
     /* Platform logos are filled in black or white; here they take the forced text colour
-       (LinkText inside a link), so they never vanish on a forced background. */
+       (LinkText inside a link), so they never vanish on a forced background. An image logo
+       can't be recoloured, so it keeps its black and sits on a white plate. */
     .vc-platform-mark { fill: currentColor; }
+    img.vc-platform-mark {
+      forced-color-adjust: none;
+      filter: none;
+      padding: 2px;
+      background-color: #fff;
+      border-radius: 2px;
+    }
   }
 }

@@ -36,7 +36,7 @@ const REQUIRED = {
   'guidelines/data-viz.html': ['palettes', 'examples', 'rules'],
   'guidelines/accessibility.html': ['focus', 'keyboard-patterns', 'semantics-checklist'],
   'brand/logo.html': ['symbol', 'lockup', 'app-icon-and-favicon', 'wordmark', 'monogram', 'monogram-ligature', 'monogram-stem', 'monogram-cell', 'monogram-seal', 'monogram-initials', 'monogram-compare', 'usage', 'earlier-concepts'],
-  'brand/profile-links.html': ['byline', 'byline-several', 'in-footers-and-contact-sections', 'other-brands-logos', 'link-rules', 'portrait'],
+  'brand/profile-links.html': ['byline', 'byline-several', 'byline-anywhere', 'in-footers-and-contact-sections', 'other-brands-logos', 'link-rules', 'portrait'],
   'start/getting-started.html': [],
   'start/theming.html': ['theme-islands', 'override-tokens'],
   'start/integrations.html': ['streamlit', 'power-bi', 'python-matplotlib-and-plotly', 'tailwind-css-v4'],

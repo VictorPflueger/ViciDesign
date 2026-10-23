@@ -21,6 +21,10 @@ secondaryBackgroundColor = "#f3ebe7"
 textColor = "#250010"
 font = "sans serif"</code></pre>
 <p>For custom HTML inside Streamlit (<code>st.html</code> or components), link <code>dist/vici.min.css</code> from the CDN and use the classes as usual.</p>
+<p>The “Built by” byline with Victor's portrait and LinkedIn's logo comes as a small helper that needs no stylesheet. Copy <code>integrations/streamlit/vici_byline.py</code> next to your app (see <a href="{{root}}brand/profile-links.html#byline-anywhere">Profile links</a>):</p>
+<pre><code>from vici_byline import vici_byline
+
+st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)   # vici_byline(dark=True) for the dark theme</code></pre>
 
 <h2>Power BI</h2>
 <p>Import <code>integrations/powerbi/vici-light.json</code> via <strong>View → Themes → Browse for themes</strong>. The theme sets the eight data colours in the order on <a href="{{root}}guidelines/data-viz.html">Data visualisation</a>, the good/neutral/bad status colours, the sequential scale and the table accent. Text uses Segoe UI, because the Power BI service cannot load web fonts.</p>

@@ -3,7 +3,7 @@
 // previews with copyable code, and replaces <!-- @widget --> markers with tables and swatches
 // computed from the tokens — so the docs can never drift from the system.
 
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { resolve } from './tokens.mjs';
 import { contrast, hexToOklch, deltaOk, simulate } from './color.mjs';
@@ -493,11 +493,30 @@ function makeWidgets(ctx) {
 
     'icon-count': () => String(icons.length),
 
-    // <!-- @platform-mark github --> → another brand's logo from assets/marks/, inlined unchanged.
-    // Only the fixed size goes, so CSS can size it; the link around it carries the name.
+    // <!-- @platform-mark github --> → another brand's logo from assets/marks/, unchanged.
+    // An SVG is inlined (only its fixed size goes, so CSS can size it and --vc-platform-mark
+    // can colour it); a PNG becomes an <img> with its own pixel size for the aspect ratio.
+    // The link around it carries the name, so the logo itself is hidden from screen readers.
     'platform-mark': (name) => {
-      const svg = readFileSync(join(ctx.root, 'assets/marks', `${name.trim()}.svg`), 'utf8').trim();
-      return svg.replace(/^<svg\b([^>]*)>/, (all, attrs) => `<svg${attrs.replace(/\s(width|height)="[^"]*"/g, '')} class="vc-platform-mark" aria-hidden="true" focusable="false">`);
+      const base = join(ctx.root, 'assets/marks', name.trim());
+      if (existsSync(`${base}.svg`)) {
+        const svg = readFileSync(`${base}.svg`, 'utf8').trim();
+        return svg.replace(/^<svg\b([^>]*)>/, (all, attrs) => `<svg${attrs.replace(/\s(width|height)="[^"]*"/g, '')} class="vc-platform-mark" aria-hidden="true" focusable="false">`);
+      }
+      const png = readFileSync(`${base}.png`);
+      const [w, h] = [png.readUInt32BE(16), png.readUInt32BE(20)]; // IHDR
+      return `<img class="vc-platform-mark" src="{{root}}assets/marks/${name.trim()}.png" alt="" width="${w}" height="${h}">`;
+    },
+
+    // <!-- @vertex-mark --> → the Vertex symbol inline, coloured by the theme (text colour and
+    // merlot-500 goal), so it stays visible on dark headers where the colour file would vanish
+    'vertex-mark': () => logoMarkSvg({ size: 26, title: false }),
+
+    // <!-- @portrait 96 --> → Victor's portrait inside a byline avatar (empty alt: his name is next to it)
+    portrait: (size) => {
+      const file = size.trim() ? `portrait-${size.trim()}.jpg` : 'portrait.jpg';
+      const px = size.trim() ? Number(size.trim()) : 640;
+      return `<img src="{{root}}assets/brand/${file}" alt="" width="${px}" height="${px}">`;
     },
 
     chart: (name) => {
@@ -677,7 +696,8 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
       .replace(/\{\{pager\}\}/g, pager)
       .replace(/\{\{bodyClass\}\}/g, isHome ? 'doc doc--home' : page.meta.layout === 'wide' ? 'doc doc--wide' : 'doc')
       .replace(/\{\{version\}\}/g, version)
-      .replace(/\{\{githubMark\}\}/g, () => widgets['platform-mark']('github'))
+      .replace(/\{\{linkedinMark\}\}/g, () => widgets['platform-mark']('linkedin'))
+      .replace(/\{\{portrait\}\}/g, () => widgets.portrait('96'))
       .replace(/\{\{root\}\}/g, rootRel)
       .replace(/\{\{content\}\}/g, () => body);
     out.push([page.path, html]);

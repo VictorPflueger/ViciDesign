@@ -43,7 +43,8 @@ SOFTWARE.
 The following are not licensed under the MIT License or under any other
 licence. Victor Pflüger reserves all rights to them.
 
-  - The name "Victor Pflüger" used as a mark, and his portrait photographs.
+  - The name "Victor Pflüger" used as a mark, and his portrait photographs,
+    including the files in assets/brand/.
   - The Vertex logo with its lockups, app icon and favicon, the monogram
     options, the "Victor Pflüger" and "Vici" wordmarks, and the archived logo
     concepts, in any form: the files in assets/logo/, the outlines in
@@ -79,3 +80,7 @@ assets/marks/github.svg is the Invertocat exactly as GitHub publishes it in the
 Octicons package (@primer/octicons). That file is distributed under the MIT
 License, Copyright (c) 2026 GitHub Inc., reproduced in
 assets/marks/OCTICONS-LICENSE. Its use is subject to GitHub's logo guidelines.
+
+assets/marks/linkedin.png, linkedin-white.png and linkedin-blue.png are
+LinkedIn's [in] logo files as LinkedIn publishes them for download, unchanged.
+Their use is subject to LinkedIn's brand guidelines and terms.

@@ -64,6 +64,29 @@ try {
   failures.push(`integrations/python/vici_palette.py failed to import (${e.message.split('\n')[0]})`);
 }
 
+// Streamlit byline helper: imports, escapes its label and points at this release's files
+try {
+  const py = [
+    'import sys, json',
+    `sys.path.insert(0, ${JSON.stringify(join(ROOT, 'integrations/streamlit'))})`,
+    'from vici_byline import vici_byline',
+    'print(json.dumps({"light": vici_byline(), "dark": vici_byline(dark=True, label="<b>x</b>")}))',
+  ].join('\n');
+  const out = JSON.parse(execFileSync('python3', ['-I', '-B', '-c', py], { encoding: 'utf8' }));
+  const version = JSON.parse(read('package.json')).version;
+  const cdn = `https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v${version}/assets/`;
+  for (const [name, html] of Object.entries(out)) {
+    if (!html.includes(`${cdn}brand/portrait-96.jpg`)) failures.push(`vici_byline (${name}): portrait not loaded from the v${version} CDN`);
+    if (!html.includes(`${cdn}marks/${name === 'dark' ? 'linkedin-white.png' : 'linkedin.png'}`)) failures.push(`vici_byline (${name}): wrong LinkedIn logo`);
+    if (!html.includes('href="https://www.linkedin.com/in/victorpflueger" rel="me"')) failures.push(`vici_byline (${name}): profile link without rel="me"`);
+    if (!html.includes('> on LinkedIn</span>')) failures.push(`vici_byline (${name}): link not named "on LinkedIn"`);
+  }
+  if (!out.light.includes(`color:${L.text}`) || !out.dark.includes(`color:${D.text}`)) failures.push('vici_byline: name colours differ from the theme text colours');
+  if (out.dark.includes('<b>x</b>')) failures.push('vici_byline: the label is not escaped');
+} catch (e) {
+  failures.push(`integrations/streamlit/vici_byline.py failed (${e.message.split('\n')[0]})`);
+}
+
 // Tailwind v4 theme
 const tw = read('integrations/tailwind/vici-theme.css');
 if (!/^@theme \{$/m.test(tw)) failures.push('tailwind theme: no @theme block');
@@ -75,5 +98,5 @@ if (failures.length) {
   console.error(failures.map((f) => '✗ ' + f).join('\n'));
   process.exit(1);
 }
-console.log('Power BI (2), Streamlit (2), Python and Tailwind exports parse and match the tokens; dist/tokens.json is consistent.');
+console.log('Power BI (2), Streamlit (2 themes + byline helper), Python and Tailwind exports parse and match the tokens; dist/tokens.json is consistent.');
 console.log('INTEGRATIONS OK');
