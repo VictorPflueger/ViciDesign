@@ -117,7 +117,13 @@ function walk(dir, base = '') {
   return out;
 }
 
-const readable = (hex) => (contrast(hex, '#ffffff') >= contrast(hex, '#250010') ? '#ffffff' : '#250010');
+// label ink for a swatch: white or merlot, or black where neither reaches 4.5:1 (a few mid-tones)
+const readable = (hex) => {
+  const w = contrast(hex, '#ffffff');
+  const m = contrast(hex, '#250010');
+  if (Math.max(w, m) >= 4.5) return w >= m ? '#ffffff' : '#250010';
+  return contrast(hex, '#000000') >= w ? '#000000' : '#ffffff';
+};
 
 
 // ---------------------------------------------------------------- charts
@@ -399,12 +405,12 @@ function makeWidgets(ctx) {
       };
       const distRow = (T) => ['normal', 'protan', 'deutan', 'tritan'].map((m) => `<td class="vc-num">${minDist(T, m)}</td>`).join('');
       return `<div class="doc-data-grid">
-  <div><h4>Categorical — light</h4>${strip(L, cat, 'Categorical series colours, light theme')}</div>
-  <div class="doc-dark-panel" data-theme="dark"><h4>Categorical — dark</h4>${strip(D, cat, 'Categorical series colours, dark theme')}</div>
-  <div><h4>Sequential — light</h4>${strip(L, seq, 'Sequential ramp, light theme')}</div>
-  <div class="doc-dark-panel" data-theme="dark"><h4>Sequential — dark</h4>${strip(D, seq, 'Sequential ramp, dark theme')}</div>
-  <div><h4>Diverging — light</h4>${strip(L, div, 'Diverging ramp, light theme')}</div>
-  <div class="doc-dark-panel" data-theme="dark"><h4>Diverging — dark</h4>${strip(D, div, 'Diverging ramp, dark theme')}</div>
+  <div><h3 class="doc-data-grid__title">Categorical — light</h3>${strip(L, cat, 'Categorical series colours, light theme')}</div>
+  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Categorical — dark</h3>${strip(D, cat, 'Categorical series colours, dark theme')}</div>
+  <div><h3 class="doc-data-grid__title">Sequential — light</h3>${strip(L, seq, 'Sequential ramp, light theme')}</div>
+  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Sequential — dark</h3>${strip(D, seq, 'Sequential ramp, dark theme')}</div>
+  <div><h3 class="doc-data-grid__title">Diverging — light</h3>${strip(L, div, 'Diverging ramp, light theme')}</div>
+  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Diverging — dark</h3>${strip(D, div, 'Diverging ramp, dark theme')}</div>
 </div>
 <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
 <caption>Smallest perceptual distance (ΔOKLab) between any two of the six categorical series, measured by the build, also under simulated colour-vision deficiencies.</caption>

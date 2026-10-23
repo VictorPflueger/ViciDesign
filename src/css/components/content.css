@@ -592,6 +592,9 @@
   .vc-tile {
     --_bg: var(--vc-accent-soft);
     --_fg: var(--vc-on-accent-soft);
+    /* headings and muted text inside a tile take the tile's ink, whatever the page theme */
+    --vc-text: var(--_fg);
+    --vc-text-muted: var(--_fg);
     position: relative;
     display: grid;
     place-content: center;

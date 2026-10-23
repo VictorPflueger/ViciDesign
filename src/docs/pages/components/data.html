@@ -62,10 +62,10 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 <p>Modifiers: <code>--compact</code>, <code>--striped</code>. <code>.vc-table-wrap--scroll</code> limits the height (<code>--vc-table-height</code>) and keeps the header sticky.</p>
 
 <h3>Row selection and bulk actions</h3>
-<p>Put a checkbox in the first cell of each row. The row tint follows the checkbox, so the state is visible and announced. With <code>data-vc-select="#toolbar-id"</code> on the table, <code>vici.js</code> keeps a select-all checkbox in the header (checked, mixed or empty) and a <code>.vc-table-toolbar</code> with the count in sync. The toolbar stays hidden while nothing is selected. Don't rely on <code>aria-selected</code> in a plain table: it only has a meaning in a grid widget.</p>
+<p>Put a checkbox in the first cell of each row. The row tint follows the checkbox, so the state is visible and announced. With <code>data-vc-select="#toolbar-id"</code> on the table, <code>vici.js</code> keeps a select-all checkbox in the header (checked, mixed or empty) and a <code>.vc-table-toolbar</code> with the count in sync. The toolbar stays hidden while nothing is selected, and a polite live region announces “2 of 3 selected” (change the wording with <code>data-vc-select-status="{n} von {total} ausgewählt"</code> and <code>data-vc-select-none</code>). Don't rely on <code>aria-selected</code> in a plain table: it only has a meaning in a grid widget.</p>
 <!-- demo block -->
 <div class="vc-table-toolbar" id="invoice-actions" hidden>
-  <span aria-live="polite"><strong data-vc-count>0</strong> selected</span>
+  <span><strong data-vc-count>0</strong> selected</span>
   <button type="button" class="vc-button vc-button--sm vc-button--secondary"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Export</button>
   <button type="button" class="vc-button vc-button--sm vc-button--ghost">Assign</button>
 </div>

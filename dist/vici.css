@@ -3357,6 +3357,9 @@
   .vc-tile {
     --_bg: var(--vc-accent-soft);
     --_fg: var(--vc-on-accent-soft);
+    /* headings and muted text inside a tile take the tile's ink, whatever the page theme */
+    --vc-text: var(--_fg);
+    --vc-text-muted: var(--_fg);
     position: relative;
     display: grid;
     place-content: center;
@@ -5430,8 +5433,18 @@
     .vc-checkbox::after,
     .vc-chip > input,
     .vc-step--done .vc-step__marker::after {
-      forced-color-adjust: preserve-parent-color;
-      background-color: currentColor;
+      /* Firefox doesn't know preserve-parent-color: there the marks are plain text colour */
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+    @supports (forced-color-adjust: preserve-parent-color) {
+      .vc-icon,
+      .vc-checkbox::after,
+      .vc-chip > input,
+      .vc-step--done .vc-step__marker::after {
+        forced-color-adjust: preserve-parent-color;
+        background-color: currentColor;
+      }
     }
     /* the step number behind a done check stays hidden */
     .vc-step--done .vc-step__marker {

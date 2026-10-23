@@ -176,7 +176,8 @@
     region.__vcReady = true;
 
     var duration = opts.duration === undefined ? 5000 : Number(opts.duration);
-    if (isFinite(duration) && duration > 0) {
+    // timers overflow above 2^31 - 1 ms (about 24 days) and would fire at once: treat as "until closed"
+    if (isFinite(duration) && duration > 0 && duration <= 2147483647) {
       // the toast waits while it is hovered or holds focus, and leaves 2 s after both end
       var hovered = false;
       var focused = false;
@@ -388,25 +389,34 @@
   window.addEventListener('scroll', placeOpenTips, true);
 
   /* ------------------------------------------------------- scroll regions */
-  // Tables and charts that scroll sideways must be reachable by keyboard (WCAG 2.1.1): while a
-  // wrapper actually overflows it becomes a focusable, named region; otherwise it stays inert.
+  // Tables, charts and code that scroll must be reachable by keyboard (WCAG 2.1.1): while a
+  // wrapper actually overflows it becomes focusable. When it has a caption or chart title it is
+  // also a named region (names are kept unique); otherwise it stays an unnamed, focusable box.
+  var regionNames = {};
   function regionLabel(el) {
     var cap = el.querySelector('caption, .vc-chart__title');
     if (!cap) { var chart = el.closest('.vc-chart'); cap = chart && chart.querySelector('.vc-chart__title'); }
-    var text = cap ? cap.textContent.trim() : '';
-    return text || (el.classList.contains('vc-chart__plot') ? 'Chart' : 'Table');
+    var text = cap ? cap.textContent.replace(/\s+/g, ' ').trim() : '';
+    if (!text) return '';
+    var n = regionNames[text] = (regionNames[text] || 0) + 1;
+    return n > 1 ? text + ' (' + n + ')' : text;
   }
   function syncScrollRegion(el) {
     var scrolls = el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1;
     if (scrolls && !el.hasAttribute('tabindex')) {
       el.setAttribute('tabindex', '0');
       el.__vcRegion = true;
-      if (!el.hasAttribute('role')) el.setAttribute('role', 'region');
-      if (!el.hasAttribute('aria-label') && !el.hasAttribute('aria-labelledby')) el.setAttribute('aria-label', regionLabel(el));
+      if (el.tagName !== 'PRE' && !el.hasAttribute('role') && !el.hasAttribute('aria-label') && !el.hasAttribute('aria-labelledby')) {
+        if (el.__vcLabel === undefined) el.__vcLabel = regionLabel(el);
+        if (el.__vcLabel) {
+          el.setAttribute('role', 'region');
+          el.setAttribute('aria-label', el.__vcLabel);
+          el.__vcNamed = true;
+        }
+      }
     } else if (!scrolls && el.__vcRegion) {
       el.removeAttribute('tabindex');
-      el.removeAttribute('role');
-      el.removeAttribute('aria-label');
+      if (el.__vcNamed) { el.removeAttribute('role'); el.removeAttribute('aria-label'); el.__vcNamed = false; }
       el.__vcRegion = false;
     }
   }
@@ -414,7 +424,7 @@
     ? new ResizeObserver(function (entries) { entries.forEach(function (en) { syncScrollRegion(en.target); }); })
     : null;
   function initScrollRegions(scope) {
-    $all('.vc-table-wrap, .vc-chart__plot', scope).forEach(function (el) {
+    $all('.vc-table-wrap, .vc-chart__plot, pre', scope).forEach(function (el) {
       if (el.__vcScroll) return;
       el.__vcScroll = true;
       syncScrollRegion(el);
@@ -527,8 +537,14 @@
       var all = table.querySelector('thead input[type="checkbox"]');
       var bar = null;
       try { bar = document.querySelector(table.getAttribute('data-vc-select')); } catch (e) { bar = null; }
+      // The toolbar is hidden while nothing is selected, so the announcement lives in its own
+      // polite region next to the table, which exists from the start.
+      var status = document.createElement('span');
+      status.className = 'vc-visually-hidden';
+      status.setAttribute('aria-live', 'polite');
+      (table.closest('.vc-table-wrap') || table).insertAdjacentElement('afterend', status);
       function boxes() { return $all('tbody input[type="checkbox"]', table); }
-      function sync() {
+      function sync(announce) {
         var list = boxes();
         var n = list.filter(function (b) { return b.checked; }).length;
         if (all) {
@@ -539,12 +555,18 @@
           bar.hidden = n === 0;
           $all('[data-vc-count]', bar).forEach(function (c) { c.textContent = String(n); });
         }
+        if (announce) {
+          // wording is configurable for other languages: data-vc-select-status="{n} von {total} ausgewählt"
+          var none = table.getAttribute('data-vc-select-none') || 'No rows selected';
+          var some = table.getAttribute('data-vc-select-status') || '{n} of {total} selected';
+          status.textContent = n === 0 ? none : some.replace('{n}', n).replace('{total}', list.length);
+        }
       }
       table.addEventListener('change', function (e) {
         if (all && e.target === all) boxes().forEach(function (b) { if (!b.disabled) b.checked = all.checked; });
-        sync();
+        sync(true);
       });
-      sync();
+      sync(false);
     });
   }
 
