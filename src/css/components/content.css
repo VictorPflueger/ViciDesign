@@ -717,6 +717,7 @@
   .vc-tile:focus-visible::after { opacity: 1; }
   .vc-tile--solid { --_bg: var(--vc-accent); --_fg: var(--vc-on-accent); }
   .vc-tile--ghost { --_bg: var(--vc-bg-subtle); --_fg: var(--vc-text-muted); }
+  .vc-tile--merlot { --_bg: var(--vc-merlot-100); --_fg: var(--vc-merlot-900); }
   .vc-tile--coral { --_bg: var(--vc-coral-100); --_fg: var(--vc-coral-900); }
   .vc-tile--apricot { --_bg: var(--vc-apricot-100); --_fg: var(--vc-apricot-900); }
   .vc-tile--honey { --_bg: var(--vc-honey-100); --_fg: var(--vc-honey-900); }
