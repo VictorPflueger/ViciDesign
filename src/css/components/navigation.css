@@ -236,12 +236,19 @@
   .vc-footer__bottom {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
     gap: var(--vc-space-3);
     margin-top: var(--vc-space-10);
     padding-top: var(--vc-space-6);
     border-top: 1px solid var(--vc-border-subtle);
     font-size: var(--vc-font-size-xs);
+  }
+  /* a link inside a sentence of the bottom row needs more than colour to stand out */
+  .vc-footer__bottom a:not([class]) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
   }
   /* The brand footer is a dark island in both themes (tokens.css gives it the dark tokens),
      so buttons, links and headings inside keep their contrast. */

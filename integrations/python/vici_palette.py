@@ -241,6 +241,7 @@ LIGHT = {
     "rating": "#9b751d",
     "knob": "#ffffff",
     "track": "#e7ddda",
+    "platform-mark": "#000000",
     "aurora-1": "#fcd2d5",
     "aurora-2": "#e8daf8",
     "aurora-3": "#feeada"
@@ -342,6 +343,7 @@ DARK = {
     "rating": "#e2cfa0",
     "knob": "#f3ebe7",
     "track": "#4d2834",
+    "platform-mark": "#ffffff",
     "aurora-1": "#5c1230",
     "aurora-2": "#372544",
     "aurora-3": "#4e2532"

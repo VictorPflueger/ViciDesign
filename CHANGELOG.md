@@ -14,7 +14,14 @@ First release.
 - More than forty components across actions, forms, content, navigation, feedback, overlays and data display.
 - 64 original icons with hexagons in place of circles.
 - Documentation site with live demos, generated swatches, contrast and token tables.
-- Five logo concepts with colour, dark and mono versions, lockups, app icon and favicon.
+- Logo: Vertex, with colour, dark and mono versions, lockups, app icon, favicon and the wordmark. Five monogram options
+  (Ligature, Stem, Cell, Seal, Initials), each in colour, dark, mono and as an avatar tile. Facet and Honeycomb are
+  archived.
+- Profile links: a "Built by" byline with a hexagon portrait, profile links for footers and contact sections, rules for
+  other brands' logos (unchanged files in black or white via `--vc-platform-mark`), and GitHub's Invertocat in
+  `assets/marks/`.
+- Licence: MIT for code, tokens, icons and docs; Victor Pflüger's name, logo, monogram and wordmarks reserved; fonts
+  under the SIL Open Font License.
 - Starters: app prototype, dashboard, personal landing page, blank page.
 - Integrations: Streamlit, Power BI, Python (matplotlib/plotly), Tailwind CSS v4.
 - Checks: contrast, colour-blind separation of chart colours, hexagon rule, fonts, links, logos, exports, build freshness.

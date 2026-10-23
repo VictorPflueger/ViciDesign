@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Content — card, accordion, list, divider, tag, badge, avatar, timeline,
-   honeycomb tile, code block
+   Content — card, accordion, list, divider, tag, badge, avatar, byline,
+   platform logo, timeline, honeycomb tile, code block
    ========================================================================== */
 
 @layer vici.components {
@@ -520,6 +520,69 @@
   .vc-avatar-group > :nth-child(even) {
     translate: 0 calc(50% + 1px);
   }
+
+  /* ---------- Byline: "Built by", a hexagon portrait, the name and profile links ---------- */
+  .vc-byline {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--vc-space-1) var(--vc-space-2);
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    line-height: var(--vc-leading-snug);
+  }
+  /* .vc-byline in front: a footer's quieter link colour must not reach the name */
+  .vc-byline .vc-byline__person {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vc-space-2);
+    color: var(--vc-text);
+    font-weight: var(--vc-weight-semibold);
+  }
+  a.vc-byline__person {
+    margin: calc(var(--vc-space-1) * -1);
+    padding: var(--vc-space-1);
+    border-radius: var(--vc-radius-sm);
+    text-decoration: none;
+  }
+  a.vc-byline__person:hover .vc-byline__name {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  /* the platform logo inside the name's link keeps its distance from the name */
+  a.vc-byline__person > .vc-platform-mark { margin-inline-start: var(--vc-space-1); }
+  .vc-byline__links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--vc-space-1) var(--vc-space-3);
+  }
+  .vc-byline__links > a:not(.vc-byline__icon) { color: var(--vc-text-link); }
+  .vc-byline__links > a:not(.vc-byline__icon):hover { color: var(--vc-text-link-hover); }
+  /* icon-only profile link: at least 24 × 24 px to hit, the logo at its 21 px minimum */
+  .vc-byline__icon {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    border-radius: var(--vc-radius-sm);
+  }
+  .vc-byline__icon:hover { background: var(--vc-surface-hover); }
+
+  /* ---------- Platform logo (GitHub, LinkedIn …): the owner's file, unchanged ----------
+     Other brands' logos are exempt from the hexagon rule and keep their own colours:
+     black on light surfaces, white on dark ones. Never merlot, never pastel. */
+  .vc-platform-mark {
+    display: inline-block;
+    flex: none;
+    width: auto;
+    height: max(21px, 1.3125rem);
+    fill: var(--vc-platform-mark);
+    vertical-align: middle;
+  }
+  svg.vc-platform-mark { width: max(21px, 1.3125rem); }
 
   /* ---------- Timeline: hexagon markers on a rail ---------- */
   .vc-timeline {

@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="{{root}}dist/vici.css">
   <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <script src="{{root}}dist/vici.js" defer></script>
+  <!-- Profiles in structured data, so search engines connect them to the name (Brand → Profile links) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Victor Pflüger",
+    "sameAs": ["https://www.linkedin.com/in/victorpflueger", "https://github.com/VictorPflueger"]
+  }
+  </script>
   <style>
     .hero { padding-block: clamp(4rem, 9vw, 8rem) clamp(3rem, 7vw, 6rem); }
     .hero__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); align-items: center; gap: var(--vc-space-12); }
@@ -134,7 +143,8 @@
         <div class="vc-cluster" style="justify-content: center; margin-top: var(--vc-space-6)">
           <!-- Replace the address with your own -->
           <a class="vc-button vc-button--lg" href="mailto:hello@example.com">Write an email <span class="vc-icon vc-icon--mail" aria-hidden="true"></span></a>
-          <a class="vc-button vc-button--lg vc-button--secondary" href="https://github.com/VictorPflueger">GitHub</a>
+          <a class="vc-button vc-button--lg vc-button--secondary" href="https://www.linkedin.com/in/victorpflueger" rel="me">LinkedIn</a>
+          <a class="vc-button vc-button--lg vc-button--secondary" href="https://github.com/VictorPflueger" rel="me">GitHub</a>
         </div>
       </div>
     </section>

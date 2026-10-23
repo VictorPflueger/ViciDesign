@@ -7,7 +7,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { resolve } from './tokens.mjs';
 import { contrast, hexToOklch, deltaOk, simulate } from './color.mjs';
-import { logoMarkSvg, viciWordmarkSvg, LOGO_CONCEPTS } from './logos.mjs';
+import { logoMarkSvg, viciWordmarkSvg } from './logos.mjs';
 
 const SECTIONS = ['Start', 'Guidelines', 'Components', 'Brand'];
 
@@ -493,6 +493,13 @@ function makeWidgets(ctx) {
 
     'icon-count': () => String(icons.length),
 
+    // <!-- @platform-mark github --> → another brand's logo from assets/marks/, inlined unchanged.
+    // Only the fixed size goes, so CSS can size it; the link around it carries the name.
+    'platform-mark': (name) => {
+      const svg = readFileSync(join(ctx.root, 'assets/marks', `${name.trim()}.svg`), 'utf8').trim();
+      return svg.replace(/^<svg\b([^>]*)>/, (all, attrs) => `<svg${attrs.replace(/\s(width|height)="[^"]*"/g, '')} class="vc-platform-mark" aria-hidden="true" focusable="false">`);
+    },
+
     chart: (name) => {
       const [kind, ...rest] = name.split(/\s+/);
       if (!CHARTS[kind]) throw new Error(`@chart: unknown chart ${kind}`);
@@ -589,7 +596,7 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
   const home = pages.find((p) => p.path === 'index.html');
   const sequence = home ? [home, ...ordered] : ordered;
 
-  const ctx = { tokens, flat, icons, pages, version, stats: stats || { minCss: 0, gzCss: 0 } };
+  const ctx = { root, tokens, flat, icons, pages, version, stats: stats || { minCss: 0, gzCss: 0 } };
   const widgets = makeWidgets(ctx);
   const counter = { n: 0 };
   const out = [];
@@ -670,6 +677,7 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
       .replace(/\{\{pager\}\}/g, pager)
       .replace(/\{\{bodyClass\}\}/g, isHome ? 'doc doc--home' : page.meta.layout === 'wide' ? 'doc doc--wide' : 'doc')
       .replace(/\{\{version\}\}/g, version)
+      .replace(/\{\{githubMark\}\}/g, () => widgets['platform-mark']('github'))
       .replace(/\{\{root\}\}/g, rootRel)
       .replace(/\{\{content\}\}/g, () => body);
     out.push([page.path, html]);

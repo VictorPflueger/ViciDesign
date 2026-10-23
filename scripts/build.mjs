@@ -9,7 +9,7 @@
 // Outputs:  dist/** · index.html + start/ guidelines/ components/ brand/ (docs site)
 //           integrations/** (Streamlit, Power BI, Python, Tailwind) · assets/logo/**
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, statSync, rmSync, rmdirSync } from 'node:fs';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
@@ -450,6 +450,15 @@ function generatedHtmlOnDisk() {
   return found;
 }
 
+// Everything in assets/logo/ is generated, so a file there without a source is left over.
+function logoFilesOnDisk(dir = 'assets/logo') {
+  if (!existsSync(join(ROOT, dir))) return [];
+  return readdirSync(join(ROOT, dir)).flatMap((entry) => {
+    const rel = `${dir}/${entry}`;
+    return statSync(join(ROOT, rel)).isDirectory() ? logoFilesOnDisk(rel) : [rel];
+  });
+}
+
 if (CHECK) {
   const stale = [];
   for (const [path, content] of outputs) {
@@ -460,6 +469,7 @@ if (CHECK) {
     if (!disk.equals(fresh)) stale.push(`changed  ${path}`);
   }
   for (const path of generatedHtmlOnDisk()) if (!outputs.has(path)) stale.push(`orphan   ${path}`);
+  for (const path of logoFilesOnDisk()) if (!outputs.has(path)) stale.push(`orphan   ${path}`);
   if (stale.length) {
     console.error(stale.join('\n'));
     console.error(`\n${stale.length} generated file(s) out of date — run: node scripts/build.mjs`);
@@ -468,6 +478,14 @@ if (CHECK) {
   console.log(`${outputs.size} generated files match their sources.`);
   console.log('BUILD UP TO DATE');
 } else {
+  // remove logo files whose source is gone, then any folders that left empty
+  for (const path of logoFilesOnDisk()) if (!outputs.has(path)) rmSync(join(ROOT, path));
+  const pruneEmpty = (dir) => {
+    const abs = join(ROOT, dir);
+    for (const entry of readdirSync(abs)) if (statSync(join(abs, entry)).isDirectory()) pruneEmpty(`${dir}/${entry}`);
+    if (dir !== 'assets/logo' && readdirSync(abs).length === 0) rmdirSync(abs);
+  };
+  if (existsSync(join(ROOT, 'assets/logo'))) pruneEmpty('assets/logo');
   for (const [path, content] of outputs) {
     const abs = join(ROOT, path);
     mkdirSync(dirname(abs), { recursive: true });

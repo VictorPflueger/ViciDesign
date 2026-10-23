@@ -9,6 +9,10 @@ Dots on i, j and umlauts are swapped for flat-top hexagons of equal visual weigh
 so the wordmark follows the same rule as the rest of the system. All contours are merged
 into one outline without overlaps. The typeface's ink traps (hairline slits where an arm
 meets a stem, which help at text sizes) are filled: at logo sizes they read as cracks.
+
+A spec with "point": true keeps its full stop out of the outline and records the stop's
+centre and size instead, so the logo generator can draw it as a hexagon in its own colour
+(the "Initials" monogram: VP followed by a hexagon point).
 """
 import json
 import math
@@ -33,6 +37,7 @@ OUT = ROOT / "src/brand/wordmarks.json"
 WORDMARKS = {
     "victor-pflueger": {"text": "Victor Pflüger", "wght": 600, "opsz": 96, "tracking": -12},
     "vici": {"text": "Vici", "wght": 650, "opsz": 96, "tracking": -10},
+    "initials": {"text": "VP.", "wght": 700, "opsz": 96, "tracking": -6, "point": True},
 }
 
 
@@ -147,10 +152,17 @@ def build(spec):
     pen = merged.getPen()
     x = 0
     dots = 0
+    point = None
     for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
         name = order[info.codepoint]
         ox, oy = x + pos.x_offset, pos.y_offset
         tpen = TransformPen(pen, (1, 0, 0, -1, ox, -oy))  # flip y: baseline at 0, y grows downwards
+        if spec.get("point") and name == "period":
+            (x0, y0, x1, y1), = [bounds(c) for c in contours(glyphset, name)]
+            # y flipped like the outline: the stop sits on the baseline, above y = 0
+            point = {"cx": round(ox + (x0 + x1) / 2, 1), "cy": round(-oy - (y0 + y1) / 2, 1), "d": round(max(x1 - x0, y1 - y0), 1)}
+            x += pos.x_advance + spec["tracking"]
+            continue
         for c in contours(glyphset, name):
             x0, y0, x1, y1 = bounds(c)
             w, h = x1 - x0, y1 - y0
@@ -169,7 +181,9 @@ def build(spec):
     svg = SVGPathPen(None)
     outline.draw(svg)
     d = svg.getCommands()
+    extra = {"point": point} if spec.get("point") else {}
     return {
+        **extra,
         "text": spec["text"],
         "weight": spec["wght"],
         "opsz": spec["opsz"],

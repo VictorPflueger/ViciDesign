@@ -54,6 +54,7 @@ const RULES = [
   ['chart-axis', ['bg', 'surface'], TEXT],
   ['rating', ['bg', 'surface'], UI],
   ['knob', ['border-strong'], UI],
+  ['platform-mark', ['bg', 'bg-subtle', 'surface', 'surface-raised', 'surface-hover'], UI],
 ];
 for (const s of ['info', 'success', 'warning', 'danger', 'feature', 'neutral']) {
   RULES.push([`${s}-text`, [`${s}-bg`, 'bg', 'surface'], TEXT]);

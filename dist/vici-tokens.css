@@ -309,6 +309,7 @@
     --vc-rating: var(--vc-honey-600);
     --vc-knob: var(--vc-neutral-0);
     --vc-track: var(--vc-neutral-200);
+    --vc-platform-mark: #000000;
     --vc-aurora-1: var(--vc-merlot-200);
     --vc-aurora-2: var(--vc-lilac-200);
     --vc-aurora-3: var(--vc-apricot-100);
@@ -420,6 +421,7 @@
       --vc-rating: var(--vc-honey-300);
       --vc-knob: var(--vc-neutral-100);
       --vc-track: var(--vc-night-6);
+      --vc-platform-mark: var(--vc-neutral-0);
       --vc-aurora-1: var(--vc-merlot-800);
       --vc-aurora-2: var(--vc-lilac-900);
       --vc-aurora-3: var(--vc-night-accent);
@@ -532,6 +534,7 @@
     --vc-rating: var(--vc-honey-300);
     --vc-knob: var(--vc-neutral-100);
     --vc-track: var(--vc-night-6);
+    --vc-platform-mark: var(--vc-neutral-0);
     --vc-aurora-1: var(--vc-merlot-800);
     --vc-aurora-2: var(--vc-lilac-900);
     --vc-aurora-3: var(--vc-night-accent);
@@ -642,6 +645,7 @@
     --vc-rating: var(--vc-honey-300);
     --vc-knob: var(--vc-neutral-100);
     --vc-track: var(--vc-night-6);
+    --vc-platform-mark: var(--vc-neutral-0);
     --vc-aurora-1: var(--vc-merlot-800);
     --vc-aurora-2: var(--vc-lilac-900);
     --vc-aurora-3: var(--vc-night-accent);
@@ -751,6 +755,7 @@
       --vc-rating: var(--vc-honey-600);
       --vc-knob: var(--vc-neutral-0);
       --vc-track: var(--vc-neutral-200);
+      --vc-platform-mark: #000000;
       --vc-aurora-1: var(--vc-merlot-200);
       --vc-aurora-2: var(--vc-lilac-200);
       --vc-aurora-3: var(--vc-apricot-100);
@@ -860,6 +865,7 @@
     --vc-rating: var(--vc-honey-600);
     --vc-knob: var(--vc-neutral-0);
     --vc-track: var(--vc-neutral-200);
+    --vc-platform-mark: #000000;
     --vc-aurora-1: var(--vc-merlot-200);
     --vc-aurora-2: var(--vc-lilac-200);
     --vc-aurora-3: var(--vc-apricot-100);
@@ -968,6 +974,7 @@
     --vc-rating: var(--vc-honey-300);
     --vc-knob: var(--vc-neutral-100);
     --vc-track: var(--vc-night-6);
+    --vc-platform-mark: var(--vc-neutral-0);
     --vc-aurora-1: var(--vc-merlot-800);
     --vc-aurora-2: var(--vc-lilac-900);
     --vc-aurora-3: var(--vc-night-accent);

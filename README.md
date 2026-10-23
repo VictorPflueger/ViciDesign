@@ -24,9 +24,9 @@
 Pin a release tag (`@v1.0.0`) instead of `@main` for anything that has to stay stable. For offline work or sites that must not
 load third-party resources, copy `dist/` and `assets/fonts/` into the project and keep their relative positions.
 
-The documentation site, with live demos and copyable code for every component, is the root of this repository
-(`index.html`). Switch on **GitHub Pages → Deploy from a branch → `main` / root** to publish it at
-`https://victorpflueger.github.io/ViciDesign/`, or open `index.html` locally.
+The documentation site, with live demos and copyable code for every component, is published at
+**https://victorpflueger.github.io/ViciDesign/** (GitHub Pages, from the root of `main`). It also works offline: open
+`index.html` locally.
 
 ## The concept
 
@@ -42,7 +42,7 @@ The documentation site, with live demos and copyable code for every component, i
 
 - **Guidelines:** principles, colour and colour coding, typography, hexagon geometry, layout and spacing, elevation, motion, iconography, data visualisation, accessibility.
 - **Components:** button, icon button, toggle and button group, link, segmented control · field, text input, textarea, select, combobox, date/number/file inputs, checkbox, radio, switch, slider, chip, rating · card, accordion, list and list group, divider, tag, badge, avatar and avatar group, presence, timeline, honeycomb tile, code block · header, side navigation, footer, tabs, breadcrumb, pagination, stepper, carousel · alert and banner, callout, toast, tooltip, progress bar, hex progress, spinner, skeleton, empty state · dialog, drawer, menu, popover · table, stat card, sparkline, legend, chart frame.
-- **Brand:** five logo concepts (Vertex, Facet, Honeycomb, Monogram, Wordmark) in colour, dark and mono, plus an app icon, a favicon and lockups.
+- **Brand:** the Vertex logo with lockups, app icon and favicon, the wordmark, five monogram options to choose from, and a guideline for profile links: a "Built by" byline with a hexagon portrait, profile links in footers and contact sections, and how to treat other brands' logos.
 - **Starters:** an app prototype, a data dashboard, a personal landing page and a blank page in `starters/`.
 - **Integrations:** Streamlit theme, Power BI theme, Python palette for matplotlib/plotly, Tailwind CSS v4 theme, all generated from the same tokens.
 - **Icons:** 64 original line icons on a 24 px grid. Every round form in them is drawn as a hexagon, and arrowheads and chevrons open at the hexagon's 120° angle. Even password masks are hexagons.
@@ -62,7 +62,8 @@ All fonts are self-hosted in `assets/fonts/`, so no font is requested from a thi
 ```
 dist/                 vici.css · vici.min.css · vici-tokens.css · vici.js · vici-icons.svg · tokens.json   (generated)
 assets/fonts/         WOFF2 files + OFL licences, vici-mask.woff2 (hexagon password mask)
-assets/logo/          logo concepts as SVG                                                               (generated)
+assets/logo/          Vertex logo, wordmarks, monogram options, archived concepts as SVG                 (generated)
+assets/marks/         other brands' logos for profile links (GitHub's Invertocat, unchanged)
 src/tokens/           tokens.json — the single source of truth (DTCG-style)
 src/css/              base, shape (hexagon geometry), layout, utilities, forced colours, components/*.css
 src/js/vici.js        optional behaviours
@@ -93,5 +94,13 @@ generated file is stale.
 
 ## Licence
 
-The fonts in `assets/fonts/` are licensed under the SIL Open Font License 1.1 (see the `OFL-*.txt` files next to them).
-No licence has been chosen for the rest of this repository yet.
+- **Code, tokens, icons and documentation:** MIT. Use them in your own projects, commercial or not, and keep the
+  copyright notice.
+- **Victor Pflüger's personal brand:** his name as a mark, his portrait, the Vertex logo, the monogram options and the
+  wordmarks (`assets/logo/`, `src/brand/`) are all rights reserved. If you build on Vici, put your own name and logo in
+  their place.
+- **Fonts:** Bricolage Grotesque, Inter and JetBrains Mono are under the SIL Open Font License 1.1 (`assets/fonts/OFL-*.txt`).
+- **Other brands:** GitHub's Invertocat in `assets/marks/` belongs to GitHub and is used only to link to profiles, as
+  GitHub's logo guidelines allow.
+
+The full terms are in [LICENSE](LICENSE).

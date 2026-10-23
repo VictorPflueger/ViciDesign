@@ -1,7 +1,8 @@
-// Logo suggestions for Victor Pflüger, generated from geometry so every variant stays exact.
-// Inspiration: the node-path "V" of the personal website mark, translated into Vici's
-// hexagon language. Every round node becomes a flat-top hexagon; strokes follow the
-// 60° lattice of the honeycomb.
+// Victor Pflüger's logo (Vertex), wordmarks, monogram options and the archived concepts,
+// generated from geometry so every variant stays exact. Inspiration for the symbol: the
+// node-path "V" of the personal website mark, translated into Vici's hexagon language.
+// Every round node becomes a hexagon; strokes follow the 60° lattice of the honeycomb.
+// The designs are Victor Pflüger's brand assets: all rights reserved (see LICENSE).
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -211,50 +212,184 @@ function honeycombSymbol(variant) {
   return svg(`0 0 ${width} ${height}`, honeycombBody(scheme), { title: 'Honeycomb — Victor Pflüger' });
 }
 
-// ---------------------------------------------------------------- 4 · Monogram
-// V and P drawn with one continuous line on the 60° lattice; the bowl of the P is half a
-// hexagon, so the monogram can only belong to this system.
-function monogramBody({ ink, accent, sw = 9 }) {
-  // V: left arm from (14,14) down to apex (35,50.4); right arm rises at 60° back to the top
-  // and becomes the stem of the P; the bowl is the right half of a flat-top hexagon.
-  const top = 14;
-  const apexY = 64;
-  const h = apexY - top;
-  const half = h * Math.tan(deg(30)); // horizontal run of a 60° arm
-  const ax = 14 + half;
-  const L = [14, top];
-  const A = [ax, apexY];
-  const S = [ax + half, top]; // top of the P stem
-  const bowlH = 30; // height of the bowl (top half of the stem)
-  const bowlW = bowlH / Math.sqrt(3); // depth of the half-hexagon bowl
-  const B1 = [S[0] + bowlW * 0.62, top];
-  const B2 = [S[0] + bowlW * 0.62 + bowlW * 0.5, top + bowlH / 2];
-  const B3 = [S[0] + bowlW * 0.62, top + bowlH];
-  // the P joins the stem where the bowl closes, on the right arm
-  const tStem = (top + bowlH - top) / h; // fraction down the right arm
-  const J = [S[0] - half * tStem, top + bowlH];
-  const d = `M${r2(L[0])} ${r2(L[1])} L${r2(A[0])} ${r2(A[1])} L${r2(S[0])} ${r2(S[1])} L${r2(B1[0])} ${r2(B1[1])} L${r2(B2[0])} ${r2(B2[1])} L${r2(B3[0])} ${r2(B3[1])} L${r2(J[0])} ${r2(J[1])}`;
-  // the counter of the bowl, inset by half the stroke, carries the accent colour
-  const inset = sw / 2;
-  const counter = [
-    [S[0] - half * (inset / h) + inset * 0.6, top + inset],
-    [B1[0] - inset * 0.58, top + inset],
-    [B2[0] - inset * 1.15, top + bowlH / 2],
-    [B3[0] - inset * 0.58, top + bowlH - inset],
-    [J[0] + inset * 0.6, top + bowlH - inset],
-  ];
-  const fillCounter = accent ? `<polygon points="${pts(counter.map(([x, y]) => [r2(x), r2(y)]))}" fill="${accent}"/>` : '';
-  return `${fillCounter}<path d="${d}" fill="none" stroke="${ink}" stroke-width="${sw}" stroke-linejoin="miter" stroke-miterlimit="4" stroke-linecap="butt"/>`;
+// --------------------------------------------------------------- 4 · Monogram
+// Five directions for a VP monogram, to choose from. Shared rules: cap height 100 units,
+// every diagonal at 60° (the angle of the honeycomb and of Vertex's arms), every round
+// form a hexagon, flat terminals on the cap line. The P's bowl is three quarters of a
+// flat-top hexagon, so its two slanted sides run parallel to the V's arms.
+const S3 = Math.sqrt(3);
+const MONO_W = 16; // stroke across an arm or stem, on a cap height of 100
+const UNDERLAP = 0.8; // pastel counters reach this far under the ink, so no hairline seam shows
+
+const pathD = (poly) => 'M' + poly.map(([x, y]) => `${r2(x)} ${r2(y)}`).join(' L') + ' Z';
+
+function cross([x1, y1], [x2, y2], [x3, y3], [x4, y4]) {
+  const den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+  const t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den;
+  return [x1 + t * (x2 - x1), y1 + t * (y2 - y1)];
 }
 
-function monogramSymbol(variant) {
-  const scheme = {
-    color: { ink: C.ink, accent: C.blush },
-    dark: { ink: C.linen, accent: C.rose },
-    mono: { ink: C.ink, accent: '' },
-  }[variant];
-  return svg('6 6 92 64', monogramBody(scheme), { title: 'Monogram VP — Victor Pflüger' });
+/** Moves every edge of a convex polygon inwards by d (the counter of a stroked shape). */
+function insetPolygon(poly, d) {
+  const n = poly.length;
+  let area = 0;
+  for (let i = 0; i < n; i++) area += poly[i][0] * poly[(i + 1) % n][1] - poly[(i + 1) % n][0] * poly[i][1];
+  const sgn = area > 0 ? 1 : -1;
+  const edges = poly.map((p, i) => {
+    const q = poly[(i + 1) % n];
+    const len = Math.hypot(q[0] - p[0], q[1] - p[1]);
+    const nx = (-sgn * (q[1] - p[1])) / len;
+    const ny = (sgn * (q[0] - p[0])) / len;
+    return [[p[0] + nx * d, p[1] + ny * d], [q[0] + nx * d, q[1] + ny * d]];
+  });
+  return edges.map((e, i) => cross(...edges[(i - 1 + n) % n], ...e));
 }
+
+/** V with 60° arms; outer top-left corner at (x, 0), apex on the baseline y = h. */
+function chevron(x, h, w) {
+  const t = (2 * w) / S3; // horizontal thickness of a 60° arm
+  const run = h / S3; // horizontal run of an arm over the full height
+  return { poly: [[x, 0], [x + t, 0], [x + run, h - 2 * w], [x + 2 * run - t, 0], [x + 2 * run, 0], [x + run, h]], right: x + 2 * run, t };
+}
+
+/** P on a stem at x: bowl of height b whose top edge reaches `ext` past the stem. */
+function hexBowlP(x, h, w, { b = 58, ext = 27 } = {}) {
+  const X1 = x + w + ext;
+  const X2 = X1 + b / 2 / S3;
+  const bowlOutline = [[x, 0], [X1, 0], [X2, b / 2], [X1, b], [x, b]];
+  const counter = insetPolygon(bowlOutline, w);
+  counter[0][0] = x + w; // the counter starts at the inside of the stem
+  counter[4][0] = x + w;
+  const outline = [[x, 0], [X1, 0], [X2, b / 2], [X1, b], [x + w, b], [x + w, h], [x, h]];
+  return { outline, counter, right: X2 };
+}
+
+const part = (role, polys, evenodd = false) => ({ role, d: polys.map(pathD).join(' '), evenodd });
+
+// 4a · Ligature: the V's right arm runs into the P's top corner, so the two letters share one
+// sharp junction and read as a single sign.
+function monoLigature() {
+  const V = chevron(0, 100, MONO_W);
+  const P = hexBowlP(V.right - V.t, 100, MONO_W); // the arm's inner top corner is the stem's corner
+  return { parts: [part('accent', [insetPolygon(P.counter, -UNDERLAP)]), part('ink', [V.poly]), part('ink', [P.outline, P.counter], true)], box: { x: 0, y: 0, x2: P.right, y2: 100 } };
+}
+
+// 4b · Stem: the V's second arm stands upright and is the P's stem. The most compact cut.
+function monoStem() {
+  const w = MONO_W;
+  const t = (2 * w) / S3;
+  const xs = 100 / S3; // the arm reaches the stem's foot
+  const yJoin = (xs - t) * S3; // where the arm's inner edge meets the stem
+  const b = 58;
+  const X1 = xs + w + 27;
+  const X2 = X1 + b / 2 / S3;
+  const outline = [[0, 0], [t, 0], [xs, yJoin], [xs, 0], [X1, 0], [X2, b / 2], [X1, b], [xs + w, b], [xs + w, 100], [xs, 100]];
+  const counter = insetPolygon([[xs, 0], [X1, 0], [X2, b / 2], [X1, b], [xs, b]], w);
+  counter[0][0] = xs + w;
+  counter[4][0] = xs + w;
+  return { parts: [part('accent', [insetPolygon(counter, -UNDERLAP)]), part('ink', [outline, counter], true)], box: { x: 0, y: 0, x2: X2, y2: 100 } };
+}
+
+// 4c · Cell: the P's bowl is a whole hexagon cell, and its pastel centre is Vertex's goal node.
+function monoCell() {
+  const w = MONO_W;
+  const R = 32; // the cell's circumradius: the bowl is 64 % of the cap height
+  const V = chevron(0, 100, w);
+  const xs = V.right;
+  const cx = xs + (S3 / 2) * R;
+  const H = hexPoints(cx, R, R, true); // pointy-top: its left side is upright and doubles as the stem
+  const join = [xs + w, H[2][1] + w / S3]; // where the stem leaves the cell's lower left edge
+  const outline = [H[4], H[5], H[0], H[1], join, [xs + w, 100], [xs, 100], H[2], H[3]];
+  const counter = hexPoints(cx, R, R - w / (S3 / 2), true);
+  return { parts: [part('accent', [hexPoints(cx, R, R - (w - UNDERLAP) / (S3 / 2), true)]), part('ink', [V.poly]), part('ink', [outline, counter], true)], box: { x: 0, y: 0, x2: H[0][0], y2: 100 } };
+}
+
+// 4d · Seal: the initials inside a thin hexagon ring, like a stamp or a signet.
+function monoSeal() {
+  const R = 60;
+  const ringT = 4;
+  const w = 13;
+  const V = chevron(0, 100, w);
+  const P = hexBowlP(V.right + 5, 100, w, { b: 56, ext: 22 });
+  const s = (0.44 * S3 * R) / 100;
+  const cx = R;
+  const cy = (S3 * R) / 2;
+  const tx = cx - (P.right / 2) * s;
+  const ty = cy - 50 * s;
+  const T = (poly) => poly.map(([x, y]) => [tx + x * s, ty + y * s]);
+  return {
+    parts: [
+      part('frame', [hexPoints(cx, cy, R), hexPoints(cx, cy, R - (2 * ringT) / S3)], true),
+      part('ink', [T(V.poly)]),
+      part('ink', [T(P.outline), T(P.counter)], true),
+    ],
+    box: { x: 0, y: 0, x2: 2 * R, y2: S3 * R },
+    framed: true,
+  };
+}
+
+// 4e · Initials: V and P from the wordmark's typeface, closed by a hexagon point.
+function monoInitials(root) {
+  const wm = wordmarks(root).initials;
+  const k = 100 / wm.capHeight; // font units → monogram units
+  const h = 0.62 * wm.point.d * k; // flat-top hexagon, a little lighter than the type's own stop
+  const cx = wm.point.cx * k;
+  const point = hexPoints(cx, -h / 2, h / S3); // sits on the baseline (y = 0)
+  const letters = { role: 'ink', d: wm.d, evenodd: false, transform: `translate(0 100) scale(${r2(k * 10000) / 10000})` };
+  return { parts: [letters, { role: 'point', d: pathD(point.map(([x, y]) => [x, y + 100])) }], box: { x: 0, y: 0, x2: cx + h / S3, y2: 100 } };
+}
+
+const MONO_COLORS = {
+  color: { ink: C.ink, accent: C.blush, frame: C.dusty, point: C.dusty },
+  dark: { ink: C.linen, accent: C.dusty, frame: C.blush, point: C.blush },
+  mono: { ink: C.ink, accent: '', frame: C.ink, point: C.ink },
+  tile: { ink: C.linen, accent: C.blush, frame: '', point: C.blush },
+};
+
+function monoParts(m, colors) {
+  return m.parts
+    .filter((p) => colors[p.role])
+    .map((p) => `<path${p.transform ? ` transform="${p.transform}"` : ''} d="${p.d}" fill="${colors[p.role]}"${p.evenodd ? ' fill-rule="evenodd"' : ''}/>`)
+    .join('');
+}
+
+function monogramSvg(m, variant, name) {
+  const colors = MONO_COLORS[variant];
+  const title = `Monogram VP, ${name} — Victor Pflüger`;
+  if (variant !== 'tile') {
+    const b = m.box;
+    const pad = m.framed ? 0 : 6;
+    return svg(`${r2(b.x - pad)} ${r2(b.y - pad)} ${r2(b.x2 - b.x + 2 * pad)} ${r2(b.y2 - b.y + 2 * pad)}`, monoParts(m, colors), { title });
+  }
+  // Tile: the app icon and avatar version, the letters in a merlot cell.
+  const R = 60;
+  const H = S3 * R;
+  const tile = `<polygon points="${pts(hexPoints(R, H / 2, R))}" fill="${C.ink}"/>`;
+  if (m.framed) {
+    // the seal's ring moves inside the cell
+    const ring = `<path d="${pathD(hexPoints(R, H / 2, R - 7))} ${pathD(hexPoints(R, H / 2, R - 7 - 4 / (S3 / 2)))}" fill="${C.blush}" fill-rule="evenodd"/>`;
+    const inner = m.parts.filter((p) => p.role !== 'frame');
+    const k = 0.84;
+    return svg(`0 0 ${2 * R} ${r2(H)}`, tile + ring + `<g transform="translate(${r2(R * (1 - k))} ${r2((H / 2) * (1 - k))}) scale(${k})">${monoParts({ parts: inner }, colors)}</g>`, { title });
+  }
+  const b = m.box;
+  const bw = b.x2 - b.x;
+  const bh = b.y2 - b.y;
+  // the largest letter block that keeps a margin inside the cell, at most 46 % of its height
+  const margin = 12;
+  const s = Math.min((0.46 * H) / bh, (R - margin) / (bw / 2 + bh / (2 * S3)));
+  const tx = R - (b.x + bw / 2) * s;
+  const ty = H / 2 - (b.y + bh / 2) * s;
+  return svg(`0 0 ${2 * R} ${r2(H)}`, tile + `<g transform="translate(${r2(tx)} ${r2(ty)}) scale(${r2(s * 10000) / 10000})">${monoParts(m, colors)}</g>`, { title });
+}
+
+export const MONOGRAMS = [
+  { id: 'ligature', name: 'Ligature', make: monoLigature },
+  { id: 'stem', name: 'Stem', make: monoStem },
+  { id: 'cell', name: 'Cell', make: monoCell },
+  { id: 'seal', name: 'Seal', make: monoSeal },
+  { id: 'initials', name: 'Initials', make: monoInitials },
+];
 
 // ---------------------------------------------------------------- 5 · Wordmark
 function wordmarks(root) {
@@ -295,23 +430,18 @@ export function logoMarkSvg({ size = 32, title = true } = {}) {
   return svg(vb(VERTEX_BOX), body, { title: title ? 'Vici' : '', width, height, extraAttrs: ' class="vc-logo"' }).trim();
 }
 
-export const LOGO_CONCEPTS = [
-  { id: 'vertex', name: 'Vertex', recommended: true },
-  { id: 'facet', name: 'Facet' },
-  { id: 'honeycomb', name: 'Honeycomb' },
-  { id: 'monogram', name: 'Monogram' },
-  { id: 'wordmark', name: 'Wordmark' },
-];
-
 export function buildLogos({ root }) {
   const wm = wordmarks(root);
   const files = [];
   const add = (p, c) => files.push([`assets/logo/${p}`, c]);
   for (const v of ['color', 'dark', 'mono']) {
     add(`vertex/${v}.svg`, vertexSymbol(v));
-    add(`facet/${v}.svg`, facetSymbol(v));
-    add(`honeycomb/${v}.svg`, honeycombSymbol(v));
-    add(`monogram/${v}.svg`, monogramSymbol(v));
+    add(`archive/facet/${v}.svg`, facetSymbol(v));
+    add(`archive/honeycomb/${v}.svg`, honeycombSymbol(v));
+  }
+  for (const { id, name, make } of MONOGRAMS) {
+    const m = make(root);
+    for (const v of ['color', 'dark', 'mono', 'tile']) add(`monogram/${id}/${v}.svg`, monogramSvg(m, v, name));
   }
   add('vertex/tile.svg', vertexTile());
   add('favicon.svg', vertexFavicon());

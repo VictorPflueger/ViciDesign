@@ -18,6 +18,7 @@
     .app__title { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--vc-space-4); margin-bottom: var(--vc-space-6); }
     .app__title h1 { margin: var(--vc-space-2) 0 0; font-size: var(--vc-font-size-4xl); }
     @media (max-width: 899px) { .app { grid-template-columns: minmax(0, 1fr); } .app__side { display: none; } }
+    .app__credit { margin-top: var(--vc-space-12); padding-top: var(--vc-space-4); border-top: 1px solid var(--vc-border-subtle); }
   </style>
 </head>
 <body>
@@ -186,6 +187,20 @@
           </ul>
         </div>
       </div>
+      <footer class="app__credit">
+        <!-- Profile links: see Brand → Profile links in the Vici docs -->
+        <p class="vc-byline">
+          <span class="vc-byline__label">Built by</span>
+          <span class="vc-byline__person">
+            <span class="vc-avatar vc-avatar--xs vc-avatar--solid" aria-hidden="true">VP</span>
+            <span class="vc-byline__name">Victor Pflüger</span>
+          </span>
+          <span class="vc-byline__links">
+            <a href="https://www.linkedin.com/in/victorpflueger" rel="me">LinkedIn</a>
+            <a href="https://github.com/VictorPflueger" rel="me">GitHub</a>
+          </span>
+        </p>
+      </footer>
     </main>
   </div>
 

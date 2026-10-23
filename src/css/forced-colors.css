@@ -184,5 +184,9 @@
       outline-offset: -1px;
     }
     .vc-chip:focus-visible { outline: 2px solid Highlight; }
+
+    /* Platform logos are filled in black or white; here they take the forced text colour
+       (LinkText inside a link), so they never vanish on a forced background. */
+    .vc-platform-mark { fill: currentColor; }
   }
 }

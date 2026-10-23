@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "author": "Victor Pflüger",
+  "license": "SEE LICENSE IN LICENSE",
   "homepage": "https://github.com/VictorPflueger/ViciDesign",
   "repository": {
     "type": "git",
