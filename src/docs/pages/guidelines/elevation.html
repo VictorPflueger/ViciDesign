@@ -1,0 +1,72 @@
+<!--
+title: Elevation & surfaces
+nav: Elevation
+section: Guidelines
+order: 6
+icon: layers
+description: Canvas, surfaces and raised layers, wine-tinted shadows, borders versus shadows, dark-mode elevation and the z-index scale.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Elevation &amp; surfaces</h1>
+  <p class="vc-lead">Vici is mostly flat. Hierarchy comes from surface colour and hairline borders first, and shadows are kept for things that genuinely float: menus, dialogs, toasts and cards you can pick up.</p>
+</header>
+
+<h2>Surface levels</h2>
+<!-- demo split block -->
+<div style="padding:var(--vc-space-5);border-radius:var(--vc-radius-lg);background:var(--vc-bg-subtle)">
+  <p class="vc-caption" style="margin:0 0 var(--vc-space-3)">bg-subtle · sidebars, wells</p>
+  <div style="padding:var(--vc-space-5);border-radius:var(--vc-radius-lg);background:var(--vc-bg)">
+    <p class="vc-caption" style="margin:0 0 var(--vc-space-3)">bg · the canvas</p>
+    <div class="vc-card" style="margin-bottom:var(--vc-space-3)"><div class="vc-card__body"><span class="vc-caption">surface · cards, inputs</span></div></div>
+    <div class="vc-card vc-card--elevated" style="background:var(--vc-surface-raised)"><div class="vc-card__body"><span class="vc-caption">surface-raised + shadow-md · menus, dialogs</span></div></div>
+  </div>
+</div>
+<!-- /demo -->
+<ul>
+  <li><strong>Canvas</strong> (<code>--vc-bg</code>): linen paper in light mode, the base colour #250010 in dark mode.</li>
+  <li><strong>Subtle</strong> (<code>--vc-bg-subtle</code>): sidebars, table headers, footers, code wells.</li>
+  <li><strong>Surface</strong> (<code>--vc-surface</code>): cards, inputs, panels. White in light mode, a slightly lighter wine in dark mode.</li>
+  <li><strong>Raised</strong> (<code>--vc-surface-raised</code>): anything on top of other content.</li>
+</ul>
+
+<h2>Shadows</h2>
+<p>Shadows are tinted with the base colour instead of grey, so they feel warm on linen. In dark mode they get darker and denser, because a lighter surface does most of the lifting there.</p>
+<!-- @shadow-scale -->
+<div class="vc-table-wrap">
+<table class="vc-table vc-table--compact">
+  <thead><tr><th scope="col">Token</th><th scope="col">Use</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>--vc-shadow-sm</code></th><td>Selected segment, small lifted controls</td></tr>
+    <tr><th scope="row"><code>--vc-shadow-md</code></th><td>Elevated cards, sticky elements</td></tr>
+    <tr><th scope="row"><code>--vc-shadow-lg</code></th><td>Menus, popovers, toasts, cards on hover</td></tr>
+    <tr><th scope="row"><code>--vc-shadow-xl</code></th><td>Dialogs and drawers</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Borders or shadows?</h2>
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><div class="vc-card" style="width:12rem"><div class="vc-card__body"><strong>Card</strong><span class="vc-card__meta">Hairline border</span></div></div></div>
+    <p>Separate static content with a 1&nbsp;px <code>--vc-border-subtle</code>. It stays crisp in both themes and in print.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><div class="vc-card" style="width:12rem;box-shadow:var(--vc-shadow-xl);border:2px solid var(--vc-border-strong)"><div class="vc-card__body"><strong>Card</strong><span class="vc-card__meta">Shadow and heavy border</span></div></div></div>
+    <p>Don't stack heavy shadows and strong borders on content that doesn't move. Save depth for what floats.</p>
+  </div>
+</div>
+
+<h2>Layers (z-index)</h2>
+<p>Use the named layers instead of arbitrary numbers, so overlays always stack in the same order.</p>
+<!-- @z-scale -->
+
+<h2>Hexagons and shadows</h2>
+<p>A <code>clip-path</code> also clips <code>box-shadow</code>. Vici's hexagon components therefore keep the host element unclipped, paint the cell on a pseudo-element, and use <code>filter: drop-shadow()</code> on the host when a cell must float, as the floating action button does.</p>
+<!-- demo center -->
+<button type="button" class="vc-icon-button vc-icon-button--floating" aria-label="Create">
+  <span class="vc-icon vc-icon--plus" aria-hidden="true"></span>
+</button>
+<!-- /demo -->

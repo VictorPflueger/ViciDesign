@@ -1,0 +1,318 @@
+/* ==========================================================================
+   Actions — button, icon button, link, segmented control, button group
+   ========================================================================== */
+
+@layer vici.components {
+  /* ---------- Button ---------- */
+  .vc-button {
+    --_h: var(--vc-control-md);
+    --_px: var(--vc-space-4);
+    --_fs: var(--vc-font-size-sm);
+    --_bg: var(--vc-accent);
+    --_bg-hover: var(--vc-accent-hover);
+    --_bg-active: var(--vc-accent-pressed);
+    --_fg: var(--vc-on-accent);
+    --_bd: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vc-space-2);
+    min-height: var(--_h);
+    padding: 0 var(--_px);
+    border: 1px solid var(--_bd);
+    border-radius: var(--vc-radius-md);
+    background: var(--_bg);
+    color: var(--_fg);
+    font-family: var(--vc-font-text);
+    font-size: var(--_fs);
+    font-weight: var(--vc-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: 0.005em;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      background-color var(--vc-duration-quick) var(--vc-ease-standard),
+      border-color var(--vc-duration-quick) var(--vc-ease-standard),
+      color var(--vc-duration-quick) var(--vc-ease-standard),
+      translate var(--vc-duration-instant) var(--vc-ease-standard);
+  }
+  .vc-button:hover {
+    background: var(--_bg-hover);
+    color: var(--_fg);
+    text-decoration: none;
+  }
+  .vc-button:active {
+    background: var(--_bg-active);
+    translate: 0 1px;
+  }
+  .vc-button:focus-visible {
+    outline: var(--vc-stroke-focus) solid var(--vc-focus);
+    outline-offset: 2px;
+  }
+  .vc-button > .vc-icon {
+    width: 1.15em;
+    height: 1.15em;
+    margin-inline: -0.1em;
+  }
+
+  .vc-button--secondary {
+    --_bg: var(--vc-accent-soft);
+    --_bg-hover: var(--vc-accent-soft-hover);
+    --_bg-active: var(--vc-accent-soft-hover);
+    --_fg: var(--vc-on-accent-soft);
+  }
+  .vc-button--outline {
+    --_bg: transparent;
+    --_bg-hover: var(--vc-surface-hover);
+    --_bg-active: var(--vc-surface-pressed);
+    --_fg: var(--vc-text);
+    --_bd: var(--vc-border-strong);
+  }
+  .vc-button--ghost {
+    --_bg: transparent;
+    --_bg-hover: var(--vc-surface-hover);
+    --_bg-active: var(--vc-surface-pressed);
+    --_fg: var(--vc-text);
+  }
+  .vc-button--danger {
+    --_bg: var(--vc-danger-solid);
+    --_bg-hover: color-mix(in oklab, var(--vc-danger-solid) 86%, var(--vc-text));
+    --_bg-active: color-mix(in oklab, var(--vc-danger-solid) 76%, var(--vc-text));
+    --_fg: var(--vc-danger-on-solid);
+  }
+  .vc-button--sm {
+    --_h: var(--vc-control-sm);
+    --_px: var(--vc-space-3);
+    --_fs: var(--vc-font-size-xs);
+    gap: var(--vc-space-1);
+  }
+  .vc-button--lg {
+    --_h: var(--vc-control-lg);
+    --_px: var(--vc-space-6);
+    --_fs: var(--vc-font-size-md);
+  }
+  .vc-button--block {
+    display: flex;
+    width: 100%;
+  }
+  .vc-button--toggle[aria-pressed='true'] {
+    --_bg: var(--vc-accent-soft);
+    --_bg-hover: var(--vc-accent-soft-hover);
+    --_fg: var(--vc-on-accent-soft);
+    --_bd: var(--vc-accent);
+  }
+  .vc-button:disabled,
+  .vc-button[aria-disabled='true'] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    translate: none;
+    pointer-events: none;
+  }
+  .vc-button[aria-busy='true'] {
+    cursor: progress;
+  }
+  .vc-button[aria-busy='true'] > .vc-spinner {
+    --vc-spinner-size: 1em;
+  }
+
+  /* ---------- Button group ---------- */
+  .vc-button-group {
+    display: inline-flex;
+    isolation: isolate;
+  }
+  .vc-button-group > .vc-button {
+    border-radius: 0;
+  }
+  .vc-button-group > .vc-button + .vc-button {
+    margin-inline-start: -1px;
+  }
+  .vc-button-group > .vc-button:first-child {
+    border-start-start-radius: var(--vc-radius-md);
+    border-end-start-radius: var(--vc-radius-md);
+  }
+  .vc-button-group > .vc-button:last-child {
+    border-start-end-radius: var(--vc-radius-md);
+    border-end-end-radius: var(--vc-radius-md);
+  }
+  .vc-button-group > .vc-button:focus-visible {
+    z-index: 1;
+  }
+
+  /* ---------- Icon button: a hexagon cell ----------
+     The host stays unclipped so the focus ring (::after) can sit outside the
+     hexagon; ::before paints the cell. */
+  .vc-icon-button {
+    --_h: var(--vc-control-md);
+    --_fill: transparent;
+    --_fill-hover: var(--vc-surface-hover);
+    --_fill-active: var(--vc-surface-pressed);
+    --_fg: var(--vc-text);
+    position: relative;
+    isolation: isolate;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: calc(var(--_h) * 1.1547);
+    height: var(--_h);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--_fg);
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .vc-icon-button::before,
+  .vc-icon-button::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .vc-icon-button::before {
+    inset: 0;
+    background: var(--_fill);
+    clip-path: var(--vc-hex);
+    transition: background-color var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  .vc-icon-button::after {
+    inset: -4px -4.6188px;
+    background: var(--vc-focus);
+    opacity: 0;
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 1.1547px) 2px, 2.3094px 50%, calc(25% + 1.1547px) calc(100% - 2px),
+      calc(75% - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(75% - 1.1547px) 2px, calc(25% + 1.1547px) 2px);
+  }
+  .vc-icon-button:hover::before { background: var(--_fill-hover); }
+  .vc-icon-button:active::before { background: var(--_fill-active); }
+  .vc-icon-button:focus-visible { outline: none; }
+  .vc-icon-button:focus-visible::after { opacity: 1; }
+  .vc-icon-button > .vc-icon {
+    width: calc(var(--_h) * 0.5);
+    height: calc(var(--_h) * 0.5);
+  }
+  .vc-icon-button--soft {
+    --_fill: var(--vc-accent-soft);
+    --_fill-hover: var(--vc-accent-soft-hover);
+    --_fill-active: var(--vc-accent-soft-hover);
+    --_fg: var(--vc-on-accent-soft);
+  }
+  .vc-icon-button--solid {
+    --_fill: var(--vc-accent);
+    --_fill-hover: var(--vc-accent-hover);
+    --_fill-active: var(--vc-accent-pressed);
+    --_fg: var(--vc-on-accent);
+  }
+  .vc-icon-button--outline::before {
+    background: var(--vc-border-strong);
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 0.8660px) 1.5px, 1.7321px 50%, calc(25% + 0.8660px) calc(100% - 1.5px),
+      calc(75% - 0.8660px) calc(100% - 1.5px), calc(100% - 1.7321px) 50%,
+      calc(75% - 0.8660px) 1.5px, calc(25% + 0.8660px) 1.5px);
+  }
+  .vc-icon-button--outline:hover::before {
+    background: var(--vc-surface-hover);
+    clip-path: var(--vc-hex);
+  }
+  .vc-icon-button--floating {
+    --_h: 3.5rem;
+    --_fill: var(--vc-accent);
+    --_fill-hover: var(--vc-accent-hover);
+    --_fill-active: var(--vc-accent-pressed);
+    --_fg: var(--vc-on-accent);
+    filter: drop-shadow(0 10px 14px color-mix(in oklab, var(--vc-shadow-color) 28%, transparent));
+  }
+  .vc-icon-button--sm { --_h: var(--vc-control-sm); }
+  .vc-icon-button--lg { --_h: var(--vc-control-lg); }
+  .vc-icon-button:disabled,
+  .vc-icon-button[aria-disabled='true'] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ---------- Link ---------- */
+  .vc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    color: var(--vc-text-link);
+    font-weight: var(--vc-weight-semibold);
+    text-decoration: none;
+  }
+  .vc-link:hover {
+    color: var(--vc-text-link-hover);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
+  }
+  .vc-link > .vc-icon {
+    width: 1em;
+    height: 1em;
+    transition: translate var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  .vc-link:hover > .vc-icon--arrow-right { translate: 0.18em 0; }
+  .vc-link:hover > .vc-icon--external { translate: 0.12em -0.12em; }
+  .vc-link--quiet {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    text-underline-offset: 0.2em;
+  }
+
+  /* ---------- Segmented control ---------- */
+  .vc-segmented {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--vc-border);
+    border-radius: var(--vc-radius-md);
+    background: var(--vc-bg-subtle);
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .vc-segmented > label {
+    position: relative;
+    display: inline-flex;
+  }
+  .vc-segmented input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .vc-segmented > label > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vc-space-2);
+    min-height: calc(var(--vc-control-md) - 8px);
+    padding: 0 var(--vc-space-4);
+    border-radius: calc(var(--vc-radius-md) - 2px);
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    font-weight: var(--vc-weight-medium);
+    white-space: nowrap;
+    transition: background-color var(--vc-duration-quick) var(--vc-ease-standard), color var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  .vc-segmented input:hover + span { color: var(--vc-text); }
+  .vc-segmented > label > span > .vc-icon { width: 1.1em; height: 1.1em; }
+  .vc-segmented input:checked + span {
+    background: var(--vc-surface);
+    color: var(--vc-text);
+    font-weight: var(--vc-weight-semibold);
+    box-shadow: var(--vc-shadow-sm), 0 0 0 1px var(--vc-border-subtle);
+  }
+  .vc-segmented input:focus-visible + span {
+    outline: var(--vc-stroke-focus) solid var(--vc-focus);
+    outline-offset: 1px;
+  }
+  .vc-segmented input:disabled + span { opacity: 0.45; }
+}

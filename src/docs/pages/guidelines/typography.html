@@ -1,0 +1,111 @@
+<!--
+title: Typography
+section: Guidelines
+order: 3
+icon: type
+description: Bricolage Grotesque for headlines, Inter for reading and UI, JetBrains Mono for code — all open source, self-hosted and variable.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Typography</h1>
+  <p class="vc-lead">Three free, open-source variable fonts with clear jobs: a characterful grotesque for headlines, a highly legible sans for everything you read and click, and a monospace for code and identifiers. All three ship with Vici under the SIL Open Font License 1.1.</p>
+</header>
+
+<h2>Typefaces</h2>
+<div class="vc-grid" style="--vc-grid-min: 15rem">
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <p class="vc-eyebrow">Display</p>
+      <p style="margin:0;font-family:var(--vc-font-display);font-size:3.25rem;font-weight:650;letter-spacing:-0.03em;line-height:1">Aa Gg</p>
+      <h3 class="vc-card__title">Bricolage Grotesque</h3>
+      <p class="vc-card__meta">Headlines H1–H3, display numbers, the wordmark. Its optical-size axis adds ink traps and tighter spacing at large sizes, which gives headlines a crafted, personal look.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--sm">wght 200–800</span><span class="vc-tag vc-tag--sm">opsz 12–96</span></div>
+  </article>
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <p class="vc-eyebrow">Text &amp; UI</p>
+      <p style="margin:0;font-family:var(--vc-font-text);font-size:3.25rem;font-weight:550;letter-spacing:-0.02em;line-height:1">Aa Gg</p>
+      <h3 class="vc-card__title">Inter</h3>
+      <p class="vc-card__meta">Body copy, labels, buttons, tables, H4–H6. Built for screens, with tabular figures, a large x-height and clear shapes that keep small UI text readable.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--sm">wght 100–900</span><span class="vc-tag vc-tag--sm">opsz 14–32</span><span class="vc-tag vc-tag--sm">italic</span></div>
+  </article>
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <p class="vc-eyebrow">Code &amp; data</p>
+      <p style="margin:0;font-family:var(--vc-font-mono);font-size:3rem;font-weight:500;line-height:1.05">Aa 0O</p>
+      <h3 class="vc-card__title">JetBrains Mono</h3>
+      <p class="vc-card__meta">Code, IDs, keyboard keys, hex values. Distinguishes 0/O and 1/l/I at a glance, which matters for data work.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--sm">wght 100–800</span></div>
+  </article>
+</div>
+<p>The fonts load from <code>assets/fonts/</code> next to the stylesheet. Latin and Latin Extended subsets are split by <code>unicode-range</code>, so a German page downloads one file per family (umlauts and ß are part of the base Latin subset). To swap a family, override <code>--vc-font-display</code>, <code>--vc-font-text</code> or <code>--vc-font-mono</code>.</p>
+
+<h2>Type scale</h2>
+<p>Sizes from <code>2xs</code> to <code>2xl</code> are fixed. Headline sizes from <code>3xl</code> upwards are fluid: they grow with the viewport between the two values given, so a hero never overflows on a phone.</p>
+<!-- @type-scale -->
+
+<h2>Text styles</h2>
+<p>The elements <code>h1</code>–<code>h6</code> are styled without classes. The same styles also exist as classes (<code>.vc-h1</code> … <code>.vc-h6</code>, <code>.vc-display</code>, <code>.vc-lead</code>, <code>.vc-eyebrow</code>, <code>.vc-caption</code>), so the visual size can differ from the document outline. The specimen below uses the classes.</p>
+<!-- demo block -->
+<p class="vc-eyebrow">Eyebrow · section label</p>
+<p class="vc-display" style="margin:0 0 var(--vc-space-4)">Display</p>
+<p class="vc-h1">Heading 1 in Bricolage</p>
+<p class="vc-h2">Heading 2 in Bricolage</p>
+<p class="vc-h3">Heading 3 in Bricolage</p>
+<p class="vc-h4">Heading 4 in Inter</p>
+<p class="vc-h5">Heading 5 in Inter</p>
+<p class="vc-h6">Heading 6 in Inter</p>
+<p class="vc-lead">A lead paragraph introduces a page. It's set a step larger and in the muted text colour.</p>
+<p>Body text is Inter at 16&nbsp;px with a line height of 1.5. Use <strong>semibold for emphasis</strong>, <em>italics for titles and terms</em>, <a href="#text-styles">links in merlot</a>, <code>inline code</code> and <kbd>Ctrl</kbd> + <kbd>K</kbd> for keys.</p>
+<p class="vc-caption">Caption — 12 px, muted. For figure notes, sources and timestamps.</p>
+<!-- /demo -->
+
+<h2>Numbers</h2>
+<p>Numbers in tables, KPIs and anything that changes live use <strong>tabular figures</strong>. Every digit is equally wide, so columns line up and values don't jitter while they update. Vici's tables and stat cards switch them on automatically; elsewhere add <code>.vc-tabular</code>.</p>
+<!-- demo start -->
+<div class="vc-stack vc-stack--xs">
+  <span class="vc-caption">Proportional (default)</span>
+  <span style="font-size:1.25rem">1.111.111 €<br>9.807.420 €<br>4.040.404 €</span>
+</div>
+<div class="vc-stack vc-stack--xs">
+  <span class="vc-caption">Tabular (.vc-tabular)</span>
+  <span class="vc-tabular" style="font-size:1.25rem">1.111.111 €<br>9.807.420 €<br>4.040.404 €</span>
+</div>
+<!-- /demo -->
+<ul>
+  <li>Right-align numbers in tables, and align the column heading with them.</li>
+  <li>Use the same number of decimals in a column.</li>
+  <li>Use a thin space or the locale's separator for thousands. German pages use <code>1.234,5</code>, English pages <code>1,234.5</code>.</li>
+</ul>
+
+<h2>Line length and rhythm</h2>
+<ul>
+  <li>Keep reading text between 55 and 75 characters per line. <code>.vc-prose</code> and <code>--vc-container-prose</code> (68ch) do this for you.</li>
+  <li>Body line height is 1.5, long-form prose 1.65, headlines 1.02–1.3. Larger text needs less leading.</li>
+  <li>Headlines get tighter letter-spacing as they grow (<code>--vc-tracking-display</code>). All-caps labels get wider spacing (<code>--vc-tracking-caps</code>).</li>
+  <li>Headings use <code>text-wrap: balance</code> and paragraphs <code>text-wrap: pretty</code>, so lines break evenly without manual line breaks.</li>
+</ul>
+
+<h2>Typesetting German</h2>
+<p>For pages in German, a few details make the difference between translated and professionally set:</p>
+<ul>
+  <li>Set <code>lang="de"</code> on <code>&lt;html&gt;</code>. Screen readers then pronounce the text correctly, and <code>hyphens: auto</code> can break long compounds such as <em>Datenschutzgrundverordnung</em>.</li>
+  <li>Use German quotation marks „…“ and ‚…‘, real dashes (– for ranges and parenthetical asides), and a non-breaking space between number and unit: <code>20&amp;nbsp;%</code>, <code>5&amp;nbsp;GB</code>.</li>
+  <li>The fonts include ß and the capital ẞ for all-caps labels.</li>
+</ul>
+
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><p class="vc-h3" style="margin:0">Quarterly review</p></div>
+    <p>Use Bricolage for short, large headlines, and keep them to a line or two.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><p style="margin:0;font-family:var(--vc-font-display);font-size:var(--vc-font-size-sm)">Small body text set in the display face is harder to read at UI sizes.</p></div>
+    <p>Don't set body text, labels or table cells in the display face. That's Inter's job.</p>
+  </div>
+</div>

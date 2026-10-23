@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Victor Pflüger · Vici landing starter</title>
+  <meta name="description" content="Personal landing page built with the Vici design system.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../dist/vici.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <style>
+    .hero { padding-block: clamp(4rem, 9vw, 8rem) clamp(3rem, 7vw, 6rem); }
+    .hero__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); align-items: center; gap: var(--vc-space-12); }
+    .hero__portrait { justify-self: center; }
+    .hero__portrait .vc-avatar { --_h: clamp(10rem, 22vw, 15rem); font-size: clamp(3rem, 7vw, 4.5rem); font-family: var(--vc-font-display); }
+    @media (max-width: 799px) { .hero__grid { grid-template-columns: minmax(0, 1fr); } .hero__portrait { justify-self: start; order: -1; } }
+    .section-head { max-width: 40rem; margin-bottom: var(--vc-space-8); }
+    .section-head h2 { margin-bottom: var(--vc-space-3); }
+  </style>
+</head>
+<body>
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header">
+    <div class="vc-header__inner" style="--vc-header-max: var(--vc-container-content)">
+      <a class="vc-header__brand" href="#"><img src="../assets/logo/vertex/color.svg" alt="" width="40" height="27" style="height:1.6rem">Victor Pflüger</a>
+      <nav class="vc-header__nav" aria-label="Main">
+        <a href="#topics">Topics</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+        <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero vc-bg-aurora">
+      <div class="vc-container hero__grid">
+        <div>
+          <p class="vc-eyebrow">Your role · Your city</p>
+          <h1 class="vc-display" style="margin-bottom: var(--vc-space-5)">Hello, I'm Victor.</h1>
+          <p class="vc-lead" style="max-width: 34rem; margin-bottom: var(--vc-space-8)">A short introduction in one or two sentences: who you are, what you help with and for whom. Replace this text with your own.</p>
+          <div class="vc-cluster">
+            <a class="vc-button vc-button--lg" href="#contact">Get in touch <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a>
+            <a class="vc-button vc-button--lg vc-button--ghost" href="#work">Selected work</a>
+          </div>
+        </div>
+        <div class="hero__portrait">
+          <!-- Replace the initials with <img src="portrait.jpg" alt="Portrait of …"> -->
+          <span class="vc-avatar vc-avatar--solid">VP</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="vc-section" id="topics" aria-labelledby="topics-title">
+      <div class="vc-container">
+        <div class="vc-grid vc-grid--2" style="align-items: center">
+          <div class="section-head">
+            <p class="vc-eyebrow">Topics</p>
+            <h2 id="topics-title">One cell per topic</h2>
+            <p class="vc-text-muted">Put the subjects you want to be found for into the honeycomb. Replace the six example labels with your own and keep an even number of columns.</p>
+          </div>
+          <ul class="vc-honeycomb" style="--vc-honeycomb-cell: 7rem; --vc-honeycomb-cols: 4">
+            <li class="vc-tile vc-tile--solid"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Strategy</li>
+            <li class="vc-tile vc-tile--lilac"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Prototyping</li>
+            <li class="vc-tile vc-tile--fjord"><span class="vc-icon vc-icon--search" aria-hidden="true"></span>Research</li>
+            <li class="vc-tile vc-tile--sage"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Analytics</li>
+            <li class="vc-tile vc-tile--honey"><span class="vc-icon vc-icon--users" aria-hidden="true"></span>Workshops</li>
+            <li class="vc-tile"><span class="vc-icon vc-icon--book" aria-hidden="true"></span>Writing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="vc-section vc-surface-subtle" id="work" aria-labelledby="work-title">
+      <div class="vc-container">
+        <div class="section-head">
+          <p class="vc-eyebrow">Work</p>
+          <h2 id="work-title">Selected work</h2>
+        </div>
+        <div class="vc-grid vc-grid--3">
+          <article class="vc-card vc-card--interactive">
+            <div class="vc-card__body">
+              <span class="vc-cell vc-cell--lg vc-cell--feature" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span>
+              <h3 class="vc-card__title"><a class="vc-card__link" href="#">Project title</a></h3>
+              <p class="vc-card__meta">One or two sentences on the problem and what the project shows.</p>
+            </div>
+            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--feature">Prototype</span><span class="vc-tag vc-tag--sm">2026</span></div>
+          </article>
+          <article class="vc-card vc-card--interactive">
+            <div class="vc-card__body">
+              <span class="vc-cell vc-cell--lg vc-cell--info" aria-hidden="true"><span class="vc-icon vc-icon--chart-line"></span></span>
+              <h3 class="vc-card__title"><a class="vc-card__link" href="#">Case study title</a></h3>
+              <p class="vc-card__meta">Who it was for, what changed and how you measured it.</p>
+            </div>
+            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--fjord">Case study</span><span class="vc-tag vc-tag--sm">2025</span></div>
+          </article>
+          <article class="vc-card vc-card--interactive">
+            <div class="vc-card__body">
+              <span class="vc-cell vc-cell--lg vc-cell--success" aria-hidden="true"><span class="vc-icon vc-icon--book"></span></span>
+              <h3 class="vc-card__title"><a class="vc-card__link" href="#">Talk or article</a></h3>
+              <p class="vc-card__meta">Where it appeared, and the one idea a reader should take away.</p>
+            </div>
+            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--sage">Writing</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="vc-section" id="experience" aria-labelledby="experience-title">
+      <div class="vc-container vc-container--narrow">
+        <div class="section-head">
+          <p class="vc-eyebrow">Timeline</p>
+          <h2 id="experience-title">Experience</h2>
+        </div>
+        <ol class="vc-timeline">
+          <li class="vc-timeline__item--current"><span class="vc-timeline__date">Year – today</span><p class="vc-timeline__title">Current role · Organisation</p><p class="vc-timeline__text">One line on the focus of this role.</p></li>
+          <li class="vc-timeline__item--done"><span class="vc-timeline__date">Year – year</span><p class="vc-timeline__title">Previous role · Organisation</p><p class="vc-timeline__text">One line on what you did and achieved.</p></li>
+          <li class="vc-timeline__item--done"><span class="vc-timeline__date">Year – year</span><p class="vc-timeline__title">Studies · University</p><p class="vc-timeline__text">Degree and specialisation.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vc-section" id="contact" aria-labelledby="contact-title" data-theme="dark">
+      <div class="vc-container vc-container--narrow" style="text-align: center">
+        <p class="vc-eyebrow">Contact</p>
+        <h2 id="contact-title">Let's talk</h2>
+        <p class="vc-lead" style="margin-inline: auto; max-width: 32rem">One sentence on what people should get in touch about, and how quickly you reply.</p>
+        <div class="vc-cluster" style="justify-content: center; margin-top: var(--vc-space-6)">
+          <!-- Replace the address with your own -->
+          <a class="vc-button vc-button--lg" href="mailto:hello@example.com">Write an email <span class="vc-icon vc-icon--mail" aria-hidden="true"></span></a>
+          <a class="vc-button vc-button--lg vc-button--secondary" href="https://github.com/VictorPflueger">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="vc-footer vc-footer--brand">
+    <div class="vc-container">
+      <div class="vc-footer__bottom" style="margin-top: 0; padding-top: 0; border-top: 0">
+        <span>© Victor Pflüger</span>
+        <span>Built with Vici</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

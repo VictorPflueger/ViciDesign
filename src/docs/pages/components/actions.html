@@ -1,0 +1,101 @@
+<!--
+title: Actions
+section: Components
+order: 1
+icon: zap
+layout: wide
+description: Buttons, hexagon icon buttons, toggle buttons, button groups, links and the segmented control.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Actions</h1>
+  <p class="vc-lead">Buttons start things, links go places. Buttons are calm rectangles, and icon buttons are hexagon cells. A view should have one primary action.</p>
+</header>
+
+<h2>Button</h2>
+<p>Use <code>&lt;button&gt;</code> for actions and <code>&lt;a class="vc-button"&gt;</code> only when it navigates. The primary button is filled with the base colour. In dark mode it turns into pastel blush with merlot text.</p>
+<!-- demo -->
+<button type="button" class="vc-button">Primary</button>
+<button type="button" class="vc-button vc-button--secondary">Secondary</button>
+<button type="button" class="vc-button vc-button--outline">Outline</button>
+<button type="button" class="vc-button vc-button--ghost">Ghost</button>
+<button type="button" class="vc-button vc-button--danger">Delete</button>
+<!-- /demo -->
+
+<h3>Sizes and icons</h3>
+<!-- demo -->
+<button type="button" class="vc-button vc-button--sm"><span class="vc-icon vc-icon--plus" aria-hidden="true"></span>Small</button>
+<button type="button" class="vc-button"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Medium</button>
+<button type="button" class="vc-button vc-button--lg">Large <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></button>
+<!-- /demo -->
+
+<h3>States</h3>
+<!-- demo -->
+<button type="button" class="vc-button" disabled>Disabled</button>
+<button type="button" class="vc-button vc-button--secondary" aria-busy="true"><span class="vc-spinner" aria-hidden="true"></span>Saving…</button>
+<button type="button" class="vc-button vc-button--outline vc-button--toggle" aria-pressed="true"><span class="vc-icon vc-icon--eye" aria-hidden="true"></span>Preview on</button>
+<button type="button" class="vc-button vc-button--outline vc-button--toggle" aria-pressed="false">Toggle me</button>
+<!-- /demo -->
+<p>A toggle button keeps its state in <code>aria-pressed</code>. With <code>vici.js</code> loaded, clicking flips it. A busy button gets <code>aria-busy="true"</code> and a spinner; keep its label meaningful (“Saving…”).</p>
+
+<h3>Full width and groups</h3>
+<!-- demo stack -->
+<button type="button" class="vc-button vc-button--block">Continue to payment</button>
+<div class="vc-button-group" role="group" aria-label="Time range">
+  <button type="button" class="vc-button vc-button--outline">Day</button>
+  <button type="button" class="vc-button vc-button--outline">Week</button>
+  <button type="button" class="vc-button vc-button--outline">Month</button>
+</div>
+<!-- /demo -->
+
+<div class="vc-table-wrap">
+<table class="vc-table vc-table--compact">
+  <thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>.vc-button</code></th><td>Primary (accent fill), 40&nbsp;px high</td></tr>
+    <tr><th scope="row"><code>--secondary</code> · <code>--outline</code> · <code>--ghost</code> · <code>--danger</code></th><td>Emphasis variants</td></tr>
+    <tr><th scope="row"><code>--sm</code> · <code>--lg</code></th><td>32&nbsp;px · 48&nbsp;px</td></tr>
+    <tr><th scope="row"><code>--block</code></th><td>Full width</td></tr>
+    <tr><th scope="row"><code>--toggle</code> + <code>aria-pressed</code></th><td>Two-state button</td></tr>
+    <tr><th scope="row"><code>.vc-button-group</code></th><td>Joins adjacent buttons</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Icon button</h2>
+<p>An icon button is a hexagon cell. The element itself stays unclipped: <code>::before</code> paints the cell and <code>::after</code> draws the hexagonal focus ring. Always give it an <code>aria-label</code>.</p>
+<!-- demo -->
+<button type="button" class="vc-icon-button" aria-label="Search"><span class="vc-icon vc-icon--search" aria-hidden="true"></span></button>
+<button type="button" class="vc-icon-button vc-icon-button--soft" aria-label="Edit"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span></button>
+<button type="button" class="vc-icon-button vc-icon-button--solid" aria-label="Add"><span class="vc-icon vc-icon--plus" aria-hidden="true"></span></button>
+<button type="button" class="vc-icon-button vc-icon-button--outline" aria-label="Filter"><span class="vc-icon vc-icon--filter" aria-hidden="true"></span></button>
+<button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+<button type="button" class="vc-icon-button vc-icon-button--lg vc-icon-button--soft" aria-label="Settings"><span class="vc-icon vc-icon--settings" aria-hidden="true"></span></button>
+<button type="button" class="vc-icon-button vc-icon-button--floating" aria-label="New report"><span class="vc-icon vc-icon--plus" aria-hidden="true"></span></button>
+<!-- /demo -->
+<p>Variants: default (ghost), <code>--soft</code>, <code>--solid</code>, <code>--outline</code>, <code>--floating</code>. Sizes: <code>--sm</code>, <code>--lg</code>. Pair icon-only buttons with a <a href="{{root}}components/overlays.html#tooltip">tooltip</a>.</p>
+
+<h2>Link</h2>
+<p>Links in running text are underlined in merlot and need no class. Use <code>.vc-link</code> for standalone links such as “Read more”, and the external icon when a link leaves the site.</p>
+<!-- demo -->
+<p style="margin:0">Read the <a href="#link">contribution notes</a> before you change a token.</p>
+<a class="vc-link" href="#link">View all reports <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a>
+<a class="vc-link" href="https://github.com/VictorPflueger/ViciDesign">Source on GitHub <span class="vc-icon vc-icon--external" aria-hidden="true"></span></a>
+<a class="vc-link vc-link--quiet" href="#link">Quiet link</a>
+<!-- /demo -->
+
+<h2>Segmented control</h2>
+<p>A segmented control picks one of two to five options that change a view. It's a radio group, so it needs no script and works with the arrow keys.</p>
+<!-- demo -->
+<div class="vc-segmented" role="radiogroup" aria-label="Chart type">
+  <label><input type="radio" name="seg-chart" checked><span><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Bars</span></label>
+  <label><input type="radio" name="seg-chart"><span><span class="vc-icon vc-icon--chart-line" aria-hidden="true"></span>Lines</span></label>
+  <label><input type="radio" name="seg-chart"><span><span class="vc-icon vc-icon--honeycomb" aria-hidden="true"></span>Waffle</span></label>
+</div>
+<div class="vc-segmented" role="radiogroup" aria-label="Period">
+  <label><input type="radio" name="seg-period"><span>7 days</span></label>
+  <label><input type="radio" name="seg-period" checked><span>30 days</span></label>
+  <label><input type="radio" name="seg-period"><span>Year</span></label>
+</div>
+<!-- /demo -->
+<p>Use tabs instead when each option shows different content, and a select when there are more than five options.</p>

@@ -1,0 +1,52 @@
+<!--
+title: Integrations
+section: Start
+order: 3
+icon: layers
+description: Use the Vici palette and type in Streamlit, Power BI, Python charts, Tailwind CSS and design tools — all generated from the same tokens.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Start</p>
+  <h1>Integrations</h1>
+  <p class="vc-lead">Prototypes don't all live in HTML. The build turns the tokens into ready-made themes for the tools around it, so a Streamlit app, a Power BI report and a matplotlib chart can share one palette. Every file in <code>integrations/</code> is generated, so never edit it by hand.</p>
+</header>
+
+<h2>Streamlit</h2>
+<p>Copy <code>integrations/streamlit/config.toml</code> (or <code>config-dark.toml</code>) to <code>.streamlit/config.toml</code> in your app. It sets the primary colour, the backgrounds and the text colour from the light or dark theme.</p>
+<pre><code>[theme]
+base = "light"
+primaryColor = "#250010"
+backgroundColor = "#fbf7f5"
+secondaryBackgroundColor = "#f3ebe7"
+textColor = "#250010"
+font = "sans serif"</code></pre>
+<p>For custom HTML inside Streamlit (<code>st.html</code> or components), link <code>dist/vici.min.css</code> from the CDN and use the classes as usual.</p>
+
+<h2>Power BI</h2>
+<p>Import <code>integrations/powerbi/vici-light.json</code> via <strong>View → Themes → Browse for themes</strong>. The theme sets the eight data colours in the order on <a href="{{root}}guidelines/data-viz.html">Data visualisation</a>, the good/neutral/bad status colours, the sequential scale and the table accent. Text uses Segoe UI, because the Power BI service cannot load web fonts.</p>
+
+<h2>Python: matplotlib and plotly</h2>
+<p><code>integrations/python/vici_palette.py</code> is a single file with no required dependencies. Drop it next to your notebook.</p>
+<pre><code>from vici_palette import CATEGORICAL, SEQUENTIAL, use_matplotlib, plotly_template
+
+use_matplotlib()                          # Vici colours, grid and hexagon markers
+fig.update_layout(template=plotly_template("dark"))
+ax.bar(labels, values, color=CATEGORICAL[0])</code></pre>
+<p>It also exposes <code>COLORS</code> (every ramp), <code>LIGHT</code> and <code>DARK</code> (every semantic token), and the categorical, sequential and diverging lists for both themes.</p>
+
+<h2>Tailwind CSS v4</h2>
+<p><code>integrations/tailwind/vici-theme.css</code> contains an <code>@theme</code> block with every colour ramp, the three font stacks, radii, easings, breakpoints and the 4&nbsp;px spacing unit.</p>
+<pre><code>@import "tailwindcss";
+@import "./vici-theme.css";
+
+/* → bg-merlot-950 text-neutral-50 font-display rounded-md ease-standard … */</code></pre>
+<p>Load the fonts by also linking <code>dist/vici-tokens.css</code>, or the full <code>dist/vici.css</code> if you want the components too.</p>
+
+<h2>Figma and other design tools</h2>
+<p><code>src/tokens/tokens.json</code> follows the structure of the Design Tokens Community Group format (<code>$value</code>, <code>$type</code>, <code>{references}</code>), which token plugins such as Tokens Studio can import. The light and dark themes are separate sets under <code>theme.light</code> and <code>theme.dark</code>. For scripts that just need the values, <code>dist/tokens.json</code> has everything resolved to plain hex codes and lengths.</p>
+
+<h2>Plain JSON</h2>
+<pre><code>const tokens = await (await fetch('https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@main/dist/tokens.json')).json();
+tokens.light.accent      // "#250010"
+tokens.dark['data-2']    // first-class chart colours, per theme
+tokens.color.lilac['200']</code></pre>

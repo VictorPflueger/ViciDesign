@@ -1,0 +1,125 @@
+<!--
+title: Overlays
+section: Components
+order: 6
+icon: layers
+layout: wide
+description: Modal dialog and drawer on native <dialog>, menus and popovers on the Popover API, and accessible tooltips.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Overlays</h1>
+  <p class="vc-lead">Everything that floats above the page is built on the platform: <code>&lt;dialog&gt;</code> for modal work, the Popover API for menus. Focus handling, the <kbd>Esc</kbd> key and the top layer come from the browser. <code>vici.js</code> only adds open and close triggers and positioning.</p>
+</header>
+
+<h2>Dialog</h2>
+<p>A modal dialog interrupts the flow for a decision or a short task. Open it with <code>data-vc-open="id"</code>, or with <code>dialog.showModal()</code> in your own script. Close it with any element that has <code>data-vc-close</code>, with <kbd>Esc</kbd>, or by clicking the backdrop.</p>
+<!-- demo center -->
+<button type="button" class="vc-button" data-vc-open="demo-dialog">Open dialog</button>
+<button type="button" class="vc-button vc-button--outline" data-vc-open="demo-dialog-danger">Destructive confirmation</button>
+
+<dialog class="vc-dialog" id="demo-dialog" aria-labelledby="demo-dialog-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="demo-dialog-title">Share report</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body vc-stack">
+    <p style="margin:0">People with the link can view the report and its sources.</p>
+    <div class="vc-field">
+      <label class="vc-label" for="share-email">Invite by email</label>
+      <input class="vc-input" id="share-email" type="email" placeholder="name@company.com">
+    </div>
+    <label class="vc-switch"><input type="checkbox" role="switch" checked> Allow comments</label>
+  </div>
+  <footer class="vc-dialog__footer">
+    <button type="button" class="vc-button vc-button--ghost" data-vc-close>Cancel</button>
+    <button type="button" class="vc-button" data-vc-close="share">Share</button>
+  </footer>
+</dialog>
+
+<dialog class="vc-dialog vc-dialog--sm" id="demo-dialog-danger" aria-labelledby="demo-danger-title" aria-describedby="demo-danger-text">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="demo-danger-title">Delete this agent?</h2>
+  </header>
+  <div class="vc-dialog__body"><p id="demo-danger-text" style="margin:0">Its run history and settings will be removed. This can't be undone.</p></div>
+  <footer class="vc-dialog__footer">
+    <button type="button" class="vc-button vc-button--ghost" data-vc-close autofocus>Keep agent</button>
+    <button type="button" class="vc-button vc-button--danger" data-vc-close="delete">Delete agent</button>
+  </footer>
+</dialog>
+<!-- /demo -->
+<p>Sizes: <code>--sm</code> (25rem), default (34rem), <code>--lg</code> (50rem). In destructive dialogs, put <code>autofocus</code> on the safe choice. Add <code>data-vc-dismissable="false"</code> to stop the backdrop from closing it.</p>
+
+<h2>Drawer</h2>
+<p>A drawer is a dialog that slides in from the side. Use it for details and forms that need more room than a dialog but shouldn't leave the page.</p>
+<!-- demo center -->
+<button type="button" class="vc-button vc-button--secondary" data-vc-open="demo-drawer"><span class="vc-icon vc-icon--filter" aria-hidden="true"></span>Filters</button>
+<dialog class="vc-dialog vc-dialog--drawer" id="demo-drawer" aria-labelledby="demo-drawer-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="demo-drawer-title">Filters</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close filters"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body vc-stack">
+    <fieldset class="vc-fieldset">
+      <legend>Status</legend>
+      <label class="vc-checkbox"><input type="checkbox" checked> Open</label>
+      <label class="vc-checkbox"><input type="checkbox"> Closed</label>
+    </fieldset>
+    <div class="vc-field">
+      <label class="vc-label" for="drawer-owner">Owner</label>
+      <select class="vc-select" id="drawer-owner"><option>Anyone</option><option>Me</option><option>My team</option></select>
+    </div>
+  </div>
+  <footer class="vc-dialog__footer">
+    <button type="button" class="vc-button vc-button--ghost" data-vc-close>Reset</button>
+    <button type="button" class="vc-button" data-vc-close>Apply</button>
+  </footer>
+</dialog>
+<!-- /demo -->
+
+<h2>Menu</h2>
+<p>A menu is a list of actions in a <code>popover</code>. The browser handles light dismiss (click outside, <kbd>Esc</kbd>) and the top layer. <code>vici.js</code> places it under its trigger, moves focus into it, adds arrow-key navigation and returns focus when it closes.</p>
+<!-- demo center -->
+<button type="button" class="vc-button vc-button--outline" popovertarget="demo-menu" aria-haspopup="menu">
+  Actions <span class="vc-icon vc-icon--chevron-down" aria-hidden="true"></span>
+</button>
+<div class="vc-menu" id="demo-menu" popover role="menu" aria-label="Report actions">
+  <p class="vc-menu__label" role="presentation">Report</p>
+  <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Rename <kbd>F2</kbd></button>
+  <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Duplicate</button>
+  <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Export as CSV</button>
+  <hr class="vc-menu__divider">
+  <button type="button" class="vc-menu__item vc-menu__item--danger" role="menuitem"><span class="vc-icon vc-icon--trash" aria-hidden="true"></span>Delete</button>
+</div>
+
+<button type="button" class="vc-icon-button vc-icon-button--soft" popovertarget="demo-sort" aria-haspopup="menu" aria-label="Sort by"><span class="vc-icon vc-icon--sort" aria-hidden="true"></span></button>
+<div class="vc-menu" id="demo-sort" popover role="menu" aria-label="Sort by">
+  <button type="button" class="vc-menu__item" role="menuitemradio" aria-checked="true">Newest first</button>
+  <button type="button" class="vc-menu__item" role="menuitemradio" aria-checked="false">Highest impact</button>
+  <button type="button" class="vc-menu__item" role="menuitemradio" aria-checked="false">Alphabetical</button>
+</div>
+<!-- /demo -->
+<p>The selected item in a radio menu is marked with a small hexagon, not a dot.</p>
+
+<h2>Popover</h2>
+<p>For richer, non-modal content such as a definition, a short form or a preview, use <code>.vc-popover</code> with the same mechanics.</p>
+<!-- demo center -->
+<button type="button" class="vc-button vc-button--ghost" popovertarget="demo-popover"><span class="vc-icon vc-icon--help" aria-hidden="true"></span>What is a hex capsule?</button>
+<div class="vc-popover" id="demo-popover" popover>
+  <p style="margin:0 0 var(--vc-space-2);font-weight:600">Hex capsule</p>
+  <p style="margin:0;color:var(--vc-text-muted)">A pill shape with pointed ends. The point sits 0.2887 × height in from each side, which makes the ends part of a regular hexagon.</p>
+</div>
+<!-- /demo -->
+
+<h2>Tooltip</h2>
+<p>A tooltip names a control or adds a short hint. It appears on hover and on keyboard focus, and hides with <kbd>Esc</kbd>. When it is the only name of an icon button, connect it with <code>aria-labelledby</code>. When it adds information, use <code>aria-describedby</code>. Never put essential or interactive content in a tooltip.</p>
+<!-- demo center roomy -->
+<span class="vc-tooltip-anchor">
+  <button type="button" class="vc-icon-button" aria-labelledby="tip-copy"><span class="vc-icon vc-icon--link" aria-hidden="true"></span></button>
+  <span class="vc-tooltip" role="tooltip" id="tip-copy">Copy link</span>
+</span>
+<span class="vc-tooltip-anchor">
+  <button type="button" class="vc-icon-button vc-icon-button--soft" aria-label="Download" aria-describedby="tip-dl"><span class="vc-icon vc-icon--download" aria-hidden="true"></span></button>
+  <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-dl">Download CSV (2.4&nbsp;MB)</span>
+</span>
+<!-- /demo -->

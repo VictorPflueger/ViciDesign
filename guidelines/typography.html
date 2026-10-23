@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="vici-build">
+  <title>Typography · Vici Design System</title>
+  <meta name="description" content="Bricolage Grotesque for headlines, Inter for reading and UI, JetBrains Mono for code — all open source, self-hosted and variable.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../dist/vici.css">
+  <link rel="stylesheet" href="../assets/docs/docs.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <script src="../assets/docs/docs.js" defer></script>
+</head>
+<body class="doc">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header doc-header">
+    <div class="vc-header__inner">
+      <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-label="Open navigation">
+        <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+      </button>
+      <a class="vc-header__brand doc-brand" href="../index.html" aria-label="Vici Design System — overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24.55 15.48 73.84 69.63" width="27.57" height="26" aria-hidden="true" focusable="false" class="vc-logo"><path d="M35.86 32.71 L56.58 68.59" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><path d="M63.42 68.59 L79 41.6" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><polygon points="41.45,33.78 34,38.08 26.55,33.78 26.55,25.18 34,20.88 41.45,25.18" style="fill:var(--vc-text)"/><path d="M67.45 78.82 L60 83.12 L52.55 78.82 L52.55 70.22 L60 65.92 L67.45 70.22 Z M63.45 76.51 L60 78.5 L56.55 76.51 L56.55 72.53 L60 70.54 L63.45 72.53 Z" style="fill:var(--vc-text)" fill-rule="evenodd"/><path d="M96.39 35.48 L86 41.48 L75.61 35.48 L75.61 23.48 L86 17.48 L96.39 23.48 Z M92.39 33.17 L86 36.86 L79.61 33.17 L79.61 25.79 L86 22.1 L92.39 25.79 Z" style="fill:var(--vc-merlot-500)" fill-rule="evenodd"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -712 1560 720" width="45.5" height="21" role="img" class="vc-wordmark"><title>Vici</title><path d="M222.25 0.0 6 -660H153.75L309.25 -113.75H312.25L465.5 -660.0H613L397 0ZM649 0V-523.5H784.5V0.0ZM807.8148659421287 -637.5 762.0324329710644 -716.7975H670.4675670289357L624.6851340578713 -637.5L670.4675670289356 -558.2025H762.0324329710644ZM1100.0 13.75Q1033.0 13.75 983.875 -7.0Q934.75 -27.75 903.0 -65.0Q871.25 -102.25 856.0 -151.375Q840.75 -200.5 840.75 -257.25Q840.75 -314.25 856.0 -364.5Q871.25 -414.75 902.375 -454.125Q933.5 -493.5 982.0 -515.5Q1030.5 -537.5 1097.0 -537.5Q1176.25 -537.5 1225.875 -507.5Q1275.5 -477.5 1296.75 -429.75Q1318 -382 1311.5 -326.5L1192.75 -315.75Q1194.0 -353.75 1182.0 -378.875Q1170 -404 1147.75 -416.625Q1125.5 -429.25 1095.25 -429.25Q1070.0 -429.25 1048.5 -420.0Q1027.0 -410.75 1011.0 -390.75Q995.0 -370.75 986.125 -339.625Q977.25 -308.5 977.25 -263.75Q977.25 -206.25 992.5 -167.375Q1007.75 -128.5 1035.75 -109.125Q1063.75 -89.75 1102.25 -89.75Q1142.75 -89.75 1165.5 -108.375Q1188.25 -127.0 1197.0 -156.375Q1205.75 -185.75 1202.75 -216.5L1328.25 -209.5Q1332.5 -164.75 1321.125 -124.375Q1309.75 -84.0 1281.375 -52.75Q1253.0 -21.5 1207.875 -3.875Q1162.75 13.75 1100.0 13.75ZM1376 0V-523.5H1511.5V0.0ZM1534.8148659421288 -637.5 1489.0324329710643 -716.7975H1397.4675670289357L1351.6851340578712 -637.5L1397.4675670289357 -558.2025H1489.0324329710643Z" style="fill:currentColor"/></svg><span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v1.0.0</span></a>
+      <nav class="vc-header__nav doc-header__nav" aria-label="Sections"><a href="../start/getting-started.html">Start</a><a href="../guidelines/principles.html" aria-current="true">Guidelines</a><a href="../components/actions.html">Components</a><a href="../brand/logo.html">Brand</a></nav>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme">
+          <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+          <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+        </button>
+        <a class="vc-icon-button" href="https://github.com/VictorPflueger/ViciDesign" aria-label="Source code on GitHub" title="Source code on GitHub">
+          <span class="vc-icon vc-icon--code" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-shell">
+    <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation">
+      <nav class="vc-sidenav">
+<ul><li><a href="../index.html"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li></ul>
+<div><p class="vc-sidenav__title">Start</p><ul><li><a href="../start/getting-started.html"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Getting started</a></li><li><a href="../start/theming.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Theming</a></li><li><a href="../start/integrations.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Integrations</a></li><li><a href="../start/starters.html"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Starters</a></li><li><a href="../start/tokens.html"><span class="vc-icon vc-icon--code" aria-hidden="true"></span>Tokens</a></li></ul></div>
+<div><p class="vc-sidenav__title">Guidelines</p><ul><li><a href="../guidelines/principles.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Principles</a></li><li><a href="../guidelines/colour.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Colour</a></li><li><a href="../guidelines/typography.html" aria-current="page"><span class="vc-icon vc-icon--type" aria-hidden="true"></span>Typography</a></li><li><a href="../guidelines/hexagon.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Hexagon</a></li><li><a href="../guidelines/layout.html"><span class="vc-icon vc-icon--layout" aria-hidden="true"></span>Layout &amp; spacing</a></li><li><a href="../guidelines/elevation.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Elevation</a></li><li><a href="../guidelines/motion.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Motion</a></li><li><a href="../guidelines/icons.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Icons</a></li><li><a href="../guidelines/data-viz.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data visualisation</a></li><li><a href="../guidelines/accessibility.html"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span>Accessibility</a></li></ul></div>
+<div><p class="vc-sidenav__title">Components</p><ul><li><a href="../components/actions.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Actions</a></li><li><a href="../components/forms.html"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Forms</a></li><li><a href="../components/content.html"><span class="vc-icon vc-icon--cube" aria-hidden="true"></span>Content</a></li><li><a href="../components/navigation.html"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span>Navigation</a></li><li><a href="../components/feedback.html"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span>Feedback</a></li><li><a href="../components/overlays.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Overlays</a></li><li><a href="../components/data.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data display</a></li></ul></div>
+<div><p class="vc-sidenav__title">Brand</p><ul><li><a href="../brand/logo.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Logo concepts</a></li></ul></div>
+      </nav>
+    </aside>
+    <div class="doc-scrim" data-doc-close-sidebar hidden></div>
+
+    <main class="doc-main" id="main" tabindex="-1">
+      <article class="doc-article">
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Typography</h1>
+  <p class="vc-lead">Three free, open-source variable fonts with clear jobs: a characterful grotesque for headlines, a highly legible sans for everything you read and click, and a monospace for code and identifiers. All three ship with Vici under the SIL Open Font License 1.1.</p>
+</header>
+
+<h2 id="typefaces">Typefaces</h2>
+<div class="vc-grid" style="--vc-grid-min: 15rem">
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <p class="vc-eyebrow">Display</p>
+      <p style="margin:0;font-family:var(--vc-font-display);font-size:3.25rem;font-weight:650;letter-spacing:-0.03em;line-height:1">Aa Gg</p>
+      <h3 class="vc-card__title" id="bricolage-grotesque">Bricolage Grotesque</h3>
+      <p class="vc-card__meta">Headlines H1–H3, display numbers, the wordmark. Its optical-size axis adds ink traps and tighter spacing at large sizes, which gives headlines a crafted, personal look.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--sm">wght 200–800</span><span class="vc-tag vc-tag--sm">opsz 12–96</span></div>
+  </article>
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <p class="vc-eyebrow">Text &amp; UI</p>
+      <p style="margin:0;font-family:var(--vc-font-text);font-size:3.25rem;font-weight:550;letter-spacing:-0.02em;line-height:1">Aa Gg</p>
+      <h3 class="vc-card__title" id="inter">Inter</h3>
+      <p class="vc-card__meta">Body copy, labels, buttons, tables, H4–H6. Built for screens, with tabular figures, a large x-height and clear shapes that keep small UI text readable.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--sm">wght 100–900</span><span class="vc-tag vc-tag--sm">opsz 14–32</span><span class="vc-tag vc-tag--sm">italic</span></div>
+  </article>
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <p class="vc-eyebrow">Code &amp; data</p>
+      <p style="margin:0;font-family:var(--vc-font-mono);font-size:3rem;font-weight:500;line-height:1.05">Aa 0O</p>
+      <h3 class="vc-card__title" id="jetbrains-mono">JetBrains Mono</h3>
+      <p class="vc-card__meta">Code, IDs, keyboard keys, hex values. Distinguishes 0/O and 1/l/I at a glance, which matters for data work.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--sm">wght 100–800</span></div>
+  </article>
+</div>
+<p>The fonts load from <code>assets/fonts/</code> next to the stylesheet. Latin and Latin Extended subsets are split by <code>unicode-range</code>, so a German page downloads one file per family (umlauts and ß are part of the base Latin subset). To swap a family, override <code>--vc-font-display</code>, <code>--vc-font-text</code> or <code>--vc-font-mono</code>.</p>
+
+<h2 id="type-scale">Type scale</h2>
+<p>Sizes from <code>2xs</code> to <code>2xl</code> are fixed. Headline sizes from <code>3xl</code> upwards are fluid: they grow with the viewport between the two values given, so a hero never overflows on a phone.</p>
+<div class="doc-type-scale"><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-2xs</code><span>11px — legal, chart ticks</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-2xs);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-xs</code><span>12px — captions, badges</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-xs);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-sm</code><span>14px — UI default, tables</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-sm);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-md</code><span>16px — body</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-md);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-lg</code><span>18px — lead paragraphs</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-lg);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-xl</code><span>21px — H5</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-xl);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-2xl</code><span>25px — H4</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-2xl);font-family:var(--vc-font-text);">Data and design, side by side</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-3xl</code><span>26→31px — H3</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-3xl);font-family:var(--vc-font-display);font-weight:var(--vc-weight-display);letter-spacing:var(--vc-tracking-display);line-height:1.1">Hexagons tessellate</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-4xl</code><span>31→39px — H2</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-4xl);font-family:var(--vc-font-display);font-weight:var(--vc-weight-display);letter-spacing:var(--vc-tracking-display);line-height:1.1">Hexagons tessellate</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-5xl</code><span>38→49px — H1</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-5xl);font-family:var(--vc-font-display);font-weight:var(--vc-weight-display);letter-spacing:var(--vc-tracking-display);line-height:1.1">Hexagons tessellate</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-6xl</code><span>46→62px — display</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-6xl);font-family:var(--vc-font-display);font-weight:var(--vc-weight-display);letter-spacing:var(--vc-tracking-display);line-height:1.1">Honeycomb</div></div><div class="doc-type-row"><div class="doc-type-meta"><code>--vc-font-size-7xl</code><span>52→78px — hero display</span></div><div class="doc-type-sample" style="font-size:var(--vc-font-size-7xl);font-family:var(--vc-font-display);font-weight:var(--vc-weight-display);letter-spacing:var(--vc-tracking-display);line-height:1.1">Honeycomb</div></div></div>
+
+<h2 id="text-styles">Text styles</h2>
+<p>The elements <code>h1</code>–<code>h6</code> are styled without classes. The same styles also exist as classes (<code>.vc-h1</code> … <code>.vc-h6</code>, <code>.vc-display</code>, <code>.vc-lead</code>, <code>.vc-eyebrow</code>, <code>.vc-caption</code>), so the visual size can differ from the document outline. The specimen below uses the classes.</p>
+<div class="doc-demo doc-demo--block"><div class="doc-demo__preview">
+<p class="vc-eyebrow">Eyebrow · section label</p>
+<p class="vc-display" style="margin:0 0 var(--vc-space-4)">Display</p>
+<p class="vc-h1">Heading 1 in Bricolage</p>
+<p class="vc-h2">Heading 2 in Bricolage</p>
+<p class="vc-h3">Heading 3 in Bricolage</p>
+<p class="vc-h4">Heading 4 in Inter</p>
+<p class="vc-h5">Heading 5 in Inter</p>
+<p class="vc-h6">Heading 6 in Inter</p>
+<p class="vc-lead">A lead paragraph introduces a page. It's set a step larger and in the muted text colour.</p>
+<p>Body text is Inter at 16&nbsp;px with a line height of 1.5. Use <strong>semibold for emphasis</strong>, <em>italics for titles and terms</em>, <a href="#text-styles">links in merlot</a>, <code>inline code</code> and <kbd>Ctrl</kbd> + <kbd>K</kbd> for keys.</p>
+<p class="vc-caption">Caption — 12 px, muted. For figure notes, sources and timestamps.</p>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-78"><span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-eyebrow&quot;</span><span class="tk-punct">&gt;</span>Eyebrow · section label<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-display&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;margin:0 0 var(--vc-space-4)&quot;</span><span class="tk-punct">&gt;</span>Display<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-h1&quot;</span><span class="tk-punct">&gt;</span>Heading 1 in Bricolage<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-h2&quot;</span><span class="tk-punct">&gt;</span>Heading 2 in Bricolage<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-h3&quot;</span><span class="tk-punct">&gt;</span>Heading 3 in Bricolage<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-h4&quot;</span><span class="tk-punct">&gt;</span>Heading 4 in Inter<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-h5&quot;</span><span class="tk-punct">&gt;</span>Heading 5 in Inter<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-h6&quot;</span><span class="tk-punct">&gt;</span>Heading 6 in Inter<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-lead&quot;</span><span class="tk-punct">&gt;</span>A lead paragraph introduces a page. It's set a step larger and in the muted text colour.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>Body text is Inter at 16&amp;nbsp;px with a line height of 1.5. Use <span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>semibold for emphasis<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>, <span class="tk-punct">&lt;</span><span class="tk-tag">em</span><span class="tk-punct">&gt;</span>italics for titles and terms<span class="tk-punct">&lt;/</span><span class="tk-tag">em</span><span class="tk-punct">&gt;</span>, <span class="tk-punct">&lt;</span><span class="tk-tag">a</span> <span class="tk-attr">href</span>=<span class="tk-str">&quot;#text-styles&quot;</span><span class="tk-punct">&gt;</span>links in merlot<span class="tk-punct">&lt;/</span><span class="tk-tag">a</span><span class="tk-punct">&gt;</span>, <span class="tk-punct">&lt;</span><span class="tk-tag">code</span><span class="tk-punct">&gt;</span>inline code<span class="tk-punct">&lt;/</span><span class="tk-tag">code</span><span class="tk-punct">&gt;</span> and <span class="tk-punct">&lt;</span><span class="tk-tag">kbd</span><span class="tk-punct">&gt;</span>Ctrl<span class="tk-punct">&lt;/</span><span class="tk-tag">kbd</span><span class="tk-punct">&gt;</span> + <span class="tk-punct">&lt;</span><span class="tk-tag">kbd</span><span class="tk-punct">&gt;</span>K<span class="tk-punct">&lt;/</span><span class="tk-tag">kbd</span><span class="tk-punct">&gt;</span> for keys.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-caption&quot;</span><span class="tk-punct">&gt;</span>Caption — 12 px, muted. For figure notes, sources and timestamps.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-78" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="numbers">Numbers</h2>
+<p>Numbers in tables, KPIs and anything that changes live use <strong>tabular figures</strong>. Every digit is equally wide, so columns line up and values don't jitter while they update. Vici's tables and stat cards switch them on automatically; elsewhere add <code>.vc-tabular</code>.</p>
+<div class="doc-demo doc-demo--start"><div class="doc-demo__preview">
+<div class="vc-stack vc-stack--xs">
+  <span class="vc-caption">Proportional (default)</span>
+  <span style="font-size:1.25rem">1.111.111 €<br>9.807.420 €<br>4.040.404 €</span>
+</div>
+<div class="vc-stack vc-stack--xs">
+  <span class="vc-caption">Tabular (.vc-tabular)</span>
+  <span class="vc-tabular" style="font-size:1.25rem">1.111.111 €<br>9.807.420 €<br>4.040.404 €</span>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-79"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stack vc-stack--xs&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-caption&quot;</span><span class="tk-punct">&gt;</span>Proportional (default)<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;font-size:1.25rem&quot;</span><span class="tk-punct">&gt;</span>1.111.111 €<span class="tk-punct">&lt;</span><span class="tk-tag">br</span><span class="tk-punct">&gt;</span>9.807.420 €<span class="tk-punct">&lt;</span><span class="tk-tag">br</span><span class="tk-punct">&gt;</span>4.040.404 €<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stack vc-stack--xs&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-caption&quot;</span><span class="tk-punct">&gt;</span>Tabular (.vc-tabular)<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-tabular&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;font-size:1.25rem&quot;</span><span class="tk-punct">&gt;</span>1.111.111 €<span class="tk-punct">&lt;</span><span class="tk-tag">br</span><span class="tk-punct">&gt;</span>9.807.420 €<span class="tk-punct">&lt;</span><span class="tk-tag">br</span><span class="tk-punct">&gt;</span>4.040.404 €<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-79" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<ul>
+  <li>Right-align numbers in tables, and align the column heading with them.</li>
+  <li>Use the same number of decimals in a column.</li>
+  <li>Use a thin space or the locale's separator for thousands. German pages use <code>1.234,5</code>, English pages <code>1,234.5</code>.</li>
+</ul>
+
+<h2 id="line-length-and-rhythm">Line length and rhythm</h2>
+<ul>
+  <li>Keep reading text between 55 and 75 characters per line. <code>.vc-prose</code> and <code>--vc-container-prose</code> (68ch) do this for you.</li>
+  <li>Body line height is 1.5, long-form prose 1.65, headlines 1.02–1.3. Larger text needs less leading.</li>
+  <li>Headlines get tighter letter-spacing as they grow (<code>--vc-tracking-display</code>). All-caps labels get wider spacing (<code>--vc-tracking-caps</code>).</li>
+  <li>Headings use <code>text-wrap: balance</code> and paragraphs <code>text-wrap: pretty</code>, so lines break evenly without manual line breaks.</li>
+</ul>
+
+<h2 id="typesetting-german">Typesetting German</h2>
+<p>For pages in German, a few details make the difference between translated and professionally set:</p>
+<ul>
+  <li>Set <code>lang="de"</code> on <code>&lt;html&gt;</code>. Screen readers then pronounce the text correctly, and <code>hyphens: auto</code> can break long compounds such as <em>Datenschutzgrundverordnung</em>.</li>
+  <li>Use German quotation marks „…“ and ‚…‘, real dashes (– for ranges and parenthetical asides), and a non-breaking space between number and unit: <code>20&amp;nbsp;%</code>, <code>5&amp;nbsp;GB</code>.</li>
+  <li>The fonts include ß and the capital ẞ for all-caps labels.</li>
+</ul>
+
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><p class="vc-h3" style="margin:0">Quarterly review</p></div>
+    <p>Use Bricolage for short, large headlines, and keep them to a line or two.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><p style="margin:0;font-family:var(--vc-font-display);font-size:var(--vc-font-size-sm)">Small body text set in the display face is harder to read at UI sizes.</p></div>
+    <p>Don't set body text, labels or table cells in the display face. That's Inter's job.</p>
+  </div>
+</div>
+
+<nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../guidelines/colour.html" rel="prev"><span class="vc-caption">Previous</span><span>Colour</span></a><a class="doc-pager__link doc-pager__link--next" href="../guidelines/hexagon.html" rel="next"><span class="vc-caption">Next</span><span>Hexagon geometry</span></a></nav>
+      </article>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#typefaces">Typefaces</a></li><li><a href="#type-scale">Type scale</a></li><li><a href="#text-styles">Text styles</a></li><li><a href="#numbers">Numbers</a></li><li><a href="#line-length-and-rhythm">Line length and rhythm</a></li><li><a href="#typesetting-german">Typesetting German</a></li></ul></nav>
+    </main>
+  </div>
+
+  <footer class="vc-footer doc-footer">
+    <div class="vc-container vc-container--wide">
+      <div class="vc-footer__bottom">
+        <span>Vici Design System v1.0.0 · built on hexagons, merlot and pastels</span>
+        <span>Fonts: Bricolage Grotesque, Inter, JetBrains Mono (SIL OFL 1.1) · served from this site</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

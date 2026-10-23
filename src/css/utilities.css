@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Utilities — small, single-purpose helpers. Highest Vici layer.
+   ========================================================================== */
+
+@layer vici.utilities {
+  /* Text styles usable on any element */
+  .vc-display {
+    font-family: var(--vc-font-display);
+    font-size: var(--vc-font-size-7xl);
+    font-weight: var(--vc-weight-display);
+    line-height: 1.02;
+    letter-spacing: -0.034em;
+    text-wrap: balance;
+  }
+  .vc-h1, .vc-h2, .vc-h3 { font-family: var(--vc-font-display); font-weight: var(--vc-weight-display); text-wrap: balance; }
+  .vc-h1 { font-size: var(--vc-font-size-5xl); line-height: var(--vc-leading-tight); letter-spacing: var(--vc-tracking-display); }
+  .vc-h2 { font-size: var(--vc-font-size-4xl); line-height: 1.12; letter-spacing: var(--vc-tracking-display); }
+  .vc-h3 { font-size: var(--vc-font-size-3xl); line-height: 1.18; letter-spacing: var(--vc-tracking-heading); font-weight: var(--vc-weight-semibold); }
+  .vc-h4, .vc-h5, .vc-h6 { font-family: var(--vc-font-text); font-weight: var(--vc-weight-semibold); }
+  .vc-h4 { font-size: var(--vc-font-size-2xl); line-height: 1.28; letter-spacing: var(--vc-tracking-heading); }
+  .vc-h5 { font-size: var(--vc-font-size-xl); line-height: 1.34; }
+  .vc-h6 { font-size: var(--vc-font-size-lg); line-height: 1.4; }
+
+  .vc-lead {
+    font-size: var(--vc-font-size-lg);
+    line-height: var(--vc-leading-relaxed);
+    color: var(--vc-text-muted);
+  }
+  .vc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    margin: 0 0 var(--vc-space-2);
+    font-family: var(--vc-font-text);
+    font-size: var(--vc-font-size-xs);
+    font-weight: var(--vc-weight-semibold);
+    letter-spacing: var(--vc-tracking-caps);
+    text-transform: uppercase;
+    color: var(--vc-accent-text);
+  }
+  .vc-eyebrow::before {
+    content: '';
+    flex: none;
+    width: 0.81em;
+    height: 0.7em;
+    background: currentColor;
+    clip-path: var(--vc-hex);
+  }
+  .vc-caption { font-size: var(--vc-font-size-xs); line-height: 1.45; color: var(--vc-text-muted); }
+
+  .vc-text-xs { font-size: var(--vc-font-size-xs); }
+  .vc-text-sm { font-size: var(--vc-font-size-sm); }
+  .vc-text-md { font-size: var(--vc-font-size-md); }
+  .vc-text-lg { font-size: var(--vc-font-size-lg); }
+  .vc-text-muted { color: var(--vc-text-muted); }
+  .vc-text-subtle { color: var(--vc-text-subtle); }
+  .vc-text-accent { color: var(--vc-accent-text); }
+  .vc-mono { font-family: var(--vc-font-mono); font-variant-ligatures: none; }
+  .vc-tabular { font-variant-numeric: tabular-nums; }
+  .vc-medium { font-weight: var(--vc-weight-medium); }
+  .vc-semibold { font-weight: var(--vc-weight-semibold); }
+  .vc-balance { text-wrap: balance; }
+  .vc-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .vc-nowrap { white-space: nowrap; }
+  .vc-align-center { text-align: center; }
+  .vc-align-end { text-align: end; }
+
+  /* Long-form content */
+  .vc-prose {
+    max-width: var(--vc-container-prose);
+    line-height: var(--vc-leading-relaxed);
+  }
+  .vc-prose :where(h2, h3, h4) { margin-top: 1.6em; }
+  .vc-prose :where(h2 + *, h3 + *, h4 + *) { margin-top: 0; }
+  .vc-prose :where(img, figure, pre, table) { margin-block: 1.5em; }
+
+  /* Surfaces & tints */
+  .vc-surface { background: var(--vc-surface); }
+  .vc-surface-subtle { background: var(--vc-bg-subtle); }
+  .vc-surface-inverse { background: var(--vc-surface-inverse); color: var(--vc-text-inverse); }
+  .vc-tint-merlot { background: var(--vc-merlot-50); }
+  .vc-tint-coral { background: var(--vc-coral-50); }
+  .vc-tint-apricot { background: var(--vc-apricot-50); }
+  .vc-tint-honey { background: var(--vc-honey-50); }
+  .vc-tint-sage { background: var(--vc-sage-50); }
+  .vc-tint-teal { background: var(--vc-teal-50); }
+  .vc-tint-fjord { background: var(--vc-fjord-50); }
+  .vc-tint-lilac { background: var(--vc-lilac-50); }
+  /* Tinted sections are light islands: tokens.css applies the light theme inside them. */
+  [class*='vc-tint-'] { color: var(--vc-text); }
+
+  /* Soft pastel wash for heroes and feature sections */
+  .vc-bg-aurora {
+    background:
+      radial-gradient(60% 80% at 8% 0%, color-mix(in oklab, var(--vc-aurora-1) 70%, transparent), transparent 70%),
+      radial-gradient(50% 70% at 92% 10%, color-mix(in oklab, var(--vc-aurora-2) 75%, transparent), transparent 70%),
+      radial-gradient(60% 80% at 60% 100%, color-mix(in oklab, var(--vc-aurora-3) 80%, transparent), transparent 70%),
+      var(--vc-bg);
+  }
+  .vc-bg-honeycomb {
+    background-color: var(--vc-bg);
+    background-image: var(--vc-honeycomb-pattern);
+    background-size: 42px 72.75px;
+  }
+
+  .vc-rounded { border-radius: var(--vc-radius-lg); }
+  .vc-shadow-sm { box-shadow: var(--vc-shadow-sm); }
+  .vc-shadow-md { box-shadow: var(--vc-shadow-md); }
+  .vc-shadow-lg { box-shadow: var(--vc-shadow-lg); }
+  .vc-border { border: 1px solid var(--vc-border); }
+
+  .vc-hide { display: none !important; }
+  @media (max-width: 767px) { .vc-hide-mobile { display: none !important; } }
+  @media (min-width: 768px) { .vc-hide-desktop { display: none !important; } }
+
+  /* Page-theme visibility: show an element only while the page (the theme on <html>, or the OS
+     when none is set) is light or dark. For the sun and moon of a theme toggle. */
+  :root[data-theme='dark'] .vc-when-light,
+  :root[data-theme='light'] .vc-when-dark { display: none !important; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .vc-when-light { display: none !important; }
+  }
+  @media not (prefers-color-scheme: dark) {
+    :root:not([data-theme='dark']) .vc-when-dark { display: none !important; }
+  }
+
+  .vc-visually-hidden:not(:focus):not(:active) {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  .vc-skip-link {
+    position: absolute;
+    top: var(--vc-space-2);
+    left: var(--vc-space-2);
+    z-index: var(--vc-z-tooltip);
+    padding: var(--vc-space-2) var(--vc-space-4);
+    border-radius: var(--vc-radius-md);
+    background: var(--vc-accent);
+    color: var(--vc-on-accent);
+    font-weight: var(--vc-weight-semibold);
+    text-decoration: none;
+    translate: 0 -200%;
+    transition: translate var(--vc-duration-base) var(--vc-ease-enter);
+  }
+  .vc-skip-link:focus { translate: 0 0; }
+}

@@ -1,0 +1,34 @@
+<!--
+title: Token reference
+nav: Tokens
+section: Start
+order: 5
+icon: code
+layout: wide
+description: Every design token as a CSS custom property with its resolved value — generated from src/tokens/tokens.json at build time.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Start</p>
+  <h1>Token reference</h1>
+  <p class="vc-lead">Every value in Vici is a design token. This page is generated from <code>src/tokens/tokens.json</code> on every build, so it always matches the stylesheet. Theme tokens list the primitive they point to; switching the theme only changes those pointers.</p>
+</header>
+
+<h2>Naming</h2>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <thead><tr><th scope="col">Pattern</th><th scope="col">Example</th><th scope="col">Kind</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>--vc-{family}-{step}</code></th><td><code>--vc-merlot-950</code>, <code>--vc-sage-200</code></td><td>Primitive colour (same in both themes)</td></tr>
+    <tr><th scope="row"><code>--vc-{role}</code></th><td><code>--vc-surface</code>, <code>--vc-text-muted</code>, <code>--vc-danger-bg</code></td><td>Semantic colour (changes with the theme)</td></tr>
+    <tr><th scope="row"><code>--vc-space-{n}</code></th><td><code>--vc-space-4</code> = 16px</td><td>Spacing, n × 4px</td></tr>
+    <tr><th scope="row"><code>--vc-font-size-{size}</code></th><td><code>--vc-font-size-sm</code></td><td>Type scale</td></tr>
+    <tr><th scope="row"><code>--vc-cell-{size}</code></th><td><code>--vc-cell-lg</code></td><td>Hexagon height</td></tr>
+    <tr><th scope="row"><code>--vc-radius-{size}</code></th><td><code>--vc-radius-md</code></td><td>Corner radius for rectangles</td></tr>
+    <tr><th scope="row"><code>--vc-shadow-{size}</code></th><td><code>--vc-shadow-lg</code></td><td>Elevation (tinted per theme)</td></tr>
+    <tr><th scope="row"><code>--vc-duration-*</code>, <code>--vc-ease-*</code></th><td><code>--vc-ease-enter</code></td><td>Motion</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>All tokens</h2>
+<!-- @token-reference -->

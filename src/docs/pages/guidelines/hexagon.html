@@ -1,0 +1,137 @@
+<!--
+title: Hexagon geometry
+nav: Hexagon
+section: Guidelines
+order: 4
+icon: hexagon
+description: Vici's signature rule — every circle becomes a flat-top hexagon, every pill a hex capsule. Geometry, sizes, recipes and where cells appear.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Hexagon geometry</h1>
+  <p class="vc-lead">One rule gives Vici its face: <strong>anything that would be round becomes a hexagon</strong>. Anything shaped like a pill becomes a hex capsule with pointed ends. Rectangles keep small radii, so cells and capsules stand out against a calm background.</p>
+</header>
+
+<h2>Anatomy</h2>
+<p>Vici uses regular, <strong>flat-top</strong> hexagons: flat edges at the top and bottom, points to the left and right. They line up with text baselines, stack in rows, and stretch naturally into capsules.</p>
+<svg class="doc-anatomy" viewBox="0 0 660 260" role="img" aria-label="Diagram: a flat-top hexagon is 1.1547 times as wide as it is high and has 120 degree corners. A hex capsule has the same pointed ends, inset by 0.2887 times its height.">
+  <polygon class="a-shape" points="86.19,40 178.56,40 224.75,120 178.56,200 86.19,200 40,120"/>
+  <path class="a-line" d="M18 40 V200 M12 40 H26 M12 200 H26"/>
+  <text x="2" y="124">h</text>
+  <path class="a-line" d="M40 226 H224.75 M40 220 V232 M224.75 220 V232"/>
+  <text x="96" y="248">w = 1.1547 h</text>
+  <path class="a-line" d="M86.19 22 H178.56"/>
+  <text x="104" y="16">side = 0.577 h</text>
+  <text x="188" y="66">120°</text>
+  <polygon class="a-shape" points="328.87,70 571.13,70 600,120 571.13,170 328.87,170 300,120"/>
+  <path class="a-line" d="M624 70 V170 M618 70 H630 M618 170 H630"/>
+  <text x="634" y="124">h</text>
+  <path class="a-line" d="M300 52 H328.87 M300 46 V58 M328.87 46 V58"/>
+  <text x="300" y="38">p = 0.2887 h</text>
+  <text x="404" y="124" class="a-accent" style="fill:var(--vc-accent-text);font-weight:600">hex capsule</text>
+  <text x="74" y="124" style="fill:var(--vc-accent-text);font-weight:600">hexagon</text>
+</svg>
+<ul>
+  <li><strong>Proportion</strong>: width = height × 1.1547 (2/√3). Size a hexagon by its height and derive the width.</li>
+  <li><strong>Capsule ends</strong>: the point sits <code>0.2887 × height</code> in from each end. A capsule exactly 1.1547× as wide as it is tall is a regular hexagon, which is why a one-digit badge is a perfect cell.</li>
+  <li><strong>Rings and focus</strong>: an outline of thickness <em>t</em> moves the inner corners by 0.577·t and the side points by 1.1547·t. Vici's rings use these offsets, so their edges stay exactly parallel.</li>
+  <li><strong>Orientation</strong>: flat-top everywhere in the interface. Pointy-top cells are reserved for illustrations and honeycomb artwork, where the 60° lattice needs them.</li>
+</ul>
+
+<h2>Where cells appear</h2>
+<p>These parts would be circles in most systems. In Vici they are all built from the same geometry.</p>
+<!-- demo center plain -->
+<span class="vc-avatar">VP</span>
+<span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--fjord">AK</span><span class="vc-presence vc-presence--online" role="img" aria-label="Online"></span></span>
+<label class="vc-radio"><input type="radio" name="hex-where" checked> Radio</label>
+<label class="vc-switch"><input type="checkbox" role="switch" checked> Switch</label>
+<span class="vc-badge">7</span>
+<span class="vc-badge vc-badge--dot vc-badge--danger"></span>
+<button type="button" class="vc-icon-button vc-icon-button--soft" aria-label="Search"><span class="vc-icon vc-icon--search" aria-hidden="true"></span></button>
+<span class="vc-spinner" role="status" aria-label="Loading"></span>
+<span class="vc-progress-hex vc-progress-hex--sm" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Upload progress" style="--value: 40">40</span>
+<span class="vc-tag vc-tag--lilac">Capsule</span>
+<!-- /demo -->
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <thead><tr><th scope="col">Usually a circle</th><th scope="col">In Vici</th></tr></thead>
+  <tbody>
+    <tr><td>Avatar, presence dot, status dot</td><td>Hexagon avatar, hexagon presence marker, hexagon badge dot</td></tr>
+    <tr><td>Radio button</td><td>Hexagon ring with a hexagon dot</td></tr>
+    <tr><td>Switch knob and pill track</td><td>Hexagon knob in a hex-capsule track</td></tr>
+    <tr><td>Slider thumb</td><td>Hexagon thumb, with an outer hexagon focus ring</td></tr>
+    <tr><td>Loading spinner, progress ring</td><td>Hexagon ring with a sweeping gradient, or filled by value</td></tr>
+    <tr><td>Icon button, floating action button</td><td>Hexagon cell</td></tr>
+    <tr><td>Pagination, stepper, carousel dots</td><td>Hexagon pages, steps and dots</td></tr>
+    <tr><td>List bullets, timeline markers, legend swatches</td><td>Small hexagons</td></tr>
+    <tr><td>Star rating</td><td>Hexagon cells, filled in honey</td></tr>
+    <tr><td>Pills: chips, tags, badges, progress bars</td><td>Hex capsules</td></tr>
+    <tr><td>Round elements inside icons (lens, head, pupil, clock)</td><td>Hexagons in every icon</td></tr>
+    <tr><td>Pie and donut charts</td><td>A hexagon waffle or a bar (see <a href="{{root}}guidelines/data-viz.html">Data visualisation</a>)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Sizes</h2>
+<p>Cell sizes are heights. The width always follows from the 1.1547 ratio.</p>
+<!-- @cell-scale -->
+
+<h2>Rectangles</h2>
+<p>Buttons, inputs, cards and dialogs stay rectangular. Small radii keep them calm and let the cells carry the character. Larger containers get larger radii, and nothing is ever fully rounded: there is no <code>radius-full</code> token on purpose.</p>
+<!-- @radius-scale -->
+<div class="vc-table-wrap">
+<table class="vc-table vc-table--compact">
+  <thead><tr><th scope="col">Radius</th><th scope="col">Use</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>xs</code> · <code>sm</code></th><td>Checkboxes, inline code, keyboard keys, tooltips, chart bars</td></tr>
+    <tr><th scope="row"><code>md</code></th><td>Buttons, inputs, selects, menu items, segmented controls</td></tr>
+    <tr><th scope="row"><code>lg</code></th><td>Cards, alerts, tables, code blocks, menus</td></tr>
+    <tr><th scope="row"><code>xl</code></th><td>Dialogs and drawers</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Recipes</h2>
+<p>Use the shape utilities to build your own cells. They work on any element, including images.</p>
+<!-- demo center -->
+<span class="vc-hex" style="height:4rem;background:var(--vc-lilac-200)"></span>
+<span class="vc-hex-ring" style="height:4rem;--vc-ring:4px;background:var(--vc-merlot-500)"></span>
+<span class="vc-cell vc-cell--xl vc-cell--solid"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span></span>
+<span class="vc-capsule" style="--vc-capsule-height:2.5rem;display:inline-flex;align-items:center;background:var(--vc-honey-200);color:var(--vc-honey-950);font-weight:600">Hex capsule</span>
+<!-- /demo -->
+<pre><code>/* any element, sized by height */
+.thing { height: 3rem; aspect-ratio: 1.1547; clip-path: var(--vc-hex); }
+
+/* or in markup */
+&lt;img class="vc-hex-img" src="portrait.jpg" alt="…" style="height: 8rem"&gt;
+&lt;span class="vc-hex-ring" style="--vc-ring: 3px"&gt;&lt;/span&gt;
+&lt;span class="vc-cell vc-cell--lg"&gt;&lt;span class="vc-icon vc-icon--chart-bar"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
+
+<h3>Focus on a hexagon</h3>
+<p><code>clip-path</code> also clips outlines, so a hexagon can't simply use <code>outline</code> for its focus ring. Vici's hexagon controls draw the ring on a pseudo-element outside the shape: a 2&nbsp;px hexagon ring with a 2&nbsp;px gap, in the theme's focus colour. Tab to the icon button, radio or switch under <a href="#where-cells-appear">Where cells appear</a> to see it. Rectangles keep a standard outline with an offset.</p>
+
+<h2>Honeycomb layout</h2>
+<p><code>.vc-honeycomb</code> tessellates <code>.vc-tile</code> elements: columns overlap by a quarter of a cell and every second column drops by half a cell. Use an even number of columns (<code>--vc-honeycomb-cols</code>). On phones it drops to two columns of <code>--vc-honeycomb-cell-sm</code> cells; set <code>--vc-honeycomb-cols-sm: 4</code> to keep four columns for short labels. Tile labels shrink with the cell.</p>
+<!-- demo center -->
+<ul class="vc-honeycomb" style="--vc-honeycomb-cell: 6.5rem; --vc-honeycomb-cols: 4">
+  <li class="vc-tile vc-tile--solid">Strategy</li>
+  <li class="vc-tile vc-tile--lilac"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Prototyping</li>
+  <li class="vc-tile vc-tile--fjord">Research</li>
+  <li class="vc-tile vc-tile--sage">Analytics</li>
+  <li class="vc-tile vc-tile--honey">Workshops</li>
+  <li class="vc-tile">Writing</li>
+</ul>
+<!-- /demo -->
+
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><span class="vc-avatar vc-avatar--lg vc-avatar--sage">JS</span><span class="vc-avatar vc-avatar--lg">VP</span></div>
+    <p>Keep hexagons regular and flat-top, sized by height.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><span class="vc-avatar vc-avatar--lg vc-avatar--sage" style="width:5rem">JS</span><span class="vc-avatar vc-avatar--lg" style="rotate:20deg">VP</span></div>
+    <p>Don't stretch, squash or rotate cells. A distorted hexagon reads as a mistake, not as a shape.</p>
+  </div>
+</div>

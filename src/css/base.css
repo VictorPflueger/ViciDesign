@@ -1,0 +1,313 @@
+/* ==========================================================================
+   Base — sensible defaults for plain HTML. Everything sits in a cascade layer,
+   so any unlayered CSS you write later wins without !important.
+   ========================================================================== */
+
+@layer vici.base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    tab-size: 4;
+    scroll-padding-top: var(--vc-scroll-offset, 5rem);
+    accent-color: var(--vc-accent);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--vc-bg);
+    color: var(--vc-text);
+    font-family: var(--vc-font-text);
+    font-size: var(--vc-font-size-md);
+    font-weight: var(--vc-weight-regular);
+    line-height: var(--vc-leading-normal);
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Theme islands: an element with data-theme re-applies text and canvas colours,
+     because inherited colours are already resolved values. */
+  :where([data-theme]) {
+    color: var(--vc-text);
+  }
+  :where(body [data-theme]) {
+    background-color: var(--vc-bg);
+  }
+
+  /* ---------- Headings ---------- */
+  :where(h1, h2, h3, h4, h5, h6) {
+    margin: 0 0 var(--vc-space-3);
+    color: var(--vc-text);
+    text-wrap: balance;
+  }
+  :where(h1, h2, h3) {
+    font-family: var(--vc-font-display);
+    font-weight: var(--vc-weight-display);
+  }
+  :where(h1) {
+    font-size: var(--vc-font-size-5xl);
+    line-height: var(--vc-leading-tight);
+    letter-spacing: var(--vc-tracking-display);
+  }
+  :where(h2) {
+    font-size: var(--vc-font-size-4xl);
+    line-height: 1.12;
+    letter-spacing: var(--vc-tracking-display);
+  }
+  :where(h3) {
+    font-size: var(--vc-font-size-3xl);
+    line-height: 1.18;
+    letter-spacing: var(--vc-tracking-heading);
+    font-weight: var(--vc-weight-semibold);
+  }
+  :where(h4, h5, h6) {
+    font-family: var(--vc-font-text);
+    font-weight: var(--vc-weight-semibold);
+  }
+  :where(h4) {
+    font-size: var(--vc-font-size-2xl);
+    line-height: 1.28;
+    letter-spacing: var(--vc-tracking-heading);
+  }
+  :where(h5) {
+    font-size: var(--vc-font-size-xl);
+    line-height: 1.34;
+  }
+  :where(h6) {
+    font-size: var(--vc-font-size-lg);
+    line-height: 1.4;
+  }
+
+  /* ---------- Text blocks ---------- */
+  :where(p, ul, ol, dl, blockquote, pre, figure, table, address) {
+    margin: 0 0 var(--vc-space-4);
+  }
+  :where(p) {
+    text-wrap: pretty;
+  }
+  :where(small) {
+    font-size: var(--vc-font-size-sm);
+  }
+  :where(strong, b) {
+    font-weight: var(--vc-weight-semibold);
+  }
+  :where(sub, sup) {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  :where(sub) { bottom: -0.25em; }
+  :where(sup) { top: -0.5em; }
+
+  :where(a) {
+    color: var(--vc-text-link);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: color-mix(in oklab, currentColor 45%, transparent);
+    transition: color var(--vc-duration-quick) var(--vc-ease-standard),
+      text-decoration-color var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  :where(a:hover) {
+    color: var(--vc-text-link-hover);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+  }
+
+  :where(mark) {
+    background: var(--vc-honey-200);
+    color: var(--vc-merlot-950);
+    padding: 0 0.15em;
+    border-radius: var(--vc-radius-xs);
+  }
+
+  :where(abbr[title]) {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+
+  :where(blockquote) {
+    margin-inline: 0;
+    padding: var(--vc-space-1) 0 var(--vc-space-1) var(--vc-space-5);
+    border-inline-start: 3px solid var(--vc-accent-soft-hover);
+    font-size: var(--vc-font-size-lg);
+    color: var(--vc-text-muted);
+  }
+
+  :where(hr) {
+    height: 1px;
+    margin: var(--vc-space-8) 0;
+    border: 0;
+    background: var(--vc-border-subtle);
+  }
+
+  /* ---------- Lists: hexagon bullets (no discs in Vici) ---------- */
+  :where(ul, ol) {
+    padding-inline-start: 1.4em;
+  }
+  :where(li) + :where(li) {
+    margin-top: 0.3em;
+  }
+  /* Content lists only: lists inside navigation, headers and footers stay unmarked. */
+  :where(ul:not([class]):not(nav ul, header ul, footer ul, menu ul), .vc-prose ul) {
+    list-style: none;
+  }
+  :where(ul:not([class]):not(nav ul, header ul, footer ul, menu ul), .vc-prose ul) > li {
+    position: relative;
+  }
+  :where(ul:not([class]):not(nav ul, header ul, footer ul, menu ul), .vc-prose ul) > li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -1.05em;
+    top: calc((1lh - 0.5em) / 2);
+    width: 0.577em;
+    height: 0.5em;
+    background: var(--vc-merlot-500);
+    clip-path: var(--vc-hex);
+  }
+  :where(ul:not([class]):not(nav ul, header ul, footer ul, menu ul) ul:not([class]), .vc-prose ul ul) > li::before {
+    background: var(--vc-border-strong);
+  }
+  :where(ol) > li::marker {
+    color: var(--vc-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where(dt) {
+    font-weight: var(--vc-weight-semibold);
+  }
+  :where(dd) {
+    margin: 0 0 var(--vc-space-3);
+    color: var(--vc-text-muted);
+  }
+
+  /* ---------- Code ---------- */
+  :where(code, kbd, samp, pre) {
+    font-family: var(--vc-font-mono);
+    font-size: 0.875em;
+    font-variant-ligatures: none;
+  }
+  :where(:not(pre) > code) {
+    /* An inline block never splits a short name like --vc-surface across two lines;
+       a long one still wraps inside its own box. */
+    display: inline-block;
+    max-width: 100%;
+    line-height: 1.25;
+    padding: 0.1em 0.38em;
+    border-radius: var(--vc-radius-sm);
+    background: var(--vc-bg-sunken);
+    border: 1px solid var(--vc-border-subtle);
+    color: var(--vc-text);
+    overflow-wrap: anywhere;
+  }
+  :where(pre) {
+    padding: var(--vc-space-4) var(--vc-space-5);
+    overflow: auto;
+    border-radius: var(--vc-radius-lg);
+    background: var(--vc-bg-sunken);
+    border: 1px solid var(--vc-border-subtle);
+    line-height: 1.6;
+    font-size: var(--vc-font-size-sm);
+  }
+  :where(kbd) {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 0.05em 0.42em;
+    border: 1px solid var(--vc-border);
+    border-bottom-width: 2px;
+    border-radius: var(--vc-radius-sm);
+    background: var(--vc-surface);
+    color: var(--vc-text);
+    font-size: 0.8em;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ---------- Media ---------- */
+  :where(img, svg, video, canvas, picture) {
+    display: block;
+    max-width: 100%;
+  }
+  :where(img, video) {
+    height: auto;
+  }
+  :where(figure) {
+    margin-inline: 0;
+  }
+  :where(figcaption) {
+    margin-top: var(--vc-space-2);
+    font-size: var(--vc-font-size-sm);
+    color: var(--vc-text-muted);
+  }
+
+  /* ---------- Tables (classless fallback; see .vc-table for the component) ---------- */
+  :where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  :where(th) {
+    text-align: start;
+  }
+
+  /* ---------- Forms: inherit type ---------- */
+  :where(button, input, select, textarea, optgroup) {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+  }
+  :where(button) {
+    cursor: pointer;
+  }
+  :where(button:disabled) {
+    cursor: not-allowed;
+  }
+  :where(fieldset) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  :where(legend) {
+    padding: 0;
+  }
+  :where(textarea) {
+    resize: vertical;
+  }
+
+  /* ---------- Focus & selection ---------- */
+  :where(:focus-visible) {
+    outline: var(--vc-stroke-focus) solid var(--vc-focus);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--vc-accent-soft-hover);
+    color: var(--vc-on-accent-soft);
+  }
+
+  :where([hidden]:not([hidden='until-found'])) {
+    display: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Spinners keep a slow sweep: they are the only cue that work is happening. */
+    *:not(.vc-spinner),
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

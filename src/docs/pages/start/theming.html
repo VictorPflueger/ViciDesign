@@ -1,0 +1,96 @@
+<!--
+title: Theming
+section: Start
+order: 2
+icon: drop
+description: Light and dark themes, theme islands, and how to override tokens without fighting the cascade.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Start</p>
+  <h1>Theming</h1>
+  <p class="vc-lead">Vici ships a light and a dark theme built from the same tokens. Components never use raw colours. They read semantic custom properties such as <code>--vc-surface</code> or <code>--vc-accent</code>, and switching the theme simply redefines those properties.</p>
+</header>
+
+<h2>Light, dark or automatic</h2>
+<p>By default the theme follows the operating system (<code>prefers-color-scheme</code>). Set <code>data-theme</code> on <code>&lt;html&gt;</code> to force one:</p>
+<pre><code>&lt;html lang="en" data-theme="dark"&gt;   &lt;!-- or "light"; remove the attribute to follow the OS --&gt;</code></pre>
+<p>With <code>vici.js</code> loaded, any element with <code>data-vc-theme-toggle</code> switches between light and dark and remembers the choice. <code>data-vc-theme-set="system"</code> returns control to the operating system.</p>
+<!-- demo center -->
+<button type="button" class="vc-button vc-button--outline" data-vc-theme-toggle>
+  <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+  <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+  Toggle theme
+</button>
+<div class="vc-button-group" role="group" aria-label="Theme">
+  <button type="button" class="vc-button vc-button--outline vc-button--sm" data-vc-theme-set="light">Light</button>
+  <button type="button" class="vc-button vc-button--outline vc-button--sm" data-vc-theme-set="dark">Dark</button>
+  <button type="button" class="vc-button vc-button--outline vc-button--sm" data-vc-theme-set="system">System</button>
+</div>
+<!-- /demo -->
+<p><code>.vc-when-light</code> and <code>.vc-when-dark</code> show an element only in one page theme, which is how the toggle swaps its moon for a sun. From JavaScript: <code>Vici.theme.set('dark')</code>, <code>Vici.theme.get()</code>, and the <code>vc:themechange</code> event on <code>document</code>.</p>
+
+<h2>Theme islands</h2>
+<p><code>data-theme</code> works on any element, so a single section can switch theme on its own: a dark hero on a light page, or a light card inside a dark dashboard.</p>
+<!-- demo stack plain -->
+<div data-theme="dark" style="padding: var(--vc-space-6); border-radius: var(--vc-radius-lg)">
+  <p class="vc-eyebrow">Dark island</p>
+  <h3 style="margin: 0 0 var(--vc-space-2)">The base colour becomes the canvas</h3>
+  <p class="vc-text-muted" style="margin: 0 0 var(--vc-space-4)">Pastels glow on #250010. Every component inside follows automatically.</p>
+  <div class="vc-cluster">
+    <button class="vc-button">Primary</button>
+    <button class="vc-button vc-button--secondary">Secondary</button>
+    <span class="vc-tag vc-tag--success">Live</span>
+  </div>
+</div>
+<!-- /demo -->
+
+<h3>Pastel sections</h3>
+<p><code>.vc-tint-merlot</code>, <code>-coral</code>, <code>-apricot</code>, <code>-honey</code>, <code>-sage</code>, <code>-teal</code>, <code>-fjord</code> and <code>-lilac</code> paint a section in the palest step of a family. A tinted section is a light island: it stays pastel in both themes, and everything inside it uses the light-theme tokens, so text and components keep their contrast on a dark page.</p>
+<!-- demo stack plain -->
+<div data-theme="dark" style="padding: var(--vc-space-5); border-radius: var(--vc-radius-lg)">
+  <section class="vc-tint-sage" style="padding: var(--vc-space-6); border-radius: var(--vc-radius-md)">
+    <p class="vc-eyebrow">Pastel section</p>
+    <p class="vc-text-muted" style="margin: 0 0 var(--vc-space-4)">Sage wash inside a dark island. Muted text, buttons and tags keep their light-theme contrast.</p>
+    <div class="vc-cluster">
+      <button class="vc-button vc-button--sm">Primary</button>
+      <span class="vc-tag vc-tag--success">Live</span>
+    </div>
+  </section>
+</div>
+<!-- /demo -->
+
+<h2>What changes between themes</h2>
+<p>The light theme reads like paper: linen backgrounds, white cards, merlot ink and near-black merlot buttons. The dark theme turns the base colour into the canvas. Surfaces get lighter as they rise, primary buttons turn pastel blush with merlot text, and status backgrounds become deep shades of their family with pastel text. The full mapping is on <a href="{{root}}guidelines/colour.html#semantic-tokens">Colour → Semantic tokens</a>.</p>
+
+<h2>Override tokens</h2>
+<p>All of Vici lives in CSS cascade layers (<code>vici.tokens</code>, <code>vici.base</code>, <code>vici.layout</code>, <code>vici.components</code>, <code>vici.utilities</code>). Any CSS you write outside a layer wins automatically, so you never need <code>!important</code>.</p>
+<pre><code>/* Your stylesheet, loaded after vici.css */
+:root {
+  --vc-radius-md: 4px;              /* crisper buttons and inputs */
+  --vc-font-display: 'Fraunces', serif;  /* swap the headline face */
+}
+/* a lilac primary in dark mode, whether it comes from the OS or from data-theme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) { --vc-accent: var(--vc-lilac-200); }
+}
+[data-theme='dark'] { --vc-accent: var(--vc-lilac-200); }
+.vc-card { border-radius: 0; }      /* plain overrides just work */</code></pre>
+
+<h3>Prefer semantic tokens</h3>
+<p>Use semantic tokens (<code>--vc-text-muted</code>, <code>--vc-surface</code>, <code>--vc-danger-text</code>) in your own CSS rather than primitives (<code>--vc-neutral-700</code>). Semantic tokens change with the theme; primitives do not.</p>
+
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <pre><code>.note { color: var(--vc-text-muted); }</code></pre>
+    <p>Follows the theme and keeps its contrast in both themes.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <pre><code>.note { color: #5b4b4e; }</code></pre>
+    <p>Hard-coded colours disappear on the dark canvas and drift away from the palette.</p>
+  </div>
+</div>
+
+<h2>Change the palette</h2>
+<p>The colour ramps are generated in OKLCH by <code>scripts/palette.mjs</code>. Edit the hue, chroma or anchor colours there, then run <code>npm run palette</code>. The build regenerates the CSS, the docs swatches and every export, and <code>npm run check</code> tells you straight away if a change breaks a contrast requirement.</p>

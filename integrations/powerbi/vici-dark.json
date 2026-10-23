@@ -1,0 +1,51 @@
+{
+  "name": "Vici Dark",
+  "dataColors": [
+    "#de9b98",
+    "#c2eaea",
+    "#f3c6a4",
+    "#94bde9",
+    "#ac8bc9",
+    "#b8964d",
+    "#b2a4a3",
+    "#e7ddda"
+  ],
+  "foreground": "#f3ebe7",
+  "foregroundNeutralSecondary": "#d6c9c6",
+  "foregroundNeutralTertiary": "#b2a4a3",
+  "background": "#2d0617",
+  "backgroundLight": "#180008",
+  "backgroundNeutral": "#67444e",
+  "tableAccent": "#fcd2d5",
+  "good": "#badabe",
+  "neutral": "#e2cfa0",
+  "bad": "#fcc0b4",
+  "maximum": "#fff4f4",
+  "center": "#c77d74",
+  "minimum": "#3d051e",
+  "null": "#b2a4a3",
+  "hyperlink": "#fcd2d5",
+  "visitedHyperlink": "#fcd2d5",
+  "textClasses": {
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#f3ebe7"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#f3ebe7"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#f3ebe7"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#d6c9c6"
+    }
+  }
+}

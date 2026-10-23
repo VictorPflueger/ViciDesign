@@ -1,0 +1,171 @@
+<!--
+title: Navigation
+section: Components
+order: 4
+icon: menu
+layout: wide
+description: Header, side navigation, footer, tabs, breadcrumb, hexagon pagination, hexagon stepper and a carousel with hexagon dots.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Navigation</h1>
+  <p class="vc-lead">Components for finding your way: across a site, within a page and through a process. The current location is always shown twice: by weight or colour, and by a small hexagon marker.</p>
+</header>
+
+<h2>Header</h2>
+<p>A sticky, translucent bar with brand, main navigation and actions. Below 768&nbsp;px the navigation folds into a menu button (<code>.vc-header__toggle</code>), which <code>vici.js</code> wires up. The current section gets <code>aria-current</code> and a hexagon marker.</p>
+<!-- demo flush -->
+<header class="vc-header" style="position:relative">
+  <div class="vc-header__inner">
+    <a class="vc-header__brand" href="#header"><span class="vc-cell vc-cell--sm vc-cell--solid" aria-hidden="true"></span>Atlas</a>
+    <nav class="vc-header__nav" aria-label="Main">
+      <a href="#header" aria-current="page">Overview</a>
+      <a href="#header">Reports</a>
+      <a href="#header">Agents</a>
+      <a href="#header">Settings</a>
+    </nav>
+    <div class="vc-header__actions">
+      <button type="button" class="vc-icon-button" aria-label="Search"><span class="vc-icon vc-icon--search" aria-hidden="true"></span></button>
+      <span class="vc-avatar vc-avatar--sm">VP</span>
+      <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+    </div>
+  </div>
+</header>
+<!-- /demo -->
+
+<h2>Side navigation</h2>
+<!-- demo block -->
+<nav class="vc-sidenav" aria-label="Workspace" style="max-width:16rem">
+  <div>
+    <p class="vc-sidenav__title">Workspace</p>
+    <ul>
+      <li><a href="#side-navigation" aria-current="page"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li>
+      <li><a href="#side-navigation"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Reports <span class="vc-badge vc-badge--soft">4</span></a></li>
+      <li><a href="#side-navigation"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Agents</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="vc-sidenav__title">Data</p>
+    <ul>
+      <li>
+        <details open>
+          <summary>Sources</summary>
+          <ul>
+            <li><a href="#side-navigation">ERP</a></li>
+            <li><a href="#side-navigation">Contracts</a></li>
+          </ul>
+        </details>
+      </li>
+      <li><a href="#side-navigation"><span class="vc-icon vc-icon--settings" aria-hidden="true"></span>Settings</a></li>
+    </ul>
+  </div>
+</nav>
+<!-- /demo -->
+
+<h2>Footer</h2>
+<!-- demo flush -->
+<footer class="vc-footer vc-footer--brand">
+  <div class="vc-container">
+    <div class="vc-footer__grid">
+      <div><p class="vc-footer__title">Victor Pflüger</p><p style="margin:0">Notes, prototypes and experiments</p></div>
+      <div><p class="vc-footer__title">Work</p><ul><li><a href="#footer">Prototypes</a></li><li><a href="#footer">Articles</a></li></ul></div>
+      <div><p class="vc-footer__title">Elsewhere</p><ul><li><a href="#footer">LinkedIn</a></li><li><a href="#footer">GitHub</a></li></ul></div>
+    </div>
+    <div class="vc-footer__bottom"><span>© 2026</span><span>Built with Vici</span></div>
+  </div>
+</footer>
+<!-- /demo -->
+<p>The default <code>.vc-footer</code> uses the subtle background. <code>--brand</code> sets it on the base colour in both themes.</p>
+
+<h2>Tabs</h2>
+<p>Tabs switch between views of the same subject. <code>vici.js</code> handles selection and the keyboard (arrow keys, Home, End) and shows only the active panel.</p>
+<!-- demo block -->
+<div class="vc-tabs">
+  <div class="vc-tabs__list" role="tablist" aria-label="Report sections">
+    <button type="button" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="true">Summary</button>
+    <button type="button" role="tab" id="tab-b" aria-controls="panel-b" aria-selected="false">Findings <span class="vc-badge vc-badge--soft">12</span></button>
+    <button type="button" role="tab" id="tab-c" aria-controls="panel-c" aria-selected="false">Data</button>
+  </div>
+  <div class="vc-tabs__panel" role="tabpanel" id="panel-a" aria-labelledby="tab-a" tabindex="0"><p style="margin:0">The summary of the report goes here.</p></div>
+  <div class="vc-tabs__panel" role="tabpanel" id="panel-b" aria-labelledby="tab-b" tabindex="0" hidden><p style="margin:0">Twelve findings, sorted by impact.</p></div>
+  <div class="vc-tabs__panel" role="tabpanel" id="panel-c" aria-labelledby="tab-c" tabindex="0" hidden><p style="margin:0">The underlying data as a table.</p></div>
+</div>
+<!-- /demo -->
+<h3>Capsule tabs</h3>
+<!-- demo block -->
+<div class="vc-tabs vc-tabs--capsule">
+  <div class="vc-tabs__list" role="tablist" aria-label="Environment">
+    <button type="button" role="tab" id="ctab-a" aria-controls="cpanel-a" aria-selected="true">Production</button>
+    <button type="button" role="tab" id="ctab-b" aria-controls="cpanel-b" aria-selected="false">Staging</button>
+    <button type="button" role="tab" id="ctab-c" aria-controls="cpanel-c" aria-selected="false">Local</button>
+  </div>
+  <div class="vc-tabs__panel" role="tabpanel" id="cpanel-a" aria-labelledby="ctab-a" tabindex="0"><p style="margin:0">Production settings.</p></div>
+  <div class="vc-tabs__panel" role="tabpanel" id="cpanel-b" aria-labelledby="ctab-b" tabindex="0" hidden><p style="margin:0">Staging settings.</p></div>
+  <div class="vc-tabs__panel" role="tabpanel" id="cpanel-c" aria-labelledby="ctab-c" tabindex="0" hidden><p style="margin:0">Local settings.</p></div>
+</div>
+<!-- /demo -->
+
+<h2>Breadcrumb</h2>
+<!-- demo -->
+<nav class="vc-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="#breadcrumb">Home</a></li>
+    <li><a href="#breadcrumb">Reports</a></li>
+    <li><a href="#breadcrumb">2026</a></li>
+    <li><span aria-current="page">Supplier risk Q3</span></li>
+  </ol>
+</nav>
+<!-- /demo -->
+
+<h2>Pagination</h2>
+<p>Pages are hexagon cells, and the current page is solid merlot. Keep the first and last page visible and collapse the middle with a gap.</p>
+<!-- demo -->
+<nav class="vc-pagination" aria-label="Pagination">
+  <ul>
+    <li><a class="vc-pagination__step" href="#pagination" aria-label="Previous page"><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span></a></li>
+    <li><a class="vc-pagination__page" href="#pagination">1</a></li>
+    <li><span class="vc-pagination__gap" aria-hidden="true">…</span></li>
+    <li><a class="vc-pagination__page" href="#pagination">6</a></li>
+    <li><a class="vc-pagination__page" href="#pagination" aria-current="page">7</a></li>
+    <li><a class="vc-pagination__page" href="#pagination">8</a></li>
+    <li><span class="vc-pagination__gap" aria-hidden="true">…</span></li>
+    <li><a class="vc-pagination__page" href="#pagination">24</a></li>
+    <li><a class="vc-pagination__step" href="#pagination" aria-label="Next page"><span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></a></li>
+  </ul>
+</nav>
+<!-- /demo -->
+
+<h2>Stepper</h2>
+<p>Shows progress through a fixed sequence. Steps are hexagon cells joined by rails: done steps are solid with a check, the current step is pastel, and upcoming steps are outlined.</p>
+<!-- demo block -->
+<ol class="vc-stepper" aria-label="Onboarding progress">
+  <li class="vc-step vc-step--done"><span class="vc-step__marker">1<span class="vc-visually-hidden"> (completed)</span></span><span class="vc-step__label">Connect data</span></li>
+  <li class="vc-step vc-step--done"><span class="vc-step__marker">2<span class="vc-visually-hidden"> (completed)</span></span><span class="vc-step__label">Choose scope</span></li>
+  <li class="vc-step vc-step--current" aria-current="step"><span class="vc-step__marker">3</span><span class="vc-step__label">Review findings<span class="vc-step__hint">In progress</span></span></li>
+  <li class="vc-step"><span class="vc-step__marker">4</span><span class="vc-step__label">Approve</span></li>
+</ol>
+<!-- /demo -->
+<!-- demo block -->
+<ol class="vc-stepper vc-stepper--vertical" aria-label="Deployment">
+  <li class="vc-step vc-step--done"><span class="vc-step__marker">1<span class="vc-visually-hidden"> (completed)</span></span><span class="vc-step__label">Build<span class="vc-step__hint">2 min ago</span></span></li>
+  <li class="vc-step vc-step--current" aria-current="step"><span class="vc-step__marker">2</span><span class="vc-step__label">Evaluate<span class="vc-step__hint">Running 48 test prompts</span></span></li>
+  <li class="vc-step"><span class="vc-step__marker">3</span><span class="vc-step__label">Release</span></li>
+</ol>
+<!-- /demo -->
+
+<h2>Carousel</h2>
+<p>A scroll-snap track with previous/next buttons and hexagon dots. It works by touch, by trackpad and with the arrow keys on the focused track. <code>vici.js</code> creates the dots and keeps them in sync. Off-screen slides become inert, so keyboard focus can't land in a hidden slide.</p>
+<!-- demo block -->
+<section class="vc-carousel" aria-roledescription="carousel" aria-label="Highlights" data-vc-carousel>
+  <div class="vc-carousel__track" tabindex="0">
+    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="1 of 3"><div class="vc-card vc-card--tinted"><div class="vc-card__body"><h3 class="vc-card__title">Faster month-end</h3><p>Matching runs overnight; finance reviews exceptions only.</p></div></div></article>
+    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="2 of 3"><div class="vc-card vc-card--tinted" style="background:var(--vc-lilac-100);color:var(--vc-lilac-950)"><div class="vc-card__body"><h3 class="vc-card__title">Explainable</h3><p>Every suggestion links to the documents it is based on.</p></div></div></article>
+    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="3 of 3"><div class="vc-card vc-card--tinted" style="background:var(--vc-sage-100);color:var(--vc-sage-950)"><div class="vc-card__body"><h3 class="vc-card__title">Governed</h3><p>Approvals, audit trail and a clear owner for each agent.</p></div></div></article>
+  </div>
+  <div class="vc-carousel__controls">
+    <button type="button" class="vc-icon-button vc-icon-button--sm" data-vc-prev aria-label="Previous slide"><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span></button>
+    <div class="vc-carousel__dots"></div>
+    <button type="button" class="vc-icon-button vc-icon-button--sm" data-vc-next aria-label="Next slide"><span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+  </div>
+</section>
+<!-- /demo -->

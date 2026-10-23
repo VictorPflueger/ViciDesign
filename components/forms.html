@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="vici-build">
+  <title>Forms · Vici Design System</title>
+  <meta name="description" content="Field anatomy, text inputs, textarea, select, combobox, date and file inputs, checkbox, hexagon radio, hex-capsule switch, slider, chips and hexagon rating.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../dist/vici.css">
+  <link rel="stylesheet" href="../assets/docs/docs.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <script src="../assets/docs/docs.js" defer></script>
+</head>
+<body class="doc doc--wide">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header doc-header">
+    <div class="vc-header__inner">
+      <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-label="Open navigation">
+        <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+      </button>
+      <a class="vc-header__brand doc-brand" href="../index.html" aria-label="Vici Design System — overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24.55 15.48 73.84 69.63" width="27.57" height="26" aria-hidden="true" focusable="false" class="vc-logo"><path d="M35.86 32.71 L56.58 68.59" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><path d="M63.42 68.59 L79 41.6" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><polygon points="41.45,33.78 34,38.08 26.55,33.78 26.55,25.18 34,20.88 41.45,25.18" style="fill:var(--vc-text)"/><path d="M67.45 78.82 L60 83.12 L52.55 78.82 L52.55 70.22 L60 65.92 L67.45 70.22 Z M63.45 76.51 L60 78.5 L56.55 76.51 L56.55 72.53 L60 70.54 L63.45 72.53 Z" style="fill:var(--vc-text)" fill-rule="evenodd"/><path d="M96.39 35.48 L86 41.48 L75.61 35.48 L75.61 23.48 L86 17.48 L96.39 23.48 Z M92.39 33.17 L86 36.86 L79.61 33.17 L79.61 25.79 L86 22.1 L92.39 25.79 Z" style="fill:var(--vc-merlot-500)" fill-rule="evenodd"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -712 1560 720" width="45.5" height="21" role="img" class="vc-wordmark"><title>Vici</title><path d="M222.25 0.0 6 -660H153.75L309.25 -113.75H312.25L465.5 -660.0H613L397 0ZM649 0V-523.5H784.5V0.0ZM807.8148659421287 -637.5 762.0324329710644 -716.7975H670.4675670289357L624.6851340578713 -637.5L670.4675670289356 -558.2025H762.0324329710644ZM1100.0 13.75Q1033.0 13.75 983.875 -7.0Q934.75 -27.75 903.0 -65.0Q871.25 -102.25 856.0 -151.375Q840.75 -200.5 840.75 -257.25Q840.75 -314.25 856.0 -364.5Q871.25 -414.75 902.375 -454.125Q933.5 -493.5 982.0 -515.5Q1030.5 -537.5 1097.0 -537.5Q1176.25 -537.5 1225.875 -507.5Q1275.5 -477.5 1296.75 -429.75Q1318 -382 1311.5 -326.5L1192.75 -315.75Q1194.0 -353.75 1182.0 -378.875Q1170 -404 1147.75 -416.625Q1125.5 -429.25 1095.25 -429.25Q1070.0 -429.25 1048.5 -420.0Q1027.0 -410.75 1011.0 -390.75Q995.0 -370.75 986.125 -339.625Q977.25 -308.5 977.25 -263.75Q977.25 -206.25 992.5 -167.375Q1007.75 -128.5 1035.75 -109.125Q1063.75 -89.75 1102.25 -89.75Q1142.75 -89.75 1165.5 -108.375Q1188.25 -127.0 1197.0 -156.375Q1205.75 -185.75 1202.75 -216.5L1328.25 -209.5Q1332.5 -164.75 1321.125 -124.375Q1309.75 -84.0 1281.375 -52.75Q1253.0 -21.5 1207.875 -3.875Q1162.75 13.75 1100.0 13.75ZM1376 0V-523.5H1511.5V0.0ZM1534.8148659421288 -637.5 1489.0324329710643 -716.7975H1397.4675670289357L1351.6851340578712 -637.5L1397.4675670289357 -558.2025H1489.0324329710643Z" style="fill:currentColor"/></svg><span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v1.0.0</span></a>
+      <nav class="vc-header__nav doc-header__nav" aria-label="Sections"><a href="../start/getting-started.html">Start</a><a href="../guidelines/principles.html">Guidelines</a><a href="../components/actions.html" aria-current="true">Components</a><a href="../brand/logo.html">Brand</a></nav>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme">
+          <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+          <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+        </button>
+        <a class="vc-icon-button" href="https://github.com/VictorPflueger/ViciDesign" aria-label="Source code on GitHub" title="Source code on GitHub">
+          <span class="vc-icon vc-icon--code" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-shell">
+    <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation">
+      <nav class="vc-sidenav">
+<ul><li><a href="../index.html"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li></ul>
+<div><p class="vc-sidenav__title">Start</p><ul><li><a href="../start/getting-started.html"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Getting started</a></li><li><a href="../start/theming.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Theming</a></li><li><a href="../start/integrations.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Integrations</a></li><li><a href="../start/starters.html"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Starters</a></li><li><a href="../start/tokens.html"><span class="vc-icon vc-icon--code" aria-hidden="true"></span>Tokens</a></li></ul></div>
+<div><p class="vc-sidenav__title">Guidelines</p><ul><li><a href="../guidelines/principles.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Principles</a></li><li><a href="../guidelines/colour.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Colour</a></li><li><a href="../guidelines/typography.html"><span class="vc-icon vc-icon--type" aria-hidden="true"></span>Typography</a></li><li><a href="../guidelines/hexagon.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Hexagon</a></li><li><a href="../guidelines/layout.html"><span class="vc-icon vc-icon--layout" aria-hidden="true"></span>Layout &amp; spacing</a></li><li><a href="../guidelines/elevation.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Elevation</a></li><li><a href="../guidelines/motion.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Motion</a></li><li><a href="../guidelines/icons.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Icons</a></li><li><a href="../guidelines/data-viz.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data visualisation</a></li><li><a href="../guidelines/accessibility.html"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span>Accessibility</a></li></ul></div>
+<div><p class="vc-sidenav__title">Components</p><ul><li><a href="../components/actions.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Actions</a></li><li><a href="../components/forms.html" aria-current="page"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Forms</a></li><li><a href="../components/content.html"><span class="vc-icon vc-icon--cube" aria-hidden="true"></span>Content</a></li><li><a href="../components/navigation.html"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span>Navigation</a></li><li><a href="../components/feedback.html"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span>Feedback</a></li><li><a href="../components/overlays.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Overlays</a></li><li><a href="../components/data.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data display</a></li></ul></div>
+<div><p class="vc-sidenav__title">Brand</p><ul><li><a href="../brand/logo.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Logo concepts</a></li></ul></div>
+      </nav>
+    </aside>
+    <div class="doc-scrim" data-doc-close-sidebar hidden></div>
+
+    <main class="doc-main" id="main" tabindex="-1">
+      <article class="doc-article">
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Forms</h1>
+  <p class="vc-lead">Form controls are native elements with a Vici skin, so validation, autofill, keyboard support and mobile keyboards all work as usual. The hexagon shows up where other systems draw circles: in the radio, the switch knob, the slider thumb and the rating cells.</p>
+</header>
+
+<h2 id="field">Field</h2>
+<p>A field stacks a label, the control, and optional help or error text. Connect the help text with <code>aria-describedby</code>.</p>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="f-email">Work email <span class="vc-label__required" aria-hidden="true">*</span></label>
+  <input class="vc-input" id="f-email" type="email" placeholder="name@company.com" required aria-describedby="f-email-help" autocomplete="email">
+  <p class="vc-help" id="f-email-help">We only use it to send the report.</p>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-budget">Budget <span class="vc-label__hint">optional</span></label>
+  <div class="vc-input-group">
+    <span class="vc-input-group__addon">€</span>
+    <input class="vc-input" id="f-budget" type="number" inputmode="decimal" value="12500">
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-key">Project key</label>
+  <input class="vc-input" id="f-key" value="vc 12" aria-invalid="true" aria-describedby="f-key-error">
+  <p class="vc-help vc-help--error" id="f-key-error"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Use letters and digits only, without spaces.</p>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-35"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-email&quot;</span><span class="tk-punct">&gt;</span>Work email <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label__required&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span>*<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-email&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;email&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;name@company.com&quot;</span> <span class="tk-attr">required</span> <span class="tk-attr">aria-describedby</span>=<span class="tk-str">&quot;f-email-help&quot;</span> <span class="tk-attr">autocomplete</span>=<span class="tk-str">&quot;email&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-help&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-email-help&quot;</span><span class="tk-punct">&gt;</span>We only use it to send the report.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-budget&quot;</span><span class="tk-punct">&gt;</span>Budget <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label__hint&quot;</span><span class="tk-punct">&gt;</span>optional<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input-group&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input-group__addon&quot;</span><span class="tk-punct">&gt;</span>€<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-budget&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;number&quot;</span> <span class="tk-attr">inputmode</span>=<span class="tk-str">&quot;decimal&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;12500&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-key&quot;</span><span class="tk-punct">&gt;</span>Project key<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-key&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;vc 12&quot;</span> <span class="tk-attr">aria-invalid</span>=<span class="tk-str">&quot;true&quot;</span> <span class="tk-attr">aria-describedby</span>=<span class="tk-str">&quot;f-key-error&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-help vc-help--error&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-key-error&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--error&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Use letters and digits only, without spaces.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-35" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="text-input">Text input</h2>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="f-search">Search</label>
+  <div class="vc-input-group">
+    <span class="vc-icon vc-icon--search" aria-hidden="true"></span>
+    <input class="vc-input" id="f-search" type="search" placeholder="Suppliers, contracts, people…">
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-api">API key</label>
+  <div class="vc-input-group">
+    <input class="vc-input" id="f-api" type="password" value="sk-test-123456">
+    <button type="button" class="vc-icon-button" aria-label="Show key" onclick="var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')" aria-pressed="false"><span class="vc-icon vc-icon--eye" aria-hidden="true"></span></button>
+  </div>
+</div>
+<div class="vc-cluster">
+  <input class="vc-input vc-input--sm" aria-label="Small input" placeholder="Small" style="max-width:10rem">
+  <input class="vc-input" aria-label="Medium input" placeholder="Medium" style="max-width:10rem">
+  <input class="vc-input vc-input--lg" aria-label="Large input" placeholder="Large" style="max-width:10rem">
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-disabled">Disabled</label>
+  <input class="vc-input" id="f-disabled" value="Read the docs first" disabled>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-36"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-search&quot;</span><span class="tk-punct">&gt;</span>Search<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input-group&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--search&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-search&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;search&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Suppliers, contracts, people…&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-api&quot;</span><span class="tk-punct">&gt;</span>API key<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input-group&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-api&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;password&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;sk-test-123456&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Show key&quot;</span> <span class="tk-attr">onclick</span>=<span class="tk-str">&quot;var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;false&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--eye&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-cluster&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input vc-input--sm&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Small input&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Small&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;max-width:10rem&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Medium input&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Medium&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;max-width:10rem&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input vc-input--lg&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Large input&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Large&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;max-width:10rem&quot;</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-disabled&quot;</span><span class="tk-punct">&gt;</span>Disabled<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-disabled&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;Read the docs first&quot;</span> <span class="tk-attr">disabled</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-36" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h3 id="date-number-and-file">Date, number and file</h3>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-grid vc-grid--2" style="--vc-grid-gap: var(--vc-space-4)">
+  <div class="vc-field">
+    <label class="vc-label" for="f-date">Start date</label>
+    <input class="vc-input" id="f-date" type="date" value="2026-11-02">
+  </div>
+  <div class="vc-field">
+    <label class="vc-label" for="f-qty">Quantity</label>
+    <input class="vc-input" id="f-qty" type="number" min="0" value="48">
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-file">Upload data</label>
+  <input class="vc-input" id="f-file" type="file" accept=".csv,.xlsx">
+  <p class="vc-help">CSV or Excel, up to 20&nbsp;MB.</p>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-37"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-grid vc-grid--2&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;--vc-grid-gap: var(--vc-space-4)&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-date&quot;</span><span class="tk-punct">&gt;</span>Start date<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-date&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;date&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;2026-11-02&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-qty&quot;</span><span class="tk-punct">&gt;</span>Quantity<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-qty&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;number&quot;</span> <span class="tk-attr">min</span>=<span class="tk-str">&quot;0&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;48&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-file&quot;</span><span class="tk-punct">&gt;</span>Upload data<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-file&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;file&quot;</span> <span class="tk-attr">accept</span>=<span class="tk-str">&quot;.csv,.xlsx&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-help&quot;</span><span class="tk-punct">&gt;</span>CSV or Excel, up to 20&amp;nbsp;MB.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-37" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="textarea">Textarea</h2>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="f-prompt">Prompt</label>
+  <textarea class="vc-textarea" id="f-prompt" rows="4" placeholder="Describe what the agent should do…"></textarea>
+  <p class="vc-help">Plain language works best. Mention data sources by name.</p>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-38"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-prompt&quot;</span><span class="tk-punct">&gt;</span>Prompt<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">textarea</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-textarea&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-prompt&quot;</span> <span class="tk-attr">rows</span>=<span class="tk-str">&quot;4&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Describe what the agent should do…&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">textarea</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-help&quot;</span><span class="tk-punct">&gt;</span>Plain language works best. Mention data sources by name.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-38" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="select">Select</h2>
+<p>A native <code>&lt;select&gt;</code> with a Vici chevron. Use it for six or more options. For fewer, radios or a segmented control show all choices at once.</p>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="f-region">Region</label>
+  <select class="vc-select" id="f-region">
+    <option>DACH</option>
+    <option selected>Nordics</option>
+    <option>Benelux</option>
+    <option>Southern Europe</option>
+    <option>Central &amp; Eastern Europe</option>
+    <option>United Kingdom &amp; Ireland</option>
+  </select>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-39"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-region&quot;</span><span class="tk-punct">&gt;</span>Region<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">select</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-select&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-region&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>DACH<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span> <span class="tk-attr">selected</span><span class="tk-punct">&gt;</span>Nordics<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>Benelux<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>Southern Europe<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>Central &amp;amp; Eastern Europe<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>United Kingdom &amp;amp; Ireland<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">select</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-39" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="combobox">Combobox</h2>
+<p>For “type or choose”, combine a text input with a native <code>&lt;datalist&gt;</code>. The browser handles filtering and keyboard selection.</p>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="f-model">Model</label>
+  <input class="vc-input" id="f-model" list="f-model-list" placeholder="Start typing…">
+  <datalist id="f-model-list">
+    <option value="Forecasting — gradient boosting"></option>
+    <option value="Forecasting — temporal fusion transformer"></option>
+    <option value="Classification — logistic regression"></option>
+    <option value="Retrieval — hybrid search"></option>
+  </datalist>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-40"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-model&quot;</span><span class="tk-punct">&gt;</span>Model<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-model&quot;</span> <span class="tk-attr">list</span>=<span class="tk-str">&quot;f-model-list&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Start typing…&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">datalist</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-model-list&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;Forecasting — gradient boosting&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;Forecasting — temporal fusion transformer&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;Classification — logistic regression&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">option</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;Retrieval — hybrid search&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">datalist</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-40" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="checkbox">Checkbox</h2>
+<p>Checkboxes stay square: squares aren't circles. Group them in a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>. Add <code>data-vc-indeterminate</code> for a mixed parent state.</p>
+<div class="doc-demo doc-demo--start"><div class="doc-demo__preview">
+<fieldset class="vc-fieldset">
+  <legend>Data sources</legend>
+  <label class="vc-checkbox"><input type="checkbox" data-vc-indeterminate> All sources</label>
+  <label class="vc-checkbox"><input type="checkbox" checked> ERP purchase orders</label>
+  <label class="vc-checkbox"><input type="checkbox"> Supplier contracts (PDF)</label>
+  <label class="vc-checkbox"><input type="checkbox" disabled> Market data (licence needed)</label>
+</fieldset>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-41"><span class="tk-punct">&lt;</span><span class="tk-tag">fieldset</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-fieldset&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>Data sources<span class="tk-punct">&lt;/</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-checkbox&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">data-vc-indeterminate</span><span class="tk-punct">&gt;</span> All sources<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-checkbox&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span> ERP purchase orders<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-checkbox&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span><span class="tk-punct">&gt;</span> Supplier contracts (PDF)<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-checkbox&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">disabled</span><span class="tk-punct">&gt;</span> Market data (licence needed)<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">fieldset</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-41" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="radio">Radio</h2>
+<p>A hexagon ring with a hexagon dot that grows when selected, drawn with one even-odd <code>clip-path</code> on the native input. Focus shows as an outer hexagon ring.</p>
+<div class="doc-demo doc-demo--start"><div class="doc-demo__preview">
+<fieldset class="vc-fieldset">
+  <legend>Forecast horizon</legend>
+  <label class="vc-radio"><input type="radio" name="horizon"> 4 weeks</label>
+  <label class="vc-radio"><input type="radio" name="horizon" checked> 12 weeks</label>
+  <label class="vc-radio"><input type="radio" name="horizon"> 52 weeks</label>
+  <label class="vc-radio"><input type="radio" name="horizon" disabled> Custom (coming soon)</label>
+</fieldset>
+<fieldset class="vc-fieldset vc-fieldset--inline">
+  <legend>Inline group</legend>
+  <label class="vc-radio"><input type="radio" name="inline-r" checked> Yes</label>
+  <label class="vc-radio"><input type="radio" name="inline-r"> No</label>
+</fieldset>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-42"><span class="tk-punct">&lt;</span><span class="tk-tag">fieldset</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-fieldset&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>Forecast horizon<span class="tk-punct">&lt;/</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;horizon&quot;</span><span class="tk-punct">&gt;</span> 4 weeks<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;horizon&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span> 12 weeks<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;horizon&quot;</span><span class="tk-punct">&gt;</span> 52 weeks<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;horizon&quot;</span> <span class="tk-attr">disabled</span><span class="tk-punct">&gt;</span> Custom (coming soon)<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">fieldset</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">fieldset</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-fieldset vc-fieldset--inline&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>Inline group<span class="tk-punct">&lt;/</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;inline-r&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span> Yes<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;inline-r&quot;</span><span class="tk-punct">&gt;</span> No<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">fieldset</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-42" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="switch">Switch</h2>
+<p>A hex-capsule track with a hexagon knob. Use a switch for settings that apply immediately. Use a checkbox when the change only takes effect after the user submits the form. Add <code>role="switch"</code>.</p>
+<div class="doc-demo doc-demo--start"><div class="doc-demo__preview">
+<div class="vc-stack vc-stack--sm">
+  <label class="vc-switch"><input type="checkbox" role="switch" checked> Email digest</label>
+  <label class="vc-switch"><input type="checkbox" role="switch"> Show AI suggestions</label>
+  <label class="vc-switch"><input type="checkbox" role="switch" disabled> Beta features</label>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-43"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stack vc-stack--sm&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-switch&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">role</span>=<span class="tk-str">&quot;switch&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span> Email digest<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-switch&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">role</span>=<span class="tk-str">&quot;switch&quot;</span><span class="tk-punct">&gt;</span> Show AI suggestions<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-switch&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">role</span>=<span class="tk-str">&quot;switch&quot;</span> <span class="tk-attr">disabled</span><span class="tk-punct">&gt;</span> Beta features<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-43" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="slider">Slider</h2>
+<p>A native range input with a hexagon thumb. <code>vici.js</code> fills the track up to the thumb and updates a connected <code>&lt;output&gt;</code>.</p>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="f-conf">Confidence threshold</label>
+  <div class="vc-slider-field">
+    <input class="vc-slider" id="f-conf" type="range" min="0" max="100" value="72">
+    <output for="f-conf">72</output>
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-temp">Temperature</label>
+  <div class="vc-slider-field">
+    <input class="vc-slider" id="f-temp" type="range" min="0" max="2" step="0.1" value="0.7">
+    <output for="f-temp">0.7</output>
+  </div>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-44"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-conf&quot;</span><span class="tk-punct">&gt;</span>Confidence threshold<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider-field&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-conf&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;range&quot;</span> <span class="tk-attr">min</span>=<span class="tk-str">&quot;0&quot;</span> <span class="tk-attr">max</span>=<span class="tk-str">&quot;100&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;72&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">output</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-conf&quot;</span><span class="tk-punct">&gt;</span>72<span class="tk-punct">&lt;/</span><span class="tk-tag">output</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-temp&quot;</span><span class="tk-punct">&gt;</span>Temperature<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider-field&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-temp&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;range&quot;</span> <span class="tk-attr">min</span>=<span class="tk-str">&quot;0&quot;</span> <span class="tk-attr">max</span>=<span class="tk-str">&quot;2&quot;</span> <span class="tk-attr">step</span>=<span class="tk-str">&quot;0.1&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;0.7&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">output</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-temp&quot;</span><span class="tk-punct">&gt;</span>0.7<span class="tk-punct">&lt;/</span><span class="tk-tag">output</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-44" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="chip">Chip</h2>
+<p>Chips are selectable filters in a hex capsule. Use toggle buttons with <code>aria-pressed</code> and a <code>.vc-chip__check</code> icon, or checkboxes inside a label, where the checkbox itself turns into the check mark. Selected chips get the accent fill and a check, so the state doesn't depend on colour.</p>
+<div class="doc-demo doc-demo--block"><div class="doc-demo__preview">
+<div class="vc-chip-group" role="group" aria-label="Filter by status">
+  <button type="button" class="vc-chip" aria-pressed="true"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Open</button>
+  <button type="button" class="vc-chip" aria-pressed="false"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>In review</button>
+  <button type="button" class="vc-chip" aria-pressed="false"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Approved</button>
+  <button type="button" class="vc-chip" aria-pressed="false" disabled><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Archived</button>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-45"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip-group&quot;</span> <span class="tk-attr">role</span>=<span class="tk-str">&quot;group&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Filter by status&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--check vc-chip__check&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Open<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;false&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--check vc-chip__check&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>In review<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;false&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--check vc-chip__check&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Approved<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;false&quot;</span> <span class="tk-attr">disabled</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--check vc-chip__check&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Archived<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-45" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<div class="doc-demo doc-demo--block"><div class="doc-demo__preview">
+<fieldset class="vc-chip-group">
+  <legend class="vc-visually-hidden">Topics</legend>
+  <label class="vc-chip"><input type="checkbox" checked>Forecasting</label>
+  <label class="vc-chip"><input type="checkbox">Reporting</label>
+  <label class="vc-chip"><input type="checkbox" checked>Automation</label>
+  <label class="vc-chip vc-chip--sm"><input type="checkbox">Small chip</label>
+</fieldset>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-46"><span class="tk-punct">&lt;</span><span class="tk-tag">fieldset</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip-group&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">legend</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>Topics<span class="tk-punct">&lt;/</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span>Forecasting<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span><span class="tk-punct">&gt;</span>Reporting<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span>Automation<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip vc-chip--sm&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span><span class="tk-punct">&gt;</span>Small chip<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">fieldset</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-46" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<p>For chips that only display information, use a <a href="../components/content.html#tag">tag</a> instead.</p>
+
+<h2 id="rating">Rating</h2>
+<p>Five hexagon cells, filled in honey up to the chosen value. It's a group of native radios, so the arrow keys work. Hovering previews a value.</p>
+<div class="doc-demo doc-demo--center"><div class="doc-demo__preview">
+<fieldset class="vc-rating">
+  <legend class="vc-visually-hidden">How useful was this answer?</legend>
+  <input type="radio" id="rate-1" name="rating" value="1"><label for="rate-1"><span class="vc-visually-hidden">1 of 5</span></label>
+  <input type="radio" id="rate-2" name="rating" value="2"><label for="rate-2"><span class="vc-visually-hidden">2 of 5</span></label>
+  <input type="radio" id="rate-3" name="rating" value="3"><label for="rate-3"><span class="vc-visually-hidden">3 of 5</span></label>
+  <input type="radio" id="rate-4" name="rating" value="4" checked><label for="rate-4"><span class="vc-visually-hidden">4 of 5</span></label>
+  <input type="radio" id="rate-5" name="rating" value="5"><label for="rate-5"><span class="vc-visually-hidden">5 of 5</span></label>
+</fieldset>
+<span class="vc-rating vc-rating--readonly vc-rating--sm" role="img" aria-label="Rated 3 out of 5">
+  <span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell"></span><span class="vc-rating__cell"></span>
+</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-47"><span class="tk-punct">&lt;</span><span class="tk-tag">fieldset</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">legend</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>How useful was this answer?<span class="tk-punct">&lt;/</span><span class="tk-tag">legend</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;rate-1&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;rating&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;1&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;rate-1&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>1 of 5<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;rate-2&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;rating&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;2&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;rate-2&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>2 of 5<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;rate-3&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;rating&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;3&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;rate-3&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>3 of 5<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;rate-4&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;rating&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;4&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;rate-4&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>4 of 5<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;rate-5&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;rating&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;5&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;rate-5&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-visually-hidden&quot;</span><span class="tk-punct">&gt;</span>5 of 5<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">fieldset</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating vc-rating--readonly vc-rating--sm&quot;</span> <span class="tk-attr">role</span>=<span class="tk-str">&quot;img&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Rated 3 out of 5&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating__cell vc-rating__cell--on&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating__cell vc-rating__cell--on&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating__cell vc-rating__cell--on&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating__cell&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-rating__cell&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-47" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="putting-it-together">Putting it together</h2>
+<div class="doc-demo doc-demo--block"><div class="doc-demo__preview">
+<form class="vc-card" style="max-width:34rem" onsubmit="event.preventDefault(); window.Vici && Vici.toast({title: 'Request sent', message: 'You will get the report by email.', tone: 'success'})">
+  <div class="vc-card__header"><h3 class="vc-card__title" style="font-size:var(--vc-font-size-lg)">Request a report</h3><span class="vc-tag vc-tag--feature vc-tag--sm"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI-assisted</span></div>
+  <div class="vc-card__body vc-stack">
+    <div class="vc-field">
+      <label class="vc-label" for="r-name">Name</label>
+      <input class="vc-input" id="r-name" autocomplete="name" required>
+    </div>
+    <div class="vc-field">
+      <label class="vc-label" for="r-scope">Scope</label>
+      <select class="vc-select" id="r-scope"><option>Spend analysis</option><option>Supplier risk</option><option>Contract compliance</option></select>
+    </div>
+    <label class="vc-switch"><input type="checkbox" role="switch" checked> Include an executive summary</label>
+  </div>
+  <div class="vc-card__footer" style="justify-content:flex-end">
+    <button type="reset" class="vc-button vc-button--ghost">Reset</button>
+    <button type="submit" class="vc-button">Send request</button>
+  </div>
+</form>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-48"><span class="tk-punct">&lt;</span><span class="tk-tag">form</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-card&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;max-width:34rem&quot;</span> <span class="tk-attr">onsubmit</span>=<span class="tk-str">&quot;event.preventDefault(); window.Vici &amp;&amp; Vici.toast({title: 'Request sent', message: 'You will get the report by email.', tone: 'success'})&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-card__header&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">h3</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-card__title&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;font-size:var(--vc-font-size-lg)&quot;</span><span class="tk-punct">&gt;</span>Request a report<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-tag vc-tag--feature vc-tag--sm&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--sparkle&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>AI-assisted<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-card__body vc-stack&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;r-name&quot;</span><span class="tk-punct">&gt;</span>Name<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;r-name&quot;</span> <span class="tk-attr">autocomplete</span>=<span class="tk-str">&quot;name&quot;</span> <span class="tk-attr">required</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;r-scope&quot;</span><span class="tk-punct">&gt;</span>Scope<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">select</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-select&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;r-scope&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>Spend analysis<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>Supplier risk<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span>Contract compliance<span class="tk-punct">&lt;/</span><span class="tk-tag">option</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">select</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-switch&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;checkbox&quot;</span> <span class="tk-attr">role</span>=<span class="tk-str">&quot;switch&quot;</span> <span class="tk-attr">checked</span><span class="tk-punct">&gt;</span> Include an executive summary<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-card__footer&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;justify-content:flex-end&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;reset&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--ghost&quot;</span><span class="tk-punct">&gt;</span>Reset<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;submit&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button&quot;</span><span class="tk-punct">&gt;</span>Send request<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">form</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-48" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/actions.html" rel="prev"><span class="vc-caption">Previous</span><span>Actions</span></a><a class="doc-pager__link doc-pager__link--next" href="../components/content.html" rel="next"><span class="vc-caption">Next</span><span>Content</span></a></nav>
+      </article>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#field">Field</a></li><li><a href="#text-input">Text input</a></li><li><a href="#textarea">Textarea</a></li><li><a href="#select">Select</a></li><li><a href="#combobox">Combobox</a></li><li><a href="#checkbox">Checkbox</a></li><li><a href="#radio">Radio</a></li><li><a href="#switch">Switch</a></li><li><a href="#slider">Slider</a></li><li><a href="#chip">Chip</a></li><li><a href="#rating">Rating</a></li><li><a href="#putting-it-together">Putting it together</a></li></ul></nav>
+    </main>
+  </div>
+
+  <footer class="vc-footer doc-footer">
+    <div class="vc-container vc-container--wide">
+      <div class="vc-footer__bottom">
+        <span>Vici Design System v1.0.0 · built on hexagons, merlot and pastels</span>
+        <span>Fonts: Bricolage Grotesque, Inter, JetBrains Mono (SIL OFL 1.1) · served from this site</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

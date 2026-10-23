@@ -1,0 +1,100 @@
+<!--
+title: Layout & spacing
+nav: Layout & spacing
+section: Guidelines
+order: 5
+icon: layout
+description: The 4 px grid, spacing scale, containers, breakpoints and layout primitives — stack, cluster, grid, split and honeycomb.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Layout &amp; spacing</h1>
+  <p class="vc-lead">Everything sits on a 4&nbsp;px grid. A handful of layout primitives (stack, cluster, grid, split) cover almost every arrangement, so a page is built from intent rather than from margins.</p>
+</header>
+
+<h2>Spacing scale</h2>
+<p>A token's number is its multiple of 4&nbsp;px: <code>--vc-space-4</code> is 16&nbsp;px. Small steps separate related things, large steps separate sections.</p>
+<!-- @spacing-scale -->
+<div class="vc-table-wrap">
+<table class="vc-table vc-table--compact">
+  <thead><tr><th scope="col">Range</th><th scope="col">Use</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>1</code>–<code>2</code></th><td>Icon to label, inside chips and badges</td></tr>
+    <tr><th scope="row"><code>3</code>–<code>4</code></th><td>Between controls in a group, padding of compact components</td></tr>
+    <tr><th scope="row"><code>5</code>–<code>6</code></th><td>Card padding, gaps in grids</td></tr>
+    <tr><th scope="row"><code>8</code>–<code>12</code></th><td>Between groups within a section</td></tr>
+    <tr><th scope="row"><code>16</code>–<code>32</code></th><td>Between page sections</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Containers and breakpoints</h2>
+<div class="vc-grid vc-grid--2">
+  <div class="vc-table-wrap">
+  <table class="vc-table vc-table--compact">
+    <caption>Containers (<code>.vc-container</code>)</caption>
+    <thead><tr><th scope="col">Modifier</th><th scope="col" class="vc-num">Max width</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><code>--prose</code></th><td class="vc-num"><!-- @token container.prose --></td></tr>
+      <tr><th scope="row"><code>--narrow</code></th><td class="vc-num"><!-- @token container.narrow --></td></tr>
+      <tr><th scope="row">(default)</th><td class="vc-num"><!-- @token container.content --></td></tr>
+      <tr><th scope="row"><code>--wide</code></th><td class="vc-num"><!-- @token container.wide --></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="vc-table-wrap">
+  <table class="vc-table vc-table--compact">
+    <caption>Breakpoints (min-width)</caption>
+    <thead><tr><th scope="col">Name</th><th scope="col" class="vc-num">From</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><code>sm</code></th><td class="vc-num"><!-- @token breakpoint.sm --></td></tr>
+      <tr><th scope="row"><code>md</code></th><td class="vc-num"><!-- @token breakpoint.md --></td></tr>
+      <tr><th scope="row"><code>lg</code></th><td class="vc-num"><!-- @token breakpoint.lg --></td></tr>
+      <tr><th scope="row"><code>xl</code></th><td class="vc-num"><!-- @token breakpoint.xl --></td></tr>
+      <tr><th scope="row"><code>2xl</code></th><td class="vc-num"><!-- @token breakpoint.2xl --></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<p>Containers add fluid side gutters (16–40&nbsp;px, <code>--vc-gutter</code>). Custom properties can't be used inside media queries, so the breakpoints are documented values. They are also exported to <code>dist/tokens.json</code> and the Tailwind theme.</p>
+
+<h2>Layout primitives</h2>
+<h3>Stack: vertical rhythm</h3>
+<!-- demo stack -->
+<div class="vc-stack" style="--vc-stack-gap: var(--vc-space-3)">
+  <div class="vc-skeleton" style="height:2.5rem"></div>
+  <div class="vc-skeleton" style="height:2.5rem"></div>
+  <div class="vc-skeleton" style="height:2.5rem"></div>
+</div>
+<!-- /demo -->
+<h3>Cluster: things in a row that wrap</h3>
+<!-- demo block -->
+<div class="vc-cluster">
+  <span class="vc-tag vc-tag--fjord">Procurement</span>
+  <span class="vc-tag vc-tag--teal">Supply chain</span>
+  <span class="vc-tag vc-tag--lilac">GenAI</span>
+  <span class="vc-tag vc-tag--honey">Operations</span>
+  <span class="vc-tag vc-tag--sage">Power BI</span>
+</div>
+<!-- /demo -->
+<h3>Grid: responsive columns</h3>
+<p><code>.vc-grid</code> fits as many columns as there is room for, never narrower than <code>--vc-grid-min</code>. <code>.vc-grid--2/3/4</code> fix the number of columns and collapse on small screens. <code>.vc-grid-12</code> with <code>.vc-span-1…12</code> gives a classic 12-column grid from 768&nbsp;px.</p>
+<!-- demo block -->
+<div class="vc-grid" style="--vc-grid-min: 9rem; --vc-grid-gap: var(--vc-space-3)">
+  <div class="vc-card vc-card--flat"><div class="vc-card__body">One</div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body">Two</div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body">Three</div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body">Four</div></div>
+</div>
+<!-- /demo -->
+<h3>Split: sidebar and main</h3>
+<p><code>.vc-split</code> puts a side pane (<code>--vc-split-side</code>, default 18rem) next to a fluid main pane and stacks them when the main pane would get too narrow. No media query needed.</p>
+<!-- demo block -->
+<div class="vc-split" style="--vc-split-side: 12rem; --vc-split-gap: var(--vc-space-4)">
+  <div class="vc-card vc-card--tinted"><div class="vc-card__body">Side</div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body">Main content takes the remaining width and wraps below the side pane on narrow screens.</div></div>
+</div>
+<!-- /demo -->
+
+<h2>Density</h2>
+<p>Components default to a comfortable density: 40&nbsp;px controls and 16–20&nbsp;px card padding. For data-heavy screens, use the small control size (<code>--sm</code> modifiers, 32&nbsp;px), <code>.vc-table--compact</code> and a <code>--vc-space-3</code> grid gap. Don't go below 32&nbsp;px for anything clickable on a touch screen. 44&nbsp;px is the comfortable minimum for touch targets.</p>

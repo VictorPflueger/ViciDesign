@@ -1,0 +1,238 @@
+<!--
+title: Forms
+section: Components
+order: 2
+icon: edit
+layout: wide
+description: Field anatomy, text inputs, textarea, select, combobox, date and file inputs, checkbox, hexagon radio, hex-capsule switch, slider, chips and hexagon rating.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Forms</h1>
+  <p class="vc-lead">Form controls are native elements with a Vici skin, so validation, autofill, keyboard support and mobile keyboards all work as usual. The hexagon shows up where other systems draw circles: in the radio, the switch knob, the slider thumb and the rating cells.</p>
+</header>
+
+<h2>Field</h2>
+<p>A field stacks a label, the control, and optional help or error text. Connect the help text with <code>aria-describedby</code>.</p>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="f-email">Work email <span class="vc-label__required" aria-hidden="true">*</span></label>
+  <input class="vc-input" id="f-email" type="email" placeholder="name@company.com" required aria-describedby="f-email-help" autocomplete="email">
+  <p class="vc-help" id="f-email-help">We only use it to send the report.</p>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-budget">Budget <span class="vc-label__hint">optional</span></label>
+  <div class="vc-input-group">
+    <span class="vc-input-group__addon">€</span>
+    <input class="vc-input" id="f-budget" type="number" inputmode="decimal" value="12500">
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-key">Project key</label>
+  <input class="vc-input" id="f-key" value="vc 12" aria-invalid="true" aria-describedby="f-key-error">
+  <p class="vc-help vc-help--error" id="f-key-error"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Use letters and digits only, without spaces.</p>
+</div>
+<!-- /demo -->
+
+<h2>Text input</h2>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="f-search">Search</label>
+  <div class="vc-input-group">
+    <span class="vc-icon vc-icon--search" aria-hidden="true"></span>
+    <input class="vc-input" id="f-search" type="search" placeholder="Suppliers, contracts, people…">
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-api">API key</label>
+  <div class="vc-input-group">
+    <input class="vc-input" id="f-api" type="password" value="sk-test-123456">
+    <button type="button" class="vc-icon-button" aria-label="Show key" onclick="var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')" aria-pressed="false"><span class="vc-icon vc-icon--eye" aria-hidden="true"></span></button>
+  </div>
+</div>
+<div class="vc-cluster">
+  <input class="vc-input vc-input--sm" aria-label="Small input" placeholder="Small" style="max-width:10rem">
+  <input class="vc-input" aria-label="Medium input" placeholder="Medium" style="max-width:10rem">
+  <input class="vc-input vc-input--lg" aria-label="Large input" placeholder="Large" style="max-width:10rem">
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-disabled">Disabled</label>
+  <input class="vc-input" id="f-disabled" value="Read the docs first" disabled>
+</div>
+<!-- /demo -->
+
+<h3>Date, number and file</h3>
+<!-- demo stack narrow -->
+<div class="vc-grid vc-grid--2" style="--vc-grid-gap: var(--vc-space-4)">
+  <div class="vc-field">
+    <label class="vc-label" for="f-date">Start date</label>
+    <input class="vc-input" id="f-date" type="date" value="2026-11-02">
+  </div>
+  <div class="vc-field">
+    <label class="vc-label" for="f-qty">Quantity</label>
+    <input class="vc-input" id="f-qty" type="number" min="0" value="48">
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-file">Upload data</label>
+  <input class="vc-input" id="f-file" type="file" accept=".csv,.xlsx">
+  <p class="vc-help">CSV or Excel, up to 20&nbsp;MB.</p>
+</div>
+<!-- /demo -->
+
+<h2>Textarea</h2>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="f-prompt">Prompt</label>
+  <textarea class="vc-textarea" id="f-prompt" rows="4" placeholder="Describe what the agent should do…"></textarea>
+  <p class="vc-help">Plain language works best. Mention data sources by name.</p>
+</div>
+<!-- /demo -->
+
+<h2>Select</h2>
+<p>A native <code>&lt;select&gt;</code> with a Vici chevron. Use it for six or more options. For fewer, radios or a segmented control show all choices at once.</p>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="f-region">Region</label>
+  <select class="vc-select" id="f-region">
+    <option>DACH</option>
+    <option selected>Nordics</option>
+    <option>Benelux</option>
+    <option>Southern Europe</option>
+    <option>Central &amp; Eastern Europe</option>
+    <option>United Kingdom &amp; Ireland</option>
+  </select>
+</div>
+<!-- /demo -->
+
+<h2>Combobox</h2>
+<p>For “type or choose”, combine a text input with a native <code>&lt;datalist&gt;</code>. The browser handles filtering and keyboard selection.</p>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="f-model">Model</label>
+  <input class="vc-input" id="f-model" list="f-model-list" placeholder="Start typing…">
+  <datalist id="f-model-list">
+    <option value="Forecasting — gradient boosting"></option>
+    <option value="Forecasting — temporal fusion transformer"></option>
+    <option value="Classification — logistic regression"></option>
+    <option value="Retrieval — hybrid search"></option>
+  </datalist>
+</div>
+<!-- /demo -->
+
+<h2>Checkbox</h2>
+<p>Checkboxes stay square: squares aren't circles. Group them in a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>. Add <code>data-vc-indeterminate</code> for a mixed parent state.</p>
+<!-- demo start -->
+<fieldset class="vc-fieldset">
+  <legend>Data sources</legend>
+  <label class="vc-checkbox"><input type="checkbox" data-vc-indeterminate> All sources</label>
+  <label class="vc-checkbox"><input type="checkbox" checked> ERP purchase orders</label>
+  <label class="vc-checkbox"><input type="checkbox"> Supplier contracts (PDF)</label>
+  <label class="vc-checkbox"><input type="checkbox" disabled> Market data (licence needed)</label>
+</fieldset>
+<!-- /demo -->
+
+<h2>Radio</h2>
+<p>A hexagon ring with a hexagon dot that grows when selected, drawn with one even-odd <code>clip-path</code> on the native input. Focus shows as an outer hexagon ring.</p>
+<!-- demo start -->
+<fieldset class="vc-fieldset">
+  <legend>Forecast horizon</legend>
+  <label class="vc-radio"><input type="radio" name="horizon"> 4 weeks</label>
+  <label class="vc-radio"><input type="radio" name="horizon" checked> 12 weeks</label>
+  <label class="vc-radio"><input type="radio" name="horizon"> 52 weeks</label>
+  <label class="vc-radio"><input type="radio" name="horizon" disabled> Custom (coming soon)</label>
+</fieldset>
+<fieldset class="vc-fieldset vc-fieldset--inline">
+  <legend>Inline group</legend>
+  <label class="vc-radio"><input type="radio" name="inline-r" checked> Yes</label>
+  <label class="vc-radio"><input type="radio" name="inline-r"> No</label>
+</fieldset>
+<!-- /demo -->
+
+<h2>Switch</h2>
+<p>A hex-capsule track with a hexagon knob. Use a switch for settings that apply immediately. Use a checkbox when the change only takes effect after the user submits the form. Add <code>role="switch"</code>.</p>
+<!-- demo start -->
+<div class="vc-stack vc-stack--sm">
+  <label class="vc-switch"><input type="checkbox" role="switch" checked> Email digest</label>
+  <label class="vc-switch"><input type="checkbox" role="switch"> Show AI suggestions</label>
+  <label class="vc-switch"><input type="checkbox" role="switch" disabled> Beta features</label>
+</div>
+<!-- /demo -->
+
+<h2>Slider</h2>
+<p>A native range input with a hexagon thumb. <code>vici.js</code> fills the track up to the thumb and updates a connected <code>&lt;output&gt;</code>.</p>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="f-conf">Confidence threshold</label>
+  <div class="vc-slider-field">
+    <input class="vc-slider" id="f-conf" type="range" min="0" max="100" value="72">
+    <output for="f-conf">72</output>
+  </div>
+</div>
+<div class="vc-field">
+  <label class="vc-label" for="f-temp">Temperature</label>
+  <div class="vc-slider-field">
+    <input class="vc-slider" id="f-temp" type="range" min="0" max="2" step="0.1" value="0.7">
+    <output for="f-temp">0.7</output>
+  </div>
+</div>
+<!-- /demo -->
+
+<h2>Chip</h2>
+<p>Chips are selectable filters in a hex capsule. Use toggle buttons with <code>aria-pressed</code> and a <code>.vc-chip__check</code> icon, or checkboxes inside a label, where the checkbox itself turns into the check mark. Selected chips get the accent fill and a check, so the state doesn't depend on colour.</p>
+<!-- demo block -->
+<div class="vc-chip-group" role="group" aria-label="Filter by status">
+  <button type="button" class="vc-chip" aria-pressed="true"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Open</button>
+  <button type="button" class="vc-chip" aria-pressed="false"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>In review</button>
+  <button type="button" class="vc-chip" aria-pressed="false"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Approved</button>
+  <button type="button" class="vc-chip" aria-pressed="false" disabled><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Archived</button>
+</div>
+<!-- /demo -->
+<!-- demo block -->
+<fieldset class="vc-chip-group">
+  <legend class="vc-visually-hidden">Topics</legend>
+  <label class="vc-chip"><input type="checkbox" checked>Forecasting</label>
+  <label class="vc-chip"><input type="checkbox">Reporting</label>
+  <label class="vc-chip"><input type="checkbox" checked>Automation</label>
+  <label class="vc-chip vc-chip--sm"><input type="checkbox">Small chip</label>
+</fieldset>
+<!-- /demo -->
+<p>For chips that only display information, use a <a href="{{root}}components/content.html#tag">tag</a> instead.</p>
+
+<h2>Rating</h2>
+<p>Five hexagon cells, filled in honey up to the chosen value. It's a group of native radios, so the arrow keys work. Hovering previews a value.</p>
+<!-- demo center -->
+<fieldset class="vc-rating">
+  <legend class="vc-visually-hidden">How useful was this answer?</legend>
+  <input type="radio" id="rate-1" name="rating" value="1"><label for="rate-1"><span class="vc-visually-hidden">1 of 5</span></label>
+  <input type="radio" id="rate-2" name="rating" value="2"><label for="rate-2"><span class="vc-visually-hidden">2 of 5</span></label>
+  <input type="radio" id="rate-3" name="rating" value="3"><label for="rate-3"><span class="vc-visually-hidden">3 of 5</span></label>
+  <input type="radio" id="rate-4" name="rating" value="4" checked><label for="rate-4"><span class="vc-visually-hidden">4 of 5</span></label>
+  <input type="radio" id="rate-5" name="rating" value="5"><label for="rate-5"><span class="vc-visually-hidden">5 of 5</span></label>
+</fieldset>
+<span class="vc-rating vc-rating--readonly vc-rating--sm" role="img" aria-label="Rated 3 out of 5">
+  <span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell"></span><span class="vc-rating__cell"></span>
+</span>
+<!-- /demo -->
+
+<h2>Putting it together</h2>
+<!-- demo block -->
+<form class="vc-card" style="max-width:34rem" onsubmit="event.preventDefault(); window.Vici && Vici.toast({title: 'Request sent', message: 'You will get the report by email.', tone: 'success'})">
+  <div class="vc-card__header"><h3 class="vc-card__title" style="font-size:var(--vc-font-size-lg)">Request a report</h3><span class="vc-tag vc-tag--feature vc-tag--sm"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI-assisted</span></div>
+  <div class="vc-card__body vc-stack">
+    <div class="vc-field">
+      <label class="vc-label" for="r-name">Name</label>
+      <input class="vc-input" id="r-name" autocomplete="name" required>
+    </div>
+    <div class="vc-field">
+      <label class="vc-label" for="r-scope">Scope</label>
+      <select class="vc-select" id="r-scope"><option>Spend analysis</option><option>Supplier risk</option><option>Contract compliance</option></select>
+    </div>
+    <label class="vc-switch"><input type="checkbox" role="switch" checked> Include an executive summary</label>
+  </div>
+  <div class="vc-card__footer" style="justify-content:flex-end">
+    <button type="reset" class="vc-button vc-button--ghost">Reset</button>
+    <button type="submit" class="vc-button">Send request</button>
+  </div>
+</form>
+<!-- /demo -->

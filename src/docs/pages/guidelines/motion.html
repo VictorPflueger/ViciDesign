@@ -1,0 +1,50 @@
+<!--
+title: Motion
+section: Guidelines
+order: 7
+icon: zap
+description: Five durations and four easing curves; motion that explains change, stays quick and respects reduced-motion settings.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Motion</h1>
+  <p class="vc-lead">Motion in Vici explains what changed. It never decorates. It is quick enough that nobody waits for it, soft enough to feel calm, and it switches itself off when the operating system asks for reduced motion.</p>
+</header>
+
+<h2>Principles</h2>
+<div class="vc-grid vc-grid--3">
+  <div class="vc-card vc-card--flat"><div class="vc-card__body"><h3 class="vc-card__title">Quick</h3><p class="vc-card__meta">Most transitions finish in 130–210&nbsp;ms. Only dialogs and drawers take longer.</p></div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body"><h3 class="vc-card__title">Directional</h3><p class="vc-card__meta">Things enter fast and land softly, and leave the other way round. Elements move from where they came from.</p></div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body"><h3 class="vc-card__title">Optional</h3><p class="vc-card__meta">Every interaction works without animation. Reduced motion turns it off, except for the spinner's slow sweep.</p></div></div>
+</div>
+
+<h2>Durations and easing</h2>
+<!-- @motion-table -->
+<p><button type="button" class="vc-button vc-button--secondary vc-button--sm" data-doc-play=".doc-ease-grid"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Play the curves</button></p>
+
+<h2>Patterns</h2>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <thead><tr><th scope="col">Change</th><th scope="col">Duration</th><th scope="col">Easing</th><th scope="col">Example</th></tr></thead>
+  <tbody>
+    <tr><td>Colour, border, background</td><td><code>quick</code></td><td><code>standard</code></td><td>Button hover, row hover</td></tr>
+    <tr><td>Toggle</td><td><code>base</code></td><td><code>bounce</code></td><td>Switch knob, checkbox tick</td></tr>
+    <tr><td>Reveal</td><td><code>base</code>–<code>slow</code></td><td><code>enter</code></td><td>Menu, toast, radio dot growing</td></tr>
+    <tr><td>Dismiss</td><td><code>base</code></td><td><code>exit</code></td><td>Toast leaving</td></tr>
+    <tr><td>Overlay</td><td><code>slow</code></td><td><code>enter</code></td><td>Dialog, drawer</td></tr>
+    <tr><td>Loading</td><td>900&nbsp;ms loop</td><td>linear</td><td>Spinner sweep</td></tr>
+  </tbody>
+</table>
+</div>
+<!-- demo center -->
+<label class="vc-switch"><input type="checkbox" role="switch"> Toggle me</label>
+<label class="vc-radio"><input type="radio" name="motion-r"> Grow</label>
+<label class="vc-radio"><input type="radio" name="motion-r"> the dot</label>
+<span class="vc-spinner vc-spinner--lg" role="status" aria-label="Loading"></span>
+<!-- /demo -->
+
+<h2>Reduced motion</h2>
+<p>When the operating system asks for reduced motion (<code>prefers-reduced-motion: reduce</code>), Vici cuts every transition and animation to a single frame. The one exception is the spinner, which slows to a 2.4&nbsp;s sweep, because without it nobody can tell that work is in progress. Do the same in your own CSS:</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+  .my-hero-animation { animation: none; }
+}</code></pre>

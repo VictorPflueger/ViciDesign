@@ -1,0 +1,164 @@
+<!--
+title: Feedback
+section: Components
+order: 5
+icon: bell
+layout: wide
+description: Alerts and banners, callouts, toasts, hex-capsule progress bars, hexagon progress rings, the hexagon spinner, skeletons and empty states.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Feedback</h1>
+  <p class="vc-lead">Components that tell people what is happening: messages about the system, progress of work in flight, and helpful placeholders while there is nothing to show yet.</p>
+</header>
+
+<h2>Alert</h2>
+<p>An alert is an inline message about the current context. Its tone follows the colour coding, and it always has an icon and a title, so the meaning never depends on colour. Use <code>role="status"</code> for information and <code>role="alert"</code> only for errors that need attention now.</p>
+<!-- demo stack -->
+<div class="vc-alert" role="status">
+  <span class="vc-icon vc-icon--info" aria-hidden="true"></span>
+  <div class="vc-alert__body"><p class="vc-alert__title">New data available</p><p>Purchase orders were refreshed at 06:00. Reload the report to include them.</p></div>
+</div>
+<div class="vc-alert vc-alert--success" role="status">
+  <span class="vc-icon vc-icon--success" aria-hidden="true"></span>
+  <div class="vc-alert__body"><p class="vc-alert__title">Model deployed</p><p>Version 2.4 is live for all users.</p></div>
+  <button type="button" class="vc-icon-button" data-vc-dismiss aria-label="Dismiss"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+</div>
+<div class="vc-alert vc-alert--warning" role="status">
+  <span class="vc-icon vc-icon--warning" aria-hidden="true"></span>
+  <div class="vc-alert__body"><p class="vc-alert__title">Approval pending</p><p>Two findings are waiting for a second reviewer.</p>
+    <div class="vc-alert__actions"><button type="button" class="vc-button vc-button--sm vc-button--outline">Assign reviewer</button></div></div>
+</div>
+<div class="vc-alert vc-alert--danger" role="alert">
+  <span class="vc-icon vc-icon--error" aria-hidden="true"></span>
+  <div class="vc-alert__body"><p class="vc-alert__title">Sync failed</p><p>The ERP connection timed out. <a href="#alert">Check the credentials</a> and try again.</p></div>
+</div>
+<div class="vc-alert vc-alert--feature" role="status">
+  <span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>
+  <div class="vc-alert__body"><p class="vc-alert__title">Written with AI</p><p>This summary was generated from 14 documents. Check the sources before sharing it.</p></div>
+</div>
+<!-- /demo -->
+
+<h3>Banner</h3>
+<p>A banner is a full-width alert at the top of a page or app, for messages about the whole session.</p>
+<!-- demo flush -->
+<div class="vc-alert vc-alert--banner vc-alert--warning" role="status">
+  <span class="vc-icon vc-icon--clock" aria-hidden="true"></span>
+  <div class="vc-alert__body"><p><strong>Maintenance tonight</strong> from 22:00 to 23:00 CET. Reports stay readable.</p></div>
+  <button type="button" class="vc-icon-button" data-vc-dismiss aria-label="Dismiss"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+</div>
+<!-- /demo -->
+
+<h2>Callout</h2>
+<p>A callout highlights an editorial note inside content, such as a tip or a caution. It isn't a system message, so it uses the pastel families rather than the status tokens and looks the same in both themes.</p>
+<!-- demo stack -->
+<div class="vc-callout">
+  <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--hexagon"></span></span>
+  <div class="vc-callout__body"><p class="vc-callout__title">Important</p><p>The base colour is the only colour for primary actions.</p></div>
+</div>
+<div class="vc-callout vc-callout--tip">
+  <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span>
+  <div class="vc-callout__body"><p class="vc-callout__title">Tip</p><p>Use <code>.vc-tabular</code> on any number that updates live.</p></div>
+</div>
+<div class="vc-callout vc-callout--note">
+  <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--info"></span></span>
+  <div class="vc-callout__body"><p class="vc-callout__title">Note</p><p>Popover menus need a browser from 2024 or later.</p></div>
+</div>
+<div class="vc-callout vc-callout--caution">
+  <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--warning"></span></span>
+  <div class="vc-callout__body"><p class="vc-callout__title">Caution</p><p>Changing a token changes every component that uses it.</p></div>
+</div>
+<div class="vc-callout vc-callout--ai">
+  <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span>
+  <div class="vc-callout__body"><p class="vc-callout__title">AI</p><p>Lilac marks content produced or suggested by a model.</p></div>
+</div>
+<!-- /demo -->
+
+<h2>Toast</h2>
+<p>Toasts confirm that something happened, then disappear on their own (five seconds by default, paused while hovered or focused). They are announced politely through a live region. Errors use <code>role="alert"</code>. Never put the only copy of important information in a toast.</p>
+<!-- demo -->
+<button type="button" class="vc-button vc-button--secondary" onclick="Vici.toast({ title: 'Report saved', message: 'Find it under Reports › Drafts.', tone: 'success' })">Success toast</button>
+<button type="button" class="vc-button vc-button--secondary" onclick="Vici.toast({ title: 'Export failed', message: 'The file is larger than 20 MB.', tone: 'danger' })">Error toast</button>
+<button type="button" class="vc-button vc-button--secondary" onclick="Vici.toast({ title: 'Summary ready', message: 'Generated from 14 documents.', tone: 'feature' })">AI toast</button>
+<button type="button" class="vc-button vc-button--ghost" onclick="Vici.toast('Copied to clipboard')">Plain toast</button>
+<!-- /demo -->
+<pre><code>Vici.toast('Copied to clipboard');
+Vici.toast({ title: 'Report saved', message: 'Find it under Reports › Drafts.', tone: 'success', duration: 5000 });
+// tones: info · success · warning · danger · feature — duration: 0 keeps it until closed</code></pre>
+
+<h3>Toast markup</h3>
+<p>Rendering toasts yourself, from a server or a framework? Put the same markup into one toast region near the end of <code>&lt;body&gt;</code>. The region stacks toasts in the bottom corner, and the close button works through <code>data-vc-dismiss</code>.</p>
+<pre><code>&lt;div class="vc-toast-region" aria-live="polite"&gt;…toasts…&lt;/div&gt;</code></pre>
+<!-- demo stack narrow -->
+<div class="vc-toast vc-toast--success" role="status">
+  <span class="vc-icon vc-icon--success" aria-hidden="true"></span>
+  <div class="vc-toast__body">
+    <p class="vc-toast__title">Report saved</p>
+    <p>Find it under Reports › Drafts.</p>
+  </div>
+  <button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="Dismiss notification" data-vc-dismiss><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+</div>
+<div class="vc-toast vc-toast--danger" role="alert">
+  <span class="vc-icon vc-icon--error" aria-hidden="true"></span>
+  <div class="vc-toast__body">
+    <p class="vc-toast__title">Export failed</p>
+    <p>The file is larger than 20 MB.</p>
+  </div>
+  <button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="Dismiss notification" data-vc-dismiss><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+</div>
+<!-- /demo -->
+
+<h2>Progress bar</h2>
+<p>A hex-capsule track whose fill ends in a point, as if it is heading somewhere. Set <code>--value</code> (0–100) and the matching ARIA values.</p>
+<!-- demo stack narrow -->
+<div class="vc-progress-field">
+  <span id="pb-1">Uploading contracts</span><span class="vc-progress-field__value">64 %</span>
+  <div class="vc-progress" role="progressbar" aria-labelledby="pb-1" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="--value: 64"><span class="vc-progress__bar"></span></div>
+</div>
+<div class="vc-progress vc-progress--sm vc-progress--success" role="progressbar" aria-label="Tests passed" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--value: 92"><span class="vc-progress__bar"></span></div>
+<div class="vc-progress vc-progress--warning" role="progressbar" aria-label="Quota used" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="--value: 78"><span class="vc-progress__bar"></span></div>
+<div class="vc-progress vc-progress--lg vc-progress--danger" role="progressbar" aria-label="Error budget used" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="--value: 35"><span class="vc-progress__bar"></span></div>
+<div class="vc-progress vc-progress--indeterminate" role="progressbar" aria-label="Indexing documents"><span class="vc-progress__bar"></span></div>
+<!-- /demo -->
+
+<h2>Hex progress</h2>
+<p>The circular progress ring, made hexagonal. The fill sweeps clockwise from the top edge. Use it for a single prominent value such as a score or a completion rate.</p>
+<!-- demo -->
+<span class="vc-progress-hex vc-progress-hex--sm" role="progressbar" aria-label="Profile complete" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="--value: 30">30</span>
+<span class="vc-progress-hex" role="progressbar" aria-label="Readiness score" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="--value: 72">72</span>
+<span class="vc-progress-hex vc-progress-hex--success" role="progressbar" aria-label="Tests passed" aria-valuenow="96" aria-valuemin="0" aria-valuemax="100" style="--value: 96">96</span>
+<span class="vc-progress-hex vc-progress-hex--lg vc-progress-hex--warning" role="progressbar" aria-label="Budget used" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100" style="--value: 84">84%</span>
+<!-- /demo -->
+
+<h2>Spinner</h2>
+<p>A light that sweeps around a hexagon ring. Give a standalone spinner <code>role="status"</code> and a label. Inside a button, hide it and change the button text instead.</p>
+<!-- demo -->
+<span class="vc-spinner vc-spinner--sm" role="status" aria-label="Loading"></span>
+<span class="vc-spinner" role="status" aria-label="Loading"></span>
+<span class="vc-spinner vc-spinner--lg" role="status" aria-label="Loading"></span>
+<span class="vc-spinner vc-spinner--xl" role="status" aria-label="Loading" style="--vc-spinner-color: var(--vc-lilac-600)"></span>
+<button type="button" class="vc-button" aria-busy="true"><span class="vc-spinner" aria-hidden="true"></span>Analysing…</button>
+<!-- /demo -->
+
+<h2>Skeleton</h2>
+<p>Skeletons show the shape of content while it loads. Avatar placeholders are hexagons too.</p>
+<!-- demo block -->
+<div class="vc-card" style="max-width:24rem">
+  <div class="vc-card__body">
+    <div class="vc-cluster"><span class="vc-skeleton vc-skeleton--hex"></span><div style="flex:1" class="vc-skeleton-lines"><span class="vc-skeleton"></span><span class="vc-skeleton"></span></div></div>
+    <span class="vc-skeleton vc-skeleton--block" style="margin-top:var(--vc-space-3)"></span>
+    <div class="vc-skeleton-lines"><span class="vc-skeleton vc-skeleton--title"></span><span class="vc-skeleton"></span><span class="vc-skeleton"></span></div>
+  </div>
+</div>
+<!-- /demo -->
+
+<h2>Empty state</h2>
+<p>When there is nothing to show, say why and offer the next step. The art is a small cluster of hexagon cells.</p>
+<!-- demo center -->
+<div class="vc-empty">
+  <div class="vc-empty__art" aria-hidden="true"><span></span><span></span><span></span><span class="vc-icon vc-icon--search"></span></div>
+  <p class="vc-empty__title">No findings yet</p>
+  <p class="vc-empty__text">Connect a data source and run the first analysis. It usually takes a few minutes.</p>
+  <div class="vc-cluster"><button type="button" class="vc-button">Connect data</button><button type="button" class="vc-button vc-button--ghost">Learn more</button></div>
+</div>
+<!-- /demo -->

@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Shape — the hexagon system.
+   Vici's rule: anything that would be a circle becomes a flat-top hexagon,
+   anything that would be a pill becomes a hex capsule (pointed ends).
+
+   Geometry (flat-top, regular):  width = height × 1.1547 (2/√3), all angles 120°.
+   Capsule point inset:           p = height × 0.28868 (½ · tan 30°).
+   Offsetting a hex edge inward by t moves its corner by 0.57735·t along x and
+   its side point by 1.1547·t — those constants appear in every ring below.
+   ========================================================================== */
+
+@layer vici.layout {
+  :root {
+    --vc-hex-ratio: 1.1547;
+    --vc-hex: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    /* Pointy-top variant, for illustrations and honeycomb rows only. */
+    --vc-hex-pointy: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  /* Any element → regular flat-top hexagon (set a width OR a height). */
+  .vc-hex {
+    aspect-ratio: 1.1547;
+    clip-path: var(--vc-hex);
+  }
+  .vc-hex--pointy {
+    aspect-ratio: 0.866;
+    clip-path: var(--vc-hex-pointy);
+  }
+
+  /* Hexagon outline. Thickness via --vc-ring (default 2px). */
+  .vc-hex-ring {
+    --_t: var(--vc-ring, 2px);
+    aspect-ratio: 1.1547;
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 0.57735 * var(--_t)) var(--_t),
+      calc(1.1547 * var(--_t)) 50%,
+      calc(25% + 0.57735 * var(--_t)) calc(100% - var(--_t)),
+      calc(75% - 0.57735 * var(--_t)) calc(100% - var(--_t)),
+      calc(100% - 1.1547 * var(--_t)) 50%,
+      calc(75% - 0.57735 * var(--_t)) var(--_t),
+      calc(25% + 0.57735 * var(--_t)) var(--_t));
+  }
+
+  /* Hex capsule for any element with a known height (--vc-capsule-height). */
+  .vc-capsule {
+    --_h: var(--vc-capsule-height, 2rem);
+    --_p: calc(var(--_h) * 0.28868);
+    min-height: var(--_h);
+    padding-inline: calc(var(--_p) + 0.5em);
+    clip-path: polygon(var(--_p) 0%, calc(100% - var(--_p)) 0%, 100% 50%, calc(100% - var(--_p)) 100%, var(--_p) 100%, 0% 50%);
+  }
+
+  /* Sized hexagon cells, e.g. for icons in feature lists. */
+  .vc-cell {
+    --_s: var(--vc-cell-md);
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: calc(var(--_s) * 1.1547);
+    height: var(--_s);
+    clip-path: var(--vc-hex);
+    background: var(--vc-accent-soft);
+    color: var(--vc-on-accent-soft);
+  }
+  .vc-cell--xs { --_s: var(--vc-cell-xs); }
+  .vc-cell--sm { --_s: var(--vc-cell-sm); }
+  .vc-cell--lg { --_s: var(--vc-cell-lg); }
+  .vc-cell--xl { --_s: var(--vc-cell-xl); }
+  .vc-cell--2xl { --_s: var(--vc-cell-2xl); }
+  .vc-cell--solid { background: var(--vc-accent); color: var(--vc-on-accent); }
+  .vc-cell--info { background: var(--vc-info-bg); color: var(--vc-info-text); }
+  .vc-cell--success { background: var(--vc-success-bg); color: var(--vc-success-text); }
+  .vc-cell--warning { background: var(--vc-warning-bg); color: var(--vc-warning-text); }
+  .vc-cell--danger { background: var(--vc-danger-bg); color: var(--vc-danger-text); }
+  .vc-cell--feature { background: var(--vc-feature-bg); color: var(--vc-feature-text); }
+  .vc-cell > .vc-icon { width: 46%; height: auto; aspect-ratio: 1; }
+
+  /* Hexagonal image crop. */
+  .vc-hex-img {
+    aspect-ratio: 1.1547;
+    object-fit: cover;
+    clip-path: var(--vc-hex);
+  }
+}

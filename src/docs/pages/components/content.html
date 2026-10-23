@@ -1,0 +1,214 @@
+<!--
+title: Content
+section: Components
+order: 3
+icon: cube
+layout: wide
+description: Cards, accordion, lists with hexagon bullets, list groups, dividers, hex-capsule tags, hexagon badges, avatars, timelines, honeycomb tiles and code blocks.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Content</h1>
+  <p class="vc-lead">Building blocks for showing information: containers that group it, labels that classify it and small cells that identify people and states.</p>
+</header>
+
+<h2>Card</h2>
+<p>A card groups content about one subject. Make the whole card clickable with <code>.vc-card--interactive</code> and a <code>.vc-card__link</code>. It stretches over the card but stays a single, correctly named link for screen readers.</p>
+<!-- demo block -->
+<div class="vc-grid" style="--vc-grid-min: 15rem">
+  <article class="vc-card">
+    <div class="vc-card__body">
+      <span class="vc-cell vc-cell--lg vc-cell--info" aria-hidden="true"><span class="vc-icon vc-icon--chart-line"></span></span>
+      <h3 class="vc-card__title">Demand forecast</h3>
+      <p class="vc-card__meta">Weekly forecast for 1,240 articles with prediction intervals.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--success vc-tag--sm">Live</span><span class="vc-tag vc-tag--sm">Python</span></div>
+  </article>
+  <article class="vc-card vc-card--interactive">
+    <div class="vc-card__body">
+      <span class="vc-cell vc-cell--lg vc-cell--feature" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span>
+      <h3 class="vc-card__title"><a class="vc-card__link" href="#card">Invoice matcher</a></h3>
+      <p class="vc-card__meta">An agent that matches invoices to purchase orders and flags every mismatch.</p>
+    </div>
+    <div class="vc-card__footer"><span class="vc-tag vc-tag--feature vc-tag--sm">AI agent</span></div>
+  </article>
+  <article class="vc-card vc-card--elevated">
+    <div class="vc-card__header"><h3 class="vc-card__title">Elevated</h3><button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="More options"><span class="vc-icon vc-icon--more" aria-hidden="true"></span></button></div>
+    <div class="vc-card__body"><p class="vc-card__meta">Use for cards that sit above a busy background.</p></div>
+  </article>
+  <article class="vc-card vc-card--tinted">
+    <div class="vc-card__body">
+      <h3 class="vc-card__title">Tinted</h3>
+      <p>A pastel card for highlights and calls to action.</p>
+      <div><button type="button" class="vc-button vc-button--sm">Try it</button></div>
+    </div>
+  </article>
+</div>
+<!-- /demo -->
+<p>Parts: <code>__media</code>, <code>__header</code>, <code>__body</code>, <code>__title</code>, <code>__meta</code>, <code>__footer</code>, <code>__link</code>. Variants: <code>--elevated</code>, <code>--flat</code>, <code>--tinted</code>, <code>--interactive</code>.</p>
+
+<h2>Accordion</h2>
+<p>Built on native <code>&lt;details&gt;</code>. Give the items the same <code>name</code> to let only one be open at a time. Supporting browsers animate the opening.</p>
+<!-- demo block -->
+<div class="vc-accordion">
+  <details name="faq" open>
+    <summary>Which data does the agent read?</summary>
+    <div class="vc-accordion__content"><p>Only the sources you connect: purchase orders, contracts and supplier master data. Nothing leaves your tenant.</p></div>
+  </details>
+  <details name="faq">
+    <summary>How are results checked?</summary>
+    <div class="vc-accordion__content"><p>Every finding links to its evidence and needs a human approval before anything is claimed.</p></div>
+  </details>
+  <details name="faq">
+    <summary>Who can see the results?</summary>
+    <div class="vc-accordion__content"><p>Everyone in the project workspace. Reports you share by link are read-only, and links expire after 30 days.</p></div>
+  </details>
+</div>
+<!-- /demo -->
+<p>Add <code>.vc-accordion--boxed</code> to put every item in its own card.</p>
+
+<h2>List</h2>
+<p>Plain <code>&lt;ul&gt;</code> elements already get hexagon bullets. <code>.vc-list</code> does the same for lists that carry classes. <code>--ring</code> uses outlined hexagons, <code>--check</code> uses check marks for feature lists.</p>
+<!-- demo start -->
+<ul class="vc-list">
+  <li>Hexagon bullets in merlot</li>
+  <li>Aligned to the first line of text</li>
+  <li>Nested lists switch to grey</li>
+</ul>
+<ul class="vc-list vc-list--ring">
+  <li>Outlined cells</li>
+  <li>For secondary lists</li>
+</ul>
+<ul class="vc-list vc-list--check">
+  <li>Self-hosted fonts</li>
+  <li>Light and dark themes</li>
+  <li>No build step</li>
+</ul>
+<!-- /demo -->
+
+<h3>List group</h3>
+<!-- demo block -->
+<ul class="vc-list-group" style="max-width:30rem">
+  <li><a class="vc-list-item" href="#list-group"><span class="vc-avatar vc-avatar--sm vc-avatar--fjord">AK</span><span class="vc-list-item__text"><span>Anna Keller</span><span>Procurement lead · Munich</span></span><span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></a></li>
+  <li><a class="vc-list-item" href="#list-group"><span class="vc-avatar vc-avatar--sm vc-avatar--sage">JS</span><span class="vc-list-item__text"><span>Jonas Schmidt</span><span>Data engineer · Berlin</span></span><span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></a></li>
+  <li><div class="vc-list-item"><span class="vc-cell vc-cell--sm vc-cell--warning" aria-hidden="true"><span class="vc-icon vc-icon--clock"></span></span><span class="vc-list-item__text"><span>Pending invitation</span><span>Sent 2 days ago</span></span><span class="vc-badge vc-badge--soft">1</span></div></li>
+</ul>
+<!-- /demo -->
+
+<h2>Divider</h2>
+<!-- demo stack plain -->
+<hr class="vc-divider">
+<div class="vc-divider" role="separator">or continue with</div>
+<div class="vc-divider vc-divider--hex" role="separator"><span></span></div>
+<p style="margin:0">Inline <span class="vc-divider vc-divider--vertical" role="separator"></span> separated <span class="vc-divider vc-divider--vertical" role="separator"></span> items</p>
+<!-- /demo -->
+
+<h2>Tag</h2>
+<p>Tags label and classify. They aren't interactive (for filters, use <a href="{{root}}components/forms.html#chip">chips</a>). Status tags use the semantic tones, category tags use the pastel families.</p>
+<!-- demo block -->
+<div class="vc-stack vc-stack--sm">
+  <div class="vc-cluster vc-cluster--sm">
+    <span class="vc-tag">Neutral</span>
+    <span class="vc-tag vc-tag--info"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>Info</span>
+    <span class="vc-tag vc-tag--success"><span class="vc-icon vc-icon--check" aria-hidden="true"></span>Done</span>
+    <span class="vc-tag vc-tag--warning"><span class="vc-icon vc-icon--clock" aria-hidden="true"></span>Pending</span>
+    <span class="vc-tag vc-tag--danger"><span class="vc-icon vc-icon--close" aria-hidden="true"></span>Failed</span>
+    <span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI</span>
+    <span class="vc-tag vc-tag--accent">Accent</span>
+    <span class="vc-tag vc-tag--solid">Solid</span>
+  </div>
+  <div class="vc-cluster vc-cluster--sm">
+    <span class="vc-tag vc-tag--merlot">Merlot</span>
+    <span class="vc-tag vc-tag--coral">Coral</span>
+    <span class="vc-tag vc-tag--apricot">Apricot</span>
+    <span class="vc-tag vc-tag--honey">Honey</span>
+    <span class="vc-tag vc-tag--sage">Sage</span>
+    <span class="vc-tag vc-tag--teal">Teal</span>
+    <span class="vc-tag vc-tag--fjord">Fjord</span>
+    <span class="vc-tag vc-tag--lilac">Lilac</span>
+  </div>
+  <div class="vc-cluster vc-cluster--sm">
+    <span class="vc-tag vc-tag--sm vc-tag--fjord">Small</span>
+    <span class="vc-tag vc-tag--fjord">Medium</span>
+    <span class="vc-tag vc-tag--lg vc-tag--fjord">Large</span>
+    <span class="vc-tag vc-tag--lilac">Removable <button type="button" class="vc-icon-button vc-tag__remove" data-vc-dismiss=".vc-tag" aria-label="Remove tag Removable"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button></span>
+  </div>
+</div>
+<!-- /demo -->
+
+<h2>Badge</h2>
+<p>A badge shows a count or a status dot. A one-digit badge is a regular hexagon, and longer numbers stretch into a hex capsule. Anchored on an icon, it gets a gap ring in the background colour.</p>
+<!-- demo -->
+<span class="vc-badge">3</span>
+<span class="vc-badge">128</span>
+<span class="vc-badge vc-badge--soft">12</span>
+<span class="vc-badge vc-badge--info">4</span>
+<span class="vc-badge vc-badge--success">✓</span>
+<span class="vc-badge vc-badge--warning">!</span>
+<span class="vc-badge vc-badge--danger">9+</span>
+<span class="vc-badge vc-badge--feature">AI</span>
+<span class="vc-badge vc-badge--lg">24</span>
+<span class="vc-badge vc-badge--dot vc-badge--success" role="img" aria-label="Online"></span>
+<span class="vc-badge-anchor">
+  <button type="button" class="vc-icon-button vc-icon-button--soft" aria-label="Notifications, 5 unread"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span></button>
+  <span class="vc-badge vc-badge--danger" aria-hidden="true">5</span>
+</span>
+<!-- /demo -->
+
+<h2>Avatar</h2>
+<p>Avatars are hexagons, with a photo or initials. Initials avatars come in the pastel families; give each person a stable colour. <code>.vc-presence</code> adds a status cell.</p>
+<!-- demo -->
+<span class="vc-avatar vc-avatar--xs">VP</span>
+<span class="vc-avatar vc-avatar--sm vc-avatar--fjord">AK</span>
+<span class="vc-avatar vc-avatar--sage">JS</span>
+<span class="vc-avatar vc-avatar--lg vc-avatar--lilac">MR</span>
+<span class="vc-avatar vc-avatar--xl vc-avatar--honey">LB</span>
+<span class="vc-avatar vc-avatar--xl vc-avatar--solid">VP</span>
+<span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--lg vc-avatar--teal">TN</span><span class="vc-presence vc-presence--online" role="img" aria-label="Online"></span></span>
+<span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--lg vc-avatar--apricot">SW</span><span class="vc-presence vc-presence--busy" role="img" aria-label="Busy"></span></span>
+<!-- /demo -->
+<p>For photos, put an <code>&lt;img&gt;</code> inside. It is cropped to the hexagon and fills the cell:</p>
+<pre><code>&lt;span class="vc-avatar vc-avatar--lg"&gt;&lt;img src="portrait.jpg" alt="Anna Keller"&gt;&lt;/span&gt;</code></pre>
+
+<h3>Avatar group</h3>
+<p>Group avatars nest along their slanted edges like a strip of honeycomb, instead of overlapping like coins.</p>
+<!-- demo -->
+<div class="vc-avatar-group" aria-label="Project team">
+  <span class="vc-avatar">VP</span>
+  <span class="vc-avatar vc-avatar--fjord">AK</span>
+  <span class="vc-avatar vc-avatar--sage">JS</span>
+  <span class="vc-avatar vc-avatar--lilac">MR</span>
+  <span class="vc-avatar vc-avatar--more">+4</span>
+</div>
+<!-- /demo -->
+
+<h2>Timeline</h2>
+<p>A vertical rail with hexagon markers, for project phases, careers and audit trails. Done items get a filled cell, the current one a solid merlot cell, and upcoming ones an outline.</p>
+<!-- demo block -->
+<ol class="vc-timeline" style="max-width:32rem">
+  <li class="vc-timeline__item--done"><span class="vc-timeline__date">Q3 2026</span><p class="vc-timeline__title">Discovery</p><p class="vc-timeline__text">Interviews, data inventory and a shortlist of use cases.</p></li>
+  <li class="vc-timeline__item--done"><span class="vc-timeline__date">Q4 2026</span><p class="vc-timeline__title">Pilot</p><p class="vc-timeline__text">One business unit, real data, weekly reviews with the process owners.</p></li>
+  <li class="vc-timeline__item--current"><span class="vc-timeline__date">Now</span><p class="vc-timeline__title">Rollout</p><p class="vc-timeline__text">Three more units, monitoring and a governance board.</p></li>
+  <li><span class="vc-timeline__date">Next</span><p class="vc-timeline__title">Scale-up</p></li>
+</ol>
+<!-- /demo -->
+
+<h2>Honeycomb tile</h2>
+<p><code>.vc-tile</code> is a hexagon with centred content, made to sit in a <a href="{{root}}guidelines/hexagon.html#honeycomb-layout">honeycomb layout</a>. Linked tiles invert their colours on hover and focus.</p>
+<!-- demo center -->
+<ul class="vc-honeycomb" style="--vc-honeycomb-cell: 6rem; --vc-honeycomb-cols: 4">
+  <li class="vc-tile vc-tile--solid"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI</li>
+  <li><a class="vc-tile vc-tile--fjord" href="#honeycomb-tile" style="width:100%;height:100%">Linked<small>tile</small></a></li>
+  <li class="vc-tile vc-tile--sage">Sage</li>
+  <li class="vc-tile vc-tile--ghost">Ghost</li>
+</ul>
+<!-- /demo -->
+
+<h2>Code block</h2>
+<!-- demo block -->
+<div class="vc-code">
+  <div class="vc-code__header"><span>terminal</span><button type="button" class="vc-icon-button vc-icon-button--sm" data-vc-copy="#code-sample" data-vc-label="Copy command" aria-label="Copy command"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span></button></div>
+  <pre><code id="code-sample">node scripts/build.mjs &amp;&amp; npm run check</code></pre>
+</div>
+<p style="margin:0">Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search, or use <code>inline code</code> in text.</p>
+<!-- /demo -->

@@ -1,0 +1,106 @@
+<!--
+title: Getting started
+nav: Getting started
+section: Start
+order: 1
+icon: flag
+description: Add Vici to any page with one stylesheet and an optional script — from a CDN, a local copy or a clone of the repository.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Start</p>
+  <h1>Getting started</h1>
+  <p class="vc-lead">Vici is plain CSS with an optional sprinkle of JavaScript. There is no framework, no build step and no package to install. Link one stylesheet and the components work in any HTML: a static website, a Streamlit custom component, a Jinja template or a React app.</p>
+</header>
+
+<h2>1 · Link the stylesheet</h2>
+<p>Choose one of three sources. All of them serve the same files from <code>dist/</code>, and the fonts load from <code>assets/fonts/</code> next to it.</p>
+
+<h3>From the CDN</h3>
+<p>jsDelivr serves files straight from the GitHub repository. Pin a release tag (for example <code>@v1.0.0</code>) for production work and use <code>@main</code> while you experiment.</p>
+<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v<!-- @version -->/dist/vici.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v<!-- @version -->/dist/vici.js" defer&gt;&lt;/script&gt;</code></pre>
+
+<h3>From GitHub Pages</h3>
+<p>Once Pages is switched on for the repository, the documentation lives at <code>victorpflueger.github.io/ViciDesign</code> and the stylesheet sits at <code>…/ViciDesign/dist/vici.min.css</code>.</p>
+
+<h3>As a local copy</h3>
+<p>For offline prototypes, or anything that must not load from a third-party server, copy <code>dist/</code> and <code>assets/fonts/</code> into your project and keep their relative positions:</p>
+<pre><code>my-prototype/
+├── index.html
+└── vici/
+    ├── dist/vici.min.css      ← link this
+    ├── dist/vici.js
+    └── assets/fonts/*.woff2   ← loaded by the stylesheet</code></pre>
+
+<div class="vc-callout vc-callout--note">
+  <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--lock"></span></span>
+  <div class="vc-callout__body">
+    <p class="vc-callout__title">No third-party font requests</p>
+    <p>The three typefaces are bundled as WOFF2 files and load from the same place as the stylesheet. Readers' IP addresses never reach a font CDN, which keeps the system easy to use on sites that need to comply with the GDPR.</p>
+  </div>
+</div>
+
+<h2>2 · Start from a blank page</h2>
+<p>This is the smallest complete page. The inline script in <code>&lt;head&gt;</code> applies a saved theme before the first paint, so dark mode never flashes white.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;My prototype&lt;/title&gt;
+  &lt;link rel="stylesheet" href="vici/dist/vici.min.css"&gt;
+  &lt;script&gt;try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}&lt;/script&gt;
+  &lt;script src="vici/dist/vici.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class="vc-container vc-section vc-stack"&gt;
+    &lt;h1&gt;Hello, Vici&lt;/h1&gt;
+    &lt;p class="vc-lead"&gt;Plain HTML already looks right.&lt;/p&gt;
+    &lt;div class="vc-cluster"&gt;
+      &lt;button class="vc-button"&gt;Primary&lt;/button&gt;
+      &lt;button class="vc-button vc-button--secondary"&gt;Secondary&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Ready-made pages for an app prototype, a dashboard and a personal landing page are on <a href="{{root}}start/starters.html">Starters</a>.</p>
+
+<h2>3 · Use the components</h2>
+<p>Every component is a class prefixed with <code>vc-</code> and uses BEM-style parts and modifiers: <code>.vc-card</code>, <code>.vc-card__title</code>, <code>.vc-card--elevated</code>. The demos throughout these pages are live, and each one has its exact HTML under <strong>HTML</strong>, ready to copy.</p>
+<!-- demo center -->
+<button class="vc-button">Save changes</button>
+<button class="vc-button vc-button--secondary">Preview</button>
+<span class="vc-avatar vc-avatar--lilac">VP</span>
+<span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI draft</span>
+<span class="vc-badge">3</span>
+<!-- /demo -->
+
+<h3>Plain HTML gets sensible defaults</h3>
+<p>Headings, paragraphs, links, lists, tables, code and form controls are styled without classes, so quick prototypes look finished before you add a single class. Unordered lists get hexagon bullets.</p>
+
+<h2>4 · Know the files</h2>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <thead><tr><th scope="col">File</th><th scope="col">What it is</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>dist/vici.css</code> / <code>vici.min.css</code></th><td>Everything: fonts, tokens, both themes, base styles, layout, components, icons, utilities.</td></tr>
+    <tr><th scope="row"><code>dist/vici-tokens.css</code></th><td>Only the CSS custom properties, for projects that bring their own components.</td></tr>
+    <tr><th scope="row"><code>dist/vici.js</code></th><td>Optional behaviours: theme toggle, tabs, toasts, dialog triggers, menus, slider fill, carousel, table sorting, copy buttons.</td></tr>
+    <tr><th scope="row"><code>dist/vici-icons.svg</code></th><td>SVG sprite of all icons (<code>&lt;use href="…#vc-search"&gt;</code>), for same-origin use.</td></tr>
+    <tr><th scope="row"><code>dist/tokens.json</code></th><td>All resolved token values as JSON, for scripts and other tools.</td></tr>
+    <tr><th scope="row"><code>integrations/</code></th><td>Streamlit, Power BI, Python and Tailwind themes generated from the same tokens.</td></tr>
+    <tr><th scope="row"><code>assets/logo/</code></th><td>Logo suggestions as SVG in colour, dark and mono.</td></tr>
+    <tr><th scope="row"><code>src/</code></th><td>The sources: tokens, CSS per component group, icons, docs pages.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>5 · Change the system</h2>
+<p>The generated files are committed, so nobody needs to build anything to use them. To change Vici itself, edit the sources and rebuild. The only requirement is Node 18 or later; there are no dependencies to install.</p>
+<pre><code>node scripts/build.mjs        # rebuild dist/, the docs pages and the exports
+npm run check                 # contrast, hexagon rule, fonts, links, logos, exports
+npm run palette               # regenerate the colour ramps after editing scripts/palette.mjs</code></pre>
+<p><code>npm run check</code> fails if, for example, a colour pair drops below WCAG AA, a circle sneaks into the CSS, or a generated file is out of date.</p>
+
+<h2>Browser support</h2>
+<p>Vici targets evergreen browsers from 2024 onwards: Chrome, Edge, Firefox and Safari. It relies on CSS cascade layers, custom properties, <code>clip-path</code>, <code>color-mix()</code>, <code>:has()</code>, the <code>&lt;dialog&gt;</code> element and the Popover API. Older browsers still get readable content, but the hexagon shapes and some interactive details may be missing.</p>

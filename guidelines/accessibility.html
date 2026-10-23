@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="vici-build">
+  <title>Accessibility · Vici Design System</title>
+  <meta name="description" content="WCAG 2.2 AA as the floor — contrast checked by the build, visible focus on every control, keyboard patterns per component, semantics and motion.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../dist/vici.css">
+  <link rel="stylesheet" href="../assets/docs/docs.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <script src="../assets/docs/docs.js" defer></script>
+</head>
+<body class="doc">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header doc-header">
+    <div class="vc-header__inner">
+      <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-label="Open navigation">
+        <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+      </button>
+      <a class="vc-header__brand doc-brand" href="../index.html" aria-label="Vici Design System — overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24.55 15.48 73.84 69.63" width="27.57" height="26" aria-hidden="true" focusable="false" class="vc-logo"><path d="M35.86 32.71 L56.58 68.59" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><path d="M63.42 68.59 L79 41.6" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><polygon points="41.45,33.78 34,38.08 26.55,33.78 26.55,25.18 34,20.88 41.45,25.18" style="fill:var(--vc-text)"/><path d="M67.45 78.82 L60 83.12 L52.55 78.82 L52.55 70.22 L60 65.92 L67.45 70.22 Z M63.45 76.51 L60 78.5 L56.55 76.51 L56.55 72.53 L60 70.54 L63.45 72.53 Z" style="fill:var(--vc-text)" fill-rule="evenodd"/><path d="M96.39 35.48 L86 41.48 L75.61 35.48 L75.61 23.48 L86 17.48 L96.39 23.48 Z M92.39 33.17 L86 36.86 L79.61 33.17 L79.61 25.79 L86 22.1 L92.39 25.79 Z" style="fill:var(--vc-merlot-500)" fill-rule="evenodd"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -712 1560 720" width="45.5" height="21" role="img" class="vc-wordmark"><title>Vici</title><path d="M222.25 0.0 6 -660H153.75L309.25 -113.75H312.25L465.5 -660.0H613L397 0ZM649 0V-523.5H784.5V0.0ZM807.8148659421287 -637.5 762.0324329710644 -716.7975H670.4675670289357L624.6851340578713 -637.5L670.4675670289356 -558.2025H762.0324329710644ZM1100.0 13.75Q1033.0 13.75 983.875 -7.0Q934.75 -27.75 903.0 -65.0Q871.25 -102.25 856.0 -151.375Q840.75 -200.5 840.75 -257.25Q840.75 -314.25 856.0 -364.5Q871.25 -414.75 902.375 -454.125Q933.5 -493.5 982.0 -515.5Q1030.5 -537.5 1097.0 -537.5Q1176.25 -537.5 1225.875 -507.5Q1275.5 -477.5 1296.75 -429.75Q1318 -382 1311.5 -326.5L1192.75 -315.75Q1194.0 -353.75 1182.0 -378.875Q1170 -404 1147.75 -416.625Q1125.5 -429.25 1095.25 -429.25Q1070.0 -429.25 1048.5 -420.0Q1027.0 -410.75 1011.0 -390.75Q995.0 -370.75 986.125 -339.625Q977.25 -308.5 977.25 -263.75Q977.25 -206.25 992.5 -167.375Q1007.75 -128.5 1035.75 -109.125Q1063.75 -89.75 1102.25 -89.75Q1142.75 -89.75 1165.5 -108.375Q1188.25 -127.0 1197.0 -156.375Q1205.75 -185.75 1202.75 -216.5L1328.25 -209.5Q1332.5 -164.75 1321.125 -124.375Q1309.75 -84.0 1281.375 -52.75Q1253.0 -21.5 1207.875 -3.875Q1162.75 13.75 1100.0 13.75ZM1376 0V-523.5H1511.5V0.0ZM1534.8148659421288 -637.5 1489.0324329710643 -716.7975H1397.4675670289357L1351.6851340578712 -637.5L1397.4675670289357 -558.2025H1489.0324329710643Z" style="fill:currentColor"/></svg><span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v1.0.0</span></a>
+      <nav class="vc-header__nav doc-header__nav" aria-label="Sections"><a href="../start/getting-started.html">Start</a><a href="../guidelines/principles.html" aria-current="true">Guidelines</a><a href="../components/actions.html">Components</a><a href="../brand/logo.html">Brand</a></nav>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme">
+          <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+          <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+        </button>
+        <a class="vc-icon-button" href="https://github.com/VictorPflueger/ViciDesign" aria-label="Source code on GitHub" title="Source code on GitHub">
+          <span class="vc-icon vc-icon--code" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-shell">
+    <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation">
+      <nav class="vc-sidenav">
+<ul><li><a href="../index.html"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li></ul>
+<div><p class="vc-sidenav__title">Start</p><ul><li><a href="../start/getting-started.html"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Getting started</a></li><li><a href="../start/theming.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Theming</a></li><li><a href="../start/integrations.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Integrations</a></li><li><a href="../start/starters.html"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Starters</a></li><li><a href="../start/tokens.html"><span class="vc-icon vc-icon--code" aria-hidden="true"></span>Tokens</a></li></ul></div>
+<div><p class="vc-sidenav__title">Guidelines</p><ul><li><a href="../guidelines/principles.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Principles</a></li><li><a href="../guidelines/colour.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Colour</a></li><li><a href="../guidelines/typography.html"><span class="vc-icon vc-icon--type" aria-hidden="true"></span>Typography</a></li><li><a href="../guidelines/hexagon.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Hexagon</a></li><li><a href="../guidelines/layout.html"><span class="vc-icon vc-icon--layout" aria-hidden="true"></span>Layout &amp; spacing</a></li><li><a href="../guidelines/elevation.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Elevation</a></li><li><a href="../guidelines/motion.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Motion</a></li><li><a href="../guidelines/icons.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Icons</a></li><li><a href="../guidelines/data-viz.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data visualisation</a></li><li><a href="../guidelines/accessibility.html" aria-current="page"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span>Accessibility</a></li></ul></div>
+<div><p class="vc-sidenav__title">Components</p><ul><li><a href="../components/actions.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Actions</a></li><li><a href="../components/forms.html"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Forms</a></li><li><a href="../components/content.html"><span class="vc-icon vc-icon--cube" aria-hidden="true"></span>Content</a></li><li><a href="../components/navigation.html"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span>Navigation</a></li><li><a href="../components/feedback.html"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span>Feedback</a></li><li><a href="../components/overlays.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Overlays</a></li><li><a href="../components/data.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data display</a></li></ul></div>
+<div><p class="vc-sidenav__title">Brand</p><ul><li><a href="../brand/logo.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Logo concepts</a></li></ul></div>
+      </nav>
+    </aside>
+    <div class="doc-scrim" data-doc-close-sidebar hidden></div>
+
+    <main class="doc-main" id="main" tabindex="-1">
+      <article class="doc-article">
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Accessibility</h1>
+  <p class="vc-lead">Vici aims at WCAG 2.2 level AA as the minimum. Some of it is enforced by the build: contrast, the colour-blindness spacing of chart colours, focus colours. The rest depends on how the components are used, and this page explains how.</p>
+</header>
+
+<h2 id="what-the-system-guarantees">What the system guarantees</h2>
+<ul class="vc-list vc-list--check">
+  <li>Every semantic text pairing reaches at least 4.5:1 in both themes. Body text reaches 7:1 (AAA). See the <a href="../guidelines/colour.html#contrast">contrast table</a>.</li>
+  <li>Input borders, unchecked controls, focus rings and chart marks reach 3:1 against their surroundings.</li>
+  <li>The six categorical chart colours stay measurably apart under simulated protanopia, deuteranopia and tritanopia.</li>
+  <li>Every interactive component has a visible focus indicator: a 2&nbsp;px ring with a 2&nbsp;px gap, hexagonal on hexagon controls.</li>
+  <li>Native elements come first: <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code> and <code>popover</code> bring keyboard support and semantics for free.</li>
+  <li>Animations stop when the user asks for reduced motion.</li>
+</ul>
+
+<h2 id="focus">Focus</h2>
+<p>Focus appears for keyboard users only (<code>:focus-visible</code>), and always in <code>--vc-focus</code>: merlot 700 in light mode, blush in dark mode. Text inputs show it whenever they are focused, because typing needs to see where it goes.</p>
+<div class="doc-demo doc-demo--center"><div class="doc-demo__preview">
+<button class="vc-button">Rectangle</button>
+<button type="button" class="vc-icon-button vc-icon-button--soft" aria-label="Settings"><span class="vc-icon vc-icon--settings" aria-hidden="true"></span></button>
+<label class="vc-radio"><input type="radio" name="a11y-focus"> Hexagon ring</label>
+<button type="button" class="vc-chip" aria-pressed="false">Capsule ring</button>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-64"><span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button&quot;</span><span class="tk-punct">&gt;</span>Rectangle<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button vc-icon-button--soft&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Settings&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--settings&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-radio&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;radio&quot;</span> <span class="tk-attr">name</span>=<span class="tk-str">&quot;a11y-focus&quot;</span><span class="tk-punct">&gt;</span> Hexagon ring<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chip&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;false&quot;</span><span class="tk-punct">&gt;</span>Capsule ring<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-64" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<p class="vc-caption">Press <kbd>Tab</kbd> to move through the demo.</p>
+
+<h2 id="keyboard-patterns">Keyboard patterns</h2>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <thead><tr><th scope="col">Component</th><th scope="col">Keys</th><th scope="col">Provided by</th></tr></thead>
+  <tbody>
+    <tr><td>Button, link, chip, switch, checkbox</td><td><kbd>Tab</kbd> to reach, <kbd>Enter</kbd> / <kbd>Space</kbd> to activate</td><td>Native element</td></tr>
+    <tr><td>Radio group, segmented control, rating</td><td>Arrow keys move and select within the group</td><td>Native radios</td></tr>
+    <tr><td>Slider</td><td>Arrow keys, <kbd>Page Up</kbd>/<kbd>Page Down</kbd>, <kbd>Home</kbd>/<kbd>End</kbd></td><td>Native range input</td></tr>
+    <tr><td>Tabs</td><td>Arrow keys switch tabs, <kbd>Home</kbd>/<kbd>End</kbd> jump; <kbd>Tab</kbd> moves into the panel</td><td><code>vici.js</code></td></tr>
+    <tr><td>Accordion</td><td><kbd>Enter</kbd> / <kbd>Space</kbd> on the summary</td><td>Native <code>&lt;details&gt;</code></td></tr>
+    <tr><td>Menu</td><td>Arrow keys between items, <kbd>Esc</kbd> closes and returns focus</td><td><code>popover</code> + <code>vici.js</code></td></tr>
+    <tr><td>Dialog, drawer</td><td>Focus moves inside, stays inside, <kbd>Esc</kbd> closes and returns focus</td><td>Native <code>&lt;dialog&gt;</code></td></tr>
+    <tr><td>Tooltip</td><td>Appears on focus as well as hover, <kbd>Esc</kbd> hides it</td><td>CSS + <code>vici.js</code></td></tr>
+    <tr><td>Carousel</td><td>Arrow keys on the focused track, buttons for previous/next and each slide</td><td><code>vici.js</code></td></tr>
+    <tr><td>Table sorting</td><td><kbd>Enter</kbd> on a column's sort button; <code>aria-sort</code> announces the order</td><td><code>vici.js</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="semantics-checklist">Semantics checklist</h2>
+<ul>
+  <li>Set <code>lang</code> on <code>&lt;html&gt;</code> and keep one <code>&lt;h1&gt;</code> per page, with headings in order.</li>
+  <li>Give icon-only buttons an <code>aria-label</code>, and mark decorative icons with <code>aria-hidden="true"</code>.</li>
+  <li>Connect every form control to a visible <code>&lt;label&gt;</code>. Connect help and error text with <code>aria-describedby</code>, and mark errors with <code>aria-invalid="true"</code>.</li>
+  <li>Group related radios and checkboxes in a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>.</li>
+  <li>Use <code>role="switch"</code> on switch checkboxes so screen readers announce “on/off”.</li>
+  <li>Give progress bars and hex progress rings <code>role="progressbar"</code>, <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code> and a label.</li>
+  <li>Announce toasts in a live region. <code>Vici.toast()</code> creates one with <code>aria-live="polite"</code> and uses <code>role="alert"</code> for errors.</li>
+  <li>Charts need a text alternative: an <code>aria-label</code> that states the finding, plus the data as a table.</li>
+</ul>
+
+<h2 id="colour-is-never-the-only-signal">Colour is never the only signal</h2>
+<p>Status always combines colour with an icon and words. Selected chips show a filled shape <em>and</em> a check. Trends pair sage or coral with an arrow. Rating cells change from outline to solid, not only from grey to honey.</p>
+
+<h2 id="testing">Testing</h2>
+<ol>
+  <li>Navigate the page with the keyboard only. Can you reach, see and operate everything?</li>
+  <li>Zoom to 200&nbsp;% and narrow the window to 320&nbsp;px. Nothing should overlap or need horizontal scrolling, apart from wide tables.</li>
+  <li>Switch to the dark theme and turn on reduced motion.</li>
+  <li>Run an automated checker (axe, Lighthouse) and a screen reader (NVDA or VoiceOver) on the critical flows.</li>
+  <li>Run <code>npm run check</code> after changing tokens. It fails on contrast regressions.</li>
+</ol>
+
+<nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../guidelines/data-viz.html" rel="prev"><span class="vc-caption">Previous</span><span>Data visualisation</span></a><a class="doc-pager__link doc-pager__link--next" href="../components/actions.html" rel="next"><span class="vc-caption">Next</span><span>Actions</span></a></nav>
+      </article>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#what-the-system-guarantees">What the system guarantees</a></li><li><a href="#focus">Focus</a></li><li><a href="#keyboard-patterns">Keyboard patterns</a></li><li><a href="#semantics-checklist">Semantics checklist</a></li><li><a href="#colour-is-never-the-only-signal">Colour is never the only signal</a></li><li><a href="#testing">Testing</a></li></ul></nav>
+    </main>
+  </div>
+
+  <footer class="vc-footer doc-footer">
+    <div class="vc-container vc-container--wide">
+      <div class="vc-footer__bottom">
+        <span>Vici Design System v1.0.0 · built on hexagons, merlot and pastels</span>
+        <span>Fonts: Bricolage Grotesque, Inter, JetBrains Mono (SIL OFL 1.1) · served from this site</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!--
+title: Accessibility
+section: Guidelines
+order: 10
+icon: accessibility
+description: WCAG 2.2 AA as the floor — contrast checked by the build, visible focus on every control, keyboard patterns per component, semantics and motion.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Accessibility</h1>
+  <p class="vc-lead">Vici aims at WCAG 2.2 level AA as the minimum. Some of it is enforced by the build: contrast, the colour-blindness spacing of chart colours, focus colours. The rest depends on how the components are used, and this page explains how.</p>
+</header>
+
+<h2>What the system guarantees</h2>
+<ul class="vc-list vc-list--check">
+  <li>Every semantic text pairing reaches at least 4.5:1 in both themes. Body text reaches 7:1 (AAA). See the <a href="{{root}}guidelines/colour.html#contrast">contrast table</a>.</li>
+  <li>Input borders, unchecked controls, focus rings and chart marks reach 3:1 against their surroundings.</li>
+  <li>The six categorical chart colours stay measurably apart under simulated protanopia, deuteranopia and tritanopia.</li>
+  <li>Every interactive component has a visible focus indicator: a 2&nbsp;px ring with a 2&nbsp;px gap, hexagonal on hexagon controls.</li>
+  <li>Native elements come first: <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code> and <code>popover</code> bring keyboard support and semantics for free.</li>
+  <li>Animations stop when the user asks for reduced motion.</li>
+</ul>
+
+<h2>Focus</h2>
+<p>Focus appears for keyboard users only (<code>:focus-visible</code>), and always in <code>--vc-focus</code>: merlot 700 in light mode, blush in dark mode. Text inputs show it whenever they are focused, because typing needs to see where it goes.</p>
+<!-- demo center -->
+<button class="vc-button">Rectangle</button>
+<button type="button" class="vc-icon-button vc-icon-button--soft" aria-label="Settings"><span class="vc-icon vc-icon--settings" aria-hidden="true"></span></button>
+<label class="vc-radio"><input type="radio" name="a11y-focus"> Hexagon ring</label>
+<button type="button" class="vc-chip" aria-pressed="false">Capsule ring</button>
+<!-- /demo -->
+<p class="vc-caption">Press <kbd>Tab</kbd> to move through the demo.</p>
+
+<h2>Keyboard patterns</h2>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <thead><tr><th scope="col">Component</th><th scope="col">Keys</th><th scope="col">Provided by</th></tr></thead>
+  <tbody>
+    <tr><td>Button, link, chip, switch, checkbox</td><td><kbd>Tab</kbd> to reach, <kbd>Enter</kbd> / <kbd>Space</kbd> to activate</td><td>Native element</td></tr>
+    <tr><td>Radio group, segmented control, rating</td><td>Arrow keys move and select within the group</td><td>Native radios</td></tr>
+    <tr><td>Slider</td><td>Arrow keys, <kbd>Page Up</kbd>/<kbd>Page Down</kbd>, <kbd>Home</kbd>/<kbd>End</kbd></td><td>Native range input</td></tr>
+    <tr><td>Tabs</td><td>Arrow keys switch tabs, <kbd>Home</kbd>/<kbd>End</kbd> jump; <kbd>Tab</kbd> moves into the panel</td><td><code>vici.js</code></td></tr>
+    <tr><td>Accordion</td><td><kbd>Enter</kbd> / <kbd>Space</kbd> on the summary</td><td>Native <code>&lt;details&gt;</code></td></tr>
+    <tr><td>Menu</td><td>Arrow keys between items, <kbd>Esc</kbd> closes and returns focus</td><td><code>popover</code> + <code>vici.js</code></td></tr>
+    <tr><td>Dialog, drawer</td><td>Focus moves inside, stays inside, <kbd>Esc</kbd> closes and returns focus</td><td>Native <code>&lt;dialog&gt;</code></td></tr>
+    <tr><td>Tooltip</td><td>Appears on focus as well as hover, <kbd>Esc</kbd> hides it</td><td>CSS + <code>vici.js</code></td></tr>
+    <tr><td>Carousel</td><td>Arrow keys on the focused track, buttons for previous/next and each slide</td><td><code>vici.js</code></td></tr>
+    <tr><td>Table sorting</td><td><kbd>Enter</kbd> on a column's sort button; <code>aria-sort</code> announces the order</td><td><code>vici.js</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Semantics checklist</h2>
+<ul>
+  <li>Set <code>lang</code> on <code>&lt;html&gt;</code> and keep one <code>&lt;h1&gt;</code> per page, with headings in order.</li>
+  <li>Give icon-only buttons an <code>aria-label</code>, and mark decorative icons with <code>aria-hidden="true"</code>.</li>
+  <li>Connect every form control to a visible <code>&lt;label&gt;</code>. Connect help and error text with <code>aria-describedby</code>, and mark errors with <code>aria-invalid="true"</code>.</li>
+  <li>Group related radios and checkboxes in a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>.</li>
+  <li>Use <code>role="switch"</code> on switch checkboxes so screen readers announce “on/off”.</li>
+  <li>Give progress bars and hex progress rings <code>role="progressbar"</code>, <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code> and a label.</li>
+  <li>Announce toasts in a live region. <code>Vici.toast()</code> creates one with <code>aria-live="polite"</code> and uses <code>role="alert"</code> for errors.</li>
+  <li>Charts need a text alternative: an <code>aria-label</code> that states the finding, plus the data as a table.</li>
+</ul>
+
+<h2>Colour is never the only signal</h2>
+<p>Status always combines colour with an icon and words. Selected chips show a filled shape <em>and</em> a check. Trends pair sage or coral with an arrow. Rating cells change from outline to solid, not only from grey to honey.</p>
+
+<h2>Testing</h2>
+<ol>
+  <li>Navigate the page with the keyboard only. Can you reach, see and operate everything?</li>
+  <li>Zoom to 200&nbsp;% and narrow the window to 320&nbsp;px. Nothing should overlap or need horizontal scrolling, apart from wide tables.</li>
+  <li>Switch to the dark theme and turn on reduced motion.</li>
+  <li>Run an automated checker (axe, Lighthouse) and a screen reader (NVDA or VoiceOver) on the critical flows.</li>
+  <li>Run <code>npm run check</code> after changing tokens. It fails on contrast regressions.</li>
+</ol>

@@ -1,0 +1,58 @@
+<!--
+title: Concept & principles
+nav: Principles
+section: Guidelines
+order: 1
+icon: hexagon
+description: The idea behind Vici — why hexagons, why merlot and pastels, and the principles every component follows.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Concept &amp; principles</h1>
+  <p class="vc-lead">Vici is a small system with a strong signature. It has to make a quick prototype look deliberate, keep a data dashboard readable and give a personal website a recognisable face, all without slowing anyone down.</p>
+</header>
+
+<h2>The idea: a honeycomb</h2>
+<p>A honeycomb is nature's most efficient structure. Identical cells tessellate without gaps, carry load in every direction and can grow in any direction. That is a good description of a design system too: a few precise parts that fit together and scale.</p>
+<p>Vici takes this literally. The hexagon is its only signature shape. Wherever an interface would normally use a circle (an avatar, a radio button, a status dot, a loading spinner, a list bullet), Vici uses a flat-top hexagon. Wherever it would use a pill, it uses a <em>hex capsule</em> with pointed ends. Everything else stays a calm rectangle with small radii, so the cells stand out.</p>
+<!-- demo center plain -->
+<span class="vc-avatar vc-avatar--lg">VP</span>
+<label class="vc-radio"><input type="radio" name="concept-radio" checked> Radio</label>
+<label class="vc-switch"><input type="checkbox" role="switch" checked> Switch</label>
+<span class="vc-badge">12</span>
+<span class="vc-tag vc-tag--accent">Capsule</span>
+<span class="vc-spinner" role="status" aria-label="Loading"></span>
+<span class="vc-progress-hex vc-progress-hex--sm" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Progress" style="--value: 70">70</span>
+<!-- /demo -->
+
+<h2>The palette: one deep base, many soft lights</h2>
+<p>The base colour, merlot <code>#250010</code>, is so dark it reads almost as black, with a warm wine undertone. It writes the text, fills the primary buttons and, in dark mode, becomes the canvas itself. Its own ramp lightens into blush pinks, and seven more pastel families sit around it: coral, apricot, honey, sage, teal, fjord and lilac. Every family is light and soft in its pastel steps and deep enough at its dark end to carry readable text.</p>
+<p>The split of responsibilities is the core of the colour system. The base colour gives contrast and seriousness. The pastels give warmth, atmosphere and meaning: lilac marks AI, sage marks success and honey marks attention. See <a href="{{root}}guidelines/colour.html">Colour</a>.</p>
+
+<h2>Personality</h2>
+<div class="vc-grid vc-grid--3">
+  <div class="vc-card vc-card--flat"><div class="vc-card__body"><h3 class="vc-card__title">Precise</h3><p class="vc-card__meta">Exact geometry, a strict 4&nbsp;px grid and tabular numbers. Nothing is approximately aligned.</p></div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body"><h3 class="vc-card__title">Warm</h3><p class="vc-card__meta">Wine and pastels instead of cold blue-grey. Linen paper instead of pure white canvases.</p></div></div>
+  <div class="vc-card vc-card--flat"><div class="vc-card__body"><h3 class="vc-card__title">Data-literate</h3><p class="vc-card__meta">Built for dashboards and AI demos: chart colours, KPI cards, dense tables and calm status colours.</p></div></div>
+</div>
+
+<h2>Principles</h2>
+<h3>1 · Cells, not circles</h3>
+<p>If it would be round, make it a hexagon. If it would be a pill, make it a hex capsule. Never mix the two: one circle in a Vici interface looks like a mistake.</p>
+<h3>2 · Deep base, soft light</h3>
+<p>Use merlot for ink, primary actions and the dark canvas. Use pastels for surfaces that carry meaning, for selection and for illustration. Never set body text in a pastel on a light background.</p>
+<h3>3 · Data first</h3>
+<p>Decoration must never compete with numbers. Use tabular figures in every column of numbers, keep charts to six categorical colours, and label data directly where you can.</p>
+<h3>4 · Zero friction</h3>
+<p>Vici has to be faster than not using it. Plain HTML is styled, components are single classes, and no build step stands between an idea and a working page.</p>
+<h3>5 · Accessible by default</h3>
+<p>Contrast is checked by the build, focus is always visible (as a hexagon ring on hexagon controls), every interactive part is reachable by keyboard, and animations respect reduced-motion settings.</p>
+
+<h2>Writing in Vici</h2>
+<p>Interface text follows the same restraint as the visuals:</p>
+<ul>
+  <li>Write labels as verbs for actions (<em>Save changes</em>, <em>Export CSV</em>) and nouns for places (<em>Settings</em>, <em>Reports</em>).</li>
+  <li>Use sentence case everywhere: buttons, headings, menu items.</li>
+  <li>Say what happened and what to do next in errors: <em>“The file is larger than 20&nbsp;MB. Choose a smaller file or compress it.”</em></li>
+  <li>Mark AI-generated content honestly, with the <span class="vc-tag vc-tag--sm vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI</span> feature tone, so readers know what a model wrote.</li>
+</ul>

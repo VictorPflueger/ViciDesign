@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="vici-build">
+  <title>Vici Design System</title>
+  <meta name="description" content="Vici is Victor Pflüger's personal design system for prototypes, websites and data products — hexagons instead of circles, a deep merlot base and soft pastels.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="dist/vici.css">
+  <link rel="stylesheet" href="assets/docs/docs.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="dist/vici.js" defer></script>
+  <script src="assets/docs/docs.js" defer></script>
+</head>
+<body class="doc doc--home">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header doc-header">
+    <div class="vc-header__inner">
+      <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-label="Open navigation">
+        <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+      </button>
+      <a class="vc-header__brand doc-brand" href="index.html" aria-label="Vici Design System — overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24.55 15.48 73.84 69.63" width="27.57" height="26" aria-hidden="true" focusable="false" class="vc-logo"><path d="M35.86 32.71 L56.58 68.59" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><path d="M63.42 68.59 L79 41.6" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><polygon points="41.45,33.78 34,38.08 26.55,33.78 26.55,25.18 34,20.88 41.45,25.18" style="fill:var(--vc-text)"/><path d="M67.45 78.82 L60 83.12 L52.55 78.82 L52.55 70.22 L60 65.92 L67.45 70.22 Z M63.45 76.51 L60 78.5 L56.55 76.51 L56.55 72.53 L60 70.54 L63.45 72.53 Z" style="fill:var(--vc-text)" fill-rule="evenodd"/><path d="M96.39 35.48 L86 41.48 L75.61 35.48 L75.61 23.48 L86 17.48 L96.39 23.48 Z M92.39 33.17 L86 36.86 L79.61 33.17 L79.61 25.79 L86 22.1 L92.39 25.79 Z" style="fill:var(--vc-merlot-500)" fill-rule="evenodd"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -712 1560 720" width="45.5" height="21" role="img" class="vc-wordmark"><title>Vici</title><path d="M222.25 0.0 6 -660H153.75L309.25 -113.75H312.25L465.5 -660.0H613L397 0ZM649 0V-523.5H784.5V0.0ZM807.8148659421287 -637.5 762.0324329710644 -716.7975H670.4675670289357L624.6851340578713 -637.5L670.4675670289356 -558.2025H762.0324329710644ZM1100.0 13.75Q1033.0 13.75 983.875 -7.0Q934.75 -27.75 903.0 -65.0Q871.25 -102.25 856.0 -151.375Q840.75 -200.5 840.75 -257.25Q840.75 -314.25 856.0 -364.5Q871.25 -414.75 902.375 -454.125Q933.5 -493.5 982.0 -515.5Q1030.5 -537.5 1097.0 -537.5Q1176.25 -537.5 1225.875 -507.5Q1275.5 -477.5 1296.75 -429.75Q1318 -382 1311.5 -326.5L1192.75 -315.75Q1194.0 -353.75 1182.0 -378.875Q1170 -404 1147.75 -416.625Q1125.5 -429.25 1095.25 -429.25Q1070.0 -429.25 1048.5 -420.0Q1027.0 -410.75 1011.0 -390.75Q995.0 -370.75 986.125 -339.625Q977.25 -308.5 977.25 -263.75Q977.25 -206.25 992.5 -167.375Q1007.75 -128.5 1035.75 -109.125Q1063.75 -89.75 1102.25 -89.75Q1142.75 -89.75 1165.5 -108.375Q1188.25 -127.0 1197.0 -156.375Q1205.75 -185.75 1202.75 -216.5L1328.25 -209.5Q1332.5 -164.75 1321.125 -124.375Q1309.75 -84.0 1281.375 -52.75Q1253.0 -21.5 1207.875 -3.875Q1162.75 13.75 1100.0 13.75ZM1376 0V-523.5H1511.5V0.0ZM1534.8148659421288 -637.5 1489.0324329710643 -716.7975H1397.4675670289357L1351.6851340578712 -637.5L1397.4675670289357 -558.2025H1489.0324329710643Z" style="fill:currentColor"/></svg><span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v1.0.0</span></a>
+      <nav class="vc-header__nav doc-header__nav" aria-label="Sections"><a href="start/getting-started.html">Start</a><a href="guidelines/principles.html">Guidelines</a><a href="components/actions.html">Components</a><a href="brand/logo.html">Brand</a></nav>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme">
+          <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+          <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+        </button>
+        <a class="vc-icon-button" href="https://github.com/VictorPflueger/ViciDesign" aria-label="Source code on GitHub" title="Source code on GitHub">
+          <span class="vc-icon vc-icon--code" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-shell">
+    <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation">
+      <nav class="vc-sidenav">
+<ul><li><a href="index.html" aria-current="page"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li></ul>
+<div><p class="vc-sidenav__title">Start</p><ul><li><a href="start/getting-started.html"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Getting started</a></li><li><a href="start/theming.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Theming</a></li><li><a href="start/integrations.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Integrations</a></li><li><a href="start/starters.html"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Starters</a></li><li><a href="start/tokens.html"><span class="vc-icon vc-icon--code" aria-hidden="true"></span>Tokens</a></li></ul></div>
+<div><p class="vc-sidenav__title">Guidelines</p><ul><li><a href="guidelines/principles.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Principles</a></li><li><a href="guidelines/colour.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Colour</a></li><li><a href="guidelines/typography.html"><span class="vc-icon vc-icon--type" aria-hidden="true"></span>Typography</a></li><li><a href="guidelines/hexagon.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Hexagon</a></li><li><a href="guidelines/layout.html"><span class="vc-icon vc-icon--layout" aria-hidden="true"></span>Layout &amp; spacing</a></li><li><a href="guidelines/elevation.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Elevation</a></li><li><a href="guidelines/motion.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Motion</a></li><li><a href="guidelines/icons.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Icons</a></li><li><a href="guidelines/data-viz.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data visualisation</a></li><li><a href="guidelines/accessibility.html"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span>Accessibility</a></li></ul></div>
+<div><p class="vc-sidenav__title">Components</p><ul><li><a href="components/actions.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Actions</a></li><li><a href="components/forms.html"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Forms</a></li><li><a href="components/content.html"><span class="vc-icon vc-icon--cube" aria-hidden="true"></span>Content</a></li><li><a href="components/navigation.html"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span>Navigation</a></li><li><a href="components/feedback.html"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span>Feedback</a></li><li><a href="components/overlays.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Overlays</a></li><li><a href="components/data.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data display</a></li></ul></div>
+<div><p class="vc-sidenav__title">Brand</p><ul><li><a href="brand/logo.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Logo concepts</a></li></ul></div>
+      </nav>
+    </aside>
+    <div class="doc-scrim" data-doc-close-sidebar hidden></div>
+
+    <main class="doc-main" id="main" tabindex="-1">
+      <article class="doc-article">
+<section class="doc-home-hero vc-bg-aurora">
+  <div class="vc-container vc-container--wide">
+    <div class="doc-home-hero__grid">
+      <div>
+        <p class="vc-eyebrow">Personal design system · v1.0.0</p>
+        <h1 class="vc-display">Built in cells, not&nbsp;circles.</h1>
+        <p class="vc-lead">Vici is the design system behind Victor Pflüger's prototypes, websites and data products. One stylesheet with a deep merlot base and soft pastels. Wherever you would expect a circle, you get a hexagon.</p>
+        <div class="vc-cluster">
+          <a class="vc-button vc-button--lg" href="start/getting-started.html">Get started <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a>
+          <a class="vc-button vc-button--lg vc-button--secondary" href="components/actions.html">Browse components</a>
+          <a class="vc-button vc-button--lg vc-button--ghost" href="brand/logo.html">Logo concepts</a>
+        </div>
+      </div>
+      <div class="doc-home-art" aria-hidden="true">
+        <ul class="vc-honeycomb" style="--vc-honeycomb-cell: 7.25rem; --vc-honeycomb-cols: 4; --vc-honeycomb-cols-sm: 4; --vc-honeycomb-cell-sm: 5.2rem">
+          <li class="vc-tile vc-tile--solid"><span class="vc-icon vc-icon--drop"></span>Colour</li>
+          <li class="vc-tile vc-tile--lilac"><span class="vc-icon vc-icon--type"></span>Type</li>
+          <li class="vc-tile"><span class="vc-icon vc-icon--hexagon"></span>Cells</li>
+          <li class="vc-tile vc-tile--fjord"><span class="vc-icon vc-icon--chart-bar"></span>Data</li>
+          <li class="vc-tile vc-tile--apricot"><span class="vc-icon vc-icon--zap"></span>Motion</li>
+          <li class="vc-tile vc-tile--sage"><span class="vc-icon vc-icon--accessibility"></span>Access</li>
+          <li class="vc-tile vc-tile--honey"><span class="vc-icon vc-icon--cube"></span>Parts</li>
+          <li class="vc-tile vc-tile--teal"><span class="vc-icon vc-icon--sparkle"></span>Brand</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-home-section">
+  <div class="vc-container vc-container--wide">
+    <p class="vc-eyebrow">Principles</p>
+    <h2 data-toc="false" id="five-rules-the-whole-system-follows">Five rules the whole system follows</h2>
+    <div class="vc-grid" style="--vc-grid-min: 13rem; margin-top: var(--vc-space-8)">
+      <div class="doc-principle">
+        <span class="vc-cell vc-cell--lg vc-cell--solid"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span></span>
+        <h3 id="cells-not-circles">Cells, not circles</h3>
+        <p>Hexagons tessellate: they fit together without gaps. Avatars, radios, badges, spinners and bullets are all cells, and pill shapes become hex capsules.</p>
+      </div>
+      <div class="doc-principle">
+        <span class="vc-cell vc-cell--lg"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span></span>
+        <h3 id="deep-base-soft-light">Deep base, soft light</h3>
+        <p>Merlot <code>#250010</code> carries text, primary actions and the dark canvas. The pastels carry meaning and atmosphere, never the other way round.</p>
+      </div>
+      <div class="doc-principle">
+        <span class="vc-cell vc-cell--lg vc-cell--info"><span class="vc-icon vc-icon--chart-line" aria-hidden="true"></span></span>
+        <h3 id="data-first">Data first</h3>
+        <p>Tabular figures, a chart palette tested against colour-blindness simulations, and no decoration that competes with the numbers.</p>
+      </div>
+      <div class="doc-principle">
+        <span class="vc-cell vc-cell--lg vc-cell--success"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span></span>
+        <h3 id="zero-friction">Zero friction</h3>
+        <p>One CSS file and one optional script. No build step and no framework lock-in. Copy a snippet into a static page, a prototype or a notebook and it works.</p>
+      </div>
+      <div class="doc-principle">
+        <span class="vc-cell vc-cell--lg vc-cell--feature"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span></span>
+        <h3 id="accessible-by-default">Accessible by default</h3>
+        <p>Every colour pair is checked against WCAG 2.2 AA by the build. Focus is always visible, everything works by keyboard, and motion respects the user's settings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-home-section">
+  <div class="vc-container vc-container--wide">
+    <p class="vc-eyebrow">What's inside</p>
+    <h2 data-toc="false" id="foundations-parts-and-a-brand">Foundations, parts and a brand</h2>
+    <div class="vc-grid" style="--vc-grid-min: 15rem; margin-top: var(--vc-space-8)">
+      <article class="vc-card vc-card--interactive">
+        <div class="vc-card__body">
+          <span class="vc-cell vc-cell--lg" aria-hidden="true"><span class="vc-icon vc-icon--flag"></span></span>
+          <h3 class="vc-card__title" id="start"><a class="vc-card__link" href="start/getting-started.html">Start</a></h3>
+          <p class="vc-card__meta">Install in one line, switch themes, wire up Streamlit, Power BI, Python or Tailwind, or copy a starter page.</p>
+        </div>
+      </article>
+      <article class="vc-card vc-card--interactive">
+        <div class="vc-card__body">
+          <span class="vc-cell vc-cell--lg vc-cell--info" aria-hidden="true"><span class="vc-icon vc-icon--book"></span></span>
+          <h3 class="vc-card__title" id="guidelines"><a class="vc-card__link" href="guidelines/principles.html">Guidelines</a></h3>
+          <p class="vc-card__meta">Colour coding, typography, hexagon geometry, layout, elevation, motion, icons, data visualisation and accessibility.</p>
+        </div>
+      </article>
+      <article class="vc-card vc-card--interactive">
+        <div class="vc-card__body">
+          <span class="vc-cell vc-cell--lg vc-cell--success" aria-hidden="true"><span class="vc-icon vc-icon--cube"></span></span>
+          <h3 class="vc-card__title" id="components"><a class="vc-card__link" href="components/actions.html">Components</a></h3>
+          <p class="vc-card__meta">More than forty components, from buttons and forms to navigation, feedback, overlays, tables and KPI cards. Each one is live and ready to copy.</p>
+        </div>
+      </article>
+      <article class="vc-card vc-card--interactive">
+        <div class="vc-card__body">
+          <span class="vc-cell vc-cell--lg vc-cell--feature" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span>
+          <h3 class="vc-card__title" id="brand"><a class="vc-card__link" href="brand/logo.html">Brand</a></h3>
+          <p class="vc-card__meta">Five logo directions for a personal mark, each with colour, dark and mono versions and usage rules.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="doc-home-section">
+  <div class="vc-container vc-container--wide">
+    <div class="vc-grid vc-grid--2" style="align-items: start">
+      <div>
+        <p class="vc-eyebrow">Quick start</p>
+        <h2 data-toc="false" id="two-lines-in-your-head">Two lines in your &lt;head&gt;</h2>
+        <p class="vc-text-muted">The stylesheet is about 23 KB (minified and gzipped) and includes the tokens, both themes, every component and 64 icons. The script is optional: it adds the theme toggle, tabs, toasts and a few other behaviours.</p>
+        <p><a class="vc-link" href="start/getting-started.html">All installation options <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a></p>
+      </div>
+      <div class="vc-code">
+        <div class="vc-code__header"><span>index.html</span><button type="button" class="vc-icon-button vc-icon-button--sm" data-vc-copy="#home-snippet" data-vc-label="Copy snippet" aria-label="Copy snippet"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span></button></div>
+<pre><code id="home-snippet">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@main/dist/vici.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@main/dist/vici.js" defer&gt;&lt;/script&gt;
+
+&lt;button class="vc-button"&gt;Primary action&lt;/button&gt;
+&lt;span class="vc-avatar"&gt;VP&lt;/span&gt;</code></pre>
+      </div>
+    </div>
+    <div class="doc-palette-band" role="img" aria-label="The Vici palette from merlot to pastels">
+      <span style="background:var(--vc-merlot-950)"></span><span style="background:var(--vc-merlot-800)"></span><span style="background:var(--vc-merlot-700)"></span><span style="background:var(--vc-merlot-500)"></span><span style="background:var(--vc-merlot-200)"></span><span style="background:var(--vc-neutral-100)"></span><span style="background:var(--vc-apricot-200)"></span><span style="background:var(--vc-honey-200)"></span><span style="background:var(--vc-sage-200)"></span><span style="background:var(--vc-teal-200)"></span><span style="background:var(--vc-fjord-200)"></span><span style="background:var(--vc-lilac-200)"></span>
+    </div>
+  </div>
+</section>
+
+
+      </article>
+
+    </main>
+  </div>
+
+  <footer class="vc-footer doc-footer">
+    <div class="vc-container vc-container--wide">
+      <div class="vc-footer__bottom">
+        <span>Vici Design System v1.0.0 · built on hexagons, merlot and pastels</span>
+        <span>Fonts: Bricolage Grotesque, Inter, JetBrains Mono (SIL OFL 1.1) · served from this site</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

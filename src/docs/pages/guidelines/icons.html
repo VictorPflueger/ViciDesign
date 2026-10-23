@@ -1,0 +1,50 @@
+<!--
+title: Iconography
+nav: Icons
+section: Guidelines
+order: 8
+icon: sparkle
+layout: wide
+description: An original set of line icons on a 24 px grid where every round form is a hexagon — usage as CSS classes, sprite or inline SVG.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Iconography</h1>
+  <p class="vc-lead">Vici has its own set of <!-- @icon-count --> line icons. They are drawn on a 24&nbsp;px grid with 1.75&nbsp;px strokes and rounded joins, and they follow the hexagon rule: the search lens, a user's head, an eye's pupil, a clock face, the dots of “more” and the info and success badges are all hexagons, and the moon is a hexagonal crescent.</p>
+</header>
+
+<h2>The set</h2>
+<p>Click an icon to copy its class.</p>
+<!-- @icon-gallery -->
+
+<h2>Using icons</h2>
+<h3>As a class (recommended)</h3>
+<p>Each icon is an SVG mask inside the stylesheet, so it needs no extra request, works across domains and takes the current text colour.</p>
+<!-- demo center -->
+<span class="vc-icon vc-icon--search" aria-hidden="true"></span>
+<span class="vc-icon vc-icon--sparkle vc-icon--lg vc-text-accent" aria-hidden="true"></span>
+<span class="vc-icon vc-icon--chart-line vc-icon--xl" style="color: var(--vc-fjord-600)" aria-hidden="true"></span>
+<button type="button" class="vc-button vc-button--secondary"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Export</button>
+<!-- /demo -->
+<p>Sizes: <code>--xs</code> 14&nbsp;px, <code>--sm</code> 16&nbsp;px, default 20&nbsp;px, <code>--lg</code> 24&nbsp;px, <code>--xl</code> 32&nbsp;px, or any value through <code>--vc-icon-size</code>.</p>
+
+<h3>From the sprite</h3>
+<pre><code>&lt;svg class="my-icon" width="24" height="24" aria-hidden="true"&gt;
+  &lt;use href="/dist/vici-icons.svg#vc-search"&gt;&lt;/use&gt;
+&lt;/svg&gt;</code></pre>
+<p>Sprites only work from the same origin, so copy <code>dist/vici-icons.svg</code> into your site. The single SVG files are in <code>src/icons/</code> for design tools and inline use.</p>
+
+<h2>Drawing new icons</h2>
+<ul>
+  <li>24&nbsp;×&nbsp;24 artboard, 2&nbsp;px padding, <code>stroke-width="1.75"</code>, round caps and joins, no fills except for small dots.</li>
+  <li>Draw round elements as hexagons. A flat-top hexagon with a circumradius of 9 replaces a full-size circle. Smaller dots are hexagons with a radius of 1.2–1.75.</li>
+  <li>Keep the visual weight of a 16&nbsp;px circle: if an icon looks lighter than its neighbours, enlarge it, don't thicken the strokes.</li>
+  <li>Save the file into <code>src/icons/</code> with a lowercase, hyphenated name and run the build. The class, the sprite symbol and the gallery are generated.</li>
+</ul>
+
+<h2>Accessibility</h2>
+<ul>
+  <li>Decorative icons next to text get <code>aria-hidden="true"</code>.</li>
+  <li>Icon-only buttons need an accessible name: <code>aria-label="Search"</code>. Add a tooltip that shows the same text.</li>
+  <li>Don't use an icon as the only carrier of meaning in status messages. Pair it with words.</li>
+</ul>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas — app prototype · Vici starter</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <!-- Vici: point these two lines at your copy of dist/ or at the CDN -->
+  <link rel="stylesheet" href="../dist/vici.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <style>
+    /* Page-specific layout: app shell with a fixed sidebar */
+    .app { display: grid; grid-template-columns: 15rem minmax(0, 1fr); min-height: calc(100dvh - 4rem); }
+    .app__side { border-right: 1px solid var(--vc-border-subtle); padding: var(--vc-space-6) var(--vc-space-4); background: var(--vc-bg-subtle); }
+    .app__main { padding: var(--vc-space-8) clamp(1rem, 3vw, 2.5rem) var(--vc-space-16); min-width: 0; }
+    .app__title { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--vc-space-4); margin-bottom: var(--vc-space-6); }
+    .app__title h1 { margin: var(--vc-space-2) 0 0; font-size: var(--vc-font-size-4xl); }
+    @media (max-width: 899px) { .app { grid-template-columns: minmax(0, 1fr); } .app__side { display: none; } }
+  </style>
+</head>
+<body>
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+
+  <header class="vc-header">
+    <div class="vc-header__inner">
+      <a class="vc-header__brand" href="#"><span class="vc-cell vc-cell--sm vc-cell--solid" aria-hidden="true"><span class="vc-icon vc-icon--honeycomb"></span></span>Atlas</a>
+      <nav class="vc-header__nav" aria-label="Main">
+        <a href="#" aria-current="page">Exceptions</a>
+        <a href="#">Suppliers</a>
+        <a href="#">Agents</a>
+        <a href="#">Reports</a>
+      </nav>
+      <div class="vc-header__actions">
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Switch theme</span>
+        </span>
+        <span class="vc-badge-anchor">
+          <button type="button" class="vc-icon-button" aria-label="Notifications, 3 unread"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span></button>
+          <span class="vc-badge vc-badge--danger" aria-hidden="true">3</span>
+        </span>
+        <button type="button" class="vc-icon-button" popovertarget="account-menu" aria-haspopup="menu" aria-label="Account"><span class="vc-avatar vc-avatar--sm">VP</span></button>
+        <div class="vc-menu" id="account-menu" popover role="menu" aria-label="Account">
+          <p class="vc-menu__label" role="presentation">Victor Pflüger</p>
+          <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--user" aria-hidden="true"></span>Profile</button>
+          <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--settings" aria-hidden="true"></span>Settings</button>
+          <hr class="vc-menu__divider">
+          <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span>Sign out</button>
+        </div>
+        <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="app__side">
+      <nav class="vc-sidenav" aria-label="Workspace">
+        <div>
+          <p class="vc-sidenav__title">Workspace</p>
+          <ul>
+            <li><a href="#" aria-current="page"><span class="vc-icon vc-icon--warning" aria-hidden="true"></span>Exceptions <span class="vc-badge vc-badge--soft">128</span></a></li>
+            <li><a href="#"><span class="vc-icon vc-icon--briefcase" aria-hidden="true"></span>Suppliers</a></li>
+            <li><a href="#"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Agents</a></li>
+            <li><a href="#"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Reports</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="vc-sidenav__title">Admin</p>
+          <ul>
+            <li><a href="#"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Data sources</a></li>
+            <li><a href="#"><span class="vc-icon vc-icon--lock" aria-hidden="true"></span>Access</a></li>
+            <li><a href="#"><span class="vc-icon vc-icon--settings" aria-hidden="true"></span>Settings</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="app__main" id="main" tabindex="-1">
+      <div class="app__title">
+        <div>
+          <nav class="vc-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="#">Workspace</a></li><li><span aria-current="page">Exceptions</span></li></ol>
+          </nav>
+          <h1>Invoice exceptions</h1>
+        </div>
+        <div class="vc-cluster">
+          <button type="button" class="vc-button vc-button--outline"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Export</button>
+          <button type="button" class="vc-button" data-vc-open="new-rule"><span class="vc-icon vc-icon--plus" aria-hidden="true"></span>New rule</button>
+        </div>
+      </div>
+
+      <div class="vc-alert vc-alert--feature" role="status" style="margin-bottom: var(--vc-space-6)">
+        <span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>
+        <div class="vc-alert__body"><p class="vc-alert__title">The matching agent ran at 06:00</p><p>It resolved 342 invoices automatically and left 128 for review. Suggestions are marked in lilac.</p></div>
+        <button type="button" class="vc-icon-button" data-vc-dismiss aria-label="Dismiss"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+      </div>
+
+      <section class="vc-grid" style="--vc-grid-min: 14rem; margin-bottom: var(--vc-space-8)" aria-label="Key figures">
+        <article class="vc-stat">
+          <p class="vc-stat__label">Open exceptions</p>
+          <p class="vc-stat__value">128</p>
+          <p class="vc-stat__delta vc-stat__delta--down"><span class="vc-icon vc-icon--arrow-up" aria-hidden="true"></span>+23 since Monday</p>
+          <svg class="vc-sparkline" viewBox="0 0 200 44" aria-hidden="true" style="--vc-series:var(--vc-data-1)"><path class="vc-sparkline__area" d="M4 40 L21.5 29.2 L38.9 18.4 L56.4 25.6 L73.8 36.4 L91.3 29.2 L108.7 14.8 L126.2 7.6 L143.6 18.4 L161.1 25.6 L178.5 14.8 L196 4 L196 44 L4 44 Z"/><path class="vc-sparkline__line" d="M4 40 L21.5 29.2 L38.9 18.4 L56.4 25.6 L73.8 36.4 L91.3 29.2 L108.7 14.8 L126.2 7.6 L143.6 18.4 L161.1 25.6 L178.5 14.8 L196 4"/><polygon class="vc-sparkline__marker" points="199.6,4 197.8,7.1 194.2,7.1 192.4,4 194.2,0.9 197.8,0.9"/></svg>
+        </article>
+        <article class="vc-stat">
+          <p class="vc-stat__label">Auto-resolved</p>
+          <p class="vc-stat__value">72.8<span class="vc-stat__unit">%</span></p>
+          <p class="vc-stat__delta vc-stat__delta--up"><span class="vc-icon vc-icon--arrow-up" aria-hidden="true"></span>+4.1 pts</p>
+          <svg class="vc-sparkline" viewBox="0 0 200 44" aria-hidden="true" style="--vc-series:var(--vc-data-2)"><path class="vc-sparkline__area" d="M4 40 L21.5 35.5 L38.9 37.8 L56.4 31 L73.8 26.5 L91.3 28.3 L108.7 22 L126.2 17.1 L143.6 18.4 L161.1 13 L178.5 7.6 L196 4 L196 44 L4 44 Z"/><path class="vc-sparkline__line" d="M4 40 L21.5 35.5 L38.9 37.8 L56.4 31 L73.8 26.5 L91.3 28.3 L108.7 22 L126.2 17.1 L143.6 18.4 L161.1 13 L178.5 7.6 L196 4"/><polygon class="vc-sparkline__marker" points="199.6,4 197.8,7.1 194.2,7.1 192.4,4 194.2,0.9 197.8,0.9"/></svg>
+        </article>
+        <article class="vc-stat">
+          <p class="vc-stat__label">Value at risk</p>
+          <p class="vc-stat__value">€ 418<span class="vc-stat__unit">k</span></p>
+          <p class="vc-stat__delta vc-stat__delta--up"><span class="vc-icon vc-icon--arrow-down" aria-hidden="true"></span>−€ 36k</p>
+          <svg class="vc-sparkline" viewBox="0 0 200 44" aria-hidden="true" style="--vc-series:var(--vc-data-3)"><path class="vc-sparkline__area" d="M4 4 L21.5 6.7 L38.9 5.1 L56.4 14.9 L73.8 17.6 L91.3 15.5 L108.7 24.7 L126.2 26.9 L143.6 31.3 L161.1 35.6 L178.5 34 L196 40 L196 44 L4 44 Z"/><path class="vc-sparkline__line" d="M4 4 L21.5 6.7 L38.9 5.1 L56.4 14.9 L73.8 17.6 L91.3 15.5 L108.7 24.7 L126.2 26.9 L143.6 31.3 L161.1 35.6 L178.5 34 L196 40"/><polygon class="vc-sparkline__marker" points="199.6,40 197.8,43.1 194.2,43.1 192.4,40 194.2,36.9 197.8,36.9"/></svg>
+        </article>
+      </section>
+
+      <div class="vc-tabs">
+        <div class="vc-tabs__list" role="tablist" aria-label="Exception views">
+          <button type="button" role="tab" id="t-open" aria-controls="p-open" aria-selected="true">Open <span class="vc-badge vc-badge--soft">128</span></button>
+          <button type="button" role="tab" id="t-mine" aria-controls="p-mine" aria-selected="false">Assigned to me</button>
+          <button type="button" role="tab" id="t-done" aria-controls="p-done" aria-selected="false">Resolved</button>
+        </div>
+        <div class="vc-tabs__panel" role="tabpanel" id="p-open" aria-labelledby="t-open" tabindex="0">
+          <div class="vc-cluster vc-cluster--between" style="margin-bottom: var(--vc-space-4)">
+            <div class="vc-chip-group" role="group" aria-label="Filter by reason">
+              <button type="button" class="vc-chip" aria-pressed="true"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Price mismatch</button>
+              <button type="button" class="vc-chip" aria-pressed="false"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Quantity</button>
+              <button type="button" class="vc-chip" aria-pressed="false"><span class="vc-icon vc-icon--check vc-chip__check" aria-hidden="true"></span>Missing PO</button>
+            </div>
+            <div class="vc-input-group" style="width: min(18rem, 100%)">
+              <span class="vc-icon vc-icon--search" aria-hidden="true"></span>
+              <input class="vc-input" type="search" placeholder="Search invoices" aria-label="Search invoices">
+            </div>
+          </div>
+          <div class="vc-table-wrap">
+            <table class="vc-table" data-vc-sortable>
+              <thead>
+                <tr>
+                  <th scope="col"><button type="button" class="vc-table__sort">Invoice</button></th>
+                  <th scope="col"><button type="button" class="vc-table__sort">Supplier</button></th>
+                  <th scope="col" class="vc-num" aria-sort="descending"><button type="button" class="vc-table__sort">Amount (€)</button></th>
+                  <th scope="col">Reason</th>
+                  <th scope="col">Owner</th>
+                  <th scope="col"><span class="vc-visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="vc-mono">INV-20931</td><td>Nordlicht Logistik</td><td class="vc-num">48,210.00</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">Price +6.2 %</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--fjord">AK</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary" onclick="Vici.toast({title:'Approved',message:'INV-20931 was released for payment.',tone:'success'})">Approve</button></td></tr>
+                <tr><td class="vc-mono">INV-20918</td><td>Rheinwerk Components</td><td class="vc-num">31,775.40</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Quantity 480/500</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--sage">JS</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
+                <tr><td class="vc-mono">INV-20907</td><td>Kranich Software</td><td class="vc-num">12,400.00</td><td><span class="vc-tag vc-tag--sm vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>PO suggested</span></td><td><span class="vc-avatar vc-avatar--xs">VP</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
+                <tr><td class="vc-mono">INV-20899</td><td>Elbufer Facility</td><td class="vc-num">8,960.15</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">Missing PO</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--lilac">MR</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
+                <tr><td class="vc-mono">INV-20872</td><td>Alpenglanz Services</td><td class="vc-num">4,312.00</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Duplicate?</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--honey">LB</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="vc-cluster vc-cluster--between" style="margin-top: var(--vc-space-4)">
+            <span class="vc-caption">Showing 1–5 of 128</span>
+            <nav class="vc-pagination" aria-label="Pagination">
+              <ul>
+                <li><a class="vc-pagination__step" href="#" aria-label="Previous page" aria-disabled="true"><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span></a></li>
+                <li><a class="vc-pagination__page" href="#" aria-current="page">1</a></li>
+                <li><a class="vc-pagination__page" href="#">2</a></li>
+                <li><a class="vc-pagination__page" href="#">3</a></li>
+                <li><span class="vc-pagination__gap" aria-hidden="true">…</span></li>
+                <li><a class="vc-pagination__page" href="#">26</a></li>
+                <li><a class="vc-pagination__step" href="#" aria-label="Next page"><span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="vc-tabs__panel" role="tabpanel" id="p-mine" aria-labelledby="t-mine" tabindex="0" hidden>
+          <div class="vc-empty">
+            <div class="vc-empty__art" aria-hidden="true"><span></span><span></span><span></span><span class="vc-icon vc-icon--check"></span></div>
+            <p class="vc-empty__title">Nothing assigned to you</p>
+            <p class="vc-empty__text">Exceptions you own will appear here.</p>
+          </div>
+        </div>
+        <div class="vc-tabs__panel" role="tabpanel" id="p-done" aria-labelledby="t-done" tabindex="0" hidden>
+          <ul class="vc-list-group">
+            <li><div class="vc-list-item"><span class="vc-cell vc-cell--sm vc-cell--success" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span><span class="vc-list-item__text"><span>INV-20855 · Nordlicht Logistik</span><span>Resolved by the agent · 06:02</span></span></div></li>
+            <li><div class="vc-list-item"><span class="vc-cell vc-cell--sm vc-cell--success" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span><span class="vc-list-item__text"><span>INV-20841 · Kranich Software</span><span>Approved by Anna Keller · yesterday</span></span></div></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="vc-dialog vc-dialog--drawer" id="new-rule" aria-labelledby="new-rule-title">
+    <form method="dialog" style="display: contents">
+      <header class="vc-dialog__header">
+        <h2 class="vc-dialog__title" id="new-rule-title">New matching rule</h2>
+        <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+      </header>
+      <div class="vc-dialog__body vc-stack">
+        <div class="vc-field">
+          <label class="vc-label" for="rule-name">Name</label>
+          <input class="vc-input" id="rule-name" placeholder="e.g. Freight within 2 %">
+        </div>
+        <div class="vc-field">
+          <label class="vc-label" for="rule-tol">Price tolerance</label>
+          <div class="vc-slider-field"><input class="vc-slider" id="rule-tol" type="range" min="0" max="10" step="0.5" value="2"><output for="rule-tol">2</output></div>
+          <p class="vc-help">Percent above the purchase order price that is accepted automatically.</p>
+        </div>
+        <fieldset class="vc-fieldset">
+          <legend>Applies to</legend>
+          <label class="vc-radio"><input type="radio" name="rule-scope" checked> All suppliers</label>
+          <label class="vc-radio"><input type="radio" name="rule-scope"> Preferred suppliers only</label>
+        </fieldset>
+        <label class="vc-switch"><input type="checkbox" role="switch" checked> Let the agent suggest exceptions</label>
+      </div>
+      <footer class="vc-dialog__footer">
+        <button type="button" class="vc-button vc-button--ghost" data-vc-close>Cancel</button>
+        <button type="submit" class="vc-button" onclick="Vici.toast({title:'Rule created',message:'It applies from the next agent run.',tone:'success'})">Create rule</button>
+      </footer>
+    </form>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "vici-design",
+  "version": "1.0.0",
+  "description": "Vici — a personal design system for prototypes and websites: hexagons instead of circles, merlot #250010 with pastel families, light and dark themes.",
+  "private": true,
+  "type": "module",
+  "author": "Victor Pflüger",
+  "homepage": "https://github.com/VictorPflueger/ViciDesign",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VictorPflueger/ViciDesign.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "palette": "node scripts/palette.mjs --write && node scripts/build.mjs",
+    "check": "node scripts/check-tokens.mjs && node scripts/build.mjs --check && node scripts/check-hex.mjs && node scripts/check-fonts.mjs && node scripts/check-docs.mjs && node scripts/check-logo.mjs && node scripts/check-integrations.mjs",
+    "check:render": "node scripts/check-render.mjs"
+  }
+}

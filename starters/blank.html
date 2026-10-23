@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New prototype</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <!-- Vici: point these lines at your copy of dist/, or use
+       https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v1.0.0/dist/vici.min.css and …/dist/vici.js -->
+  <link rel="stylesheet" href="../dist/vici.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+</head>
+<body>
+  <main class="vc-container vc-section vc-stack vc-stack--lg">
+    <header class="vc-stack vc-stack--sm">
+      <p class="vc-eyebrow">Prototype</p>
+      <h1 style="margin:0">A blank page, already on brand</h1>
+      <p class="vc-lead" style="margin:0">Everything on this page is plain HTML plus a handful of Vici classes.</p>
+    </header>
+    <div class="vc-cluster">
+      <button type="button" class="vc-button">Primary action</button>
+      <button type="button" class="vc-button vc-button--secondary">Secondary</button>
+      <button type="button" class="vc-icon-button vc-icon-button--soft" data-vc-theme-toggle aria-label="Switch theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+    </div>
+  </main>
+</body>
+</html>

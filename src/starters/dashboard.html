@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Operations dashboard · Vici starter</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="{{root}}assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{root}}dist/vici.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="{{root}}dist/vici.js" defer></script>
+  <style>
+    .dash-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--vc-space-4); padding-block: var(--vc-space-8) var(--vc-space-6); }
+    .dash-head h1 { margin: 0; font-size: var(--vc-font-size-4xl); }
+    .dash-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--vc-space-5); }
+    .dash-grid > * { grid-column: span 12; }
+    @media (min-width: 1024px) {
+      .span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-5 { grid-column: span 5; }
+      .span-6 { grid-column: span 6; } .span-7 { grid-column: span 7; } .span-8 { grid-column: span 8; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) { .span-3 { grid-column: span 6; } }
+  </style>
+</head>
+<body>
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header">
+    <div class="vc-header__inner">
+      <a class="vc-header__brand" href="#"><span class="vc-cell vc-cell--sm vc-cell--solid" aria-hidden="true"><span class="vc-icon vc-icon--chart-line"></span></span>Pulse</a>
+      <nav class="vc-header__nav" aria-label="Main">
+        <a href="#" aria-current="page">Overview</a>
+        <a href="#">Procurement</a>
+        <a href="#">Agents</a>
+      </nav>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+        <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="vc-container vc-container--wide" tabindex="-1" style="padding-bottom: var(--vc-space-16)">
+    <div class="dash-head">
+      <div>
+        <p class="vc-eyebrow">Operations · Q3 2026</p>
+        <h1>Overview</h1>
+      </div>
+      <div class="vc-cluster">
+        <div class="vc-segmented" role="radiogroup" aria-label="Period">
+          <label><input type="radio" name="period"><span>Month</span></label>
+          <label><input type="radio" name="period" checked><span>Quarter</span></label>
+          <label><input type="radio" name="period"><span>Year</span></label>
+        </div>
+        <button type="button" class="vc-button vc-button--outline"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Export</button>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <article class="vc-stat span-3">
+        <p class="vc-stat__label"><span class="vc-icon vc-icon--trend-up" aria-hidden="true"></span>Savings identified</p>
+        <p class="vc-stat__value">€ 2.41<span class="vc-stat__unit">M</span></p>
+        <p class="vc-stat__delta vc-stat__delta--up"><span class="vc-icon vc-icon--arrow-up" aria-hidden="true"></span>+18.2 %</p>
+        <!-- @chart sparkline up 1 -->
+      </article>
+      <article class="vc-stat span-3">
+        <p class="vc-stat__label"><span class="vc-icon vc-icon--clock" aria-hidden="true"></span>Median cycle time</p>
+        <p class="vc-stat__value">3.6<span class="vc-stat__unit">days</span></p>
+        <p class="vc-stat__delta vc-stat__delta--up"><span class="vc-icon vc-icon--arrow-down" aria-hidden="true"></span>−1.2 days</p>
+        <!-- @chart sparkline down 2 -->
+      </article>
+      <article class="vc-stat span-3">
+        <p class="vc-stat__label"><span class="vc-icon vc-icon--warning" aria-hidden="true"></span>Open exceptions</p>
+        <p class="vc-stat__value">128</p>
+        <p class="vc-stat__delta vc-stat__delta--down"><span class="vc-icon vc-icon--arrow-up" aria-hidden="true"></span>+23</p>
+        <!-- @chart sparkline wave 3 -->
+      </article>
+      <article class="vc-stat span-3">
+        <p class="vc-stat__label"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Agent accuracy</p>
+        <div class="vc-cluster" style="justify-content: space-between">
+          <p class="vc-stat__value" style="margin:0">94.1<span class="vc-stat__unit">%</span></p>
+          <span class="vc-progress-hex vc-progress-hex--sm" role="progressbar" aria-label="Agent accuracy" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="--value: 94">94</span>
+        </div>
+        <p class="vc-stat__delta"><span class="vc-icon vc-icon--minus" aria-hidden="true"></span>stable</p>
+      </article>
+
+      <div class="span-7"><!-- @chart lines --></div>
+      <div class="span-5"><!-- @chart waffle --></div>
+      <div class="span-6"><!-- @chart bars --></div>
+      <div class="span-6"><!-- @chart diverging --></div>
+
+      <section class="span-8" aria-labelledby="suppliers-title">
+        <h2 id="suppliers-title" class="vc-h5" style="margin-bottom: var(--vc-space-3)">Top suppliers</h2>
+        <div class="vc-table-wrap">
+          <table class="vc-table vc-table--compact" data-vc-sortable>
+            <thead><tr><th scope="col"><button type="button" class="vc-table__sort">Supplier</button></th><th scope="col" class="vc-num" aria-sort="descending"><button type="button" class="vc-table__sort">Spend (€ k)</button></th><th scope="col" class="vc-num"><button type="button" class="vc-table__sort">Δ</button></th><th scope="col">Risk</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Nordlicht Logistik</th><td class="vc-num">4,820</td><td class="vc-num" data-value="12.4">+12.4 %</td><td><span class="vc-tag vc-tag--sm vc-tag--success">Low</span></td></tr>
+              <tr><th scope="row">Rheinwerk Components</th><td class="vc-num">3,915</td><td class="vc-num" data-value="-3.1">−3.1 %</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Medium</span></td></tr>
+              <tr><th scope="row">Alpenglanz Services</th><td class="vc-num">2,640</td><td class="vc-num" data-value="5.8">+5.8 %</td><td><span class="vc-tag vc-tag--sm vc-tag--success">Low</span></td></tr>
+              <tr><th scope="row">Kranich Software</th><td class="vc-num">1,980</td><td class="vc-num" data-value="21">+21.0 %</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Medium</span></td></tr>
+              <tr><th scope="row">Elbufer Facility</th><td class="vc-num">1,204</td><td class="vc-num" data-value="-11.6">−11.6 %</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">High</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="span-4" aria-labelledby="agents-title">
+        <h2 id="agents-title" class="vc-h5" style="margin-bottom: var(--vc-space-3)">Agent runs</h2>
+        <div class="vc-card">
+          <div class="vc-card__body vc-stack">
+            <div class="vc-progress-field"><span id="run-1">Invoice matching</span><span class="vc-progress-field__value">100 %</span><div class="vc-progress vc-progress--success" role="progressbar" aria-labelledby="run-1" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><span class="vc-progress__bar"></span></div></div>
+            <div class="vc-progress-field"><span id="run-2">Contract extraction</span><span class="vc-progress-field__value">62 %</span><div class="vc-progress" role="progressbar" aria-labelledby="run-2" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: 62"><span class="vc-progress__bar"></span></div></div>
+            <div class="vc-progress-field"><span id="run-3">Supplier risk scan</span><span class="vc-progress-field__value"><span class="vc-spinner vc-spinner--sm" aria-hidden="true"></span> queued</span><div class="vc-progress vc-progress--indeterminate" role="progressbar" aria-labelledby="run-3"><span class="vc-progress__bar"></span></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

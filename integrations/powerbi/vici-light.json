@@ -1,0 +1,51 @@
+{
+  "name": "Vici Light",
+  "dataColors": [
+    "#5c1230",
+    "#006d70",
+    "#ae682d",
+    "#25476e",
+    "#8d6aab",
+    "#5c4000",
+    "#8e7f80",
+    "#5b4b4e"
+  ],
+  "foreground": "#250010",
+  "foregroundNeutralSecondary": "#5b4b4e",
+  "foregroundNeutralTertiary": "#716163",
+  "background": "#ffffff",
+  "backgroundLight": "#f3ebe7",
+  "backgroundNeutral": "#d6c9c6",
+  "tableAccent": "#8f2f42",
+  "good": "#396c46",
+  "neutral": "#e2cfa0",
+  "bad": "#954238",
+  "maximum": "#250010",
+  "center": "#c77d74",
+  "minimum": "#ffe5e7",
+  "null": "#8e7f80",
+  "hyperlink": "#8f2f42",
+  "visitedHyperlink": "#8f2f42",
+  "textClasses": {
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#250010"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#250010"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#250010"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#5b4b4e"
+    }
+  }
+}

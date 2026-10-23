@@ -1,0 +1,109 @@
+<!--
+title: Colour
+section: Guidelines
+order: 2
+icon: drop
+layout: wide
+description: The merlot base colour, eight pastel families, colour coding rules, semantic tokens for light and dark, and measured contrast ratios.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Guidelines</p>
+  <h1>Colour</h1>
+  <p class="vc-lead">One deep base colour, eight pastel families and a set of linen neutrals. All ramps are generated in OKLCH, so a step number means the same visual weight in every hue. Every text and UI pairing is checked against WCAG 2.2 AA on each build.</p>
+</header>
+
+<h2>The base colour</h2>
+<div class="vc-grid vc-grid--2" style="align-items: stretch">
+  <div style="display:grid;align-content:end;min-height:13rem;padding:var(--vc-space-6);border-radius:var(--vc-radius-lg);border:1px solid var(--vc-border);background:#250010;color:#f3ebe7">
+    <p class="vc-eyebrow" style="color:#f4b9bb">Merlot 950 · base</p>
+    <p class="vc-h2" style="margin:0;color:#fbf7f5">#250010</p>
+    <p style="margin:var(--vc-space-2) 0 0;color:#d6c9c6;font-size:var(--vc-font-size-sm)">oklch(0.172 0.070 357) · rgb(37 0 16)</p>
+  </div>
+  <div>
+    <p>A near-black wine. It does three jobs:</p>
+    <ul>
+      <li><strong>Ink</strong> in the light theme: headings, body text and icons (contrast <!-- @ratio text bg light --> on the linen canvas).</li>
+      <li><strong>Action</strong>: the fill of primary buttons, checked controls and the selected page in pagination.</li>
+      <li><strong>Canvas</strong> in the dark theme: the page background itself, with lighter wine surfaces stacked on top.</li>
+    </ul>
+    <p>The ramp around it is anchored on five hand-picked mood colours: <code>#250010</code>, <code>#5c1230</code>, <code>#8f2f42</code>, <code>#c77d74</code> and the linen <code>#f3ebe7</code>. They are steps 950, 800, 700, 500 and neutral-100. The steps in between are interpolated in OKLCH.</p>
+  </div>
+</div>
+
+<h2>Palette</h2>
+<p>Click a swatch to copy its hex value. Steps 100–300 of every chromatic family are pastels: OKLCH lightness of at least 0.83 and chroma between 0.015 and 0.10, which the build verifies.</p>
+<!-- @palette -->
+
+<h2>Colour coding</h2>
+<p>Colour carries meaning in Vici. Use each family for its own job, and the interface becomes readable at a glance.</p>
+<!-- @status-colors -->
+<h3>Rules</h3>
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage">
+      <span class="vc-tag vc-tag--success"><span class="vc-icon vc-icon--check" aria-hidden="true"></span>Approved</span>
+      <span class="vc-tag vc-tag--danger"><span class="vc-icon vc-icon--close" aria-hidden="true"></span>Rejected</span>
+      <span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI summary</span>
+    </div>
+    <p>Pair status colours with an icon and a word. Meaning must survive greyscale, colour blindness and a projector.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage">
+      <span class="vc-badge vc-badge--dot vc-badge--success"></span>
+      <span class="vc-badge vc-badge--dot vc-badge--danger"></span>
+      <span class="vc-badge vc-badge--dot vc-badge--warning"></span>
+    </div>
+    <p>Don't let colour alone tell the story. Three coloured dots mean nothing to a reader who can't tell them apart.</p>
+  </div>
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage">
+      <span class="vc-tag vc-tag--fjord">Procurement</span>
+      <span class="vc-tag vc-tag--teal">Logistics</span>
+      <span class="vc-tag vc-tag--apricot">Finance</span>
+    </div>
+    <p>For categories such as departments, projects or topics, prefer teal, apricot, fjord and blush, then lilac and honey. Coral and sage stay reserved for status.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage">
+      <span class="vc-tag vc-tag--danger">Marketing</span>
+      <span class="vc-tag vc-tag--success">Sales</span>
+    </div>
+    <p>Don't use coral or sage for categories next to status information. A red “Marketing” label reads as an error.</p>
+  </div>
+</div>
+<ul>
+  <li><strong>Merlot</strong> is the brand and the primary action. Use one solid merlot button per view.</li>
+  <li><strong>Lilac</strong> marks anything an AI generated, suggested or summarised, plus experimental features.</li>
+  <li><strong>Coral</strong> is reserved for errors, destructive actions and negative trends. It sits further towards orange than merlot, so the two are never confused.</li>
+  <li><strong>Honey</strong> marks warnings and pending states. It is also the colour of filled rating cells.</li>
+  <li><strong>Sage</strong> marks success, completion and positive trends.</li>
+  <li><strong>Fjord</strong> carries neutral information. Teal and apricot are for categories and data only.</li>
+</ul>
+
+<h2>Proportions</h2>
+<p>A Vici screen is mostly paper. As a rule of thumb, use about 70&nbsp;% linen neutrals, 20&nbsp;% merlot (text and one strong action) and 10&nbsp;% pastel for meaning and highlights. Pastels lose their effect when they cover everything.</p>
+<div class="doc-palette-band" role="img" aria-label="Proportions: 70 percent neutrals, 20 percent merlot, 10 percent pastels" style="height:2.75rem">
+  <span style="flex:70;background:var(--vc-neutral-100)"></span><span style="flex:20;background:var(--vc-merlot-950)"></span><span style="flex:4;background:var(--vc-merlot-200)"></span><span style="flex:3;background:var(--vc-lilac-200)"></span><span style="flex:3;background:var(--vc-sage-200)"></span>
+</div>
+
+<h2>Semantic tokens</h2>
+<p>Components never reference a ramp directly. They use semantic tokens, which point to different primitives in each theme. When you write your own CSS, use these too.</p>
+<!-- @semantic-colors -->
+
+<h2>Contrast</h2>
+<p>Measured by the build from the actual token values. Normal text needs 4.5:1, large text and UI boundaries (input borders, focus rings, chart marks) need 3:1. Body text in Vici exceeds 7:1 (AAA) in both themes.</p>
+<!-- @contrast-table -->
+
+<h2>The dark theme</h2>
+<p>Dark mode isn't an inverted light mode. The base colour becomes the canvas, and elevation is shown by lighter wine surfaces rather than by shadows. Text turns to linen. Primary buttons switch to a pastel blush fill with merlot text, which keeps the brand recognisable at night. Status backgrounds become the deepest shade of their family, a dark green or a dark blue, with pastel text. Alerts stay calm instead of glaring, and the colour code still reads at a glance.</p>
+<!-- demo split center -->
+<button class="vc-button">Primary</button>
+<button class="vc-button vc-button--secondary">Secondary</button>
+<span class="vc-tag vc-tag--info">Info</span>
+<span class="vc-tag vc-tag--warning">Pending</span>
+<span class="vc-avatar vc-avatar--sm">AB</span>
+<!-- /demo -->

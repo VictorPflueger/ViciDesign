@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Layout primitives — containers, stacks, clusters, grids, honeycomb.
+   ========================================================================== */
+
+@layer vici.layout {
+  .vc-container {
+    --_max: var(--vc-container-content);
+    width: 100%;
+    max-width: calc(var(--_max) + 2 * var(--vc-gutter, clamp(1rem, 4vw, 2.5rem)));
+    margin-inline: auto;
+    padding-inline: var(--vc-gutter, clamp(1rem, 4vw, 2.5rem));
+  }
+  .vc-container--narrow { --_max: var(--vc-container-narrow); }
+  .vc-container--wide { --_max: var(--vc-container-wide); }
+  .vc-container--prose { --_max: var(--vc-container-prose); }
+
+  .vc-section {
+    padding-block: var(--vc-section-space, clamp(3rem, 7vw, 6rem));
+  }
+
+  /* Vertical rhythm */
+  .vc-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vc-stack-gap, var(--vc-space-4));
+  }
+  .vc-stack--xs { --vc-stack-gap: var(--vc-space-1); }
+  .vc-stack--sm { --vc-stack-gap: var(--vc-space-2); }
+  .vc-stack--lg { --vc-stack-gap: var(--vc-space-8); }
+  .vc-stack--xl { --vc-stack-gap: var(--vc-space-12); }
+  .vc-stack > * { margin-block: 0; }
+
+  .vc-flow > * + * {
+    margin-top: var(--vc-flow-space, 1em);
+  }
+  .vc-flow > * { margin-bottom: 0; }
+
+  /* Horizontal groups that wrap */
+  .vc-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--vc-cluster-gap, var(--vc-space-3));
+  }
+  .vc-cluster--sm { --vc-cluster-gap: var(--vc-space-2); }
+  .vc-cluster--lg { --vc-cluster-gap: var(--vc-space-6); }
+  .vc-cluster--between { justify-content: space-between; }
+  .vc-cluster--end { justify-content: flex-end; }
+  .vc-cluster--start { align-items: flex-start; }
+
+  /* Responsive auto grid: as many columns as fit, never narrower than --vc-grid-min */
+  .vc-grid {
+    display: grid;
+    gap: var(--vc-grid-gap, var(--vc-space-6));
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--vc-grid-min, 16rem), 100%), 1fr));
+  }
+  .vc-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vc-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .vc-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 1023px) {
+    .vc-grid--3,
+    .vc-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 639px) {
+    .vc-grid--2,
+    .vc-grid--3,
+    .vc-grid--4 { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* 12-column grid */
+  .vc-grid-12 {
+    display: grid;
+    gap: var(--vc-grid-gap, var(--vc-space-6));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .vc-grid-12 > * { grid-column: span 12; }
+  @media (min-width: 768px) {
+    .vc-span-1 { grid-column: span 1; }
+    .vc-span-2 { grid-column: span 2; }
+    .vc-span-3 { grid-column: span 3; }
+    .vc-span-4 { grid-column: span 4; }
+    .vc-span-5 { grid-column: span 5; }
+    .vc-span-6 { grid-column: span 6; }
+    .vc-span-7 { grid-column: span 7; }
+    .vc-span-8 { grid-column: span 8; }
+    .vc-span-9 { grid-column: span 9; }
+    .vc-span-10 { grid-column: span 10; }
+    .vc-span-11 { grid-column: span 11; }
+    .vc-span-12 { grid-column: span 12; }
+  }
+
+  /* Two panes: fixed-width side + fluid main; stacks below --vc-split-at */
+  .vc-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vc-split-gap, var(--vc-space-8));
+  }
+  .vc-split > :first-child {
+    flex: 1 1 var(--vc-split-side, 18rem);
+  }
+  .vc-split > :last-child {
+    flex: 999 1 0;
+    min-width: min(var(--vc-split-min, 55%), 100%);
+  }
+
+  /* Center anything */
+  .vc-center {
+    display: grid;
+    place-items: center;
+  }
+
+  /* Honeycomb: tessellated flat-top hexagon tiles.
+     Columns overlap by ¼ width; every second column drops by ½ height. */
+  .vc-honeycomb {
+    --_h: var(--vc-honeycomb-cell, 9rem);
+    --_w: calc(var(--_h) * 1.1547);
+    --_gap: var(--vc-honeycomb-gap, 6px);
+    --_cols: var(--vc-honeycomb-cols, 4);
+    display: grid;
+    grid-template-columns: repeat(var(--_cols), calc(var(--_w) * 0.75 + var(--_gap) * 0.866));
+    grid-auto-rows: calc(var(--_h) + var(--_gap));
+    padding-bottom: calc(var(--_h) / 2 + var(--_gap) / 2);
+    padding-right: calc(var(--_w) * 0.25);
+    margin: 0;
+    list-style: none;
+  }
+  .vc-honeycomb > * {
+    width: var(--_w);
+    height: var(--_h);
+    margin: 0;
+  }
+  .vc-honeycomb > :nth-child(2n) {
+    translate: 0 calc(50% + var(--_gap) / 2);
+  }
+  /* Phones: two columns of slightly smaller cells by default. Small labels can keep four
+     columns with --vc-honeycomb-cols-sm: 4 and a cell of about 5rem. */
+  @media (max-width: 767px) {
+    .vc-honeycomb {
+      --_cols: var(--vc-honeycomb-cols-sm, 2);
+      --_h: var(--vc-honeycomb-cell-sm, 7.5rem);
+    }
+  }
+}

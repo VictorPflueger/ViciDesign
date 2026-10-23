@@ -1,0 +1,140 @@
+<!--
+title: Data display
+nav: Data display
+section: Components
+order: 7
+icon: chart-bar
+layout: wide
+description: Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; legends with hexagon swatches; chart frames.
+-->
+<header class="doc-hero">
+  <p class="vc-eyebrow">Components</p>
+  <h1>Data display</h1>
+  <p class="vc-lead">Components for numbers. Tables align figures on tabular digits, stat cards put a key number up front with its trend, and every series swatch is a small hexagon.</p>
+</header>
+
+<h2>Table</h2>
+<p>Wrap tables in <code>.vc-table-wrap</code> so they scroll sideways on small screens instead of breaking the layout. Right-align numeric columns with <code>.vc-num</code>. Add <code>data-vc-sortable</code> and a <code>.vc-table__sort</code> button in each sortable header, and <code>vici.js</code> sorts the rows and sets <code>aria-sort</code>. Cells can carry a <code>data-value</code> for exact sorting.</p>
+<!-- demo block -->
+<div class="vc-table-wrap">
+  <table class="vc-table" data-vc-sortable>
+    <caption>Top suppliers by spend, 2026 year to date</caption>
+    <thead>
+      <tr>
+        <th scope="col" aria-sort="none"><button type="button" class="vc-table__sort">Supplier</button></th>
+        <th scope="col">Category</th>
+        <th scope="col" class="vc-num" aria-sort="descending"><button type="button" class="vc-table__sort">Spend (€ k)</button></th>
+        <th scope="col" class="vc-num"><button type="button" class="vc-table__sort">Δ vs. 2025</button></th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Nordlicht Logistik</th><td><span class="vc-tag vc-tag--sm vc-tag--teal">Logistics</span></td><td class="vc-num">4,820</td><td class="vc-num" data-value="12.4">+12.4 %</td><td><span class="vc-tag vc-tag--sm vc-tag--success">Preferred</span></td></tr>
+      <tr aria-selected="true"><th scope="row">Rheinwerk Components</th><td><span class="vc-tag vc-tag--sm vc-tag--fjord">Hardware</span></td><td class="vc-num">3,915</td><td class="vc-num" data-value="-3.1">−3.1 %</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Review</span></td></tr>
+      <tr><th scope="row">Alpenglanz Services</th><td><span class="vc-tag vc-tag--sm vc-tag--apricot">Services</span></td><td class="vc-num">2,640</td><td class="vc-num" data-value="5.8">+5.8 %</td><td><span class="vc-tag vc-tag--sm vc-tag--success">Preferred</span></td></tr>
+      <tr><th scope="row">Kranich Software</th><td><span class="vc-tag vc-tag--sm vc-tag--lilac">Software</span></td><td class="vc-num">1,980</td><td class="vc-num" data-value="21">+21.0 %</td><td><span class="vc-tag vc-tag--sm">Standard</span></td></tr>
+      <tr><th scope="row">Elbufer Facility</th><td><span class="vc-tag vc-tag--sm vc-tag--honey">Facility</span></td><td class="vc-num">1,204</td><td class="vc-num" data-value="-11.6">−11.6 %</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">At risk</span></td></tr>
+    </tbody>
+    <tfoot>
+      <tr><th scope="row">Total</th><td></td><td class="vc-num">14,559</td><td class="vc-num">+4.9 %</td><td></td></tr>
+    </tfoot>
+  </table>
+</div>
+<!-- /demo -->
+
+<h3>Compact and striped</h3>
+<!-- demo block -->
+<div class="vc-table-wrap vc-table-wrap--scroll" style="--vc-table-height: 13rem">
+  <table class="vc-table vc-table--compact vc-table--striped">
+    <thead><tr><th scope="col">Run</th><th scope="col">Model</th><th scope="col" class="vc-num">Precision</th><th scope="col" class="vc-num">Recall</th><th scope="col" class="vc-num">Latency (ms)</th></tr></thead>
+    <tbody>
+      <tr><td class="vc-mono">run-0412</td><td>baseline</td><td class="vc-num">0.812</td><td class="vc-num">0.774</td><td class="vc-num">142</td></tr>
+      <tr><td class="vc-mono">run-0413</td><td>+ retrieval</td><td class="vc-num">0.861</td><td class="vc-num">0.809</td><td class="vc-num">188</td></tr>
+      <tr><td class="vc-mono">run-0414</td><td>+ reranker</td><td class="vc-num">0.884</td><td class="vc-num">0.823</td><td class="vc-num">231</td></tr>
+      <tr><td class="vc-mono">run-0415</td><td>+ guardrails</td><td class="vc-num">0.879</td><td class="vc-num">0.818</td><td class="vc-num">246</td></tr>
+      <tr><td class="vc-mono">run-0416</td><td>distilled</td><td class="vc-num">0.871</td><td class="vc-num">0.815</td><td class="vc-num">96</td></tr>
+      <tr><td class="vc-mono">run-0417</td><td>distilled + cache</td><td class="vc-num">0.871</td><td class="vc-num">0.815</td><td class="vc-num">41</td></tr>
+      <tr><td class="vc-mono">run-0418</td><td>final</td><td class="vc-num">0.889</td><td class="vc-num">0.831</td><td class="vc-num">58</td></tr>
+    </tbody>
+  </table>
+</div>
+<!-- /demo -->
+<p>Modifiers: <code>--compact</code>, <code>--striped</code>. <code>.vc-table-wrap--scroll</code> limits the height (<code>--vc-table-height</code>) and keeps the header sticky. Mark selected rows with <code>aria-selected="true"</code>.</p>
+
+<h2>Stat card</h2>
+<p>A KPI card: a label, one big number in the display face with tabular figures, a trend in a hex capsule, and an optional sparkline. Trends combine colour, an arrow and a sign.</p>
+<!-- demo block -->
+<div class="vc-grid" style="--vc-grid-min: 13rem">
+  <article class="vc-stat">
+    <p class="vc-stat__label"><span class="vc-icon vc-icon--trend-up" aria-hidden="true"></span>Savings identified</p>
+    <p class="vc-stat__value">€ 2.41<span class="vc-stat__unit">M</span></p>
+    <p class="vc-stat__delta vc-stat__delta--up"><span class="vc-icon vc-icon--arrow-up" aria-hidden="true"></span>+18.2 %</p>
+    <p class="vc-stat__note">vs. previous quarter</p>
+    <!-- @chart sparkline up 1 -->
+  </article>
+  <article class="vc-stat">
+    <p class="vc-stat__label"><span class="vc-icon vc-icon--clock" aria-hidden="true"></span>Median cycle time</p>
+    <p class="vc-stat__value">3.6<span class="vc-stat__unit">days</span></p>
+    <p class="vc-stat__delta vc-stat__delta--up"><span class="vc-icon vc-icon--arrow-down" aria-hidden="true"></span>−1.2 days</p>
+    <p class="vc-stat__note">shorter is better</p>
+    <!-- @chart sparkline down 2 -->
+  </article>
+  <article class="vc-stat">
+    <p class="vc-stat__label"><span class="vc-icon vc-icon--warning" aria-hidden="true"></span>Open exceptions</p>
+    <p class="vc-stat__value">128</p>
+    <p class="vc-stat__delta vc-stat__delta--down"><span class="vc-icon vc-icon--arrow-up" aria-hidden="true"></span>+23</p>
+    <p class="vc-stat__note">since Monday</p>
+    <!-- @chart sparkline wave 3 -->
+  </article>
+  <article class="vc-stat">
+    <p class="vc-stat__label"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Agent accuracy</p>
+    <p class="vc-stat__value">94.1<span class="vc-stat__unit">%</span></p>
+    <p class="vc-stat__delta"><span class="vc-icon vc-icon--minus" aria-hidden="true"></span>±0.0</p>
+    <p class="vc-stat__note">stable for 6 weeks</p>
+    <!-- @chart sparkline flat 4 -->
+  </article>
+</div>
+<!-- /demo -->
+<p>Colour follows meaning, not direction. Shorter cycle times are good, so a falling number gets the sage <code>--up</code> tone, and the arrow still shows the direction.</p>
+
+<h2>Legend</h2>
+<p>Series swatches are hexagons that follow the categorical order automatically, or take any colour through <code>--vc-series</code>.</p>
+<!-- demo -->
+<ul class="vc-legend">
+  <li>Hardware</li>
+  <li>Services</li>
+  <li>Software</li>
+  <li>Consulting</li>
+  <li style="--vc-series: var(--vc-data-7)">Other</li>
+</ul>
+<!-- /demo -->
+
+<h2>Chart frame</h2>
+<p><code>.vc-chart</code> is a <code>&lt;figure&gt;</code> with a title, a subtitle, the chart, a legend and a source line. Vici doesn't include a charting library. Draw with SVG, D3, Observable Plot or Vega-Lite and use the <code>--vc-data-*</code> tokens for colour. Recommended chart types and the palettes are on <a href="{{root}}guidelines/data-viz.html">Data visualisation</a>.</p>
+<!-- @chart bars -->
+
+<h3>Anatomy</h3>
+<p>The frame around a chart you draw yourself. Give the SVG a <code>width</code> and <code>height</code> (the size you drew it at) and wrap it in <code>.vc-chart__plot</code>: in narrow columns it scrolls sideways instead of shrinking the labels below a readable size. Label bars directly where you can, and add a <code>.vc-legend</code> only when there are several series.</p>
+<!-- demo block -->
+<figure class="vc-chart">
+  <figcaption>
+    <p class="vc-chart__title">Tickets by channel</p>
+    <p class="vc-chart__subtitle">Share of this month’s volume</p>
+  </figcaption>
+  <div class="vc-chart__plot">
+    <svg viewBox="0 0 560 104" width="560" height="104" role="img" aria-label="Bar chart: agent 64 percent, assistant 22 percent, manual 14 percent.">
+      <line class="vc-chart__grid" x1="96" x2="96" y1="0" y2="104"/>
+      <text class="vc-chart__axis" x="88" y="23" text-anchor="end">Agent</text>
+      <rect x="96" y="8" width="256" height="22" rx="2" style="fill: var(--vc-data-1)"/>
+      <text class="vc-chart__axis" x="360" y="23" style="fill: var(--vc-text)">64 %</text>
+      <text class="vc-chart__axis" x="88" y="57" text-anchor="end">Assistant</text>
+      <rect x="96" y="42" width="88" height="22" rx="2" style="fill: var(--vc-data-2)"/>
+      <text class="vc-chart__axis" x="192" y="57" style="fill: var(--vc-text)">22 %</text>
+      <text class="vc-chart__axis" x="88" y="91" text-anchor="end">Manual</text>
+      <rect x="96" y="76" width="56" height="22" rx="2" style="fill: var(--vc-data-7)"/>
+      <text class="vc-chart__axis" x="160" y="91" style="fill: var(--vc-text)">14 %</text>
+    </svg>
+  </div>
+  <p class="vc-chart__source">Source: help desk export, sample data</p>
+</figure>
+<!-- /demo -->
