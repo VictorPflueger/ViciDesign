@@ -18,3 +18,5 @@ First release.
 - Starters: app prototype, dashboard, personal landing page, blank page.
 - Integrations: Streamlit, Power BI, Python (matplotlib/plotly), Tailwind CSS v4.
 - Checks: contrast, colour-blind separation of chart colours, hexagon rule, fonts, links, logos, exports, build freshness.
+- Accessibility: Windows contrast themes (forced colours), rem-based controls that grow with the reader's text size,
+  reflow at 320 px, keyboard-scrollable tables and charts, tooltips in the top layer, toasts that work inside dialogs.

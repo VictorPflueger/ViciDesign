@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Renders every documentation page and starter in Chromium (light and dark at 1280 px, light at
-// 375 px) and fails on console errors, failed requests, horizontal overflow on phones, elements
+// 375 px and 320 px) and fails on console errors, failed requests, horizontal overflow on phones, elements
 // that render as circles or pills, hexagon components without a polygon clip-path, or fonts that
 // did not load. Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
 import { createRequire } from 'node:module';
@@ -9,6 +9,8 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, sitePages } from './lib/files.mjs';
 
+// Finds Playwright locally, through PLAYWRIGHT_MODULE or in the global npm folder
+// (the same helper as in VictorPflueger/PROC-Rebate-Hunter's test harness).
 function loadPlaywright() {
   const require = createRequire(import.meta.url);
   const candidates = ['playwright', process.env.PLAYWRIGHT_MODULE].filter(Boolean);
@@ -43,6 +45,7 @@ const runs = [
   { width: 1280, scheme: 'light' },
   { width: 1280, scheme: 'dark' },
   { width: 375, scheme: 'light' },
+  { width: 320, scheme: 'light' },   // WCAG 1.4.10 reflow: 320 CSS px without sideways scrolling
 ];
 
 for (const run of runs) {
@@ -111,7 +114,7 @@ for (const run of runs) {
       return out;
     }, HEX_PARTS);
 
-    if (run.width === 375) for (const o of result.overflow) failures.push(`${label}: horizontal overflow ${o}`);
+    if (run.width <= 375) for (const o of result.overflow) failures.push(`${label}: horizontal overflow ${o}`);
     for (const r of result.round.slice(0, 3)) failures.push(`${label}: renders round: ${r}`);
     for (const n of result.notHex.slice(0, 3)) failures.push(`${label}: not a hexagon: ${n}`);
     if (!result.fonts.display || !result.fonts.text) failures.push(`${label}: fonts not loaded ${JSON.stringify(result.fonts)}`);
@@ -130,6 +133,6 @@ if (hexChecked === 0) {
   console.error('No hexagon components found on any page — the check could not run.');
   process.exit(1);
 }
-console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px): no console errors, no failed requests, no phone overflow.`);
+console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow.`);
 console.log(`${hexChecked} rendered hexagon parts compute a polygon clip-path; nothing renders as a circle or pill; fonts loaded.`);
 console.log('RENDER OK');

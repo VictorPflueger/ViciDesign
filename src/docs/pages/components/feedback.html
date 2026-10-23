@@ -75,7 +75,7 @@ description: Alerts and banners, callouts, toasts, hex-capsule progress bars, he
 <!-- /demo -->
 
 <h2>Toast</h2>
-<p>Toasts confirm that something happened, then disappear on their own (five seconds by default, paused while hovered or focused). They are announced politely through a live region. Errors use <code>role="alert"</code>. Never put the only copy of important information in a toast.</p>
+<p>Toasts confirm that something happened, then disappear on their own: five seconds by default, and two seconds after the pointer and the focus have both left them. They are announced politely through a live region. Errors use <code>role="alert"</code>. While a modal dialog is open, toasts appear inside it, so they stay readable and clickable. Never put the only copy of important information in a toast.</p>
 <!-- demo -->
 <button type="button" class="vc-button vc-button--secondary" onclick="Vici.toast({ title: 'Report saved', message: 'Find it under Reports › Drafts.', tone: 'success' })">Success toast</button>
 <button type="button" class="vc-button vc-button--secondary" onclick="Vici.toast({ title: 'Export failed', message: 'The file is larger than 20 MB.', tone: 'danger' })">Error toast</button>
@@ -84,7 +84,11 @@ description: Alerts and banners, callouts, toasts, hex-capsule progress bars, he
 <!-- /demo -->
 <pre><code>Vici.toast('Copied to clipboard');
 Vici.toast({ title: 'Report saved', message: 'Find it under Reports › Drafts.', tone: 'success', duration: 5000 });
-// tones: info · success · warning · danger · feature — duration: 0 keeps it until closed</code></pre>
+// tones: info · success · warning · danger · feature — duration: 0 keeps it until closed
+// Vici.toast() returns the toast element, or null when there is no title and no message
+
+Vici.copy('#250010', button).then((ok) =&gt; { /* true or false */ });
+// copies text; a given button gets data-vc-copied and fires a "vc:copy" event with { text, ok }</code></pre>
 
 <h3>Toast markup</h3>
 <p>Rendering toasts yourself, from a server or a framework? Put the same markup into one toast region near the end of <code>&lt;body&gt;</code>. The region stacks toasts in the bottom corner, and the close button works through <code>data-vc-dismiss</code>.</p>

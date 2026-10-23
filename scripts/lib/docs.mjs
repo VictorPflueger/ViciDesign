@@ -131,14 +131,16 @@ const hexPts = (cx, cy, r, pointy = false) =>
   }).join(' ');
 
 export const CHARTS = {
-  bars() {
+  // Charts with text are drawn at the width they are shown at (an argument, default 600),
+  // so their 11 px labels are never scaled; .vc-chart__plot scrolls when the column is narrower.
+  bars(arg) {
     const cats = ['Q1', 'Q2', 'Q3', 'Q4'];
     const series = [
       { name: 'Hardware', values: [42, 48, 45, 58] },
       { name: 'Services', values: [30, 36, 44, 52] },
       { name: 'Software', values: [18, 24, 31, 40] },
     ];
-    const W = 640, H = 260, L = 40, B = 30, T = 12, R = 8;
+    const W = Number(arg) || 600, H = 260, L = 40, B = 30, T = 12, R = 8;
     const max = 60;
     const ih = H - T - B;
     const y = (v) => T + ih - (v / max) * ih;
@@ -157,14 +159,14 @@ export const CHARTS = {
     return `<figure class="vc-chart"><figcaption><p class="vc-chart__title">Revenue by business line</p><p class="vc-chart__subtitle">€ million per quarter</p></figcaption><div class="vc-chart__plot"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Grouped bar chart: revenue per quarter for hardware, services and software. All three grow; hardware leads with 58 million in Q4.">${out}</svg></div><ul class="vc-legend">${series.map((s) => `<li>${s.name}</li>`).join('')}</ul><p class="vc-chart__source">Sample data</p></figure>`;
   },
 
-  lines() {
+  lines(arg) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const series = [
       { name: 'Agent', values: [12, 18, 21, 30, 34, 41, 47, 52, 58, 66, 71, 79] },
       { name: 'Assistant', values: [20, 22, 25, 27, 30, 31, 33, 36, 38, 39, 41, 44] },
       { name: 'Manual', values: [64, 60, 58, 55, 50, 47, 44, 40, 37, 33, 30, 26] },
     ];
-    const W = 640, H = 260, L = 40, B = 30, T = 14, R = 92;
+    const W = Number(arg) || 600, H = 260, L = 40, B = 30, T = 14, R = 92;
     const max = 80;
     const ih = H - T - B;
     const x = (i) => L + (i * (W - L - R)) / (months.length - 1);
@@ -229,12 +231,12 @@ export const CHARTS = {
     return `<figure class="vc-chart"><figcaption><p class="vc-chart__title">Density as a hexbin map</p><p class="vc-chart__subtitle">Sequential merlot ramp, light to dark = low to high</p></figcaption><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Hexagonal binning chart showing two clusters of high density on a sequential merlot scale.">${out}</svg><div class="vc-cluster vc-cluster--sm" style="gap:2px"><span class="vc-caption" style="margin-right:6px">low</span>${ramp}<span class="vc-caption" style="margin-left:6px">high</span></div></figure>`;
   },
 
-  diverging() {
+  diverging(arg) {
     const rows = [
       { name: 'North', v: 14 }, { name: 'East', v: 8 }, { name: 'Central', v: 3 },
       { name: 'South', v: -4 }, { name: 'West', v: -9 }, { name: 'Islands', v: -15 },
     ];
-    const W = 640, rowH = 30, T = 8, L = 90, R = 60;
+    const W = Number(arg) || 600, rowH = 30, T = 8, L = 90, R = 60;
     const H = T + rows.length * rowH + 22;
     const max = 20;
     const zero = L + (W - L - R) / 2;

@@ -96,5 +96,27 @@ description: The 4 px grid, spacing scale, containers, breakpoints and layout pr
 </div>
 <!-- /demo -->
 
+<h2>Utility classes</h2>
+<p>Single-purpose classes for the cases where a component would be too much. They live in the last cascade layer, so they win over component styles.</p>
+<div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+  <thead><tr><th scope="col">Classes</th><th scope="col">Effect</th></tr></thead>
+  <tbody>
+    <tr><td><code>.vc-display</code> <code>.vc-h1</code>…<code>.vc-h6</code> <code>.vc-lead</code> <code>.vc-eyebrow</code> <code>.vc-caption</code></td><td>Text styles, independent of the element (see <a href="{{root}}guidelines/typography.html#text-styles">Typography</a>)</td></tr>
+    <tr><td><code>.vc-text-xs</code> <code>-sm</code> <code>-md</code> <code>-lg</code></td><td>Font size from the type scale</td></tr>
+    <tr><td><code>.vc-text-muted</code> <code>.vc-text-subtle</code> <code>.vc-text-accent</code></td><td>Secondary, tertiary and brand-coloured text</td></tr>
+    <tr><td><code>.vc-mono</code> <code>.vc-tabular</code> <code>.vc-medium</code> <code>.vc-semibold</code></td><td>Monospace, tabular figures, weights</td></tr>
+    <tr><td><code>.vc-balance</code> <code>.vc-truncate</code> <code>.vc-nowrap</code> <code>.vc-align-center</code> <code>.vc-align-end</code></td><td>Balanced wrapping, one line with an ellipsis, no wrapping, alignment</td></tr>
+    <tr><td><code>.vc-prose</code></td><td>Long-form text: line length, rhythm, hexagon bullets</td></tr>
+    <tr><td><code>.vc-surface</code> <code>.vc-surface-subtle</code></td><td>Card and subtle backgrounds</td></tr>
+    <tr><td><code>.vc-surface-inverse</code></td><td>A section in the opposite theme: dark on a light page, light on a dark one</td></tr>
+    <tr><td><code>.vc-tint-merlot</code> … <code>.vc-tint-lilac</code></td><td>Pastel section; stays light in both themes (see <a href="{{root}}start/theming.html#pastel-sections">Theming</a>)</td></tr>
+    <tr><td><code>.vc-bg-aurora</code> <code>.vc-bg-honeycomb</code></td><td>Soft pastel wash for heroes, honeycomb line pattern</td></tr>
+    <tr><td><code>.vc-rounded</code> <code>.vc-border</code> <code>.vc-shadow-sm</code> <code>-md</code> <code>-lg</code></td><td>Radius, border and elevation</td></tr>
+    <tr><td><code>.vc-hide</code> <code>.vc-hide-mobile</code> <code>.vc-hide-desktop</code></td><td>Hide always, below 768&nbsp;px, or from 768&nbsp;px</td></tr>
+    <tr><td><code>.vc-when-light</code> <code>.vc-when-dark</code></td><td>Show only in one page theme, e.g. the moon and sun of a theme toggle</td></tr>
+    <tr><td><code>.vc-visually-hidden</code> <code>.vc-skip-link</code></td><td>Text for screen readers only; a skip link that appears on focus</td></tr>
+  </tbody>
+</table></div>
+
 <h2>Density</h2>
 <p>Components default to a comfortable density: 40&nbsp;px controls and 16–20&nbsp;px card padding. For data-heavy screens, use the small control size (<code>--sm</code> modifiers, 32&nbsp;px), <code>.vc-table--compact</code> and a <code>--vc-space-3</code> grid gap. Don't go below 32&nbsp;px for anything clickable on a touch screen. 44&nbsp;px is the comfortable minimum for touch targets.</p>

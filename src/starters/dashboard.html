@@ -15,8 +15,11 @@
     .dash-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--vc-space-5); }
     .dash-grid > * { grid-column: span 12; }
     @media (min-width: 1024px) {
-      .span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-5 { grid-column: span 5; }
-      .span-6 { grid-column: span 6; } .span-7 { grid-column: span 7; } .span-8 { grid-column: span 8; }
+      .span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-8 { grid-column: span 8; }
+    }
+    /* charts sit side by side only where they fit at the size they are drawn */
+    @media (min-width: 1200px) {
+      .span-5 { grid-column: span 5; } .span-6 { grid-column: span 6; } .span-7 { grid-column: span 7; }
     }
     @media (min-width: 640px) and (max-width: 1023px) { .span-3 { grid-column: span 6; } }
   </style>
@@ -32,7 +35,7 @@
         <a href="#">Agents</a>
       </nav>
       <div class="vc-header__actions">
-        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Switch theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Dark theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
         <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
       </div>
     </div>
@@ -82,10 +85,10 @@
         <p class="vc-stat__delta"><span class="vc-icon vc-icon--minus" aria-hidden="true"></span>stable</p>
       </article>
 
-      <div class="span-7"><!-- @chart lines --></div>
+      <div class="span-7"><!-- @chart lines 560 --></div>
       <div class="span-5"><!-- @chart waffle --></div>
-      <div class="span-6"><!-- @chart bars --></div>
-      <div class="span-6"><!-- @chart diverging --></div>
+      <div class="span-6"><!-- @chart bars 500 --></div>
+      <div class="span-6"><!-- @chart diverging 500 --></div>
 
       <section class="span-8" aria-labelledby="suppliers-title">
         <h2 id="suppliers-title" class="vc-h5" style="margin-bottom: var(--vc-space-3)">Top suppliers</h2>

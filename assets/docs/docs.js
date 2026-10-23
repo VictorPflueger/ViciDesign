@@ -27,20 +27,24 @@
     }
   });
 
-  // Copy feedback: demo buttons change their label, swatches and icons announce via a toast.
-  document.addEventListener('click', function (e) {
-    var btn = e.target instanceof Element ? e.target.closest('[data-vc-copy]') : null;
+  // Copy feedback, once vici.js reports the result: demo buttons change their label,
+  // swatches and icons confirm with a toast. A failed copy says so.
+  document.addEventListener('vc:copy', function (e) {
+    var btn = e.target instanceof Element ? e.target : null;
     if (!btn) return;
+    var ok = e.detail && e.detail.ok;
     if (btn.classList.contains('doc-demo__copy')) {
       var icon = btn.querySelector('.vc-icon');
-      btn.lastChild.textContent = 'Copied';
-      if (icon) icon.className = 'vc-icon vc-icon--check';
+      btn.lastChild.textContent = ok ? 'Copied' : 'Copy failed';
+      if (icon) icon.className = 'vc-icon vc-icon--' + (ok ? 'check' : 'warning');
       window.setTimeout(function () {
         btn.lastChild.textContent = 'Copy';
         if (icon) icon.className = 'vc-icon vc-icon--copy';
       }, 1600);
     } else if (window.Vici && (btn.classList.contains('doc-swatch') || btn.classList.contains('doc-icon'))) {
-      window.Vici.toast({ title: 'Copied', message: btn.getAttribute('data-vc-copy'), tone: 'success', duration: 2200 });
+      window.Vici.toast(ok
+        ? { title: 'Copied', message: e.detail.text, tone: 'success', duration: 2200 }
+        : { title: 'Copy failed', message: 'Your browser blocked the clipboard.', tone: 'warning', duration: 3200 });
     }
   });
 

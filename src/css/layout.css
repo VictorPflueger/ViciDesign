@@ -132,6 +132,11 @@
   .vc-honeycomb > :nth-child(2n) {
     translate: 0 calc(50% + var(--_gap) / 2);
   }
+  /* linked tiles inside list items fill their cell */
+  .vc-honeycomb > li > .vc-tile {
+    width: 100%;
+    height: 100%;
+  }
   /* Phones: two columns of slightly smaller cells by default. Small labels can keep four
      columns with --vc-honeycomb-cols-sm: 4 and a cell of about 5rem. */
   @media (max-width: 767px) {

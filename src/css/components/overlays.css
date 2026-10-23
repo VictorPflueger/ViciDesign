@@ -97,11 +97,15 @@
   }
 
   /* ---------- Menu (popover) ---------- */
-  .vc-menu,
-  .vc-popover {
+  /* vici.js places menus under their trigger; without it they open centred (the browser default). */
+  .vc-js .vc-menu,
+  .vc-js .vc-popover {
     position: fixed;
     inset: auto;
     margin: 0;
+  }
+  .vc-menu,
+  .vc-popover {
     padding: var(--vc-space-1);
     min-width: 12rem;
     max-width: min(22rem, calc(100vw - 1rem));

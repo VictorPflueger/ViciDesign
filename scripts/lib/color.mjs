@@ -1,5 +1,7 @@
 // Colour maths for Vici: sRGB <-> OKLab/OKLCH, gamut mapping, WCAG contrast.
-// Formulas: OKLab by Björn Ottosson (public domain reference), WCAG 2.x relative luminance.
+// Formulas: OKLab by Björn Ottosson (public domain reference), WCAG 2.x relative luminance,
+// colour-vision simulation by Machado, Oliveira and Fernandes (2009). The same helpers power
+// the palette tool in VictorPflueger/PROC-Rebate-Hunter (tools/palette.mjs).
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 

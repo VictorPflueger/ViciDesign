@@ -11,6 +11,12 @@
     border-radius: var(--vc-radius-lg);
     background: var(--vc-surface);
   }
+  /* vici.js makes wrappers that actually scroll focusable, so keyboards can scroll them too */
+  .vc-table-wrap:focus-visible,
+  .vc-chart__plot:focus-visible {
+    outline: var(--vc-stroke-focus) solid var(--vc-focus);
+    outline-offset: 2px;
+  }
   .vc-table {
     width: 100%;
     margin: 0;
@@ -54,7 +60,27 @@
   .vc-table :is(td, th) > code { white-space: nowrap; }
   .vc-table tbody tr { transition: background-color var(--vc-duration-instant) var(--vc-ease-standard); }
   .vc-table tbody tr:hover { background: var(--vc-surface-hover); }
+  /* selected rows: a checked checkbox in the row (aria-selected still works inside grid widgets) */
+  .vc-table tbody tr:has(> :first-child input[type='checkbox']:checked),
   .vc-table tbody tr[aria-selected='true'] { background: var(--vc-surface-selected); }
+  .vc-table .vc-table__select { width: 1%; padding-inline-end: 0; }
+  .vc-table .vc-table__select > .vc-checkbox { vertical-align: middle; }
+
+  /* Toolbar for bulk actions on selected rows */
+  .vc-table-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--vc-space-2) var(--vc-space-3);
+    margin-bottom: var(--vc-space-2);
+    padding: var(--vc-space-2) var(--vc-space-3);
+    border-radius: var(--vc-radius-lg);
+    background: var(--vc-accent-soft);
+    color: var(--vc-on-accent-soft);
+    font-size: var(--vc-font-size-sm);
+  }
+  .vc-table-toolbar[hidden] { display: none; }
+  .vc-table-toolbar > :first-child { margin-inline-end: auto; }
   .vc-table tbody th { font-weight: var(--vc-weight-semibold); }
   .vc-table .vc-num,
   .vc-table [data-type='number'] {
@@ -275,13 +301,13 @@
   /* An SVG without a width attribute fills the frame. Give charts with text a width and height
      (their drawing size), so the labels are never scaled up or down by more than the frame needs. */
   .vc-chart svg:not([width]) { width: 100%; }
-  /* Wrap a chart with text in .vc-chart__plot: on narrow screens it scrolls sideways instead of
-     shrinking its labels below a readable size. */
+  /* Wrap a chart with text in .vc-chart__plot: it keeps the size it was drawn at, so 11 px
+     labels stay 11 px, and the plot scrolls sideways when the column is narrower. */
   .vc-chart__plot {
     overflow-x: auto;
     overscroll-behavior-x: contain;
   }
-  .vc-chart__plot > svg { min-width: var(--vc-chart-min-width, 28rem); }
+  .vc-chart__plot > svg { max-width: none; }
   .vc-chart__grid { stroke: var(--vc-chart-grid); stroke-width: 1; shape-rendering: crispEdges; }
   .vc-chart__axis { fill: var(--vc-chart-axis); font-size: 11px; }
   .vc-chart__source {

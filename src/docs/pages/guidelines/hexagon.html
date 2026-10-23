@@ -92,19 +92,19 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
 </div>
 
 <h2>Recipes</h2>
-<p>Use the shape utilities to build your own cells. They work on any element, including images.</p>
+<p>Use the shape utilities to build your own cells. They work on any element, including images: give it a height (or a width) and a background, and the shape follows the 1.1547 ratio.</p>
 <!-- demo center -->
 <span class="vc-hex" style="height:4rem;background:var(--vc-lilac-200)"></span>
 <span class="vc-hex-ring" style="height:4rem;--vc-ring:4px;background:var(--vc-merlot-500)"></span>
 <span class="vc-cell vc-cell--xl vc-cell--solid"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span></span>
-<span class="vc-capsule" style="--vc-capsule-height:2.5rem;display:inline-flex;align-items:center;background:var(--vc-honey-200);color:var(--vc-honey-950);font-weight:600">Hex capsule</span>
+<span class="vc-capsule" style="--vc-capsule-height:2.5rem;background:var(--vc-honey-200);color:var(--vc-honey-950);font-weight:600">Hex capsule</span>
 <!-- /demo -->
 <pre><code>/* any element, sized by height */
 .thing { height: 3rem; aspect-ratio: 1.1547; clip-path: var(--vc-hex); }
 
 /* or in markup */
 &lt;img class="vc-hex-img" src="portrait.jpg" alt="…" style="height: 8rem"&gt;
-&lt;span class="vc-hex-ring" style="--vc-ring: 3px"&gt;&lt;/span&gt;
+&lt;span class="vc-hex-ring" style="height: 2rem; --vc-ring: 3px; background: var(--vc-merlot-500)"&gt;&lt;/span&gt;
 &lt;span class="vc-cell vc-cell--lg"&gt;&lt;span class="vc-icon vc-icon--chart-bar"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
 
 <h3>Focus on a hexagon</h3>

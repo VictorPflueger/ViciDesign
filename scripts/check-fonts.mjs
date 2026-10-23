@@ -11,6 +11,8 @@ const FAMILIES = {
   Inter: 'assets/fonts/OFL-Inter.txt',
   'JetBrains Mono': 'assets/fonts/OFL-JetBrainsMono.txt',
 };
+// Vici's own one-glyph font for password masks, generated from code (no third-party licence).
+const OWN = { 'Vici Mask': 'scripts/brand/mask-font.py' };
 
 const css = read('dist/vici.css');
 const faces = [...css.matchAll(/@font-face\s*\{([^}]*)\}/g)].map((m) => m[1]);
@@ -18,8 +20,11 @@ if (faces.length < 3) failures.push(`expected @font-face rules for three familie
 const seen = new Set();
 for (const face of faces) {
   const family = (face.match(/font-family:\s*'([^']+)'/) || [])[1];
-  if (!FAMILIES[family]) { failures.push(`unexpected font family in @font-face: ${family}`); continue; }
-  seen.add(family);
+  if (OWN[family]) {
+    if (!existsSync(join(ROOT, OWN[family]))) failures.push(`${family}: generator ${OWN[family]} missing`);
+    if (!/unicode-range:\s*U\+2022/.test(face)) failures.push(`${family}: must be limited to the bullet code points`);
+  } else if (!FAMILIES[family]) { failures.push(`unexpected font family in @font-face: ${family}`); continue; }
+  else seen.add(family);
   const urls = [...face.matchAll(/url\('([^']+)'\)/g)].map((m) => m[1]);
   if (!urls.length) failures.push(`${family}: @font-face without a url()`);
   for (const url of urls) {
@@ -55,6 +60,6 @@ if (failures.length) {
   console.error(failures.map((f) => '✗ ' + f).join('\n'));
   process.exit(1);
 }
-console.log(`${faces.length} @font-face rules, all self-hosted WOFF2 files with SIL OFL 1.1 licences: ${[...seen].join(', ')}.`);
+console.log(`${faces.length} @font-face rules, all self-hosted WOFF2 files: ${[...seen].join(', ')} (SIL OFL 1.1) and Vici's own password-mask font.`);
 console.log(`${files.length} files contain no third-party font requests.`);
 console.log('FONTS OK');

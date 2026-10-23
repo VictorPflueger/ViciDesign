@@ -43,9 +43,10 @@ description: WCAG 2.2 AA as the floor — contrast checked by the build, visible
     <tr><td>Accordion</td><td><kbd>Enter</kbd> / <kbd>Space</kbd> on the summary</td><td>Native <code>&lt;details&gt;</code></td></tr>
     <tr><td>Menu</td><td>Arrow keys between items, <kbd>Esc</kbd> closes and returns focus</td><td><code>popover</code> + <code>vici.js</code></td></tr>
     <tr><td>Dialog, drawer</td><td>Focus moves inside, stays inside, <kbd>Esc</kbd> closes and returns focus</td><td>Native <code>&lt;dialog&gt;</code></td></tr>
-    <tr><td>Tooltip</td><td>Appears on focus as well as hover, <kbd>Esc</kbd> hides it</td><td>CSS + <code>vici.js</code></td></tr>
+    <tr><td>Tooltip</td><td>Appears on focus as well as hover, stays while the pointer is on it, <kbd>Esc</kbd> hides it</td><td>CSS + <code>vici.js</code> (top layer)</td></tr>
     <tr><td>Carousel</td><td>Arrow keys on the focused track, buttons for previous/next and each slide</td><td><code>vici.js</code></td></tr>
     <tr><td>Table sorting</td><td><kbd>Enter</kbd> on a column's sort button; <code>aria-sort</code> announces the order</td><td><code>vici.js</code></td></tr>
+    <tr><td>Scrolling tables and charts</td><td><kbd>Tab</kbd> reaches a wrapper that scrolls; arrow keys scroll it</td><td><code>vici.js</code> (only while it overflows)</td></tr>
   </tbody>
 </table>
 </div>
@@ -60,6 +61,13 @@ description: WCAG 2.2 AA as the floor — contrast checked by the build, visible
   <li>Give progress bars and hex progress rings <code>role="progressbar"</code>, <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code> and a label.</li>
   <li>Announce toasts in a live region. <code>Vici.toast()</code> creates one with <code>aria-live="polite"</code> and uses <code>role="alert"</code> for errors.</li>
   <li>Charts need a text alternative: an <code>aria-label</code> that states the finding, plus the data as a table.</li>
+</ul>
+
+<h2>Contrast themes and text size</h2>
+<ul>
+  <li><strong>Windows contrast themes</strong> (forced colours) replace the palette with a few system colours and drop background colours. Vici repaints everything it draws with backgrounds, such as icons, hexagon rings, check marks, switches, ratings and focus rings, in system colours, so every control stays visible and operable.</li>
+  <li><strong>Larger text:</strong> sizes are in <code>rem</code>, so controls and labels grow with the reader's font size setting. Checkboxes, radios and switches grow with it, and long labels wrap without overlapping.</li>
+  <li><strong>Reflow:</strong> every page works at 320&nbsp;px without horizontal scrolling. Wide tables and charts scroll inside their own frame.</li>
 </ul>
 
 <h2>Colour is never the only signal</h2>

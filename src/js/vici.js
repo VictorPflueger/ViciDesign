@@ -2,13 +2,24 @@
  * Vici — small behaviours for the Vici design system.
  * No dependencies. Load with <script src="dist/vici.js" defer></script>.
  * Everything works without it except: theme toggle, tabs, toasts, dialog triggers,
- * menu positioning, slider fill, carousel dots, table sorting and copy buttons.
+ * the mobile header menu (without it the links stay visible), menu positioning (menus
+ * open centred), slider fill, carousel dots, table sorting and copy buttons. Tooltips work
+ * without it too; with it they move to the top layer, so no container can clip them.
  */
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'vc-theme';
   var root = document.documentElement;
+  root.classList.add('vc-js');
+
+  function reducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  function focusable(el) {
+    return !!el && el.isConnected && el.matches && el.matches(FOCUSABLE) && !el.closest('[inert]');
+  }
 
   function storageGet(key) {
     try { return window.localStorage.getItem(key); } catch (e) { return null; }
@@ -32,14 +43,13 @@
     return media && media.matches ? 'dark' : 'light';
   }
 
+  // A theme toggle is a toggle button for the dark theme: its name stays the author's
+  // ("Dark theme", "Dunkles Design") and aria-pressed carries the state.
   function syncThemeControls() {
     var current = resolvedTheme();
     var setting = root.getAttribute('data-theme') || 'system';
     $all('[data-vc-theme-toggle]').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(current === 'dark'));
-      var label = current === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
-      btn.setAttribute('aria-label', label);
-      btn.setAttribute('title', label);
     });
     $all('[data-vc-theme-set]').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(btn.getAttribute('data-vc-theme-set') === setting));
@@ -66,14 +76,35 @@
   if (media && media.addEventListener) media.addEventListener('change', syncThemeControls);
 
   /* ---------------------------------------------------------------- toast */
+  function makeRegion(parent) {
+    var region = document.createElement('div');
+    region.className = 'vc-toast-region';
+    region.setAttribute('aria-live', 'polite');
+    region.setAttribute('aria-relevant', 'additions');
+    parent.appendChild(region);
+    return region;
+  }
+  function pageRegion() {
+    return document.querySelector('body > .vc-toast-region') || makeRegion(document.body);
+  }
+  // While a modal dialog is open, everything outside it is inert, so toasts go into a region
+  // inside the dialog. When the dialog closes, its toasts move back to the page region.
+  function topModal() {
+    var modals;
+    try { modals = document.querySelectorAll('dialog:modal'); } catch (e) { return null; }
+    return modals.length ? modals[modals.length - 1] : null;
+  }
   function toastRegion() {
-    var region = document.querySelector('.vc-toast-region');
+    var dialog = topModal();
+    if (!dialog) return pageRegion();
+    var region = dialog.querySelector(':scope > .vc-toast-region');
     if (!region) {
-      region = document.createElement('div');
-      region.className = 'vc-toast-region';
-      region.setAttribute('aria-live', 'polite');
-      region.setAttribute('aria-relevant', 'additions');
-      document.body.appendChild(region);
+      region = makeRegion(dialog);
+      dialog.addEventListener('close', function () {
+        var target = pageRegion();
+        $all('.vc-toast', region).forEach(function (t) { target.appendChild(t); });
+        region.remove();
+      }, { once: true });
     }
     return region;
   }
@@ -83,16 +114,28 @@
   function dismissToast(el) {
     if (!el || el.hasAttribute('data-leaving')) return;
     el.setAttribute('data-leaving', '');
-    window.setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 260);
+    // keep keyboard users where they were when the toast appeared
+    if (el.contains(document.activeElement)) {
+      var back = el.__vcReturnFocus;
+      if (focusable(back)) back.focus();
+      else document.body.focus();
+    }
+    window.setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, reducedMotion() ? 0 : 260);
   }
 
   /**
    * Vici.toast('Saved') or Vici.toast({ title, message, tone: 'success', duration: 5000 })
-   * duration: 0 keeps the toast until it is closed.
+   * duration: 0 (or Infinity) keeps the toast until it is closed. Returns the toast element,
+   * or null when there is nothing to show.
    */
   function toast(options) {
-    var opts = typeof options === 'string' ? { title: options } : (options || {});
-    var tone = opts.tone || 'info';
+    var opts = options;
+    if (typeof options === 'string' || typeof options === 'number') opts = { title: String(options) };
+    if (!opts || typeof opts !== 'object') return null;
+    var titleText = opts.title == null ? '' : String(opts.title);
+    var messageText = opts.message == null ? '' : String(opts.message);
+    if (!titleText && !messageText) return null;
+    var tone = TONE_ICON[opts.tone] ? opts.tone : 'info';
     var el = document.createElement('div');
     el.className = 'vc-toast vc-toast--' + tone;
     el.setAttribute('role', tone === 'danger' ? 'alert' : 'status');
@@ -103,38 +146,54 @@
 
     var body = document.createElement('div');
     body.className = 'vc-toast__body';
-    if (opts.title) {
+    if (titleText) {
       var title = document.createElement('p');
       title.className = 'vc-toast__title';
-      title.textContent = opts.title;
+      title.textContent = titleText;
       body.appendChild(title);
     }
-    if (opts.message) {
+    if (messageText) {
       var msg = document.createElement('p');
-      msg.textContent = opts.message;
+      msg.textContent = messageText;
       body.appendChild(msg);
     }
 
     var close = document.createElement('button');
     close.type = 'button';
     close.className = 'vc-icon-button vc-icon-button--sm';
-    close.setAttribute('aria-label', 'Dismiss notification');
+    close.setAttribute('aria-label', opts.closeLabel || 'Dismiss notification');
     close.innerHTML = '<span class="vc-icon vc-icon--close" aria-hidden="true"></span>';
     close.addEventListener('click', function () { dismissToast(el); });
 
     el.appendChild(icon);
     el.appendChild(body);
     el.appendChild(close);
-    toastRegion().appendChild(el);
+    el.__vcReturnFocus = document.activeElement;
+    var region = toastRegion();
+    // a live region that was just created needs a moment before additions are announced
+    if (region.childElementCount || region.__vcReady) region.appendChild(el);
+    else window.setTimeout(function () { region.appendChild(el); }, 60);
+    region.__vcReady = true;
 
-    var duration = opts.duration === undefined ? 5000 : opts.duration;
-    if (duration > 0) {
-      var timer = window.setTimeout(function () { dismissToast(el); }, duration);
-      var pause = function () { window.clearTimeout(timer); };
-      var resume = function () { timer = window.setTimeout(function () { dismissToast(el); }, 2000); };
-      el.addEventListener('mouseenter', pause);
-      el.addEventListener('focusin', pause);
-      el.addEventListener('mouseleave', resume);
+    var duration = opts.duration === undefined ? 5000 : Number(opts.duration);
+    if (isFinite(duration) && duration > 0) {
+      // the toast waits while it is hovered or holds focus, and leaves 2 s after both end
+      var hovered = false;
+      var focused = false;
+      var timer = 0;
+      var arm = function (ms) {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(function () { if (!hovered && !focused) dismissToast(el); }, ms);
+      };
+      el.addEventListener('mouseenter', function () { hovered = true; window.clearTimeout(timer); });
+      el.addEventListener('mouseleave', function () { hovered = false; if (!focused) arm(2000); });
+      el.addEventListener('focusin', function () { focused = true; window.clearTimeout(timer); });
+      el.addEventListener('focusout', function (e) {
+        if (el.contains(e.relatedTarget)) return;
+        focused = false;
+        if (!hovered) arm(2000);
+      });
+      arm(duration);
     }
     return el;
   }
@@ -177,8 +236,9 @@
     var min = parseFloat(input.min || '0');
     var max = parseFloat(input.max || '100');
     var val = parseFloat(input.value);
-    var pct = max > min ? ((val - min) / (max - min)) * 100 : 0;
-    input.style.setProperty('--vc-slider-fill', pct + '%');
+    var ratio = max > min ? Math.min(1, Math.max(0, (val - min) / (max - min))) : 0;
+    // CSS turns the ratio into a fill that ends under the centre of the thumb
+    input.style.setProperty('--vc-slider-value', String(ratio));
     if (input.id) {
       $all('output[for~="' + input.id + '"]').forEach(function (out) { out.textContent = input.value; });
     }
@@ -262,6 +322,106 @@
   window.addEventListener('resize', onScrollOrResize);
   window.addEventListener('scroll', onScrollOrResize, true);
 
+  /* ------------------------------------------------------------- tooltips */
+  // Without this, tooltips are plain CSS (shown on hover and focus). With it, a tooltip becomes
+  // a manual popover in the top layer: no overflow can clip it, and it stays open while the
+  // pointer moves onto it (WCAG 1.4.13: hoverable, dismissible with Esc, persistent).
+  var popoverSupport = typeof HTMLElement !== 'undefined' && HTMLElement.prototype.hasOwnProperty('popover');
+  var openTips = [];
+  function placeTooltip(tip, anchor) {
+    var target = null;
+    for (var c = anchor.firstElementChild; c; c = c.nextElementSibling) { if (c !== tip) { target = c; break; } }
+    var r = (target || anchor).getBoundingClientRect();
+    var w = tip.offsetWidth;
+    var h = tip.offsetHeight;
+    var gap = 10;
+    var below = tip.classList.contains('vc-tooltip--bottom');
+    var top = below ? r.bottom + gap : r.top - gap - h;
+    if (!below && top < 8) { below = true; top = r.bottom + gap; }
+    else if (below && top + h > window.innerHeight - 8 && r.top - gap - h > 8) { below = false; top = r.top - gap - h; }
+    var center = r.left + r.width / 2;
+    var left = Math.min(Math.max(8, center - w / 2), window.innerWidth - w - 8);
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.style.setProperty('--_arrow-x', (center - left) + 'px');
+    tip.toggleAttribute('data-below', below);
+  }
+  function initTooltips(scope) {
+    if (!popoverSupport) return;
+    $all('.vc-tooltip-anchor', scope).forEach(function (anchor) {
+      var tip = anchor.querySelector(':scope > .vc-tooltip');
+      if (!tip || tip.__vcTip) return;
+      tip.__vcTip = true;
+      tip.setAttribute('popover', 'manual');
+      var hideTimer = 0;
+      var showTimer = 0;
+      function show() {
+        window.clearTimeout(hideTimer);
+        if (anchor.hasAttribute('data-dismissed') || tip.matches(':popover-open')) return;
+        window.clearTimeout(showTimer);
+        showTimer = window.setTimeout(function () {
+          if (anchor.hasAttribute('data-dismissed') || !anchor.isConnected) return;
+          tip.showPopover();
+          placeTooltip(tip, anchor);
+          openTips.push([tip, anchor]);
+        }, 100);
+      }
+      function hide(delay) {
+        window.clearTimeout(showTimer);
+        window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(function () {
+          if (tip.matches(':popover-open')) tip.hidePopover();
+          openTips = openTips.filter(function (p) { return p[0] !== tip; });
+        }, delay);
+      }
+      tip.__vcHide = function () { hide(0); };
+      anchor.addEventListener('mouseenter', show);
+      anchor.addEventListener('mouseleave', function () { if (!anchor.contains(document.activeElement)) hide(150); });
+      anchor.addEventListener('focusin', show);
+      anchor.addEventListener('focusout', function (e) { if (!anchor.contains(e.relatedTarget) && !anchor.matches(':hover')) hide(0); });
+    });
+  }
+  function placeOpenTips() {
+    openTips.forEach(function (p) { placeTooltip(p[0], p[1]); });
+  }
+  window.addEventListener('resize', placeOpenTips);
+  window.addEventListener('scroll', placeOpenTips, true);
+
+  /* ------------------------------------------------------- scroll regions */
+  // Tables and charts that scroll sideways must be reachable by keyboard (WCAG 2.1.1): while a
+  // wrapper actually overflows it becomes a focusable, named region; otherwise it stays inert.
+  function regionLabel(el) {
+    var cap = el.querySelector('caption, .vc-chart__title');
+    if (!cap) { var chart = el.closest('.vc-chart'); cap = chart && chart.querySelector('.vc-chart__title'); }
+    var text = cap ? cap.textContent.trim() : '';
+    return text || (el.classList.contains('vc-chart__plot') ? 'Chart' : 'Table');
+  }
+  function syncScrollRegion(el) {
+    var scrolls = el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1;
+    if (scrolls && !el.hasAttribute('tabindex')) {
+      el.setAttribute('tabindex', '0');
+      el.__vcRegion = true;
+      if (!el.hasAttribute('role')) el.setAttribute('role', 'region');
+      if (!el.hasAttribute('aria-label') && !el.hasAttribute('aria-labelledby')) el.setAttribute('aria-label', regionLabel(el));
+    } else if (!scrolls && el.__vcRegion) {
+      el.removeAttribute('tabindex');
+      el.removeAttribute('role');
+      el.removeAttribute('aria-label');
+      el.__vcRegion = false;
+    }
+  }
+  var regionObserver = typeof ResizeObserver === 'function'
+    ? new ResizeObserver(function (entries) { entries.forEach(function (en) { syncScrollRegion(en.target); }); })
+    : null;
+  function initScrollRegions(scope) {
+    $all('.vc-table-wrap, .vc-chart__plot', scope).forEach(function (el) {
+      if (el.__vcScroll) return;
+      el.__vcScroll = true;
+      syncScrollRegion(el);
+      if (regionObserver) regionObserver.observe(el);
+    });
+  }
+
   /* ------------------------------------------------------------- carousel */
   function initCarousels(scope) {
     $all('[data-vc-carousel]', scope).forEach(function (car) {
@@ -293,7 +453,7 @@
       }
       function go(i) {
         var n = Math.max(0, Math.min(slides.length - 1, i));
-        track.scrollTo({ left: slides[n].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+        track.scrollTo({ left: slides[n].offsetLeft - track.offsetLeft, behavior: reducedMotion() ? 'auto' : 'smooth' });
       }
       function sync() {
         var c = current();
@@ -357,48 +517,114 @@
     });
   }
 
+  /* ------------------------------------------------------ table selection */
+  // <table data-vc-select="#toolbar">: a header checkbox selects all rows (and shows "mixed"),
+  // the toolbar appears while rows are selected and its [data-vc-count] shows how many.
+  function initTableSelection(scope) {
+    $all('table[data-vc-select]', scope).forEach(function (table) {
+      if (table.__vcSelect) return;
+      table.__vcSelect = true;
+      var all = table.querySelector('thead input[type="checkbox"]');
+      var bar = null;
+      try { bar = document.querySelector(table.getAttribute('data-vc-select')); } catch (e) { bar = null; }
+      function boxes() { return $all('tbody input[type="checkbox"]', table); }
+      function sync() {
+        var list = boxes();
+        var n = list.filter(function (b) { return b.checked; }).length;
+        if (all) {
+          all.checked = n > 0 && n === list.length;
+          all.indeterminate = n > 0 && n < list.length;
+        }
+        if (bar) {
+          bar.hidden = n === 0;
+          $all('[data-vc-count]', bar).forEach(function (c) { c.textContent = String(n); });
+        }
+      }
+      table.addEventListener('change', function (e) {
+        if (all && e.target === all) boxes().forEach(function (b) { if (!b.disabled) b.checked = all.checked; });
+        sync();
+      });
+      sync();
+    });
+  }
+
   /* ---------------------------------------------------------------- misc */
   function initIndeterminate(scope) {
     $all('input[type="checkbox"][data-vc-indeterminate]', scope).forEach(function (cb) { cb.indeterminate = true; });
   }
 
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  /**
+   * Vici.copy(text, button?) copies text and resolves to true or false. A given button gets
+   * data-vc-copied for two seconds and fires a `vc:copy` event ({ text, ok }) when done.
+   */
   function copyText(text, button) {
+    var value = text == null ? '' : String(text);
     function done(ok) {
-      if (!button) return;
-      var original = button.getAttribute('data-vc-label') || button.getAttribute('aria-label') || '';
-      button.setAttribute('data-vc-copied', ok ? 'true' : 'false');
-      if (original) button.setAttribute('aria-label', ok ? 'Copied' : 'Copy failed');
-      window.setTimeout(function () {
-        button.removeAttribute('data-vc-copied');
-        if (original) button.setAttribute('aria-label', original);
-      }, 1600);
+      if (button) {
+        var original = button.getAttribute('data-vc-label') || button.getAttribute('aria-label') || '';
+        button.setAttribute('data-vc-copied', ok ? 'true' : 'false');
+        if (original) button.setAttribute('aria-label', ok ? 'Copied' : 'Copy failed');
+        window.setTimeout(function () {
+          button.removeAttribute('data-vc-copied');
+          if (original) button.setAttribute('aria-label', original);
+        }, 1600);
+        button.dispatchEvent(new CustomEvent('vc:copy', { bubbles: true, detail: { text: value, ok: ok } }));
+      }
+      return ok;
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      done(ok);
+      return navigator.clipboard.writeText(value).then(function () { return done(true); }, function () { return done(legacyCopy(value)); });
     }
+    return Promise.resolve(done(legacyCopy(value)));
   }
 
   function init(scope) {
     initTabs(scope);
     initSliders(scope);
     initPopovers(scope);
+    initTooltips(scope);
     initCarousels(scope);
     initTables(scope);
+    initTableSelection(scope);
     initIndeterminate(scope);
+    initScrollRegions(scope);
     syncThemeControls();
   }
+
+  // After a dismissible element is removed, focus goes to its neighbour, not to <body>.
+  function focusAfterRemoval(el) {
+    function first(node) { return node.matches(FOCUSABLE) ? node : node.querySelector(FOCUSABLE); }
+    for (var n = el.nextElementSibling; n; n = n.nextElementSibling) { var a = first(n); if (a) return a; }
+    for (var p = el.previousElementSibling; p; p = p.previousElementSibling) { var b = first(p); if (b) return b; }
+    var parent = el.parentElement;
+    if (!parent || parent === document.body) return null;
+    if (!parent.hasAttribute('tabindex')) parent.setAttribute('tabindex', '-1');
+    return parent;
+  }
+
+  // A click on the backdrop closes a dialog, but only when the press started there too, so
+  // selecting text inside the dialog and releasing outside doesn't close it.
+  function onBackdrop(e) {
+    var t = e.target;
+    if (!(t instanceof Element) || t.tagName !== 'DIALOG' || !t.classList.contains('vc-dialog')) return false;
+    var r = t.getBoundingClientRect();
+    return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+  }
+  var backdropPress = null;
+  document.addEventListener('pointerdown', function (e) { backdropPress = onBackdrop(e) ? e.target : null; }, true);
 
   /* --------------------------------------------------- delegated events */
   document.addEventListener('click', function (e) {
@@ -422,10 +648,11 @@
       if (d) { e.preventDefault(); d.close(closer.getAttribute('data-vc-close') || ''); }
       return;
     }
-    if (t.tagName === 'DIALOG' && t.classList.contains('vc-dialog') && t.getAttribute('data-vc-dismissable') !== 'false') {
-      var r = t.getBoundingClientRect();
-      var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-      if (!inside) t.close('backdrop');
+    if (t.tagName === 'DIALOG') {
+      if (t.classList.contains('vc-dialog') && t.getAttribute('data-vc-dismissable') !== 'false' && backdropPress === t && onBackdrop(e)) {
+        t.close('backdrop');
+      }
+      backdropPress = null;
       return;
     }
 
@@ -433,14 +660,20 @@
     if (dismiss) {
       var target = dismiss.closest(dismiss.getAttribute('data-vc-dismiss') || '.vc-alert, .vc-tag, .vc-toast');
       if (target && target.classList.contains('vc-toast')) dismissToast(target);
-      else if (target) target.remove();
+      else if (target) {
+        var next = target.contains(document.activeElement) || target.contains(dismiss) ? focusAfterRemoval(target) : null;
+        target.remove();
+        if (next) next.focus();
+      }
       return;
     }
 
+    // data-vc-copy="#id" copies the text of that element; any other value is copied as it is
+    // (so colour values such as "#250010" work too).
     var copyBtn = t.closest('[data-vc-copy]');
     if (copyBtn) {
-      var src = copyBtn.getAttribute('data-vc-copy');
-      var node = src && src.charAt(0) === '#' ? document.querySelector(src) : null;
+      var src = copyBtn.getAttribute('data-vc-copy') || '';
+      var node = src.charAt(0) === '#' ? document.getElementById(src.slice(1)) : null;
       copyText(node ? node.textContent : src, copyBtn);
       return;
     }
@@ -467,7 +700,14 @@
   // Tooltips stay dismissible with Escape (WCAG 1.4.13).
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    $all('.vc-tooltip-anchor:hover, .vc-tooltip-anchor:focus-within').forEach(function (a) { a.setAttribute('data-dismissed', ''); });
+    $all('.vc-tooltip-anchor:hover, .vc-tooltip-anchor:focus-within').forEach(function (a) {
+      a.setAttribute('data-dismissed', '');
+    });
+    // a pointer resting on a top-layer tooltip doesn't count as hovering its anchor
+    openTips.slice().forEach(function (pair) {
+      pair[1].setAttribute('data-dismissed', '');
+      if (pair[0].__vcHide) pair[0].__vcHide();
+    });
     $all('.vc-header[data-open]').forEach(function (h) {
       h.removeAttribute('data-open');
       var btn = h.querySelector('.vc-header__toggle');

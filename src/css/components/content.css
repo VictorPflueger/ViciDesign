@@ -151,6 +151,10 @@
     transition: block-size var(--vc-duration-slow) var(--vc-ease-standard), content-visibility var(--vc-duration-slow) allow-discrete;
   }
   .vc-accordion details[open]::details-content { block-size: auto; }
+  /* its own rule: a selector list containing an unknown pseudo-element would be dropped whole */
+  @media (prefers-reduced-motion: reduce) {
+    .vc-accordion details::details-content { transition: none; }
+  }
   .vc-accordion--boxed {
     display: grid;
     gap: var(--vc-space-2);
@@ -451,7 +455,7 @@
   .vc-avatar--teal { --_bg: var(--vc-teal-200); --_fg: var(--vc-teal-950); }
   .vc-avatar--apricot { --_bg: var(--vc-apricot-200); --_fg: var(--vc-apricot-950); }
   .vc-avatar--coral { --_bg: var(--vc-coral-200); --_fg: var(--vc-coral-950); }
-  .vc-avatar--solid { --_bg: var(--vc-merlot-950); --_fg: var(--vc-merlot-100); }
+  .vc-avatar--solid { --_bg: var(--vc-accent); --_fg: var(--vc-on-accent); }   /* merlot by day, blush at night */
   .vc-avatar--more { --_bg: var(--vc-neutral-bg); --_fg: var(--vc-neutral-text); text-transform: none; }
 
   /* Presence: small hexagon with a separating ring */
@@ -481,13 +485,26 @@
     z-index: -1;
     background: var(--vc-presence-ring, var(--vc-bg));
   }
+  /* The state shows in the shape as well as the colour: offline (default) is a ring,
+     online a solid cell, away a half-filled cell, busy a cell with a bar. */
   .vc-presence::after {
     inset: 0;
     background: var(--_c);
+    clip-path: polygon(evenodd, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      35% 22%, 65% 22%, 78% 50%, 65% 78%, 35% 78%, 22% 50%, 35% 22%);
   }
   .vc-presence--online { --_c: var(--vc-sage-500); }
-  .vc-presence--busy { --_c: var(--vc-coral-500); }
+  .vc-presence--online::after { clip-path: var(--vc-hex); }
   .vc-presence--away { --_c: var(--vc-honey-500); }
+  .vc-presence--away::after {
+    clip-path: polygon(evenodd, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      50% 22%, 65% 22%, 78% 50%, 65% 78%, 50% 78%, 50% 22%);
+  }
+  .vc-presence--busy { --_c: var(--vc-coral-500); }
+  .vc-presence--busy::after {
+    clip-path: polygon(evenodd, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      22% 38%, 78% 38%, 78% 62%, 22% 62%, 22% 38%);
+  }
 
   /* Avatar group: a honeycomb strip — neighbours nest along their slanted edges */
   .vc-avatar-group {
@@ -575,6 +592,7 @@
   .vc-tile {
     --_bg: var(--vc-accent-soft);
     --_fg: var(--vc-on-accent-soft);
+    position: relative;
     display: grid;
     place-content: center;
     gap: 0.25rem;
@@ -608,6 +626,24 @@
     outline: none;
     text-decoration: none;
   }
+  a.vc-tile.vc-tile--solid:hover,
+  a.vc-tile.vc-tile--solid:focus-visible { --_bg: var(--vc-accent-hover); }
+  /* focus: a hexagon ring inside the tile, in the tile's text colour, so it shows on every
+     fill and never overlaps the neighbouring cells */
+  .vc-tile::after {
+    content: '';
+    position: absolute;
+    inset: 5px 5.7735px;
+    background: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 1.1547px) 2px, 2.3094px 50%, calc(25% + 1.1547px) calc(100% - 2px),
+      calc(75% - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(75% - 1.1547px) 2px, calc(25% + 1.1547px) 2px);
+  }
+  .vc-tile:focus-visible::after { opacity: 1; }
   .vc-tile--solid { --_bg: var(--vc-accent); --_fg: var(--vc-on-accent); }
   .vc-tile--ghost { --_bg: var(--vc-bg-subtle); --_fg: var(--vc-text-muted); }
   .vc-tile--coral { --_bg: var(--vc-coral-100); --_fg: var(--vc-coral-900); }

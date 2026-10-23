@@ -2,11 +2,13 @@
 """Outline the Vici wordmarks from Bricolage Grotesque (OFL) into src/brand/wordmarks.json.
 
 Run once whenever the wordmark text or weight changes:
-    pip install fonttools brotli uharfbuzz
+    pip install fonttools brotli uharfbuzz skia-pathops shapely
     python3 scripts/brand/wordmark.py
 
 Dots on i, j and umlauts are swapped for flat-top hexagons of equal visual weight,
-so the wordmark follows the same rule as the rest of the system.
+so the wordmark follows the same rule as the rest of the system. All contours are merged
+into one outline without overlaps. The typeface's ink traps (hairline slits where an arm
+meets a stem, which help at text sizes) are filled: at logo sizes they read as cracks.
 """
 import json
 import math
@@ -18,7 +20,11 @@ from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
+from pathops import Path as SkPath, PathOp, op, simplify
+from shapely.geometry import Polygon
 import io
+
+INK_TRAP = 10   # font units: slits narrower than twice this are filled
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 FONT = ROOT / "assets/fonts/bricolage-grotesque-latin.woff2"
@@ -67,6 +73,61 @@ def hexagon(cx, cy, d):
     return [("moveTo", (pts[0],))] + [("lineTo", (p,)) for p in pts[1:]] + [("closePath", ())]
 
 
+def flatten(path, step=2.0):
+    """Polygon rings of a skia path, curves sampled every `step` font units."""
+    rings, cur, last = [], [], None
+    def add(pt):
+        cur.append((float(pt[0]), float(pt[1])))
+    for verb, pts in path.segments:
+        if verb == "moveTo":
+            if len(cur) > 2:
+                rings.append(cur)
+            cur = []
+            add(pts[0])
+        elif verb == "lineTo":
+            add(pts[0])
+        elif verb in ("qCurveTo", "curveTo"):
+            p0 = cur[-1]
+            ctrl = [p0] + [tuple(map(float, q)) for q in pts]
+            n = max(4, int(sum(math.dist(ctrl[i], ctrl[i + 1]) for i in range(len(ctrl) - 1)) / step))
+            for i in range(1, n + 1):
+                t = i / n
+                pts_ = ctrl
+                while len(pts_) > 1:  # de Casteljau (also handles implied on-curve points)
+                    pts_ = [((1 - t) * a[0] + t * b[0], (1 - t) * a[1] + t * b[1]) for a, b in zip(pts_, pts_[1:])]
+                add(pts_[0])
+        elif verb in ("closePath", "endPath"):
+            if len(cur) > 2:
+                rings.append(cur)
+            cur = []
+    if len(cur) > 2:
+        rings.append(cur)
+    return rings
+
+
+def fill_ink_traps(outline):
+    """Morphological closing on the flattened outline finds the slits; they are added back to the
+    exact (curved) outline as small polygons, so the rest of the drawing stays untouched."""
+    shape = None
+    for ring in flatten(outline):
+        poly = Polygon(ring).buffer(0)
+        shape = poly if shape is None else shape.symmetric_difference(poly)
+    closed = shape.buffer(INK_TRAP, join_style=2, mitre_limit=10).buffer(-INK_TRAP, join_style=2, mitre_limit=10)
+    patches = closed.difference(shape)
+    pieces = [g for g in getattr(patches, "geoms", [patches]) if g.area > 25 and g.length > 40]
+    if not pieces:
+        return outline, 0
+    extra = SkPath()
+    pen = extra.getPen()
+    for g in pieces:
+        ring = list(g.buffer(0.6, join_style=2).exterior.coords)[:-1]  # a hair of overlap seals the joint
+        pen.moveTo(ring[0])
+        for q in ring[1:]:
+            pen.lineTo(q)
+        pen.closePath()
+    return op(outline, extra, PathOp.UNION, fix_winding=True, clockwise=True), len(pieces)
+
+
 def build(spec):
     font, data = instance(spec["wght"], spec["opsz"])
     upem = font["head"].unitsPerEm
@@ -82,7 +143,8 @@ def build(spec):
     hb.shape(hbfont, buf, {"kern": True, "liga": True})
     order = font.getGlyphOrder()
 
-    pen = SVGPathPen(None)
+    merged = SkPath()
+    pen = merged.getPen()
     x = 0
     dots = 0
     for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
@@ -101,7 +163,12 @@ def build(spec):
         x += pos.x_advance + spec["tracking"]
     x -= spec["tracking"]
 
-    d = pen.getCommands()
+    # union of every contour: overlaps inside glyphs (and between tightly tracked letters) vanish
+    outline = simplify(merged, fix_winding=True, clockwise=True)
+    outline, traps = fill_ink_traps(outline)
+    svg = SVGPathPen(None)
+    outline.draw(svg)
+    d = svg.getCommands()
     return {
         "text": spec["text"],
         "weight": spec["wght"],
@@ -113,6 +180,7 @@ def build(spec):
         "descender": font["hhea"].descent,
         "advance": x,
         "hexDots": dots,
+        "inkTrapsFilled": traps,
         "d": d,
     }
 

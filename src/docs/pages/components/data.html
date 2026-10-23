@@ -14,7 +14,7 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 </header>
 
 <h2>Table</h2>
-<p>Wrap tables in <code>.vc-table-wrap</code> so they scroll sideways on small screens instead of breaking the layout. Right-align numeric columns with <code>.vc-num</code>. Add <code>data-vc-sortable</code> and a <code>.vc-table__sort</code> button in each sortable header, and <code>vici.js</code> sorts the rows and sets <code>aria-sort</code>. Cells can carry a <code>data-value</code> for exact sorting.</p>
+<p>Wrap tables in <code>.vc-table-wrap</code> so they scroll sideways on small screens instead of breaking the layout. While a wrapper scrolls, <code>vici.js</code> makes it focusable and names it after the table's caption, so keyboard users can scroll it too. Right-align numeric columns with <code>.vc-num</code>. Add <code>data-vc-sortable</code> and a <code>.vc-table__sort</code> button in each sortable header, and <code>vici.js</code> sorts the rows and sets <code>aria-sort</code>. Cells can carry a <code>data-value</code> for exact sorting.</p>
 <!-- demo block -->
 <div class="vc-table-wrap">
   <table class="vc-table" data-vc-sortable>
@@ -30,7 +30,7 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
     </thead>
     <tbody>
       <tr><th scope="row">Nordlicht Logistik</th><td><span class="vc-tag vc-tag--sm vc-tag--teal">Logistics</span></td><td class="vc-num">4,820</td><td class="vc-num" data-value="12.4">+12.4 %</td><td><span class="vc-tag vc-tag--sm vc-tag--success">Preferred</span></td></tr>
-      <tr aria-selected="true"><th scope="row">Rheinwerk Components</th><td><span class="vc-tag vc-tag--sm vc-tag--fjord">Hardware</span></td><td class="vc-num">3,915</td><td class="vc-num" data-value="-3.1">−3.1 %</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Review</span></td></tr>
+      <tr><th scope="row">Rheinwerk Components</th><td><span class="vc-tag vc-tag--sm vc-tag--fjord">Hardware</span></td><td class="vc-num">3,915</td><td class="vc-num" data-value="-3.1">−3.1 %</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Review</span></td></tr>
       <tr><th scope="row">Alpenglanz Services</th><td><span class="vc-tag vc-tag--sm vc-tag--apricot">Services</span></td><td class="vc-num">2,640</td><td class="vc-num" data-value="5.8">+5.8 %</td><td><span class="vc-tag vc-tag--sm vc-tag--success">Preferred</span></td></tr>
       <tr><th scope="row">Kranich Software</th><td><span class="vc-tag vc-tag--sm vc-tag--lilac">Software</span></td><td class="vc-num">1,980</td><td class="vc-num" data-value="21">+21.0 %</td><td><span class="vc-tag vc-tag--sm">Standard</span></td></tr>
       <tr><th scope="row">Elbufer Facility</th><td><span class="vc-tag vc-tag--sm vc-tag--honey">Facility</span></td><td class="vc-num">1,204</td><td class="vc-num" data-value="-11.6">−11.6 %</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">At risk</span></td></tr>
@@ -59,7 +59,27 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
   </table>
 </div>
 <!-- /demo -->
-<p>Modifiers: <code>--compact</code>, <code>--striped</code>. <code>.vc-table-wrap--scroll</code> limits the height (<code>--vc-table-height</code>) and keeps the header sticky. Mark selected rows with <code>aria-selected="true"</code>.</p>
+<p>Modifiers: <code>--compact</code>, <code>--striped</code>. <code>.vc-table-wrap--scroll</code> limits the height (<code>--vc-table-height</code>) and keeps the header sticky.</p>
+
+<h3>Row selection and bulk actions</h3>
+<p>Put a checkbox in the first cell of each row. The row tint follows the checkbox, so the state is visible and announced. With <code>data-vc-select="#toolbar-id"</code> on the table, <code>vici.js</code> keeps a select-all checkbox in the header (checked, mixed or empty) and a <code>.vc-table-toolbar</code> with the count in sync. The toolbar stays hidden while nothing is selected. Don't rely on <code>aria-selected</code> in a plain table: it only has a meaning in a grid widget.</p>
+<!-- demo block -->
+<div class="vc-table-toolbar" id="invoice-actions" hidden>
+  <span aria-live="polite"><strong data-vc-count>0</strong> selected</span>
+  <button type="button" class="vc-button vc-button--sm vc-button--secondary"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Export</button>
+  <button type="button" class="vc-button vc-button--sm vc-button--ghost">Assign</button>
+</div>
+<div class="vc-table-wrap">
+  <table class="vc-table vc-table--compact" data-vc-select="#invoice-actions">
+    <thead><tr><th scope="col" class="vc-table__select"><label class="vc-checkbox"><input type="checkbox" aria-label="Select all invoices"></label></th><th scope="col">Invoice</th><th scope="col">Supplier</th><th scope="col" class="vc-num">Amount (€)</th></tr></thead>
+    <tbody>
+      <tr><td class="vc-table__select"><label class="vc-checkbox"><input type="checkbox" aria-label="Select INV-20931"></label></td><td class="vc-mono">INV-20931</td><td>Nordlicht Logistik</td><td class="vc-num">48,210.00</td></tr>
+      <tr><td class="vc-table__select"><label class="vc-checkbox"><input type="checkbox" checked aria-label="Select INV-20918"></label></td><td class="vc-mono">INV-20918</td><td>Rheinwerk Components</td><td class="vc-num">31,775.40</td></tr>
+      <tr><td class="vc-table__select"><label class="vc-checkbox"><input type="checkbox" aria-label="Select INV-20907"></label></td><td class="vc-mono">INV-20907</td><td>Kranich Software</td><td class="vc-num">12,400.00</td></tr>
+    </tbody>
+  </table>
+</div>
+<!-- /demo -->
 
 <h2>Stat card</h2>
 <p>A KPI card: a label, one big number in the display face with tabular figures, a trend in a hex capsule, and an optional sparkline. Trends combine colour, an arrow and a sign.</p>
@@ -114,7 +134,7 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 <!-- @chart bars -->
 
 <h3>Anatomy</h3>
-<p>The frame around a chart you draw yourself. Give the SVG a <code>width</code> and <code>height</code> (the size you drew it at) and wrap it in <code>.vc-chart__plot</code>: in narrow columns it scrolls sideways instead of shrinking the labels below a readable size. Label bars directly where you can, and add a <code>.vc-legend</code> only when there are several series.</p>
+<p>The frame around a chart you draw yourself. Give the SVG a <code>width</code> and <code>height</code> (the size you drew it at) and wrap it in <code>.vc-chart__plot</code>: the chart keeps that size, so its 11&nbsp;px labels stay 11&nbsp;px, and in narrower columns the plot scrolls sideways (with <code>vici.js</code>, it then also becomes focusable, so keyboards can scroll it). Label bars directly where you can, and add a <code>.vc-legend</code> only when there are several series.</p>
 <!-- demo block -->
 <figure class="vc-chart">
   <figcaption>

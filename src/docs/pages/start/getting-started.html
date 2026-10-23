@@ -102,5 +102,15 @@ npm run check                 # contrast, hexagon rule, fonts, links, logos, exp
 npm run palette               # regenerate the colour ramps after editing scripts/palette.mjs</code></pre>
 <p><code>npm run check</code> fails if, for example, a colour pair drops below WCAG AA, a circle sneaks into the CSS, or a generated file is out of date.</p>
 
+<h2>Left out on purpose</h2>
+<p>Vici stays small by leaning on the platform. Some components from larger systems are deliberately missing:</p>
+<ul>
+  <li><strong>Custom select, listbox and multi-select:</strong> use the native <code>&lt;select&gt;</code>, a <a href="{{root}}components/forms.html#chip">chip group</a> for multiple choices, or a <a href="{{root}}components/forms.html#combobox">combobox</a> built on <code>&lt;datalist&gt;</code>.</li>
+  <li><strong>Custom date picker:</strong> the native date input brings the platform's own calendar, keyboard support and localisation.</li>
+  <li><strong>Range slider with two thumbs:</strong> use two sliders or two number inputs for “from” and “to”.</li>
+  <li><strong>Data grid:</strong> tables stay plain HTML. Sorting, row selection and bulk actions are covered on <a href="{{root}}components/data.html#table">Data display</a>; for editing cells or virtual scrolling, bring a grid library and style it with the tokens.</li>
+  <li><strong>Mega menu:</strong> personal sites and prototypes rarely need one; the header, side navigation and menus cover the rest.</li>
+</ul>
+
 <h2>Browser support</h2>
 <p>Vici targets evergreen browsers from 2024 onwards: Chrome, Edge, Firefox and Safari. It relies on CSS cascade layers, custom properties, <code>clip-path</code>, <code>color-mix()</code>, <code>:has()</code>, the <code>&lt;dialog&gt;</code> element and the Popover API. Older browsers still get readable content, but the hexagon shapes and some interactive details may be missing.</p>

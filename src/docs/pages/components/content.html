@@ -156,7 +156,7 @@ description: Cards, accordion, lists with hexagon bullets, list groups, dividers
 <!-- /demo -->
 
 <h2>Avatar</h2>
-<p>Avatars are hexagons, with a photo or initials. Initials avatars come in the pastel families; give each person a stable colour. <code>.vc-presence</code> adds a status cell.</p>
+<p>Avatars are hexagons, with a photo or initials. Initials avatars come in the pastel families; give each person a stable colour. <code>.vc-presence</code> adds a status cell whose shape carries the state, not just its colour: a solid cell for <code>--online</code>, a half-filled one for <code>--away</code>, a cell with a bar for <code>--busy</code> and a ring (no modifier) for offline. Give it <code>role="img"</code> and an <code>aria-label</code>.</p>
 <!-- demo -->
 <span class="vc-avatar vc-avatar--xs">VP</span>
 <span class="vc-avatar vc-avatar--sm vc-avatar--fjord">AK</span>
@@ -166,6 +166,8 @@ description: Cards, accordion, lists with hexagon bullets, list groups, dividers
 <span class="vc-avatar vc-avatar--xl vc-avatar--solid">VP</span>
 <span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--lg vc-avatar--teal">TN</span><span class="vc-presence vc-presence--online" role="img" aria-label="Online"></span></span>
 <span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--lg vc-avatar--apricot">SW</span><span class="vc-presence vc-presence--busy" role="img" aria-label="Busy"></span></span>
+<span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--lg vc-avatar--fjord">AK</span><span class="vc-presence vc-presence--away" role="img" aria-label="Away"></span></span>
+<span class="vc-avatar-wrap"><span class="vc-avatar vc-avatar--lg vc-avatar--sage">JS</span><span class="vc-presence" role="img" aria-label="Offline"></span></span>
 <!-- /demo -->
 <p>For photos, put an <code>&lt;img&gt;</code> inside. It is cropped to the hexagon and fills the cell:</p>
 <pre><code>&lt;span class="vc-avatar vc-avatar--lg"&gt;&lt;img src="portrait.jpg" alt="Anna Keller"&gt;&lt;/span&gt;</code></pre>

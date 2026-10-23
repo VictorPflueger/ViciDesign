@@ -66,6 +66,9 @@
     margin: -0.2rem -0.4rem -0.2rem 0;
   }
   .vc-alert:not(:has(> .vc-icon-button)) { grid-template-columns: auto 1fr; }
+  /* without a leading icon the body takes the first column and the close button stays at the end */
+  .vc-alert:not(:has(> .vc-icon)) { grid-template-columns: 1fr auto; }
+  .vc-alert:not(:has(> .vc-icon)):not(:has(> .vc-icon-button)) { grid-template-columns: 1fr; }
   .vc-alert--success { --_bg: var(--vc-success-bg); --_bd: var(--vc-success-border); --_fg: var(--vc-success-text); --_icon: var(--vc-success-solid); }
   .vc-alert--warning { --_bg: var(--vc-warning-bg); --_bd: var(--vc-warning-border); --_fg: var(--vc-warning-text); --_icon: var(--vc-warning-text); }
   .vc-alert--danger { --_bg: var(--vc-danger-bg); --_bd: var(--vc-danger-border); --_fg: var(--vc-danger-text); --_icon: var(--vc-danger-solid); }
@@ -166,6 +169,7 @@
   .vc-toast__title { font-weight: var(--vc-weight-semibold); }
   .vc-toast__body > p:not(.vc-toast__title) { color: var(--vc-text-muted); }
   .vc-toast > .vc-icon-button { --_h: 1.75rem; margin: -0.2rem 0; }
+  .vc-toast:not(:has(> .vc-icon)) { grid-template-columns: 1fr auto; }
   .vc-toast--success { --_icon: var(--vc-success-solid); }
   .vc-toast--warning { --_icon: var(--vc-warning-text); }
   .vc-toast--danger { --_icon: var(--vc-danger-solid); }
@@ -235,6 +239,35 @@
     bottom: 100%;
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
+  /* With vici.js the tooltip is a manual popover in the top layer, placed by the script:
+     no overflow can clip it, and the pointer can move onto it without it disappearing. */
+  .vc-tooltip-anchor > .vc-tooltip[popover] {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    border: 0;
+    overflow: visible;
+    pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
+    translate: none;
+    transition: opacity var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  .vc-tooltip-anchor > .vc-tooltip[popover]:not(:popover-open) { display: none; }
+  @starting-style {
+    .vc-tooltip-anchor > .vc-tooltip[popover]:popover-open { opacity: 0; }
+  }
+  .vc-tooltip[popover]::after {
+    top: 100%;
+    bottom: auto;
+    left: calc(var(--_arrow-x, 50%) - 6px);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+  .vc-tooltip[popover][data-below]::after {
+    top: auto;
+    bottom: 100%;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
 
   /* ---------- Progress bar (hex capsule) ---------- */
   .vc-progress {
@@ -267,6 +300,17 @@
   .vc-progress--indeterminate .vc-progress__bar {
     width: 35%;
     animation: vc-indeterminate 1.4s var(--vc-ease-standard) infinite;
+  }
+  /* Reduced motion: no moving bar (it would freeze at a position that reads like a value),
+     but a full, striped track that says "working, amount unknown". */
+  @media (prefers-reduced-motion: reduce) {
+    .vc-progress--indeterminate .vc-progress__bar {
+      width: 100%;
+      animation: none;
+      clip-path: none;
+      background: repeating-linear-gradient(-60deg, var(--_fill) 0 6px, transparent 6px 12px);
+      opacity: 0.6;
+    }
   }
   .vc-progress-field {
     display: grid;

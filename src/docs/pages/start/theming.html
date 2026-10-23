@@ -14,12 +14,12 @@ description: Light and dark themes, theme islands, and how to override tokens wi
 <h2>Light, dark or automatic</h2>
 <p>By default the theme follows the operating system (<code>prefers-color-scheme</code>). Set <code>data-theme</code> on <code>&lt;html&gt;</code> to force one:</p>
 <pre><code>&lt;html lang="en" data-theme="dark"&gt;   &lt;!-- or "light"; remove the attribute to follow the OS --&gt;</code></pre>
-<p>With <code>vici.js</code> loaded, any element with <code>data-vc-theme-toggle</code> switches between light and dark and remembers the choice. <code>data-vc-theme-set="system"</code> returns control to the operating system.</p>
+<p>With <code>vici.js</code> loaded, any button with <code>data-vc-theme-toggle</code> switches between light and dark and remembers the choice. It is a toggle button for the dark theme: give it a name such as “Dark theme” (as text or <code>aria-label</code>), and the script keeps <code>aria-pressed</code> in sync. Buttons with <code>data-vc-theme-set="light"</code>, <code>"dark"</code> or <code>"system"</code> pick a theme directly; <code>"system"</code> returns control to the operating system.</p>
 <!-- demo center -->
 <button type="button" class="vc-button vc-button--outline" data-vc-theme-toggle>
   <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
   <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
-  Toggle theme
+  Dark theme
 </button>
 <div class="vc-button-group" role="group" aria-label="Theme">
   <button type="button" class="vc-button vc-button--outline vc-button--sm" data-vc-theme-set="light">Light</button>

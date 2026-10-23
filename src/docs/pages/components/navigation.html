@@ -118,7 +118,7 @@ description: Header, side navigation, footer, tabs, breadcrumb, hexagon paginati
 <!-- /demo -->
 
 <h2>Pagination</h2>
-<p>Pages are hexagon cells, and the current page is solid merlot. Keep the first and last page visible and collapse the middle with a gap.</p>
+<p>Pages are hexagon cells, and the current page is solid merlot. Keep the first and last page visible and collapse the middle with a gap. On the first or last page, drop the <code>href</code> of the step that leads nowhere and add <code>role="link" aria-disabled="true"</code>: it stays visible but can't be focused or followed.</p>
 <!-- demo -->
 <nav class="vc-pagination" aria-label="Pagination">
   <ul>
@@ -158,9 +158,9 @@ description: Header, side navigation, footer, tabs, breadcrumb, hexagon paginati
 <!-- demo block -->
 <section class="vc-carousel" aria-roledescription="carousel" aria-label="Highlights" data-vc-carousel>
   <div class="vc-carousel__track" tabindex="0">
-    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="1 of 3"><div class="vc-card vc-card--tinted"><div class="vc-card__body"><h3 class="vc-card__title">Faster month-end</h3><p>Matching runs overnight; finance reviews exceptions only.</p></div></div></article>
-    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="2 of 3"><div class="vc-card vc-card--tinted" style="background:var(--vc-lilac-100);color:var(--vc-lilac-950)"><div class="vc-card__body"><h3 class="vc-card__title">Explainable</h3><p>Every suggestion links to the documents it is based on.</p></div></div></article>
-    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="3 of 3"><div class="vc-card vc-card--tinted" style="background:var(--vc-sage-100);color:var(--vc-sage-950)"><div class="vc-card__body"><h3 class="vc-card__title">Governed</h3><p>Approvals, audit trail and a clear owner for each agent.</p></div></div></article>
+    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="1 of 3"><div class="vc-card vc-tint-merlot"><div class="vc-card__body"><h3 class="vc-card__title">Faster month-end</h3><p>Matching runs overnight; finance reviews exceptions only.</p></div></div></article>
+    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="2 of 3"><div class="vc-card vc-tint-lilac"><div class="vc-card__body"><h3 class="vc-card__title">Explainable</h3><p>Every suggestion links to the documents it is based on.</p></div></div></article>
+    <article class="vc-carousel__slide" aria-roledescription="slide" aria-label="3 of 3"><div class="vc-card vc-tint-sage"><div class="vc-card__body"><h3 class="vc-card__title">Governed</h3><p>Approvals, audit trail and a clear owner for each agent.</p></div></div></article>
   </div>
   <div class="vc-carousel__controls">
     <button type="button" class="vc-icon-button vc-icon-button--sm" data-vc-prev aria-label="Previous slide"><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span></button>

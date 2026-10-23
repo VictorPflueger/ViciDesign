@@ -285,6 +285,132 @@
     resize: vertical;
   }
 
+  /* ---------- Plain controls follow the hexagon rule too ----------
+     Radios, range thumbs, progress bars and meters without Vici classes would otherwise keep
+     the browser's circles and pills. The component classes (.vc-radio, .vc-slider, .vc-progress)
+     add labels, sizes and focus rings on top. */
+  :where(input[type='radio']:not(.vc-radio > input, .vc-rating > input, .vc-segmented input)) {
+    appearance: none;
+    flex: none;
+    width: 1.1547em;
+    height: 1em;
+    margin: 0 0.3em 0 0;
+    vertical-align: -0.15em;
+    background: var(--vc-border-strong);
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 1.1547px) 2px, 2.3094px 50%, calc(25% + 1.1547px) calc(100% - 2px),
+      calc(75% - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(75% - 1.1547px) 2px, calc(25% + 1.1547px) 2px);
+    cursor: pointer;
+  }
+  :where(input[type='radio']:not(.vc-radio > input, .vc-rating > input, .vc-segmented input)):checked {
+    background: var(--vc-accent);
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 1.1547px) 2px, 2.3094px 50%, calc(25% + 1.1547px) calc(100% - 2px),
+      calc(75% - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(75% - 1.1547px) 2px, calc(25% + 1.1547px) 2px,
+      38.75% 27.5%, 27.5% 50%, 38.75% 72.5%, 61.25% 72.5%, 72.5% 50%, 61.25% 27.5%, 38.75% 27.5%);
+  }
+  /* a clip-path hides outlines, so focus shows as a thicker ring in the focus colour */
+  :where(input[type='radio']:not(.vc-radio > input, .vc-rating > input, .vc-segmented input)):focus-visible {
+    outline: none;
+    background: var(--vc-focus);
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 2.0207px) 3.5px, 4.0415px 50%, calc(25% + 2.0207px) calc(100% - 3.5px),
+      calc(75% - 2.0207px) calc(100% - 3.5px), calc(100% - 4.0415px) 50%,
+      calc(75% - 2.0207px) 3.5px, calc(25% + 2.0207px) 3.5px);
+  }
+  :where(input[type='radio']:not(.vc-radio > input, .vc-rating > input, .vc-segmented input)):checked:focus-visible {
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 2.0207px) 3.5px, 4.0415px 50%, calc(25% + 2.0207px) calc(100% - 3.5px),
+      calc(75% - 2.0207px) calc(100% - 3.5px), calc(100% - 4.0415px) 50%,
+      calc(75% - 2.0207px) 3.5px, calc(25% + 2.0207px) 3.5px,
+      38.75% 27.5%, 27.5% 50%, 38.75% 72.5%, 61.25% 72.5%, 72.5% 50%, 61.25% 27.5%, 38.75% 27.5%);
+  }
+  :where(input[type='radio']):disabled { opacity: 0.45; cursor: not-allowed; }
+
+  :where(input[type='range']:not(.vc-slider)) {
+    appearance: none;
+    height: 28px;
+    background: transparent;
+    cursor: pointer;
+  }
+  :where(input[type='range']:not(.vc-slider))::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: var(--vc-radius-xs);
+    background: var(--vc-track);
+  }
+  :where(input[type='range']:not(.vc-slider))::-moz-range-track {
+    height: 6px;
+    border-radius: var(--vc-radius-xs);
+    background: var(--vc-track);
+  }
+  :where(input[type='range']:not(.vc-slider))::-webkit-slider-thumb {
+    appearance: none;
+    width: 32.33px;
+    height: 28px;
+    margin-top: -11px;
+    border: 0;
+    background: var(--vc-accent);
+    clip-path: polygon(10.97px 5px, 21.36px 5px, 26.56px 14px, 21.36px 23px, 10.97px 23px, 5.77px 14px);
+  }
+  :where(input[type='range']:not(.vc-slider))::-moz-range-thumb {
+    width: 32.33px;
+    height: 28px;
+    border: 0;
+    border-radius: 0;
+    background: var(--vc-accent);
+    clip-path: polygon(10.97px 5px, 21.36px 5px, 26.56px 14px, 21.36px 23px, 10.97px 23px, 5.77px 14px);
+  }
+  :where(input[type='range']:not(.vc-slider)):focus-visible { outline: none; }
+  :where(input[type='range']:not(.vc-slider)):focus-visible::-webkit-slider-thumb {
+    clip-path: polygon(evenodd,
+      8.08px 0px, 24.25px 0px, 32.33px 14px, 24.25px 28px, 8.08px 28px, 0px 14px, 8.08px 0px,
+      9.24px 2px, 23.09px 2px, 30.02px 14px, 23.09px 26px, 9.24px 26px, 2.31px 14px, 9.24px 2px,
+      10.97px 5px, 21.36px 5px, 26.56px 14px, 21.36px 23px, 10.97px 23px, 5.77px 14px, 10.97px 5px);
+  }
+  :where(input[type='range']:not(.vc-slider)):focus-visible::-moz-range-thumb {
+    clip-path: polygon(evenodd,
+      8.08px 0px, 24.25px 0px, 32.33px 14px, 24.25px 28px, 8.08px 28px, 0px 14px, 8.08px 0px,
+      9.24px 2px, 23.09px 2px, 30.02px 14px, 23.09px 26px, 9.24px 26px, 2.31px 14px, 9.24px 2px,
+      10.97px 5px, 21.36px 5px, 26.56px 14px, 21.36px 23px, 10.97px 23px, 5.77px 14px, 10.97px 5px);
+  }
+
+  /* progress and meter: hex capsules like .vc-progress */
+  :where(progress, meter) {
+    --_ph: 0.625rem;
+    appearance: none;
+    display: inline-block;
+    width: min(100%, 16rem);
+    height: var(--_ph);
+    border: 0;
+    background: var(--vc-track);
+    vertical-align: middle;
+    clip-path: polygon(calc(var(--_ph) * 0.28868) 0%, calc(100% - var(--_ph) * 0.28868) 0%, 100% 50%, calc(100% - var(--_ph) * 0.28868) 100%, calc(var(--_ph) * 0.28868) 100%, 0% 50%);
+  }
+  :where(progress)::-webkit-progress-bar { background: var(--vc-track); }
+  :where(progress)::-webkit-progress-value { background: var(--vc-accent); }
+  :where(progress)::-moz-progress-bar { background: var(--vc-accent); }
+  :where(progress:indeterminate) {
+    background: repeating-linear-gradient(-60deg, var(--vc-accent) 0 6px, var(--vc-track) 6px 12px);
+  }
+  :where(progress:indeterminate)::-webkit-progress-bar { background: transparent; }
+  :where(meter)::-webkit-meter-bar { height: 100%; border: 0; border-radius: 0; background: var(--vc-track); }
+  :where(meter)::-webkit-meter-optimum-value { background: var(--vc-success-solid); }
+  :where(meter)::-webkit-meter-suboptimum-value { background: var(--vc-warning-text); }
+  :where(meter)::-webkit-meter-even-less-good-value { background: var(--vc-danger-solid); }
+  :where(meter)::-moz-meter-bar { background: var(--vc-success-solid); }
+  :where(meter:-moz-meter-sub-optimum)::-moz-meter-bar { background: var(--vc-warning-text); }
+  :where(meter:-moz-meter-sub-sub-optimum)::-moz-meter-bar { background: var(--vc-danger-solid); }
+
+  /* Password masks: browsers draw them with the font's bullet (•), which CSS can't reshape.
+     'Vici Mask' is a one-glyph font whose bullet is a hexagon (assets/fonts/vici-mask.woff2). */
+  :where(input[type='password']) { font-family: 'Vici Mask', var(--vc-font-text); }
+
   /* ---------- Focus & selection ---------- */
   :where(:focus-visible) {
     outline: var(--vc-stroke-focus) solid var(--vc-focus);

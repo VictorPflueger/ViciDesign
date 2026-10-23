@@ -76,6 +76,18 @@
   .vc-cell--feature { background: var(--vc-feature-bg); color: var(--vc-feature-text); }
   .vc-cell > .vc-icon { width: 46%; height: auto; aspect-ratio: 1; }
 
+  /* Inline elements need a box to show a shape: give spans and friends one by default
+     (zero specificity, so any display you set wins). Size them with a height or a width. */
+  :where(.vc-hex, .vc-hex--pointy, .vc-hex-ring):where(span, i, b, em, strong, small, a, label) {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  :where(.vc-capsule):where(span, i, b, em, strong, small, a, label) {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
   /* Hexagonal image crop. */
   .vc-hex-img {
     aspect-ratio: 1.1547;

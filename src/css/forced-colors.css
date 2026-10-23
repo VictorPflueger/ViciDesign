@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Forced colours: Windows contrast themes and similar modes.
+   The browser then paints text, borders and backgrounds with a few system colours and drops
+   background colours. Vici draws its hexagons, icons, check marks and focus rings with
+   background colours, so this layer repaints them in system colours:
+     CanvasText  shapes and outlines        Highlight / HighlightText  selected, current, focus
+     GrayText    disabled                   Canvas                     knob and gaps
+   ========================================================================== */
+
+@layer vici.utilities {
+  @media (forced-colors: active) {
+    /* Icons and check marks are masks filled with the text colour: they take the system colour
+       their parent is forced to (ButtonText in a button, LinkText in a link, …). */
+    .vc-icon,
+    .vc-checkbox::after,
+    .vc-chip > input,
+    .vc-step--done .vc-step__marker::after {
+      forced-color-adjust: preserve-parent-color;
+      background-color: currentColor;
+    }
+    /* the step number behind a done check stays hidden */
+    .vc-step--done .vc-step__marker {
+      forced-color-adjust: none;
+      color: transparent;
+    }
+
+    /* Filled icon buttons keep a hexagon outline, so they still read as buttons */
+    .vc-icon-button--soft::before,
+    .vc-icon-button--solid::before,
+    .vc-icon-button--floating::before,
+    .vc-icon-button--outline::before,
+    .vc-icon-button--outline:hover::before {
+      forced-color-adjust: none;
+      background-color: ButtonText;
+      clip-path: polygon(evenodd,
+        25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+        calc(25% + 0.8660px) 1.5px, 1.7321px 50%, calc(25% + 0.8660px) calc(100% - 1.5px),
+        calc(75% - 0.8660px) calc(100% - 1.5px), calc(100% - 1.7321px) 50%,
+        calc(75% - 0.8660px) 1.5px, calc(25% + 0.8660px) 1.5px);
+    }
+
+    /* Outlined hexagon parts */
+    :where(ul:not([class]):not(nav ul, header ul, footer ul, menu ul), .vc-prose ul) > li::before,
+    .vc-eyebrow::before,
+    .vc-list > li::before,
+    .vc-divider--hex > span,
+    .vc-timeline > li::after,
+    .vc-presence::after,
+    .vc-badge--dot::after,
+    .vc-radio > input,
+    :where(input[type='radio']),
+    .vc-rating > label::before,
+    .vc-rating > .vc-rating__cell::before,
+    .vc-step__marker::before,
+    .vc-carousel__dots > button::before {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+
+    /* Selected, checked and current parts */
+    .vc-radio > input:checked,
+    :where(input[type='radio']):checked,
+    .vc-rating:not(:has(label:hover)) > label:has(~ input:checked)::before,
+    .vc-rating:not(:has(label:hover)) > input:checked + label::before,
+    .vc-rating > .vc-rating__cell--on::before,
+    .vc-rating > label:hover::before,
+    .vc-rating > label:has(~ label:hover)::before,
+    .vc-step--current .vc-step__marker::before,
+    .vc-step--done .vc-step__marker::before,
+    .vc-carousel__dots > button[aria-current='true']::before,
+    .vc-timeline > .vc-timeline__item--done::after,
+    .vc-timeline > .vc-timeline__item--current::after,
+    .vc-header__nav a[aria-current]::after,
+    .vc-sidenav a[aria-current='page']::before,
+    .vc-tabs__list > [role='tab'][aria-selected='true']::after,
+    .vc-menu__item[aria-checked='true']::after {
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
+    .vc-step--done .vc-step__marker::after { background-color: HighlightText; }
+    .vc-step--current .vc-step__marker {
+      forced-color-adjust: none;
+      color: HighlightText;
+    }
+
+    /* Focus rings drawn on pseudo-elements */
+    .vc-icon-button::after,
+    .vc-pagination__page::after,
+    .vc-pagination__step::after,
+    .vc-radio::before,
+    .vc-switch::before,
+    .vc-chip::after,
+    .vc-rating > label::after,
+    .vc-carousel__dots > button::after,
+    .vc-tile::after,
+    .vc-tabs--capsule .vc-tabs__list > [role='tab']::after,
+    .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']::after {
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
+    :where(input[type='radio']):focus-visible { background-color: Highlight; }
+
+    /* Switch: track in CanvasText (Highlight when on), knob in Canvas */
+    .vc-switch > input {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+    .vc-switch > input:checked { background-color: Highlight; }
+    .vc-switch::after {
+      forced-color-adjust: none;
+      background-color: Canvas;
+    }
+    .vc-switch:has(input:checked)::after { background-color: HighlightText; }
+    .vc-switch:has(input:disabled) > input,
+    .vc-radio > input:disabled { background-color: GrayText; opacity: 1; }
+
+    /* Slider, progress and spinner keep their shapes in system colours */
+    .vc-slider,
+    :where(input[type='range']) {
+      forced-color-adjust: none;
+      --_fill: Highlight;
+      --_track: CanvasText;
+      --vc-accent: Highlight;
+      --vc-track: CanvasText;
+    }
+    .vc-progress,
+    .vc-progress-hex,
+    :where(progress, meter) {
+      forced-color-adjust: none;
+      --_fill: Highlight;
+      --vc-accent: Highlight;
+      --vc-track: color-mix(in srgb, CanvasText 30%, Canvas);   /* GrayText would read as "disabled" */
+      color: CanvasText;
+    }
+    .vc-progress { background-color: color-mix(in srgb, CanvasText 30%, Canvas); }
+    .vc-spinner,
+    .vc-button > .vc-spinner {
+      forced-color-adjust: none;
+      color: CanvasText;
+    }
+
+    /* Pressed, selected and current controls */
+    .vc-pagination__page[aria-current='page'],
+    .vc-chip[aria-pressed='true'],
+    .vc-chip[aria-selected='true'],
+    .vc-chip:has(input:checked),
+    .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true'] {
+      forced-color-adjust: none;
+      color: HighlightText;
+    }
+    .vc-pagination__page[aria-current='page']::before,
+    .vc-chip[aria-pressed='true']::before,
+    .vc-chip[aria-selected='true']::before,
+    .vc-chip:has(input:checked)::before,
+    .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']::before {
+      background-color: Highlight;
+    }
+    .vc-button[aria-pressed='true'],
+    .vc-segmented input:checked + span {
+      forced-color-adjust: none;
+      border-color: Highlight;
+      background-color: Highlight;
+      color: HighlightText;
+    }
+
+    /* Shapes that only exist as a fill get an outline, so the control stays recognisable */
+    .vc-chip,
+    .vc-tag,
+    .vc-badge:not(.vc-badge--dot),
+    .vc-stat__delta,
+    .vc-segmented > label > span,
+    .vc-tooltip {
+      outline: 1px solid CanvasText;
+      outline-offset: -1px;
+    }
+    .vc-chip:focus-visible { outline: 2px solid Highlight; }
+  }
+}

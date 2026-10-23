@@ -98,7 +98,10 @@
     display: flex;
     width: 100%;
   }
-  .vc-button--toggle[aria-pressed='true'] {
+  /* .vc-button--toggle: vici.js flips its aria-pressed on click. Any pressed button (toggle
+     buttons, theme pickers) shows its state in the fill and the border. */
+  .vc-button--toggle { user-select: none; }
+  .vc-button[aria-pressed='true'] {
     --_bg: var(--vc-accent-soft);
     --_bg-hover: var(--vc-accent-soft-hover);
     --_fg: var(--vc-on-accent-soft);

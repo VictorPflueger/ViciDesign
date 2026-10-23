@@ -36,7 +36,7 @@ The documentation site, with live demos and copyable code for every component, i
 | **Deep base, soft light** | Merlot `#250010` is the ink in light mode, the fill of primary actions and the canvas in dark mode. Eight OKLCH-generated families (merlot, coral, apricot, honey, sage, teal, fjord, lilac) plus linen neutrals carry meaning, and their pastel steps carry the atmosphere. |
 | **Data first** | Tabular figures everywhere numbers live, a categorical chart palette checked against colour-blindness simulations, KPI cards, sortable tables, SVG chart examples. |
 | **Zero friction** | Plain CSS in cascade layers plus a small optional script. Plain HTML is styled without classes. No framework, no dependencies. |
-| **Accessible by default** | Every semantic colour pair meets WCAG 2.2 AA in both themes (verified by `npm run check`). Visible focus everywhere, hexagonal on hexagon controls, and reduced-motion support. |
+| **Accessible by default** | Every semantic colour pair meets WCAG 2.2 AA in both themes (verified by `npm run check`). Visible focus everywhere, hexagonal on hexagon controls, reduced-motion support, Windows contrast themes, text that scales with the reader's settings, and reflow down to 320 px. |
 
 ## What's inside
 
@@ -45,7 +45,7 @@ The documentation site, with live demos and copyable code for every component, i
 - **Brand:** five logo concepts (Vertex, Facet, Honeycomb, Monogram, Wordmark) in colour, dark and mono, plus an app icon, a favicon and lockups.
 - **Starters:** an app prototype, a data dashboard, a personal landing page and a blank page in `starters/`.
 - **Integrations:** Streamlit theme, Power BI theme, Python palette for matplotlib/plotly, Tailwind CSS v4 theme, all generated from the same tokens.
-- **Icons:** 64 original line icons on a 24 px grid. Every round form in them is drawn as a hexagon.
+- **Icons:** 64 original line icons on a 24 px grid. Every round form in them is drawn as a hexagon, and arrowheads and chevrons open at the hexagon's 120° angle. Even password masks are hexagons.
 
 ## Typography
 
@@ -61,16 +61,16 @@ All fonts are self-hosted in `assets/fonts/`, so no font is requested from a thi
 
 ```
 dist/                 vici.css · vici.min.css · vici-tokens.css · vici.js · vici-icons.svg · tokens.json   (generated)
-assets/fonts/         WOFF2 files + OFL licences
+assets/fonts/         WOFF2 files + OFL licences, vici-mask.woff2 (hexagon password mask)
 assets/logo/          logo concepts as SVG                                                               (generated)
 src/tokens/           tokens.json — the single source of truth (DTCG-style)
-src/css/              base, shape (hexagon geometry), layout, utilities, components/*.css
+src/css/              base, shape (hexagon geometry), layout, utilities, forced colours, components/*.css
 src/js/vici.js        optional behaviours
 src/icons/            one SVG per icon
 src/docs/             documentation page sources, layout, docs styles
 src/starters/         starter page sources
 src/brand/            outlined wordmark paths
-scripts/              build.mjs, palette.mjs, checks, brand/wordmark.py
+scripts/              build.mjs, palette.mjs, checks, brand/wordmark.py, brand/mask-font.py
 integrations/         Streamlit, Power BI, Python, Tailwind                                            (generated)
 index.html, start/, guidelines/, components/, brand/, starters/   documentation site                   (generated)
 ```
@@ -84,6 +84,8 @@ node scripts/build.mjs      # regenerate dist/, docs pages, logos and integratio
 npm run check               # contrast, hexagon rule, fonts, links, logos, exports, build freshness
 npm run palette             # after editing scripts/palette.mjs: regenerate the colour ramps and rebuild
 npm run check:render        # optional: render every page in Chromium (needs Playwright)
+python3 scripts/brand/wordmark.py   # after changing the wordmarks (needs fonttools, uharfbuzz, skia-pathops, shapely)
+python3 scripts/brand/mask-font.py  # regenerates the hexagon password-mask font (needs fonttools, brotli)
 ```
 
 Generated files are committed, so the CDN links and GitHub Pages work without a build server. `npm run check` fails if a

@@ -75,7 +75,7 @@ const svgDataUri = (svg) =>
 function themeAssets(theme) {
   const muted = val(`theme.${theme}.text-muted`);
   const line = val(`theme.${theme}.border-subtle`);
-  const chevron = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${muted}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 L12 15.5 L18 9.5"/></svg>`;
+  const chevron = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${muted}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 10.25 L12 14 L18.5 10.25"/></svg>`;
   // Honeycomb lattice tile: flat-top hexagons, side 14px → tile 42 × 24.249px.
   const s = 14;
   const h = +(s * Math.sqrt(3)).toFixed(3);
@@ -126,8 +126,25 @@ ${dark.map((l) => '    ' + l).join('\n')}
     }
   }
 
-  /* …or when requested explicitly, on <html> or on any element */
-  [data-theme='dark'] {
+  /* …or when requested explicitly, on <html> or on any element. The brand footer is always dark. */
+  [data-theme='dark'],
+  .vc-footer--brand {
+${indent(dark)}
+  }
+
+  /* Inverse surfaces take the opposite theme: dark on a light page, light on a dark one. */
+  .vc-surface-inverse {
+${indent(dark)}
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root:not([data-theme='light'])) .vc-surface-inverse {
+${light.map((l) => '    ' + l).join('\n')}
+    }
+  }
+  [data-theme='dark'] .vc-surface-inverse {
+${indent(light)}
+  }
+  [data-theme='light'] .vc-surface-inverse {
 ${indent(dark)}
   }
 }
@@ -208,7 +225,7 @@ function bundleCss() {
  */
 @layer vici.tokens, vici.base, vici.layout, vici.components, vici.utilities;
 `;
-  const parts = [banner, read('src/css/fonts.css'), tokensCss(), ...CSS_ORDER.map(read), iconsCss(), read('src/css/utilities.css')];
+  const parts = [banner, read('src/css/fonts.css'), tokensCss(), ...CSS_ORDER.map(read), iconsCss(), read('src/css/utilities.css'), read('src/css/forced-colors.css')];
   return parts.join('\n');
 }
 

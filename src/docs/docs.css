@@ -377,7 +377,7 @@
   font-size: var(--vc-font-size-sm);
 }
 .doc-scale__row code { font-size: 0.76rem; justify-self: start; }
-.doc-scale__bar { height: 0.85rem; border-radius: var(--vc-radius-xs); background: var(--vc-merlot-300); min-width: 1px; }
+.doc-scale__bar { height: 0.85rem; border-radius: var(--vc-radius-xs); background: var(--vc-merlot-300); min-width: 1px; max-width: 100%; }
 
 .doc-radius-grid,
 .doc-cell-scale {

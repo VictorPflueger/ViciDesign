@@ -81,8 +81,9 @@
   }
   .vc-header__toggle { display: none; }
   @media (max-width: 767px) {
-    .vc-header__toggle { display: inline-grid; }
-    .vc-header__nav {
+    /* With vici.js (it sets .vc-js on <html>) the links fold into a menu behind the toggle. */
+    .vc-js .vc-header__toggle { display: inline-grid; }
+    .vc-js .vc-header__nav {
       position: absolute;
       top: 100%;
       left: 0;
@@ -95,13 +96,27 @@
       background: var(--vc-bg);
       box-shadow: var(--vc-shadow-md);
     }
-    .vc-header[data-open] .vc-header__nav { display: flex; }
-    .vc-header__nav a { padding: var(--vc-space-3); }
-    .vc-header__nav a[aria-current='page']::after {
+    .vc-js .vc-header[data-open] .vc-header__nav { display: flex; }
+    .vc-js .vc-header__nav a { padding: var(--vc-space-3); }
+    .vc-js .vc-header__nav a[aria-current='page']::after {
       left: auto;
       right: var(--vc-space-3);
       bottom: calc(50% - 3.5px);
     }
+    /* Without it, the links stay visible in a row of their own that scrolls sideways. */
+    :root:not(.vc-js) .vc-header__inner { flex-wrap: wrap; }
+    :root:not(.vc-js) .vc-header__nav {
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: var(--vc-space-2);
+    }
+  }
+  /* Very narrow phones (320 px): tighter spacing, so brand and four actions still fit */
+  @media (max-width: 359px) {
+    .vc-header__inner { gap: var(--vc-space-2); }
+    .vc-header__brand { margin-inline-end: 0; }
+    .vc-header__actions { gap: 0; }
   }
 
   /* ---------- Side navigation ---------- */
@@ -228,15 +243,15 @@
     border-top: 1px solid var(--vc-border-subtle);
     font-size: var(--vc-font-size-xs);
   }
+  /* The brand footer is a dark island in both themes (tokens.css gives it the dark tokens),
+     so buttons, links and headings inside keep their contrast. */
   .vc-footer--brand {
-    border-top-color: var(--vc-night-6);
-    background: var(--vc-merlot-950);
-    color: var(--vc-neutral-300);
+    background: var(--vc-bg);
+    color: var(--vc-text-muted);
   }
-  .vc-footer--brand a { color: var(--vc-neutral-300); }
-  .vc-footer--brand a:hover { color: var(--vc-neutral-50); }
-  .vc-footer--brand .vc-footer__title { color: var(--vc-neutral-50); }
-  .vc-footer--brand .vc-footer__bottom { border-top-color: var(--vc-night-6); }
+  .vc-footer--brand a { color: var(--vc-text-muted); }
+  .vc-footer--brand a:hover { color: var(--vc-text); }
+  .vc-footer--brand .vc-footer__title { color: var(--vc-text); }
 
   /* ---------- Tabs ---------- */
   /* min-width: 0 lets the tab list scroll instead of widening a grid or flex parent */
@@ -289,29 +304,54 @@
     padding-top: var(--vc-space-5);
   }
   .vc-tabs__panel:focus-visible { outline-offset: 4px; }
+  /* Capsule tabs: the tab itself stays unclipped; ::before paints the hex capsule and ::after
+     the capsule-shaped focus ring, so focus is visible on selected and unselected tabs alike. */
   .vc-tabs--capsule .vc-tabs__list {
     gap: var(--vc-space-2);
+    padding: 4px 5px;   /* room for the focus ring inside the scrolling list */
     border-bottom: 0;
   }
   .vc-tabs--capsule .vc-tabs__list > [role='tab'] {
-    --_p: 0.6rem;
-    padding: var(--vc-space-2) calc(var(--_p) + var(--vc-space-3));
+    --_h: 2.25rem;
+    --_p: calc(var(--_h) * 0.28868);
+    isolation: isolate;
+    min-height: var(--_h);
+    padding: 0 calc(var(--_p) + var(--vc-space-3));
     border-radius: 0;
+  }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab']:hover { background: none; }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab']::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: transparent;
     clip-path: polygon(var(--_p) 0%, calc(100% - var(--_p)) 0%, 100% 50%, calc(100% - var(--_p)) 100%, var(--_p) 100%, 0% 50%);
+    transition: background-color var(--vc-duration-quick) var(--vc-ease-standard);
   }
-  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true'] {
-    background: var(--vc-accent);
-    color: var(--vc-on-accent);
+  .vc-tabs--capsule .vc-tabs__list > [role='tab']:hover::before { background: var(--vc-surface-hover); }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true'] { color: var(--vc-on-accent); }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']::before { background: var(--vc-accent); }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']:hover::before { background: var(--vc-accent-hover); }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab']::after,
+  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']::after {
+    --_q: calc((var(--_h) + 8px) * 0.28868);
+    content: '';
+    position: absolute;
+    inset: -4px -4.6188px;
+    width: auto;
+    height: auto;
+    background: var(--vc-focus);
+    opacity: 0;
+    pointer-events: none;
+    clip-path: polygon(evenodd,
+      var(--_q) 0%, calc(100% - var(--_q)) 0%, 100% 50%, calc(100% - var(--_q)) 100%, var(--_q) 100%, 0% 50%, var(--_q) 0%,
+      calc(var(--_q) + 1.1547px) 2px, 2.3094px 50%, calc(var(--_q) + 1.1547px) calc(100% - 2px),
+      calc(100% - var(--_q) - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(100% - var(--_q) - 1.1547px) 2px, calc(var(--_q) + 1.1547px) 2px);
   }
-  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']::after { display: none; }
-  .vc-tabs--capsule .vc-tabs__list > [role='tab']:focus-visible {
-    background: var(--vc-accent-soft-hover);
-    color: var(--vc-on-accent-soft);
-  }
-  .vc-tabs--capsule .vc-tabs__list > [role='tab'][aria-selected='true']:focus-visible {
-    background: var(--vc-accent-hover);
-    color: var(--vc-on-accent);
-  }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab']:focus-visible { outline: none; }
+  .vc-tabs--capsule .vc-tabs__list > [role='tab']:focus-visible::after { opacity: 1; }
 
   /* ---------- Breadcrumb ---------- */
   .vc-breadcrumb ol {
@@ -610,5 +650,23 @@
     background: var(--vc-accent);
     scale: 1.35;
   }
-  .vc-carousel__dots > button:focus-visible { outline-offset: 0; border-radius: var(--vc-radius-sm); }
+  /* focus: a hexagon ring around the dot */
+  .vc-carousel__dots > button::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - 10.3923px);
+    top: calc(50% - 9px);
+    width: 20.7846px;
+    height: 18px;
+    background: var(--vc-focus);
+    opacity: 0;
+    pointer-events: none;
+    clip-path: polygon(evenodd,
+      25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+      calc(25% + 1.1547px) 2px, 2.3094px 50%, calc(25% + 1.1547px) calc(100% - 2px),
+      calc(75% - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(75% - 1.1547px) 2px, calc(25% + 1.1547px) 2px);
+  }
+  .vc-carousel__dots > button:focus-visible { outline: none; }
+  .vc-carousel__dots > button:focus-visible::after { opacity: 1; }
 }

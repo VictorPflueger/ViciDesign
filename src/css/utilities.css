@@ -77,7 +77,8 @@
   /* Surfaces & tints */
   .vc-surface { background: var(--vc-surface); }
   .vc-surface-subtle { background: var(--vc-bg-subtle); }
-  .vc-surface-inverse { background: var(--vc-surface-inverse); color: var(--vc-text-inverse); }
+  /* An island in the opposite theme (tokens.css swaps the tokens), so everything inside keeps its contrast. */
+  .vc-surface-inverse { background: var(--vc-bg); color: var(--vc-text); }
   .vc-tint-merlot { background: var(--vc-merlot-50); }
   .vc-tint-coral { background: var(--vc-coral-50); }
   .vc-tint-apricot { background: var(--vc-apricot-50); }
@@ -100,7 +101,7 @@
   .vc-bg-honeycomb {
     background-color: var(--vc-bg);
     background-image: var(--vc-honeycomb-pattern);
-    background-size: 42px 72.75px;
+    background-size: var(--vc-honeycomb-pattern-size);
   }
 
   .vc-rounded { border-radius: var(--vc-radius-lg); }

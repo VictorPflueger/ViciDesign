@@ -246,7 +246,8 @@
     column-gap: 0.65rem;
     color: var(--vc-text);
     font-size: var(--vc-font-size-sm);
-    line-height: 20px;
+    /* sizes in rem: controls and labels grow together when the reader enlarges text */
+    line-height: 1.25rem;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
@@ -278,9 +279,9 @@
 
   /* Checkbox: a square (squares are not circles) */
   .vc-checkbox > input {
-    width: 18px;
-    height: 18px;
-    margin-top: 1px;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.0625rem;
     border: 1.5px solid var(--vc-border-strong);
     border-radius: var(--vc-radius-sm);
     background: var(--vc-surface);
@@ -299,12 +300,12 @@
   .vc-checkbox::after {
     content: '';
     position: absolute;
-    top: 1px;
+    top: 0.0625rem;
     left: 0;
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
     background: var(--vc-on-accent);
-    mask: var(--vc-svg-check) center / 13px 13px no-repeat;
+    mask: var(--vc-svg-check) center / 0.8125rem 0.8125rem no-repeat;
     opacity: 0;
     scale: 0.6;
     pointer-events: none;
@@ -322,8 +323,8 @@
 
   /* Radio: a hexagon ring with a hexagon dot (one clip-path, even-odd fill) */
   .vc-radio > input {
-    width: 23.094px;
-    height: 20px;
+    width: 1.4434rem;
+    height: 1.25rem;
     background: var(--vc-border-strong);
     clip-path: polygon(evenodd,
       25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
@@ -341,9 +342,7 @@
       calc(25% + 1.1547px) 2px, 2.3094px 50%, calc(25% + 1.1547px) calc(100% - 2px),
       calc(75% - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
       calc(75% - 1.1547px) 2px, calc(25% + 1.1547px) 2px,
-      calc(25% + 3.1754px) 5.5px, 6.3509px 50%, calc(25% + 3.1754px) calc(100% - 5.5px),
-      calc(75% - 3.1754px) calc(100% - 5.5px), calc(100% - 6.3509px) 50%,
-      calc(75% - 3.1754px) 5.5px, calc(25% + 3.1754px) 5.5px);
+      38.75% 27.5%, 27.5% 50%, 38.75% 72.5%, 61.25% 72.5%, 72.5% 50%, 61.25% 27.5%, 38.75% 27.5%);
   }
   /* focus: an outer hexagon ring drawn by the label */
   .vc-radio::before {
@@ -351,8 +350,8 @@
     position: absolute;
     top: -4px;
     left: -4.6188px;
-    width: 32.33px;
-    height: 28px;
+    width: calc(1.4434rem + 9.2376px);
+    height: calc(1.25rem + 8px);
     background: var(--vc-focus);
     opacity: 0;
     pointer-events: none;
@@ -366,13 +365,18 @@
 
   /* Switch: hex-capsule track (the input) + hexagon knob (label ::after) */
   .vc-switch {
+    --_sw: 2.875rem;   /* track width */
+    --_sh: 1.5rem;     /* track height */
+    --_kh: 1.125rem;   /* knob height */
+    --_ki: calc((var(--_sh) - var(--_kh)) / 2 * 1.1547);   /* knob inset, parallel to the track's points */
+    --_fh: calc(var(--_sh) + 8px);   /* focus ring height */
     align-items: center;
   }
   .vc-switch > input {
-    width: 46px;
-    height: 24px;
+    width: var(--_sw);
+    height: var(--_sh);
     background: var(--vc-border-strong);
-    clip-path: polygon(6.9282px 0%, calc(100% - 6.9282px) 0%, 100% 50%, calc(100% - 6.9282px) 100%, 6.9282px 100%, 0% 50%);
+    clip-path: polygon(calc(var(--_sh) * 0.28868) 0%, calc(100% - var(--_sh) * 0.28868) 0%, 100% 50%, calc(100% - var(--_sh) * 0.28868) 100%, calc(var(--_sh) * 0.28868) 100%, 0% 50%);
     transition: background-color var(--vc-duration-base) var(--vc-ease-standard);
   }
   .vc-switch > input:hover { background: var(--vc-text-muted); }
@@ -381,36 +385,61 @@
   .vc-switch::after {
     content: '';
     position: absolute;
-    left: 3.4641px;
-    top: calc(50% - 9px);
-    width: 20.7846px;
-    height: 18px;
+    left: var(--_ki);
+    top: calc(50% - var(--_kh) / 2);
+    width: calc(var(--_kh) * 1.1547);
+    height: var(--_kh);
     background: var(--vc-knob);
     clip-path: var(--vc-hex);
     pointer-events: none;
     transition: translate var(--vc-duration-base) var(--vc-ease-bounce), background-color var(--vc-duration-base) var(--vc-ease-standard);
   }
   .vc-switch:has(input:checked)::after {
-    translate: 18.287px 0;
+    translate: calc(var(--_sw) - 2 * var(--_ki) - var(--_kh) * 1.1547) 0;
     background: var(--vc-on-accent);
   }
   .vc-switch::before {
+    --_p: calc(var(--_fh) * 0.28868);
     content: '';
     position: absolute;
     left: -4.6188px;
-    top: calc(50% - 16px);
-    width: 55.2376px;
-    height: 32px;
+    top: calc(50% - var(--_fh) / 2);
+    width: calc(var(--_sw) + 9.2376px);
+    height: var(--_fh);
     background: var(--vc-focus);
     opacity: 0;
     pointer-events: none;
     clip-path: polygon(evenodd,
-      9.2376px 0%, calc(100% - 9.2376px) 0%, 100% 50%, calc(100% - 9.2376px) 100%, 9.2376px 100%, 0% 50%, 9.2376px 0%,
-      10.3923px 2px, 2.3094px 50%, 10.3923px calc(100% - 2px),
-      calc(100% - 10.3923px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
-      calc(100% - 10.3923px) 2px, 10.3923px 2px);
+      var(--_p) 0%, calc(100% - var(--_p)) 0%, 100% 50%, calc(100% - var(--_p)) 100%, var(--_p) 100%, 0% 50%, var(--_p) 0%,
+      calc(var(--_p) + 1.1547px) 2px, 2.3094px 50%, calc(var(--_p) + 1.1547px) calc(100% - 2px),
+      calc(100% - var(--_p) - 1.1547px) calc(100% - 2px), calc(100% - 2.3094px) 50%,
+      calc(100% - var(--_p) - 1.1547px) 2px, calc(var(--_p) + 1.1547px) 2px);
   }
   .vc-switch:has(input:focus-visible)::before { opacity: 1; }
+  .vc-switch:has(input:disabled)::after { opacity: 0.6; }
+
+  /* Invalid choices (aria-invalid on the input or on its fieldset) turn the control to the
+     danger colour; the error message in .vc-help--error says what is wrong. */
+  .vc-checkbox > input[aria-invalid='true'],
+  [aria-invalid='true'] .vc-checkbox > input:not(:checked) {
+    border-color: var(--vc-danger-solid);
+  }
+  .vc-radio > input[aria-invalid='true'],
+  [aria-invalid='true'] .vc-radio > input,
+  .vc-switch > input[aria-invalid='true'],
+  [aria-invalid='true'] .vc-switch > input:not(:checked) {
+    background: var(--vc-danger-solid);
+  }
+  .vc-chip[aria-invalid='true']:not([aria-pressed='true'])::before,
+  .vc-chip:has(input[aria-invalid='true']:not(:checked))::before,
+  [aria-invalid='true'] > .vc-chip:not([aria-pressed='true']):not(:has(input:checked))::before {
+    background: var(--vc-danger-bg);
+  }
+  .vc-chip[aria-invalid='true']:not([aria-pressed='true']),
+  .vc-chip:has(input[aria-invalid='true']:not(:checked)),
+  [aria-invalid='true'] > .vc-chip:not([aria-pressed='true']):not(:has(input:checked)) {
+    color: var(--vc-danger-text);
+  }
 
   /* ---------- Slider: native range with a hexagon thumb ---------- */
   .vc-slider {
@@ -428,7 +457,9 @@
   .vc-slider::-webkit-slider-runnable-track {
     height: 6px;
     border-radius: var(--vc-radius-xs);
-    background: linear-gradient(to right, var(--_fill) var(--vc-slider-fill, 0%), var(--_track) var(--vc-slider-fill, 0%));
+    /* the fill ends under the centre of the thumb (32.33 px box), wherever the value is */
+    --_stop: calc(16.165px + (100% - 32.33px) * var(--vc-slider-value, 0));
+    background: linear-gradient(to right, var(--_fill) var(--_stop), var(--_track) var(--_stop));
   }
   .vc-slider::-moz-range-track {
     height: 6px;
