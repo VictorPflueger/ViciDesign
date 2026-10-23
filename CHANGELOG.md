@@ -20,9 +20,11 @@ First release.
 - Profile links: a "Built by" byline with Victor's portrait in a hexagon and LinkedIn's [in] logo, profile links for
   footers and contact sections, a Streamlit byline helper, rules for other brands' logos (their unchanged files, black or
   white via `--vc-platform-mark` and `--vc-platform-mark-filter`), with LinkedIn's [in] logo and GitHub's Invertocat in
-  `assets/marks/` and the portrait in `assets/brand/`.
-- Licence: MIT for code, tokens, icons and docs; Victor Pflüger's name, logo, monogram and wordmarks reserved; fonts
-  under the SIL Open Font License.
+  `assets/marks/` and the portrait in `assets/brand/`. Link rules: `rel="author"` in bylines and `rel="me"` on the
+  personal site, canonical profile addresses, the personal site at https://victorpflueger.github.io/VIP/index.html for
+  the time being, and no links from a project to its own GitHub repository unless that is specifically required.
+- Licence: MIT for code, tokens, icons and docs; Victor Pflüger's name, portrait, logo, monogram and wordmarks
+  reserved; fonts under the SIL Open Font License. The docs show it in full under Start → Licence.
 - Starters: app prototype, dashboard, personal landing page, blank page.
 - Integrations: Streamlit, Power BI, Python (matplotlib/plotly), Tailwind CSS v4.
 - Checks: contrast, colour-blind separation of chart colours, hexagon rule, fonts, links, logos, exports, build freshness.

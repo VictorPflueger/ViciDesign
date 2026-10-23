@@ -24,6 +24,6 @@ The rules, in short (the Profile links page in the docs has the details):
 - Colours: black on light backgrounds and white on dark ones. `.vc-platform-mark` switches
   automatically, through `--vc-platform-mark` for inline SVG and `--vc-platform-mark-filter` for
   image files. LinkedIn also allows its own blue.
-- Size: at least 21 px high, LinkedIn's minimum for the [in] logo. Vici uses the same size for
-  every platform so a row of logos looks even.
+- Size: LinkedIn's [in] logo at least 21 px high, LinkedIn's minimum. GitHub's Invertocat at
+  18 px, because GitHub asks for its logo to stay less prominent than your own name.
 - Use them only to link to Victor's own profiles.

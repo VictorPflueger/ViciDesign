@@ -643,3 +643,17 @@
 .doc-anatomy .a-line { stroke: var(--vc-text-subtle); stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
 .doc-anatomy .a-shape { fill: var(--vc-accent-soft); stroke: var(--vc-accent-text); stroke-width: 1.5; }
 .doc-anatomy .a-accent { fill: var(--vc-accent-text); }
+
+/* licence page: the LICENSE file as reflowed paragraphs */
+.doc-licence {
+  max-width: var(--vc-container-prose);
+  padding: var(--vc-space-6);
+  border: 1px solid var(--vc-border-subtle);
+  border-radius: var(--vc-radius-lg);
+  background: var(--vc-bg-subtle);
+  font-size: var(--vc-font-size-sm);
+  overflow-wrap: anywhere;
+}
+.doc-licence > :last-child { margin-bottom: 0; }
+.doc-licence__heading { margin-top: var(--vc-space-6); font-weight: var(--vc-weight-semibold); color: var(--vc-text); }
+.doc-licence ul { padding-inline-start: var(--vc-space-5); }

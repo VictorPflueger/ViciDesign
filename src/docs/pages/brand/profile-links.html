@@ -18,11 +18,11 @@ description: How every page credits Victor Pflüger and links to his profiles. T
 </header>
 
 <h2>Byline</h2>
-<p>The byline goes at the end of a page or app: in the footer, under a dashboard, at the bottom of a prototype's sidebar. It reads “Built by”, then the portrait, the name and the profile's logo. With one profile, all of it is a single link. That gives one generous target and one clear name for screen readers: “Victor Pflüger on LinkedIn”.</p>
+<p>The byline goes at the end of a page or app: in the footer, under a dashboard, at the bottom of a prototype's sidebar. It reads “Built by”, then the portrait, the name and the profile's logo. With one profile, all of it is a single link. That gives one generous target and one clear name for screen readers: “Victor Pflüger on LinkedIn”. Its <code>rel="author"</code> says that the linked profile belongs to the author of the page.</p>
 <!-- demo split -->
 <p class="vc-byline">
   <span class="vc-byline__label">Built by</span>
-  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="me">
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
     <span class="vc-avatar vc-avatar--xs"><!-- @portrait 96 --></span>
     <span class="vc-byline__name">Victor Pflüger</span>
     <!-- @platform-mark linkedin -->
@@ -33,7 +33,7 @@ description: How every page credits Victor Pflüger and links to his profiles. T
 <p>LinkedIn's logo is an image in black. In the dark theme, and in dark sections such as a brand footer, <code>.vc-platform-mark</code> shows it in white, which is LinkedIn's own white version.</p>
 
 <h3 id="byline-several">With several profiles</h3>
-<p>When the byline links to more than one profile, the name stops being a link and each profile gets its own: as words where there's room, or as logos where there isn't. Word links need nothing else. Logo links need an <code>aria-label</code> that names the person and the platform, and they keep a 24&nbsp;px target around the 21&nbsp;px logo.</p>
+<p>When the byline links to more than one profile, the name stops being a link and each profile gets its own: as words where there's room, or as logos where there isn't. Word links need nothing else. Logo links need an <code>aria-label</code> that names the person and the platform, and they keep a target of at least 24&nbsp;px around the logo.</p>
 <!-- demo split -->
 <p class="vc-byline">
   <span class="vc-byline__label">Built by</span>
@@ -42,8 +42,8 @@ description: How every page credits Victor Pflüger and links to his profiles. T
     <span class="vc-byline__name">Victor Pflüger</span>
   </span>
   <span class="vc-byline__links">
-    <a href="https://www.linkedin.com/in/victorpflueger" rel="me">LinkedIn</a>
-    <a href="https://github.com/VictorPflueger" rel="me">GitHub</a>
+    <a href="https://www.linkedin.com/in/victorpflueger" rel="author">LinkedIn</a>
+    <a href="https://github.com/VictorPflueger" rel="author">GitHub</a>
   </span>
 </p>
 <p class="vc-byline">
@@ -53,8 +53,8 @@ description: How every page credits Victor Pflüger and links to his profiles. T
     <span class="vc-byline__name">Victor Pflüger</span>
   </span>
   <span class="vc-byline__links">
-    <a class="vc-byline__icon" href="https://www.linkedin.com/in/victorpflueger" rel="me" aria-label="Victor Pflüger on LinkedIn"><!-- @platform-mark linkedin --></a>
-    <a class="vc-byline__icon" href="https://github.com/VictorPflueger" rel="me" aria-label="Victor Pflüger on GitHub"><!-- @platform-mark github --></a>
+    <a class="vc-byline__icon" href="https://www.linkedin.com/in/victorpflueger" rel="author" aria-label="Victor Pflüger on LinkedIn"><!-- @platform-mark linkedin --></a>
+    <a class="vc-byline__icon" href="https://github.com/VictorPflueger" rel="author" aria-label="Victor Pflüger on GitHub"><!-- @platform-mark github --></a>
   </span>
 </p>
 <!-- /demo -->
@@ -66,7 +66,7 @@ description: How every page credits Victor Pflüger and links to his profiles. T
 
 &lt;p class="vc-byline"&gt;
   &lt;span class="vc-byline__label"&gt;Built by&lt;/span&gt;
-  &lt;a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="me"&gt;
+  &lt;a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author"&gt;
     &lt;span class="vc-avatar vc-avatar--xs"&gt;&lt;img src="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v<!-- @version -->/assets/brand/portrait-96.jpg" alt="" width="96" height="96"&gt;&lt;/span&gt;
     &lt;span class="vc-byline__name"&gt;Victor Pflüger&lt;/span&gt;
     &lt;img class="vc-platform-mark" src="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v<!-- @version -->/assets/marks/linkedin.png" alt="" width="840" height="779"&gt;
@@ -81,18 +81,18 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
 # st.sidebar.markdown(vici_byline(dark=True), unsafe_allow_html=True)  # dark theme</code></pre>
 
 <h2>In footers and contact sections</h2>
-<p>Footers list the profiles under a heading and put the byline in the bottom row. Profiles are listed by name, LinkedIn first.</p>
+<p>Footers list the profiles under a heading and put the byline in the bottom row. Profiles are listed by name: LinkedIn, GitHub, then the personal site.</p>
 <!-- demo flush -->
 <footer class="vc-footer vc-footer--brand">
   <div class="vc-container">
     <div class="vc-footer__grid">
       <div><p class="vc-footer__title">Demand forecast</p><p style="margin:0">A prototype for weekly article forecasts.</p></div>
-      <div><p class="vc-footer__title">Elsewhere</p><ul><li><a href="https://www.linkedin.com/in/victorpflueger" rel="me">LinkedIn</a></li><li><a href="https://github.com/VictorPflueger" rel="me">GitHub</a></li></ul></div>
+      <div><p class="vc-footer__title">Elsewhere</p><ul><li><a href="https://www.linkedin.com/in/victorpflueger" rel="author">LinkedIn</a></li><li><a href="https://github.com/VictorPflueger" rel="author">GitHub</a></li><li><a href="https://victorpflueger.github.io/VIP/index.html" rel="author">Website</a></li></ul></div>
     </div>
     <div class="vc-footer__bottom">
       <p class="vc-byline">
         <span class="vc-byline__label">Built by</span>
-        <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="me">
+        <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
           <span class="vc-avatar vc-avatar--xs"><!-- @portrait 96 --></span>
           <span class="vc-byline__name">Victor Pflüger</span>
           <!-- @platform-mark linkedin -->
@@ -104,7 +104,7 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
   </div>
 </footer>
 <!-- /demo -->
-<p>A contact section turns the profiles into buttons. A platform's logo goes only on secondary or ghost buttons: it has to stay black or white, and neither works on the primary button's merlot, or its blush in the dark theme.</p>
+<p>On a personal site, the contact section turns the profiles into buttons, with <code>rel="me"</code> (see the link rules). A platform's logo goes on secondary or ghost buttons, where <code>.vc-platform-mark</code> picks the right one of black and white. A primary button would need the opposite colour, so keep primary buttons to words.</p>
 <!-- demo split -->
 <div class="vc-cluster">
   <a class="vc-button vc-button--secondary" href="https://www.linkedin.com/in/victorpflueger" rel="me"><!-- @platform-mark linkedin -->LinkedIn</a>
@@ -119,7 +119,7 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
   <thead><tr><th scope="col">Platform</th><th scope="col">Logo</th><th scope="col">Colours</th><th scope="col">Size</th><th scope="col">File</th></tr></thead>
   <tbody>
     <tr><th scope="row">LinkedIn</th><td>The [in] logo</td><td>Black or LinkedIn blue on light backgrounds, white on dark ones</td><td>At least 21&nbsp;px high</td><td><code>assets/marks/linkedin.png</code>, with <code>linkedin-white.png</code> and <code>linkedin-blue.png</code>: LinkedIn's own files from its <a href="https://brand.linkedin.com/downloads">brand downloads</a>, unchanged.</td></tr>
-    <tr><th scope="row">GitHub</th><td>The Invertocat</td><td>Black on light backgrounds, white on dark ones</td><td>21&nbsp;px, like every other logo in a row</td><td><code>assets/marks/github.svg</code>, unchanged from GitHub's Octicons. Inline it as SVG and <code>--vc-platform-mark</code> picks black or white.</td></tr>
+    <tr><th scope="row">GitHub</th><td>The Invertocat</td><td>Black on light backgrounds, white on dark ones</td><td>18&nbsp;px: GitHub asks for its logo to be less prominent than your own name</td><td><code>assets/marks/github.svg</code>, unchanged from GitHub's Octicons. Inline it as SVG and <code>--vc-platform-mark</code> picks black or white.</td></tr>
     <tr><th scope="row">Email, website</th><td>Vici's <span class="vc-icon vc-icon--mail" aria-hidden="true"></span> mail and <span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span> globe icons</td><td>The text colour</td><td>Icon size</td><td>Part of Vici</td></tr>
   </tbody>
 </table>
@@ -130,7 +130,7 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
     <ul class="vc-list">
       <li>Use the platform's own file, unchanged.</li>
       <li>Keep it black on light surfaces and white on dark ones. The <code>.vc-platform-mark</code> class does this for inline SVG and for image files.</li>
-      <li>Show it at 21&nbsp;px or more, with space around it.</li>
+      <li>Show LinkedIn's at 21&nbsp;px or more and GitHub's at 18&nbsp;px, with space around it.</li>
       <li>Use it only to link to your own profile on that platform.</li>
     </ul>
   </div>
@@ -149,10 +149,12 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
 <ul>
   <li><strong>Name the platform.</strong> The link text or its <code>aria-label</code> says whose profile it is and where: “Victor Pflüger on LinkedIn”. A logo alone isn't a name.</li>
   <li><strong>One link per destination.</strong> If the name and the logo go to the same profile, they're one link. Don't place two links to the same place next to each other.</li>
-  <li><strong>Same order everywhere:</strong> LinkedIn, GitHub, then email or anything else.</li>
-  <li><strong>Add <code>rel="me"</code></strong> to every link to your own profiles. It tells other sites that both pages belong to the same person, which is how profile verification works on Mastodon and in the IndieWeb, and it costs nothing.</li>
-  <li><strong>Stay in the same tab</strong> unless leaving would lose work, as in a prototype with unsaved input. Then add <code>target="_blank" rel="me noopener"</code>, the <span class="vc-icon vc-icon--external" aria-hidden="true"></span> external icon on word links, and “(opens in a new tab)” in the link's accessible name.</li>
+  <li><strong>Same order everywhere:</strong> LinkedIn, GitHub, the personal site, then email or anything else.</li>
+  <li><strong>Mark the relationship.</strong> On your personal site, links to your own profiles get <code>rel="me"</code>: it says that both pages belong to the same person, which is how profile verification works on Mastodon and in the IndieWeb. Anywhere else, such as a prototype, a dashboard or these docs, the page isn't you but your work, so a byline or footer link gets <code>rel="author"</code>.</li>
+  <li><strong>Don't link to the project's own repository.</strong> A prototype, dashboard or site built with Vici doesn't link to its own GitHub repository, unless that is specifically required, for example because people are meant to install or contribute. Link to the GitHub profile instead. Links to other projects, such as the prototypes listed on a personal site, are fine.</li>
+  <li><strong>Stay in the same tab</strong> unless leaving would lose work, as in a prototype with unsaved input. Then add <code>target="_blank"</code>, <code>noopener</code> in the link's <code>rel</code>, the <span class="vc-icon vc-icon--external" aria-hidden="true"></span> external icon on word links, and “(opens in a new tab)” in the link's accessible name.</li>
   <li><strong>Use the canonical addresses:</strong> <code>https://www.linkedin.com/in/victorpflueger</code> and <code>https://github.com/VictorPflueger</code>, without tracking parameters.</li>
+  <li><strong>Personal site:</strong> for the time being, Victor's personal site is <code>https://victorpflueger.github.io/VIP/index.html</code>. Link to exactly this address until it moves to its own domain.</li>
 </ul>
 <p>On a personal site, also list the profiles in the page's structured data, so search engines connect them to the name:</p>
 <pre><code>&lt;script type="application/ld+json"&gt;
@@ -160,6 +162,7 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Victor Pflüger",
+  "url": "https://victorpflueger.github.io/VIP/index.html",
   "sameAs": ["https://www.linkedin.com/in/victorpflueger", "https://github.com/VictorPflueger"]
 }
 &lt;/script&gt;</code></pre>
@@ -167,7 +170,7 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
 <h2>Portrait</h2>
 <ul>
   <li><strong>Files:</strong> <code>assets/brand/portrait.jpg</code> is the original photo, 640 × 640&nbsp;px, for large avatars such as a page hero. <code>assets/brand/portrait-96.jpg</code> is a small copy for bylines and small avatars, made by <code>scripts/brand/portrait.py</code>.</li>
-  <li><strong>Crop:</strong> a replacement photo should be square, at least 400 × 400&nbsp;px, with the face in the middle and a little room above the head. The hexagon cuts off the corners, so keep the face inside the middle 60&nbsp;%.</li>
+  <li><strong>Replacing it:</strong> use another square photo of 640&nbsp;px or more, so it stays sharp in a hero, and run the script again. The avatar is a flat-top hexagon: it trims a sliver at the top and bottom and cuts the left and right corners, so frame head and shoulders centrally.</li>
   <li><strong>Alt text:</strong> empty (<code>alt=""</code>) when the name is right next to it, as in the byline. On its own, describe it: “Portrait of Victor Pflüger”.</li>
   <li><strong>Without the photo:</strong> the initials in an avatar, or a monogram tile from the <a href="{{root}}brand/logo.html#monogram">logo page</a>.</li>
   <li><strong>Rights:</strong> the portrait belongs to Victor Pflüger's personal brand and isn't covered by the MIT licence of the code.</li>

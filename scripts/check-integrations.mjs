@@ -78,7 +78,7 @@ try {
   for (const [name, html] of Object.entries(out)) {
     if (!html.includes(`${cdn}brand/portrait-96.jpg`)) failures.push(`vici_byline (${name}): portrait not loaded from the v${version} CDN`);
     if (!html.includes(`${cdn}marks/${name === 'dark' ? 'linkedin-white.png' : 'linkedin.png'}`)) failures.push(`vici_byline (${name}): wrong LinkedIn logo`);
-    if (!html.includes('href="https://www.linkedin.com/in/victorpflueger" rel="me"')) failures.push(`vici_byline (${name}): profile link without rel="me"`);
+    if (!html.includes('href="https://www.linkedin.com/in/victorpflueger" rel="author"')) failures.push(`vici_byline (${name}): profile link without rel="author"`);
     if (!html.includes('> on LinkedIn</span>')) failures.push(`vici_byline (${name}): link not named "on LinkedIn"`);
   }
   if (!out.light.includes(`color:${L.text}`) || !out.dark.includes(`color:${D.text}`)) failures.push('vici_byline: name colours differ from the theme text colours');

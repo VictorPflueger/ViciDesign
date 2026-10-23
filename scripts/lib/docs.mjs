@@ -52,6 +52,26 @@ const SEMANTIC_NOTES = {
 // ---------------------------------------------------------------- helpers
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+/** The plain-text LICENSE as HTML, word for word: the file wraps at 80 columns, so its lines are
+ *  joined into paragraphs that reflow on a phone. A heading underlined with dashes becomes a bold
+ *  line (the dashes go), "- " items become a list, and a block of short lines keeps its breaks. */
+export function licenceHtml(text) {
+  const blocks = text.trim().split(/\n(?:[ \t]*\n)+/).map((b) => b.split('\n').map((l) => l.trimEnd())).filter((b) => b.some((l) => l.trim()));
+  return blocks.map((lines) => {
+    if (lines.length === 2 && /^-{3,}$/.test(lines[1].trim())) return `<p class="doc-licence__heading">${esc(lines[0].trim())}</p>`;
+    if (/^\s*- /.test(lines[0])) {
+      const items = [];
+      for (const l of lines) {
+        if (/^\s*- /.test(l)) items.push(l.replace(/^\s*- /, ''));
+        else items[items.length - 1] += ' ' + l.trim();
+      }
+      return `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
+    }
+    if (lines.length > 1 && lines.every((l) => l.trim().length < 40)) return `<p>${lines.map((l) => esc(l.trim())).join('<br>')}</p>`;
+    return `<p>${esc(lines.map((l) => l.trim()).join(' '))}</p>`;
+  }).join('\n');
+}
+
 export function slugify(text) {
   return text
     .toLowerCase()
@@ -507,6 +527,9 @@ function makeWidgets(ctx) {
       const [w, h] = [png.readUInt32BE(16), png.readUInt32BE(20)]; // IHDR
       return `<img class="vc-platform-mark" src="{{root}}assets/marks/${name.trim()}.png" alt="" width="${w}" height="${h}">`;
     },
+
+    // <!-- @licence-text --> → the repository's LICENSE file, word for word, reflowed for phones
+    'licence-text': () => `<div class="doc-licence">\n${licenceHtml(readFileSync(join(ctx.root, 'LICENSE'), 'utf8'))}\n</div>`,
 
     // <!-- @vertex-mark --> → the Vertex symbol inline, coloured by the theme (text colour and
     // merlot-500 goal), so it stays visible on dark headers where the colour file would vanish

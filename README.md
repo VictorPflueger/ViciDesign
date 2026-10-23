@@ -97,10 +97,11 @@ generated file is stale.
 ## Licence
 
 - **Code, tokens, icons and documentation:** MIT. Use them in your own projects, commercial or not, and keep the
-  copyright notice.
+  copyright and permission notice.
 - **Victor Pflüger's personal brand:** his name as a mark, his portrait (`assets/brand/`), the Vertex logo, the monogram
-  options and the wordmarks (`assets/logo/`, `src/brand/`) are all rights reserved. If you build on Vici, put your own
-  name, photo and logo in their place.
+  options and the wordmarks (`assets/logo/`, `src/brand/`, and `scripts/lib/logos.mjs`, which draws them) are all rights
+  reserved. If you build on Vici, put your own name, photo and logo in their place, and replace or remove
+  `scripts/lib/logos.mjs`.
 - **Fonts:** Bricolage Grotesque, Inter and JetBrains Mono are under the SIL Open Font License 1.1 (`assets/fonts/OFL-*.txt`).
 - **Other brands:** GitHub's Invertocat and LinkedIn's [in] logo in `assets/marks/` belong to GitHub and LinkedIn and are
   used unchanged, only to link to profiles, as their brand guidelines allow.

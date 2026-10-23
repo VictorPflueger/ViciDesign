@@ -294,7 +294,7 @@ def vici_byline(dark: bool = False, label: str = "Built by") -> str:
         f'<p style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0;'
         f'font-size:14px;line-height:1.3;color:{muted}">'
         f"<span>{escape(label)}</span>"
-        f'<a href="{LINKEDIN}" rel="me" style="display:inline-flex;align-items:center;gap:8px;'
+        f'<a href="{LINKEDIN}" rel="author" style="display:inline-flex;align-items:center;gap:8px;'
         f'color:{ink};font-weight:600;text-decoration:none">'
         f'<img src="{VICI}/assets/brand/portrait-96.jpg" alt="" width="28" height="24" '
         f'style="width:28px;height:24px;object-fit:cover;clip-path:{HEXAGON}">'
@@ -531,7 +531,11 @@ if (CHECK) {
   console.log('BUILD UP TO DATE');
 } else {
   // remove logo files whose source is gone, then any folders that left empty
-  for (const path of logoFilesOnDisk()) if (!outputs.has(path)) rmSync(join(ROOT, path));
+  for (const path of logoFilesOnDisk()) {
+    if (outputs.has(path)) continue;
+    rmSync(join(ROOT, path));
+    console.log(`Removed ${path}: no source draws it any more.`);
+  }
   const pruneEmpty = (dir) => {
     const abs = join(ROOT, dir);
     for (const entry of readdirSync(abs)) if (statSync(join(abs, entry)).isDirectory()) pruneEmpty(`${dir}/${entry}`);

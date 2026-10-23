@@ -2,7 +2,8 @@
 // generated from geometry so every variant stays exact. Inspiration for the symbol: the
 // node-path "V" of the personal website mark, translated into Vici's hexagon language.
 // Every round node becomes a hexagon; strokes follow the 60° lattice of the honeycomb.
-// The designs are Victor Pflüger's brand assets: all rights reserved (see LICENSE).
+// This file is part of Victor Pflüger's personal brand and is not MIT-licensed: its coordinates
+// and colours are the designs. All rights reserved (see LICENSE, section 2).
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -213,10 +214,11 @@ function honeycombSymbol(variant) {
 }
 
 // --------------------------------------------------------------- 4 · Monogram
-// Five directions for a VP monogram, to choose from. Shared rules: cap height 100 units,
-// every diagonal at 60° (the angle of the honeycomb and of Vertex's arms), every round
-// form a hexagon, flat terminals on the cap line. The P's bowl is three quarters of a
-// flat-top hexagon, so its two slanted sides run parallel to the V's arms.
+// Five directions for a VP monogram, to choose from. Ligature, Stem and Seal share one
+// lattice: cap height 100 units, every diagonal at 60° (the angle of the honeycomb and of
+// Vertex's arms), flat terminals on the cap line, and a P whose bowl is a hexagonal D: four
+// sides of a flat-top hexagon, its slanted sides parallel to the V's arms. Cell's bowl is a
+// whole pointy-top hexagon like Vertex's nodes; Initials uses the wordmark's typeface.
 const S3 = Math.sqrt(3);
 const MONO_W = 16; // stroke across an arm or stem, on a cap height of 100
 const UNDERLAP = 0.8; // pastel counters reach this far under the ink, so no hairline seam shows
@@ -252,7 +254,7 @@ function chevron(x, h, w) {
   return { poly: [[x, 0], [x + t, 0], [x + run, h - 2 * w], [x + 2 * run - t, 0], [x + 2 * run, 0], [x + run, h]], right: x + 2 * run, t };
 }
 
-/** P on a stem at x: bowl of height b whose top edge reaches `ext` past the stem. */
+/** P on a stem at x: a hexagonal-D bowl of height b whose top edge reaches `ext` past the stem. */
 function hexBowlP(x, h, w, { b = 58, ext = 27 } = {}) {
   const X1 = x + w + ext;
   const X2 = X1 + b / 2 / S3;
@@ -314,7 +316,10 @@ function monoSeal() {
   const s = (0.44 * S3 * R) / 100;
   const cx = R;
   const cy = (S3 * R) / 2;
-  const tx = cx - (P.right / 2) * s;
+  // centred optically, not by the bounding box: the V's top corners reach towards the ring's
+  // slanted sides while the P's bowl point sits at mid-height, so the letters move right a little
+  const optical = 3.2;
+  const tx = cx - (P.right / 2) * s + optical;
   const ty = cy - 50 * s;
   const T = (poly) => poly.map(([x, y]) => [tx + x * s, ty + y * s]);
   return {

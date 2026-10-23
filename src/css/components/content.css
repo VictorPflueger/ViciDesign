@@ -569,7 +569,8 @@
     min-height: 1.5rem;
     border-radius: var(--vc-radius-sm);
   }
-  .vc-byline__icon:hover { background: var(--vc-surface-hover); }
+  /* hover: a bar under the logo, never a tile around it (other brands' logos get no frame) */
+  .vc-byline__icon:hover { box-shadow: inset 0 -2px 0 var(--vc-border-strong); }
 
   /* ---------- Platform logo (GitHub, LinkedIn …): the owner's file, unchanged ----------
      Other brands' logos are exempt from the hexagon rule and keep their own colours:
@@ -582,7 +583,9 @@
     fill: var(--vc-platform-mark);
     vertical-align: middle;
   }
-  svg.vc-platform-mark { width: max(21px, 1.3125rem); }
+  /* SVG logos (GitHub's Invertocat) at 18 px: GitHub asks for its logo to stay less prominent
+     than your own name. LinkedIn's [in] keeps its 21 px minimum. */
+  svg.vc-platform-mark { width: 1.125rem; height: 1.125rem; }
   /* image logos (LinkedIn's PNG) come in black and turn white in the dark theme */
   img.vc-platform-mark { filter: var(--vc-platform-mark-filter, none); }
 

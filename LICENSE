@@ -40,22 +40,28 @@ SOFTWARE.
 2. Victor Pflüger's personal brand: all rights reserved
 -------------------------------------------------------
 
-The following are not licensed under the MIT License or under any other
-licence. Victor Pflüger reserves all rights to them.
+The following are not licensed under the MIT License, and no licence is
+granted for them beyond the limited permission below. Victor Pflüger reserves
+all other rights to them.
 
-  - The name "Victor Pflüger" used as a mark, and his portrait photographs,
-    including the files in assets/brand/.
+  - The name "Victor Pflüger" used as a mark.
+  - His portrait photographs, including the files in assets/brand/. Rights
+    that belong to the photographer stay with the photographer.
   - The Vertex logo with its lockups, app icon and favicon, the monogram
     options, the "Victor Pflüger" and "Vici" wordmarks, and the archived logo
     concepts, in any form: the files in assets/logo/, the outlines in
-    src/brand/, and the designs that scripts/lib/logos.mjs draws. The script
-    itself is code under section 1; the designs it draws are not.
+    src/brand/, and scripts/lib/logos.mjs, the file that draws them. That file
+    is reserved as a whole, because its coordinates and colours are the
+    designs.
 
-You may show them unchanged to refer to Victor Pflüger or to this project, for
-example next to a link, in a citation or in a review. You may not use them as,
-or as part of, your own logo, product name or brand, and you may not use them
-in a way that suggests that he made, endorses or is affiliated with your work.
-If you build on Vici, put your own name and logo in their place.
+Permission: you may show these items unchanged to refer to Victor Pflüger or to
+this project, for example next to a link, in a citation or in a review, and you
+may run this repository's build, which uses scripts/lib/logos.mjs, to produce
+its own files. You may not use them as, or as part of, your own logo, product
+name or brand, and you may not use them in a way that suggests that he made,
+endorses or is affiliated with your work. If you build on Vici, put your own
+name, photo and logo in their place, and replace scripts/lib/logos.mjs with your
+own file or remove it from scripts/build.mjs.
 
 
 3. Fonts: SIL Open Font License 1.1

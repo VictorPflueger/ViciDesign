@@ -16,17 +16,18 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Victor Pflüger",
+    "url": "https://victorpflueger.github.io/VIP/index.html",
     "sameAs": ["https://www.linkedin.com/in/victorpflueger", "https://github.com/VictorPflueger"]
   }
   </script>
   <style>
-    .hero { padding-block: clamp(4rem, 9vw, 8rem) clamp(3rem, 7vw, 6rem); }
-    .hero__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); align-items: center; gap: var(--vc-space-12); }
-    .hero__portrait { justify-self: center; }
-    .hero__portrait .vc-avatar { --_h: clamp(10rem, 22vw, 15rem); font-size: clamp(3rem, 7vw, 4.5rem); font-family: var(--vc-font-display); }
-    @media (max-width: 799px) { .hero__grid { grid-template-columns: minmax(0, 1fr); } .hero__portrait { justify-self: start; order: -1; } }
-    .section-head { max-width: 40rem; margin-bottom: var(--vc-space-8); }
-    .section-head h2 { margin-bottom: var(--vc-space-3); }
+    .landing-hero { padding-block: clamp(4rem, 9vw, 8rem) clamp(3rem, 7vw, 6rem); }
+    .landing-hero__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); align-items: center; gap: var(--vc-space-12); }
+    .landing-hero__portrait { justify-self: center; }
+    .landing-hero__portrait .vc-avatar { --_h: clamp(10rem, 22vw, 15rem); font-size: clamp(3rem, 7vw, 4.5rem); font-family: var(--vc-font-display); }
+    @media (max-width: 799px) { .landing-hero__grid { grid-template-columns: minmax(0, 1fr); } .landing-hero__portrait { justify-self: start; order: -1; } }
+    .landing-section-head { max-width: 40rem; margin-bottom: var(--vc-space-8); }
+    .landing-section-head h2 { margin-bottom: var(--vc-space-3); }
   </style>
 </head>
 <body>
@@ -48,8 +49,8 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero vc-bg-aurora">
-      <div class="vc-container hero__grid">
+    <section class="landing-hero vc-bg-aurora">
+      <div class="vc-container landing-hero__grid">
         <div>
           <p class="vc-eyebrow">Your role · Your city</p>
           <h1 class="vc-display" style="margin-bottom: var(--vc-space-5)">Hello, I'm Victor.</h1>
@@ -59,7 +60,7 @@
             <a class="vc-button vc-button--lg vc-button--ghost" href="#work">Selected work</a>
           </div>
         </div>
-        <div class="hero__portrait">
+        <div class="landing-hero__portrait">
           <span class="vc-avatar"><img src="../assets/brand/portrait.jpg" alt="Portrait of Victor Pflüger" width="640" height="640"></span>
         </div>
       </div>
@@ -68,7 +69,7 @@
     <section class="vc-section" id="topics" aria-labelledby="topics-title">
       <div class="vc-container">
         <div class="vc-grid vc-grid--2" style="align-items: center">
-          <div class="section-head">
+          <div class="landing-section-head">
             <p class="vc-eyebrow">Topics</p>
             <h2 id="topics-title">One cell per topic</h2>
             <p class="vc-text-muted">Put the subjects you want to be found for into the honeycomb. Replace the six example labels with your own and keep an even number of columns.</p>
@@ -87,7 +88,7 @@
 
     <section class="vc-section vc-surface-subtle" id="work" aria-labelledby="work-title">
       <div class="vc-container">
-        <div class="section-head">
+        <div class="landing-section-head">
           <p class="vc-eyebrow">Work</p>
           <h2 id="work-title">Selected work</h2>
         </div>
@@ -122,7 +123,7 @@
 
     <section class="vc-section" id="experience" aria-labelledby="experience-title">
       <div class="vc-container vc-container--narrow">
-        <div class="section-head">
+        <div class="landing-section-head">
           <p class="vc-eyebrow">Timeline</p>
           <h2 id="experience-title">Experience</h2>
         </div>
