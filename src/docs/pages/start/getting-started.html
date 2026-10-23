@@ -64,6 +64,7 @@ description: Add Vici to any page with one stylesheet and an optional script —
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 <p>Ready-made pages for an app prototype, a dashboard and a personal landing page are on <a href="{{root}}start/starters.html">Starters</a>.</p>
+<p><strong>With a content security policy</strong> that allows only the page's own files (<code>script-src 'self'; style-src 'self'</code>), inline scripts and <code>style</code> attributes are blocked. Vici's stylesheet, script, icons and fonts still work. Move the theme line into a small file that you load the same way, without <code>defer</code>, and keep your own styles in a stylesheet. For the logo in a header, use the colour and dark files as two images with <code>.vc-when-light</code> and <code>.vc-when-dark</code>. Victor's website works this way.</p>
 
 <h2>3 · Use the components</h2>
 <p>Every component is a class prefixed with <code>vc-</code> and uses BEM-style parts and modifiers: <code>.vc-card</code>, <code>.vc-card__title</code>, <code>.vc-card--elevated</code>. The demos throughout these pages are live, and each one has its exact HTML under <strong>HTML</strong>, ready to copy.</p>
