@@ -31,8 +31,8 @@ First release.
 - Integrations: Streamlit, Power BI, Python (matplotlib/plotly), Tailwind CSS v4.
 - Checks: contrast, colour-blind separation of chart colours, hexagon rule, fonts, links, logos, exports, build freshness.
 - Accessibility: Windows contrast themes (forced colours, with hexagon outlines for cells, tiles and avatars), rem-based
-  controls that grow with the reader's text size, a header, buttons and tags that wrap instead of overflowing at large
-  text sizes,
+  controls that grow with the reader's text size, a header, buttons and tags in clusters that wrap instead of overflowing
+  at large text sizes,
   footer links of at least 32 px, reflow at 320 px, keyboard-scrollable tables and charts, tooltips in the top layer
   (also on every icon-only button of the starters and the docs header), toasts that work inside dialogs.
 - Reading width: `--vc-container-prose` is 50ch, about 65 characters of Inter, inside the 55–75 the typography
