@@ -11,7 +11,8 @@
     if (scrim) scrim.hidden = !open;
     if (toggle) {
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      var tip = document.getElementById(toggle.getAttribute('aria-labelledby'));
+      if (tip) tip.textContent = open ? 'Close navigation' : 'Open navigation';
     }
     if (open && sidebar) {
       var current = sidebar.querySelector('[aria-current="page"]') || sidebar.querySelector('a');

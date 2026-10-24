@@ -289,7 +289,7 @@
     --vc-breakpoint-lg: 1024px;
     --vc-breakpoint-xl: 1280px;
     --vc-breakpoint-2xl: 1536px;
-    --vc-container-prose: 68ch;
+    --vc-container-prose: 50ch;
     --vc-container-narrow: 760px;
     --vc-container-content: 1160px;
     --vc-container-wide: 1400px;
@@ -1111,6 +1111,9 @@
     font-size: var(--vc-font-size-md);
     font-weight: var(--vc-weight-regular);
     line-height: var(--vc-leading-normal);
+    /* a word longer than its line (a narrow phone at a large text size) breaks instead of
+       pushing the page sideways */
+    overflow-wrap: break-word;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -1597,6 +1600,15 @@
   .vc-cell--warning { background: var(--vc-warning-bg); color: var(--vc-warning-text); }
   .vc-cell--danger { background: var(--vc-danger-bg); color: var(--vc-danger-text); }
   .vc-cell--feature { background: var(--vc-feature-bg); color: var(--vc-feature-text); }
+  /* pastel families for categories, as on tags and tiles: they stay light in both themes */
+  .vc-cell--merlot { background: var(--vc-merlot-100); color: var(--vc-merlot-900); }
+  .vc-cell--coral { background: var(--vc-coral-100); color: var(--vc-coral-900); }
+  .vc-cell--apricot { background: var(--vc-apricot-100); color: var(--vc-apricot-900); }
+  .vc-cell--honey { background: var(--vc-honey-100); color: var(--vc-honey-900); }
+  .vc-cell--sage { background: var(--vc-sage-100); color: var(--vc-sage-900); }
+  .vc-cell--teal { background: var(--vc-teal-100); color: var(--vc-teal-900); }
+  .vc-cell--fjord { background: var(--vc-fjord-100); color: var(--vc-fjord-900); }
+  .vc-cell--lilac { background: var(--vc-lilac-100); color: var(--vc-lilac-900); }
   .vc-cell > .vc-icon { width: 46%; height: auto; aspect-ratio: 1; }
 
   /* Inline elements need a box to show a shape: give spans and friends one by default
@@ -1787,8 +1799,11 @@
     align-items: center;
     justify-content: center;
     gap: var(--vc-space-2);
+    /* one line as a rule; a label wider than its container (a phone at a large text size)
+       wraps inside the button instead of pushing the page sideways */
+    max-width: 100%;
     min-height: var(--_h);
-    padding: 0 var(--_px);
+    padding: var(--vc-space-1) var(--_px);
     border: 1px solid var(--_bd);
     border-radius: var(--vc-radius-md);
     background: var(--_bg);
@@ -1798,8 +1813,9 @@
     font-weight: var(--vc-weight-semibold);
     line-height: 1.2;
     letter-spacing: 0.005em;
+    text-align: center;
+    text-wrap: balance;
     text-decoration: none;
-    white-space: nowrap;
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
@@ -2883,6 +2899,11 @@
     inset: 0;
     z-index: 1;
   }
+  /* other links and buttons in an interactive card stay clickable above the stretched link */
+  .vc-card--interactive :is(a[href], button):not(.vc-card__link) {
+    position: relative;
+    z-index: 2;
+  }
 
   /* ---------- Accordion (native details/summary) ---------- */
   .vc-accordion {
@@ -3424,10 +3445,14 @@
     text-transform: uppercase;
     font-variant-numeric: tabular-nums;
   }
+  /* Inter whatever the element, so an h3 title for the outline looks like the paragraph in the demo */
   .vc-timeline__title {
     margin: 0 0 var(--vc-space-1);
+    font-family: var(--vc-font-text);
     font-size: var(--vc-font-size-md);
     font-weight: var(--vc-weight-semibold);
+    line-height: var(--vc-leading-normal);
+    letter-spacing: normal;
   }
   .vc-timeline__text {
     margin: 0;
@@ -3551,6 +3576,7 @@
   }
   .vc-header__inner {
     display: flex;
+    flex-wrap: wrap;   /* at large text sizes the actions move to a second row instead of off-screen */
     align-items: center;
     gap: var(--vc-space-4);
     min-height: 4rem;
@@ -3750,7 +3776,7 @@
   .vc-footer a:hover { color: var(--vc-text); text-decoration: underline; }
   .vc-footer__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
     gap: var(--vc-space-8);
   }
   .vc-footer__title {
@@ -3761,11 +3787,18 @@
   }
   .vc-footer ul {
     display: grid;
-    gap: var(--vc-space-2);
     margin: 0;
     padding: 0;
     list-style: none;
   }
+  /* list links are touch targets of at least 32 px (Layout → Density); pulling the list up by
+     the extra height keeps the first link where it sat below the title */
+  .vc-footer li > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+  }
+  .vc-footer__title + ul { margin-top: calc(-1 * var(--vc-space-2)); }
   .vc-footer li + li { margin-top: 0; }
   .vc-footer li::before { display: none; }
   .vc-footer__bottom {
@@ -5692,6 +5725,26 @@
       outline-offset: -1px;
     }
     .vc-chip:focus-visible { outline: 2px solid Highlight; }
+
+    /* Cells, honeycomb tiles and avatars are hexagons made of a fill alone, and clip-path cuts
+       off any outline: a 1.5 px hexagon ring inside the shape keeps the honeycomb visible */
+    .vc-cell { position: relative; }
+    .vc-cell::before,
+    .vc-tile::before,
+    .vc-avatar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      forced-color-adjust: none;
+      background-color: CanvasText;
+      pointer-events: none;
+      clip-path: polygon(evenodd,
+        25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+        calc(25% + 0.8660px) 1.5px, 1.7321px 50%, calc(25% + 0.8660px) calc(100% - 1.5px),
+        calc(75% - 0.8660px) calc(100% - 1.5px), calc(100% - 1.7321px) 50%,
+        calc(75% - 0.8660px) 1.5px, calc(25% + 0.8660px) 1.5px);
+    }
 
     /* Platform logos are filled in black or white; here they take the forced text colour
        (LinkText inside a link), so they never vanish on a forced background. An image logo

@@ -108,6 +108,20 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
 &lt;span class="vc-hex-ring" style="height: 2rem; --vc-ring: 3px; background: var(--vc-merlot-500)"&gt;&lt;/span&gt;
 &lt;span class="vc-cell vc-cell--lg"&gt;&lt;span class="vc-icon vc-icon--chart-bar"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
 
+<h3>Cell colours</h3>
+<p><code>.vc-cell</code> holds an icon in a hexagon, for feature lists and cards. Sizes run from <code>--xs</code> to <code>--2xl</code>. Without a modifier it takes the soft accent colour. <code>--solid</code> fills it with the base colour, the status tones (<code>--info</code>, <code>--success</code>, <code>--warning</code>, <code>--danger</code>, <code>--feature</code>) mark a state, and the pastel families (<code>--merlot</code>, <code>--teal</code>, <code>--apricot</code>, <code>--fjord</code>, <code>--lilac</code> and <code>--honey</code> for topics, <code>--sage</code> and <code>--coral</code> for status) match the tags and tiles of the same category. The families stay light in both themes.</p>
+<!-- demo center -->
+<span class="vc-cell vc-cell--lg"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--solid"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--info"><span class="vc-icon vc-icon--info" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--teal"><span class="vc-icon vc-icon--search" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--apricot"><span class="vc-icon vc-icon--chart-line" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--fjord"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--lilac"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--honey"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span></span>
+<span class="vc-cell vc-cell--lg vc-cell--merlot"><span class="vc-icon vc-icon--lock" aria-hidden="true"></span></span>
+<!-- /demo -->
+
 <h3>Focus on a hexagon</h3>
 <p><code>clip-path</code> also clips outlines, so a hexagon can't simply use <code>outline</code> for its focus ring. Vici's hexagon controls draw the ring on a pseudo-element outside the shape: a 2&nbsp;px hexagon ring with a 2&nbsp;px gap, in the theme's focus colour. Tab to the icon button, radio or switch under <a href="#where-cells-appear">Where cells appear</a> to see it. Rectangles keep a standard outline with an offset.</p>
 
@@ -118,7 +132,7 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
   <li class="vc-tile vc-tile--solid">Strategy</li>
   <li class="vc-tile vc-tile--lilac"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Prototyping</li>
   <li class="vc-tile vc-tile--fjord">Research</li>
-  <li class="vc-tile vc-tile--sage">Analytics</li>
+  <li class="vc-tile vc-tile--teal">Analytics</li>
   <li class="vc-tile vc-tile--honey">Workshops</li>
   <li class="vc-tile">Writing</li>
 </ul>

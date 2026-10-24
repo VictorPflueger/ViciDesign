@@ -10,7 +10,8 @@ First release.
 - Tokens: OKLCH colour ramps anchored on merlot `#250010` (merlot, coral, apricot, honey, sage, teal, fjord, lilac,
   linen neutrals, night surfaces), semantic light and dark themes, chart palettes, type scale, spacing, radii,
   hexagon cell sizes, shadows, motion, z-index, breakpoints.
-- Hexagon shape system: flat-top cells, hex capsules, even-odd rings and hexagonal focus rings.
+- Hexagon shape system: flat-top cells, hex capsules, even-odd rings and hexagonal focus rings. Icon cells come in the
+  status tones and in the pastel families, to match the tags and tiles of a category.
 - More than forty components across actions, forms, content, navigation, feedback, overlays and data display.
 - 64 original icons with hexagons in place of circles.
 - Documentation site with live demos, generated swatches, contrast and token tables.
@@ -28,5 +29,9 @@ First release.
 - Starters: app prototype, dashboard, personal landing page, blank page.
 - Integrations: Streamlit, Power BI, Python (matplotlib/plotly), Tailwind CSS v4.
 - Checks: contrast, colour-blind separation of chart colours, hexagon rule, fonts, links, logos, exports, build freshness.
-- Accessibility: Windows contrast themes (forced colours), rem-based controls that grow with the reader's text size,
-  reflow at 320 px, keyboard-scrollable tables and charts, tooltips in the top layer, toasts that work inside dialogs.
+- Accessibility: Windows contrast themes (forced colours, with hexagon outlines for cells, tiles and avatars), rem-based
+  controls that grow with the reader's text size, a header that wraps instead of overflowing at large text sizes,
+  footer links of at least 32 px, reflow at 320 px, keyboard-scrollable tables and charts, tooltips in the top layer
+  (also on every icon-only button of the starters and the docs header), toasts that work inside dialogs.
+- Reading width: `--vc-container-prose` is 50ch, about 65 characters of Inter, inside the 55–75 the typography
+  guideline asks for.

@@ -16,6 +16,7 @@
   }
   .vc-header__inner {
     display: flex;
+    flex-wrap: wrap;   /* at large text sizes the actions move to a second row instead of off-screen */
     align-items: center;
     gap: var(--vc-space-4);
     min-height: 4rem;
@@ -215,7 +216,7 @@
   .vc-footer a:hover { color: var(--vc-text); text-decoration: underline; }
   .vc-footer__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
     gap: var(--vc-space-8);
   }
   .vc-footer__title {
@@ -226,11 +227,18 @@
   }
   .vc-footer ul {
     display: grid;
-    gap: var(--vc-space-2);
     margin: 0;
     padding: 0;
     list-style: none;
   }
+  /* list links are touch targets of at least 32 px (Layout → Density); pulling the list up by
+     the extra height keeps the first link where it sat below the title */
+  .vc-footer li > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+  }
+  .vc-footer__title + ul { margin-top: calc(-1 * var(--vc-space-2)); }
   .vc-footer li + li { margin-top: 0; }
   .vc-footer li::before { display: none; }
   .vc-footer__bottom {

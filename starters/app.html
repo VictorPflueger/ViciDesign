@@ -39,10 +39,16 @@
           <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Dark theme</span>
         </span>
         <span class="vc-badge-anchor">
-          <button type="button" class="vc-icon-button" aria-label="Notifications, 3 unread"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span></button>
+          <span class="vc-tooltip-anchor">
+            <button type="button" class="vc-icon-button" aria-labelledby="tip-notifications"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span></button>
+            <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-notifications">Notifications, 3 unread</span>
+          </span>
           <span class="vc-badge vc-badge--danger" aria-hidden="true">3</span>
         </span>
-        <button type="button" class="vc-icon-button" popovertarget="account-menu" aria-haspopup="menu" aria-label="Account"><span class="vc-avatar vc-avatar--sm">VP</span></button>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" popovertarget="account-menu" aria-haspopup="menu" aria-labelledby="tip-account"><span class="vc-avatar vc-avatar--sm" aria-hidden="true">VP</span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-account">Account</span>
+        </span>
         <div class="vc-menu" id="account-menu" popover role="menu" aria-label="Account">
           <p class="vc-menu__label" role="presentation">Victor Pflüger</p>
           <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--user" aria-hidden="true"></span>Profile</button>
@@ -50,7 +56,10 @@
           <hr class="vc-menu__divider">
           <button type="button" class="vc-menu__item" role="menuitem"><span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span>Sign out</button>
         </div>
-        <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-labelledby="tip-menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-menu">Menu</span>
+        </span>
       </div>
     </div>
   </header>

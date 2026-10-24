@@ -36,8 +36,14 @@
         <a href="#">Agents</a>
       </nav>
       <div class="vc-header__actions">
-        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Dark theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
-        <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Dark theme</span>
+        </span>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-labelledby="tip-menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-menu">Menu</span>
+        </span>
       </div>
     </div>
   </header>

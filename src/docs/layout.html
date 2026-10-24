@@ -20,16 +20,22 @@
   <a class="vc-skip-link" href="#main">Skip to content</a>
   <header class="vc-header doc-header">
     <div class="vc-header__inner">
-      <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-label="Open navigation">
-        <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
-      </button>
+      <span class="vc-tooltip-anchor doc-sidebar-toggle-anchor">
+        <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-labelledby="doc-tip-nav">
+          <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+        </button>
+        <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="doc-tip-nav">Open navigation</span>
+      </span>
       <a class="vc-header__brand doc-brand" href="{{root}}index.html" aria-label="Vici Design System — overview">{{logo}}<span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v{{version}}</span></a>
       <nav class="vc-header__nav doc-header__nav" aria-label="Sections">{{headernav}}</nav>
       <div class="vc-header__actions">
-        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Dark theme">
-          <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
-          <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
-        </button>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="doc-tip-theme">
+            <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+            <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+          </button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="doc-tip-theme">Dark theme</span>
+        </span>
       </div>
     </div>
   </header>

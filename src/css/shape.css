@@ -74,6 +74,15 @@
   .vc-cell--warning { background: var(--vc-warning-bg); color: var(--vc-warning-text); }
   .vc-cell--danger { background: var(--vc-danger-bg); color: var(--vc-danger-text); }
   .vc-cell--feature { background: var(--vc-feature-bg); color: var(--vc-feature-text); }
+  /* pastel families for categories, as on tags and tiles: they stay light in both themes */
+  .vc-cell--merlot { background: var(--vc-merlot-100); color: var(--vc-merlot-900); }
+  .vc-cell--coral { background: var(--vc-coral-100); color: var(--vc-coral-900); }
+  .vc-cell--apricot { background: var(--vc-apricot-100); color: var(--vc-apricot-900); }
+  .vc-cell--honey { background: var(--vc-honey-100); color: var(--vc-honey-900); }
+  .vc-cell--sage { background: var(--vc-sage-100); color: var(--vc-sage-900); }
+  .vc-cell--teal { background: var(--vc-teal-100); color: var(--vc-teal-900); }
+  .vc-cell--fjord { background: var(--vc-fjord-100); color: var(--vc-fjord-900); }
+  .vc-cell--lilac { background: var(--vc-lilac-100); color: var(--vc-lilac-900); }
   .vc-cell > .vc-icon { width: 46%; height: auto; aspect-ratio: 1; }
 
   /* Inline elements need a box to show a shape: give spans and friends one by default

@@ -28,6 +28,9 @@
     font-size: var(--vc-font-size-md);
     font-weight: var(--vc-weight-regular);
     line-height: var(--vc-leading-normal);
+    /* a word longer than its line (a narrow phone at a large text size) breaks instead of
+       pushing the page sideways */
+    overflow-wrap: break-word;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

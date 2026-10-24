@@ -42,8 +42,14 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="vc-header__actions">
-        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-label="Dark theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
-        <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-label="Menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Dark theme</span>
+        </span>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button vc-header__toggle" aria-expanded="false" aria-labelledby="tip-menu"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-menu">Menu</span>
+        </span>
       </div>
     </div>
   </header>
@@ -78,7 +84,7 @@
             <li class="vc-tile vc-tile--solid"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Strategy</li>
             <li class="vc-tile vc-tile--lilac"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Prototyping</li>
             <li class="vc-tile vc-tile--fjord"><span class="vc-icon vc-icon--search" aria-hidden="true"></span>Research</li>
-            <li class="vc-tile vc-tile--sage"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Analytics</li>
+            <li class="vc-tile vc-tile--teal"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Analytics</li>
             <li class="vc-tile vc-tile--honey"><span class="vc-icon vc-icon--users" aria-hidden="true"></span>Workshops</li>
             <li class="vc-tile"><span class="vc-icon vc-icon--book" aria-hidden="true"></span>Writing</li>
           </ul>
@@ -99,7 +105,7 @@
               <h3 class="vc-card__title"><a class="vc-card__link" href="#">Project title</a></h3>
               <p class="vc-card__meta">One or two sentences on the problem and what the project shows.</p>
             </div>
-            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--feature">Prototype</span><span class="vc-tag vc-tag--sm">2026</span></div>
+            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--lilac">Prototype</span><span class="vc-tag vc-tag--sm">2026</span></div>
           </article>
           <article class="vc-card vc-card--interactive">
             <div class="vc-card__body">
@@ -115,7 +121,7 @@
               <h3 class="vc-card__title"><a class="vc-card__link" href="#">Talk or article</a></h3>
               <p class="vc-card__meta">Where it appeared, and the one idea a reader should take away.</p>
             </div>
-            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--sage">Writing</span></div>
+            <div class="vc-card__footer"><span class="vc-tag vc-tag--sm vc-tag--apricot">Writing</span></div>
           </article>
         </div>
       </div>

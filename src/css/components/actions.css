@@ -17,8 +17,11 @@
     align-items: center;
     justify-content: center;
     gap: var(--vc-space-2);
+    /* one line as a rule; a label wider than its container (a phone at a large text size)
+       wraps inside the button instead of pushing the page sideways */
+    max-width: 100%;
     min-height: var(--_h);
-    padding: 0 var(--_px);
+    padding: var(--vc-space-1) var(--_px);
     border: 1px solid var(--_bd);
     border-radius: var(--vc-radius-md);
     background: var(--_bg);
@@ -28,8 +31,9 @@
     font-weight: var(--vc-weight-semibold);
     line-height: 1.2;
     letter-spacing: 0.005em;
+    text-align: center;
+    text-wrap: balance;
     text-decoration: none;
-    white-space: nowrap;
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;

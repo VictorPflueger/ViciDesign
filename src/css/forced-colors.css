@@ -185,6 +185,26 @@
     }
     .vc-chip:focus-visible { outline: 2px solid Highlight; }
 
+    /* Cells, honeycomb tiles and avatars are hexagons made of a fill alone, and clip-path cuts
+       off any outline: a 1.5 px hexagon ring inside the shape keeps the honeycomb visible */
+    .vc-cell { position: relative; }
+    .vc-cell::before,
+    .vc-tile::before,
+    .vc-avatar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      forced-color-adjust: none;
+      background-color: CanvasText;
+      pointer-events: none;
+      clip-path: polygon(evenodd,
+        25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%,
+        calc(25% + 0.8660px) 1.5px, 1.7321px 50%, calc(25% + 0.8660px) calc(100% - 1.5px),
+        calc(75% - 0.8660px) calc(100% - 1.5px), calc(100% - 1.7321px) 50%,
+        calc(75% - 0.8660px) 1.5px, calc(25% + 0.8660px) 1.5px);
+    }
+
     /* Platform logos are filled in black or white; here they take the forced text colour
        (LinkText inside a link), so they never vanish on a forced background. An image logo
        can't be recoloured, so it keeps its black and sits on a white plate. */

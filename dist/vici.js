@@ -380,6 +380,12 @@
       anchor.addEventListener('mouseleave', function () { if (!anchor.contains(document.activeElement)) hide(150); });
       anchor.addEventListener('focusin', show);
       anchor.addEventListener('focusout', function (e) { if (!anchor.contains(e.relatedTarget) && !anchor.matches(':hover')) hide(0); });
+      // Using the control answers the tooltip: it closes until the pointer or focus leaves. A tap
+      // on a phone never shows it, and a menu that the button opens isn't covered by it.
+      anchor.addEventListener('click', function () {
+        anchor.setAttribute('data-dismissed', '');
+        hide(0);
+      });
     });
   }
   function placeOpenTips() {

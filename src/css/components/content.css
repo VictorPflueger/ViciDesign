@@ -104,6 +104,11 @@
     inset: 0;
     z-index: 1;
   }
+  /* other links and buttons in an interactive card stay clickable above the stretched link */
+  .vc-card--interactive :is(a[href], button):not(.vc-card__link) {
+    position: relative;
+    z-index: 2;
+  }
 
   /* ---------- Accordion (native details/summary) ---------- */
   .vc-accordion {
@@ -645,10 +650,14 @@
     text-transform: uppercase;
     font-variant-numeric: tabular-nums;
   }
+  /* Inter whatever the element, so an h3 title for the outline looks like the paragraph in the demo */
   .vc-timeline__title {
     margin: 0 0 var(--vc-space-1);
+    font-family: var(--vc-font-text);
     font-size: var(--vc-font-size-md);
     font-weight: var(--vc-weight-semibold);
+    line-height: var(--vc-leading-normal);
+    letter-spacing: normal;
   }
   .vc-timeline__text {
     margin: 0;

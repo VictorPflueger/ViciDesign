@@ -32,7 +32,7 @@
   scrollbar-width: thin;
 }
 .doc-sidebar .vc-sidenav { gap: var(--vc-space-5); }
-.doc-sidebar-toggle { display: none; }
+.doc-sidebar-toggle-anchor { display: none; }
 .doc-scrim { display: none; }
 
 .doc-main {
@@ -63,7 +63,7 @@
 }
 @media (max-width: 1023px) {
   .doc-shell { grid-template-columns: minmax(0, 1fr); }
-  .doc-sidebar-toggle { display: inline-grid; }
+  .doc-sidebar-toggle-anchor { display: inline-flex; }
   .doc-sidebar {
     position: fixed;
     top: var(--doc-header-h);
@@ -96,12 +96,12 @@
 /* Home: no sidebar, full-bleed sections */
 .doc--home .doc-shell { grid-template-columns: minmax(0, 1fr); }
 .doc--home .doc-sidebar { display: none; }
-.doc--home .doc-sidebar-toggle { display: none; }
+.doc--home .doc-sidebar-toggle-anchor { display: none; }
 .doc--home .doc-main { padding: 0; display: block; }
 .doc--home .doc-article { max-width: none; }
 @media (max-width: 1023px) {
   .doc--home .doc-sidebar { display: block; }
-  .doc--home .doc-sidebar-toggle { display: inline-grid; }
+  .doc--home .doc-sidebar-toggle-anchor { display: inline-flex; }
 }
 
 /* ----------------------------------------------------------- typography */
