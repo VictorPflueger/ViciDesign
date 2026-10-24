@@ -313,13 +313,16 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35em;
-    height: var(--_h);
-    padding: 0 calc(var(--_h) * 0.28868 + 0.45rem);
+    /* one line as a rule; a tag wider than its container (a phone at a large text size) wraps
+       inside its capsule instead of being cut off */
+    max-width: 100%;
+    min-height: var(--_h);
+    padding: 0.2em calc(var(--_h) * 0.28868 + 0.45rem);
     color: var(--_fg);
     font-size: var(--vc-font-size-xs);
     font-weight: var(--vc-weight-semibold);
-    line-height: 1;
-    white-space: nowrap;
+    line-height: 1.1;
+    text-align: center;
     vertical-align: middle;
   }
   .vc-tag::before {
@@ -421,7 +424,8 @@
 
   /* ---------- Avatar: hexagon portrait or initials ---------- */
   .vc-avatar {
-    --_h: var(--vc-cell-lg);
+    /* any height with --vc-avatar-size; the size modifiers below take precedence */
+    --_h: var(--vc-avatar-size, var(--vc-cell-lg));
     --_bg: var(--vc-merlot-200);
     --_fg: var(--vc-merlot-950);
     position: relative;

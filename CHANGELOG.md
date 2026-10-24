@@ -12,7 +12,8 @@ First release.
   hexagon cell sizes, shadows, motion, z-index, breakpoints.
 - Hexagon shape system: flat-top cells, hex capsules, even-odd rings and hexagonal focus rings. Icon cells come in the
   status tones and in the pastel families, to match the tags and tiles of a category.
-- More than forty components across actions, forms, content, navigation, feedback, overlays and data display.
+- More than forty components across actions, forms, content, navigation, feedback, overlays and data display. Avatars
+  take any height through `--vc-avatar-size`.
 - 64 original icons with hexagons in place of circles.
 - Documentation site with live demos, generated swatches, contrast and token tables.
 - Logo: Vertex, with colour, dark and mono versions, lockups, app icon, favicon and the wordmark. Five monogram options
@@ -30,7 +31,8 @@ First release.
 - Integrations: Streamlit, Power BI, Python (matplotlib/plotly), Tailwind CSS v4.
 - Checks: contrast, colour-blind separation of chart colours, hexagon rule, fonts, links, logos, exports, build freshness.
 - Accessibility: Windows contrast themes (forced colours, with hexagon outlines for cells, tiles and avatars), rem-based
-  controls that grow with the reader's text size, a header that wraps instead of overflowing at large text sizes,
+  controls that grow with the reader's text size, a header, buttons and tags that wrap instead of overflowing at large
+  text sizes,
   footer links of at least 32 px, reflow at 320 px, keyboard-scrollable tables and charts, tooltips in the top layer
   (also on every icon-only button of the starters and the docs header), toasts that work inside dialogs.
 - Reading width: `--vc-container-prose` is 50ch, about 65 characters of Inter, inside the 55–75 the typography
