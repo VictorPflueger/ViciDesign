@@ -80,7 +80,7 @@ description: The short guide that opens with every prototype, demo, challenge an
 <p>The header button that reopens the guide reads “How it works” (“So funktioniert's” in German), with the <span class="vc-icon vc-icon--info" aria-hidden="true"></span> info icon and visible text. Pages that are none of these four kinds, such as the personal site, these docs and the landing starter, have no guide.</p>
 
 <h2 id="chapters">Chapters</h2>
-<p>A guide has three to eight chapters, and four to six read best. The first two and the last are fixed; the chapters between them are yours.</p>
+<p>A guide has three to eight chapters, and four to six read best. The first two and the last are fixed; the chapters between them are yours. Each chapter has a short label in the rail, the list of chapters beside the content.</p>
 <div class="vc-table-wrap">
 <table class="vc-table">
   <caption>Chapter order</caption>
@@ -105,7 +105,7 @@ description: The short guide that opens with every prototype, demo, challenge an
 </ul>
 
 <h2 id="content-format">Content format</h2>
-<p>The guide is HTML in the page: a <code>vc-dialog</code> with one section per chapter. It needs no inline script, works under a strict content security policy, and the build can read it. <code>vici.js</code> builds the chapter rail from the sections.</p>
+<p>The guide is HTML in the page: a <code>vc-dialog</code> with one section per chapter. It needs no inline script, works under a strict content security policy, and the build can read it. <code>vici.js</code> builds the rail from the sections.</p>
 <pre><code>&lt;button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="guide"&gt;
   &lt;span class="vc-icon vc-icon--info" aria-hidden="true"&gt;&lt;/span&gt;How it works
 &lt;/button&gt;
@@ -146,7 +146,7 @@ description: The short guide that opens with every prototype, demo, challenge an
     <tr><td><code>data-vc-guide</code></td><td>Dialog</td><td>Makes the dialog a guide</td></tr>
     <tr><td><code>data-vc-guide-auto</code></td><td>Dialog</td><td>Opens it by itself; see <a href="#opening">Opening</a></td></tr>
     <tr><td><code>data-vc-guide-count</code></td><td>Dialog</td><td>The footer count, with <code>{n}</code> and <code>{total}</code>; “{n} of {total}” by default</td></tr>
-    <tr><td><code>data-vc-guide-rail</code></td><td>Dialog</td><td>The rail's accessible name; “Chapters” by default</td></tr>
+    <tr><td><code>data-vc-guide-rail</code></td><td>Dialog</td><td>The accessible name of the rail, the list of chapters; “Chapters” by default</td></tr>
     <tr><td><code>data-vc-chapter</code></td><td>Section</td><td>The chapter id: <code>what</code>, <code>how</code>, <code>present</code> or your own</td></tr>
     <tr><td><code>data-vc-nav</code></td><td>Section</td><td>The chapter's label in the rail</td></tr>
     <tr><td><code>data-vc-guide-back</code>, <code>data-vc-guide-next</code></td><td>Footer buttons</td><td>Move to the previous or next chapter</td></tr>
