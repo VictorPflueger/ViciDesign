@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- Presenting step by step: where every step shows at once, Play walks the steps at reading pace and stops wherever a
+  person acts, with a merlot “Your turn” callout above the action (the Price Variance Agent). `.vc-attention` draws the
+  eye to the one primary action: a merlot ring pulses out three times, then rests as a soft frame until it is pressed;
+  reduced motion keeps only the frame. `--vc-step-fill` (0 to 1) on a `vc-step` fills its rail towards the next step.
+  The guide page has a demo of the turn, Motion lists Attention as a pattern, and the stepper demo shows a filling rail.
 - How it works guide: a page in two languages may carry one guide per language. `guideProblems` accepts it when each
   guide says its language in `lang`, no two share one, and each is titled in its language, has its own header button
   and gives every key figure its row in its How it works chapter under the name in its language (`data-vc-kpi-de`

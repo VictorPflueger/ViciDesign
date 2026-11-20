@@ -318,17 +318,29 @@ try {
 &lt;/table&gt;</code></pre>
 
 <h2 id="steps">Presenting step by step</h2>
-<p>A prototype that tells a story in steps lets the presenter set the pace. The Data Quality Agent shows the pattern: the start and five steps, one screen each, with four key figures top right.</p>
+<p>A prototype that tells a story in steps lets the presenter set the pace, and runs by itself for a visitor alone. The Data Quality Agent shows the pattern: the start and five steps, one screen each, with four key figures top right.</p>
 <ul>
   <li>The steps sit in a <code>vc-stepper</code> bar between Back and Next. A click on a step, the arrow keys and a presentation clicker, which sends the arrow keys, move between them. A step the run has not reached is disabled.</li>
   <li>Each step shows at once, or plays out in seconds as the agent works and stops where the room should talk, as in Navigator and Repack Pilot; a click on a step or a link always shows it at once. A simulated run goes as far as it can and waits only where a person acts or the room should talk; a slow timed replay leaves the room watching a progress bar.</li>
+  <li>Where every step shows at once, Play walks them, as in the Price Variance Agent. Play, Pause and Replay share one button before the <code>vc-stepper</code>. Play starts when the guide closes, stays on each step for as long as its title and lead take to read, 7 to 14 seconds, holds while a dialog or a menu is open and stops wherever a person acts. Under the story, the bar says when the page moves on, a bar along Next's foot fills as the step is read, and <code>--vc-step-fill</code> (0 to 1) on the current <code>vc-step</code> fills the rail to the next step. Space plays or pauses; a step chosen by click, key, clicker (the arrow keys, PageDown and PageUp) or link pauses it.</li>
   <li>Where a person acts, the step says so in the bar, such as “Your decision”, and its marker turns merlot. Next cannot pass an open decision.</li>
   <li>Whatever the page waits for, it asks for where the eye is: a bar right under what just happened says in words what to do next, such as “Your move” or “Your decision”, and holds the one primary action, which draws attention until it is pressed. The bar stays in view however long the step grows. A Next button alone is easily overlooked, and a visitor without a presenter won't know they have to press it.</li>
-  <li>The primary action names where it leads, such as “Next: find the cause”, so a visitor knows what pressing it shows; the bar's own Next stays secondary. In the Data Quality Agent it draws attention with a soft merlot ring that pulses after a few seconds without a click or a key; with reduced motion the ring stays still.</li>
+  <li>Where the action is part of the work area, such as one of several options or drafts, a merlot <code>vc-callout</code> headed “Your turn” stands right above it and says in one sentence what to do, and Next steps aside until the person has acted.</li>
+  <li>The primary action names where it leads, such as “Next: find the cause”, so a visitor knows what pressing it shows; the bar's own Next stays secondary. <code>vc-attention</code> draws the eye to it: a merlot ring pulses out three times, then rests as a soft frame until the button is pressed; under reduced motion only the frame shows. In the Data Quality Agent the ring starts after a few seconds without a click or a key; in the Price Variance Agent, as soon as Play stops for the person.</li>
   <li>Each step answers one question in its title, in plain words and with its figure: “Paying early cost €3,482 last year”.</li>
   <li>The address follows the presenter, such as <code>?case=early-pay&amp;step=4</code>, so a link opens the same screen. A link to a later step plays the run up to it.</li>
   <li>Each step change moves the focus to the step's title, so a screen reader announces it. A title that only a screen reader sees stays hidden while it has the focus, so the buttons under the pointer do not move.</li>
 </ul>
+<!-- demo block -->
+<div class="doc-turn">
+  <div class="vc-callout">
+    <span class="vc-callout__cell" aria-hidden="true"><span class="vc-icon vc-icon--hand"></span></span>
+    <div class="vc-callout__body"><p class="vc-callout__title">Your turn</p><p>Approve one way to close the gap, or accept the gap with a reason.</p></div>
+  </div>
+  <p class="doc-turn__actions"><button type="button" class="vc-button vc-attention">Approve</button><button type="button" class="vc-button vc-button--outline">Accept the gap</button></p>
+</div>
+<!-- /demo -->
+<p><button type="button" class="vc-button vc-button--secondary vc-button--sm" data-doc-play=".doc-turn"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Show the turn again</button></p>
 <p>The key figures move with the story. Before the decision, a figure's note says what is at stake, such as “€10,293 a year at stake”; the decision turns the value into the result, and a clock that runs from detection to decision stops there.</p>
 <p>The talk track quotes the figures on screen, never a copy of them. Each figure in the presenting chapter is a <code>span</code> with a <code>data-fact</code> name that the page fills from the same results its tiles show, so the script cannot drift from the demo.</p>
 <pre><code>&lt;li&gt;&lt;strong&gt;Calculate.&lt;/strong&gt; &lt;span class="vc-guide__say"&gt;“Paying early cost &lt;span data-fact="lead.past"&gt;€3,482&lt;/span&gt; last year.”&lt;/span&gt; &lt;span class="vc-guide__time"&gt;0.5&amp;nbsp;min&lt;/span&gt;&lt;/li&gt;</code></pre>

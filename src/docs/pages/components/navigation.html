@@ -135,12 +135,12 @@ description: Header, side navigation, footer, tabs, breadcrumb, hexagon paginati
 <!-- /demo -->
 
 <h2>Stepper</h2>
-<p>Shows progress through a fixed sequence. Steps are hexagon cells joined by rails: done steps are solid with a check, the current step is pastel, and upcoming steps are outlined.</p>
+<p>Shows progress through a fixed sequence. Steps are hexagon cells joined by rails: done steps are solid with a check, the current step is pastel, and upcoming steps are outlined. <code>--vc-step-fill</code>, from 0 to 1 on the current step, fills its rail towards the next one, as when a prototype plays its steps by itself (see <a href="{{root}}components/guide.html#steps">Presenting step by step</a>).</p>
 <!-- demo block -->
 <ol class="vc-stepper" aria-label="Onboarding progress">
   <li class="vc-step vc-step--done"><span class="vc-step__marker">1<span class="vc-visually-hidden"> (completed)</span></span><span class="vc-step__label">Connect data</span></li>
   <li class="vc-step vc-step--done"><span class="vc-step__marker">2<span class="vc-visually-hidden"> (completed)</span></span><span class="vc-step__label">Choose scope</span></li>
-  <li class="vc-step vc-step--current" aria-current="step"><span class="vc-step__marker">3</span><span class="vc-step__label">Review findings<span class="vc-step__hint">In progress</span></span></li>
+  <li class="vc-step vc-step--current" aria-current="step" style="--vc-step-fill: 0.4"><span class="vc-step__marker">3</span><span class="vc-step__label">Review findings<span class="vc-step__hint">In progress</span></span></li>
   <li class="vc-step"><span class="vc-step__marker">4</span><span class="vc-step__label">Approve</span></li>
 </ol>
 <!-- /demo -->
