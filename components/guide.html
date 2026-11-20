@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="vici-build">
   <title>How it works guide · Vici Design System</title>
-  <meta name="description" content="The standard talk track: the short guide that opens with every prototype, demo, challenge and showcase and says what it does, how it works and how to present it. Title, chapters, copy rules, markup, behaviour, opening, the presenting chapter, key figures and presenting step by step.">
+  <meta name="description" content="The standard talk track: the short guide that opens with every prototype, demo, challenge and showcase and says what it does, how it works and how to present it. Title, chapters, copy rules, markup, two languages, behaviour, opening, the presenting chapter, key figures and presenting step by step.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
@@ -405,6 +405,34 @@
   <span class="tk-punct">&lt;/</span><span class="tk-tag">footer</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-57" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
+<h3 id="two-languages">Two languages</h3>
+<p>A prototype with an EN | DE switch carries one guide per language, each written out in full. The check accepts such a page when every guide follows the whole standard and these rules hold:</p>
+<ul>
+  <li>Each dialog has its own id and says its language in <code>lang</code>, and no two share one. Its title is in that language.</li>
+  <li>Each guide has <code>data-vc-guide-auto</code> and its own header button. The page shows only the button of the language on screen.</li>
+  <li>A key figure carries its name in each language: <code>data-vc-kpi</code> in English and <code>data-vc-kpi-de</code> in German. Each guide's How it works chapter gives it a row under the name in its own language.</li>
+  <li>A plain script at the end of the body, which runs before the deferred <code>vici.js</code>, takes <code>data-vc-guide-auto</code> off the other language's guide, so the guide that opens by itself is in the page's language.</li>
+  <li>The two guides are one guide in two languages, so it opens once per tab, whichever language the visitor switches to: the script notes the page's guide as seen once the other one has opened (see <a href="#opening">Opening</a>).</li>
+</ul>
+<pre><code>&lt;button … data-vc-guide-open="guide-en" lang="en"&gt;…How it works&lt;/button&gt;
+&lt;button … data-vc-guide-open="guide-de" lang="de" hidden&gt;…So funktioniert's&lt;/button&gt;
+&lt;article class="vc-stat" data-vc-kpi="Relief a year" data-vc-kpi-de="Entlastung pro Jahr"&gt;…&lt;/article&gt;
+
+&lt;dialog class="vc-dialog vc-guide" id="guide-en" lang="en-GB" data-vc-guide data-vc-guide-auto …&gt;…&lt;/dialog&gt;
+&lt;dialog class="vc-dialog vc-guide" id="guide-de" lang="de" data-vc-guide data-vc-guide-auto …&gt;…&lt;/dialog&gt;
+&lt;script src="js/lang.js"&gt;&lt;/script&gt;
+
+// js/lang.js: lang is the page's language (?lang=, then the visitor's last choice, else English)
+['en', 'de'].forEach(function (l) {
+  if (l !== lang) document.getElementById('guide-' + l).removeAttribute('data-vc-guide-auto');
+  document.querySelector('[data-vc-guide-open="guide-' + l + '"]').hidden = l !== lang;
+});
+var seen = function (l) { return 'vc-guide:' + location.pathname + '#guide-' + l; };
+try {
+  if (sessionStorage.getItem(seen(lang === 'de' ? 'en' : 'de'))) sessionStorage.setItem(seen(lang), '1');
+} catch (e) { /* storage blocked: the guide opens */ }</code></pre>
+<p>The switch itself shows the other button and leaves the open state alone. Duty Radar, Victor's bureaucracy relief prototype, works this way.</p>
+
 <h2 id="behaviour">Behaviour</h2>
 <ul>
   <li>The guide is a modal dialog: Escape and the close button close it, focus stays inside, and closing returns focus to whatever opened it.</li>
@@ -417,7 +445,7 @@
 
 <h2 id="opening">Opening</h2>
 <ul>
-  <li>With <code>data-vc-guide-auto</code>, the guide opens by itself the first time a prototype loads in a browser tab, and not again when that tab reloads. If the browser blocks storage, it opens on every load.</li>
+  <li>With <code>data-vc-guide-auto</code>, the guide opens by itself the first time a prototype loads in a browser tab, and not again when that tab reloads. <code>vici.js</code> notes it in the tab's session storage under <code>vc-guide:</code>, the page's path, <code>#</code> and the guide's id. If the browser blocks storage, it opens on every load.</li>
   <li><code>?guide=0</code> in the address keeps it closed, for a presenter who has already explained the prototype.</li>
   <li><code>?guide=present</code> opens it at the presenting chapter. Any chapter id or number works the same way.</li>
   <li>The header button reopens it at the first chapter.</li>
@@ -435,7 +463,7 @@
 </ul>
 
 <h2 id="key-figures">Key figures</h2>
-<p>A prototype shows two to four key figures at the top of the page, usually top right, so a customer sees at once what the case delivers: money gained, lost or saved, lead time, time from detection to decision, session cost (measured in a live run, estimated in a simulated one), people affected, performance against a benchmark or a score. Each is a <code>vc-stat</code> tile that carries its name in <code>data-vc-kpi</code>. <a href="../start/prototypes.html#key-figures">Build a prototype</a> has an example of each.</p>
+<p>A prototype shows two to four key figures at the top of the page, usually top right, so a customer sees at once what the case delivers: money gained, lost or saved, lead time, time from detection to decision, session cost (measured in a live run, estimated in a simulated one), people affected, performance against a benchmark or a score. Each is a <code>vc-stat</code> tile that carries its name in <code>data-vc-kpi</code>, and on a page in two languages its German name in <code>data-vc-kpi-de</code> as well. <a href="../start/prototypes.html#key-figures">Build a prototype</a> has an example of each.</p>
 <ul>
   <li>The How it works chapter explains every key figure in a table, one row each: the figure's name as on its tile, what it measures and its value. Where the numbers come from and what is simulated go in a chapter of their own, such as “What is real”.</li>
   <li>The presenting path points at the figures when they move, so the talk track says what each one shows.</li>
@@ -458,16 +486,18 @@
 &lt;/table&gt;</code></pre>
 
 <h2 id="steps">Presenting step by step</h2>
-<p>A prototype that tells a story in steps plays them by itself and stops where a person acts. A visitor alone never has to find the button that goes on, and a presenter takes over with one key. The Price Variance Agent shows the pattern: five steps, one screen each, with four key figures top right.</p>
+<p>A prototype that tells a story in steps lets the presenter set the pace, and runs by itself for a visitor alone. The Data Quality Agent shows the pattern: the start and five steps, one screen each, with four key figures top right.</p>
 <ul>
-  <li>Each step shows at once: a simulated run goes as far as it can and waits only where a person acts. Play paces the reading, never the run, so the room doesn't watch a progress bar while work is done.</li>
-  <li>Play, Pause and Replay share one button before the <code>vc-stepper</code> bar. Play starts when the guide closes and stays on each step for as long as its title and lead take to read, 7 to 14 seconds. It holds while a dialog or a menu is open, and Space plays or pauses it.</li>
-  <li>Next stands under the story's last line, in the reading flow. While Play reads a step, a bar fills along Next's foot and the rail to the next step fills with it, through <code>--vc-step-fill</code> (0 to 1) on the current <code>vc-step</code>. Next goes on at once and keeps Play going.</li>
-  <li>A click on a step, the arrow keys and a presentation clicker, which sends the arrow keys or PageDown and PageUp, move between the steps and pause Play. A link to a step opens it paused. A step the run has not reached is disabled.</li>
-  <li>Where a person acts, Play stops and the page says whose turn it is: a merlot <code>vc-callout</code> headed “Your turn” stands above the action and says in one sentence what to do, and the button the agent recommends carries <code>vc-attention</code>. The step's marker in the bar turns merlot, and Next steps aside until the person has acted. Then the step's new words get their reading time and Play goes on.</li>
+  <li>The steps sit in a <code>vc-stepper</code> bar between Back and Next. A click on a step, the arrow keys and a presentation clicker, which sends the arrow keys, move between them. A step the run has not reached is disabled.</li>
+  <li>Each step shows at once, or plays out in seconds as the agent works and stops where the room should talk, as in Navigator and Repack Pilot; a click on a step or a link always shows it at once. A simulated run goes as far as it can and waits only where a person acts or the room should talk; a slow timed replay leaves the room watching a progress bar.</li>
+  <li>Where every step shows at once, Play walks them, as in the Price Variance Agent. Play, Pause and Replay share one button before the <code>vc-stepper</code>. Play starts when the guide closes, stays on each step for as long as its title and lead take to read, 7 to 14 seconds, holds while a dialog or a menu is open and stops wherever a person acts. Under the story, the bar says when the page moves on, a bar along Next's foot fills as the step is read, and <code>--vc-step-fill</code> (0 to 1) on the current <code>vc-step</code> fills the rail to the next step. Space plays or pauses; a step chosen by click, key, clicker (the arrow keys, PageDown and PageUp) or link pauses it.</li>
+  <li>Where a person acts, the step says so in the bar, such as “Your decision”, and its marker turns merlot. Next cannot pass an open decision.</li>
+  <li>Whatever the page waits for, it asks for where the eye is: a bar right under what just happened says in words what to do next, such as “Your move” or “Your decision”, and holds the one primary action, which draws attention until it is pressed. The bar stays in view however long the step grows. A Next button alone is easily overlooked, and a visitor without a presenter won't know they have to press it.</li>
+  <li>Where the action is part of the work area, such as one of several options or drafts, a merlot <code>vc-callout</code> headed “Your turn” stands right above it and says in one sentence what to do, and Next steps aside until the person has acted.</li>
+  <li>The primary action names where it leads, such as “Next: find the cause”, so a visitor knows what pressing it shows; the bar's own Next stays secondary. <code>vc-attention</code> draws the eye to it: a merlot ring pulses out three times, then rests as a soft frame until the button is pressed; under reduced motion only the frame shows. In the Data Quality Agent the ring starts after a few seconds without a click or a key; in the Price Variance Agent, as soon as Play stops for the person.</li>
   <li>Each step answers one question in its title, in plain words and with its figure: “Paying early cost €3,482 last year”.</li>
-  <li>The address follows the steps, such as <code>?case=early-pay&amp;step=4</code>, so a link opens the same screen. A link to a later step plays the run up to it.</li>
-  <li>A step the presenter chooses moves the focus to its title, so a screen reader announces it; while Play runs, a live region announces each step and each turn instead, and the focus stays put. A title that only a screen reader sees stays hidden while it has the focus, so the buttons under the pointer do not move.</li>
+  <li>The address follows the presenter, such as <code>?case=early-pay&amp;step=4</code>, so a link opens the same screen. A link to a later step plays the run up to it.</li>
+  <li>Each step change moves the focus to the step's title, so a screen reader announces it. A title that only a screen reader sees stays hidden while it has the focus, so the buttons under the pointer do not move.</li>
 </ul>
 <div class="doc-demo doc-demo--block"><div class="doc-demo__preview">
 <div class="doc-turn">
@@ -490,7 +520,7 @@
 <pre><code>&lt;li&gt;&lt;strong&gt;Calculate.&lt;/strong&gt; &lt;span class="vc-guide__say"&gt;“Paying early cost &lt;span data-fact="lead.past"&gt;€3,482&lt;/span&gt; last year.”&lt;/span&gt; &lt;span class="vc-guide__time"&gt;0.5&amp;nbsp;min&lt;/span&gt;&lt;/li&gt;</code></pre>
 
 <h2 id="check">Check</h2>
-<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a How it works chapter with a row for every key figure marked <code>data-vc-kpi</code>, saying what it measures and its value. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
+<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a How it works chapter with a row for every key figure marked <code>data-vc-kpi</code>, saying what it measures and its value. A page in two languages passes with one guide per language that keeps the rules under <a href="#two-languages">Two languages</a>. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
 <p>A prototype checks its own guide the same way. <code>guideProblems(html)</code> from <code>scripts/lib/guide.mjs</code> returns the rules a page breaks, none when it follows them, and <code>node scripts/check-guide-render.mjs http://localhost:8000/</code> runs the browser test against a prototype served over http.</p>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/data.html" rel="prev"><span class="vc-caption">Previous</span><span>Data display</span></a><a class="doc-pager__link doc-pager__link--next" href="../brand/logo.html" rel="next"><span class="vc-caption">Next</span><span>Logo</span></a></nav>
