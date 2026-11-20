@@ -242,6 +242,43 @@
 }
 .doc-demo__copy[data-vc-copied='true'] { color: var(--vc-success-text); }
 
+/* The agent brief on Build a prototype: the file with its two actions, then its text, folded.
+   The copy button swaps its label with vici.js's data-vc-copied state. */
+.doc-brief {
+  margin: var(--vc-space-5) 0 var(--vc-space-8);
+  border: 1px solid var(--vc-border-subtle);
+  border-radius: var(--vc-radius-lg);
+  background: var(--vc-surface);
+  overflow: hidden;
+}
+.doc-brief__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vc-space-3);
+  padding: var(--vc-space-3) var(--vc-space-3) var(--vc-space-3) var(--vc-space-4);
+}
+.doc-brief__file {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vc-space-2);
+  font-family: var(--vc-font-mono);
+  font-size: var(--vc-font-size-sm);
+}
+.doc-brief__file .vc-icon { color: var(--vc-text-muted); }
+.doc-brief__idle { display: contents; }
+.doc-brief__done,
+.doc-brief__failed,
+.doc-brief [data-vc-copied] .doc-brief__idle { display: none; }
+.doc-brief [data-vc-copied='true'] .doc-brief__done,
+.doc-brief [data-vc-copied='false'] .doc-brief__failed { display: contents; }
+.doc-brief__text pre {
+  max-height: none;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .tk-tag { color: var(--vc-accent-text); font-weight: 600; }
 .tk-attr { color: var(--vc-info-text); }
 .tk-str { color: var(--vc-success-text); }

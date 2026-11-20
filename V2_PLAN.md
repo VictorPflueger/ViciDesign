@@ -135,7 +135,7 @@ The byline your prototypes already carry becomes the standard: "Built by", your 
 - Both links carry `rel="author"`. On the personal site the profile links elsewhere on the page keep `rel="me"`.
 - Addresses come from `src/brand/profile.json`; the build writes them into the docs layout, the starters, the Streamlit helper and `llms.txt`. When the site moves to its own domain, one line changes.
 - The globe link is at least 24 by 24 px, has the accessible name "Victor Pflüger's website" and a tooltip "Website".
-- It sits at the end of a page: in the footer, or at the bottom of an app's sidebar. Never inside the guide or a dialog.
+- It sits at the end of a page: in the footer, or at the bottom of an app's sidebar. A single-screen app that doesn't scroll may carry it in a strip under its header instead, as Dispatch Lab does (added on 20 November 2026 with Build a prototype). Never inside the guide or a dialog.
 - Where a surface can't hold links, such as a Power BI report, its footer reads "Built by Victor Pflüger" with the website address.
 
 ### Where it must appear
@@ -258,12 +258,12 @@ The site becomes the reference implementation: every page and starter passes the
 
 ### Information architecture
 
-Same four sections, still 26 pages. Four pages merge or move, three are new, and every section's first page now matches the link that opens it.
+Same four sections, 27 pages. Four pages merge or move, four are new (Build a prototype was added on 20 November 2026 at your request), and every section's first page now matches the link that opens it.
 
 | Section | Pages, in order |
 |---|---|
 | Home | Home |
-| Start | Getting started (with the starters), Tokens and theming, Integrations |
+| Start | Getting started (with the starters), Build a prototype, Tokens and theming, Integrations |
 | Guidelines | Principles, Writing (new), Colour, Typography, Hexagon, Layout and spacing (with elevation), Motion, Icons, Data visualisation, Accessibility |
 | Components | All components (new, A–Z), Actions, Forms, Content, Navigation, Feedback, Overlays, Data display, How it works guide (new) |
 | Brand | Logo, Byline and profile links, Licence |
@@ -324,8 +324,9 @@ New pages:
 | `guidelines/writing.html` | Guidelines | Gives agents and you the copy rules that keep pages from reading as generated | F14, F15, F44 |
 | `components/index.html` | Components | Every component A–Z with one line, as the section's first page | F09, F20 |
 | `components/guide.html` | Components | The How it works guide: component, guideline and content format | F07, F08 |
+| `start/prototypes.html` | Start | The brief for an agent that builds a prototype, demo or tech showcase, as a page and as `start/prototype-brief.md`, with the rules and the partner review behind it. Added on 20 November 2026 at your request | F29 |
 | `404.html` | none | Recovery for mistyped and moved addresses | F30 |
-| `llms.txt` | none | One generated file with the rules, classes, tokens, starters and the byline and guide requirements | F29 |
+| `llms.txt` | none | One generated file with the rules, classes, tokens, starters, the byline and guide requirements, and a link to the prototype brief | F29 |
 
 ### Starters
 
@@ -480,7 +481,7 @@ Scope: Vici 2.0 and its website meet the brief's Definition of done and every ru
 | 1. Diagnose | Done, 19 November 2026 (Appendix A) |
 | 2. Plan | Done; approved 19 November 2026 (scope Full) |
 | 3. System | Done, 20 November 2026. The D4 status colours wait for your approval of `v2-status-colours.html` |
-| 4. Website | Started 20 November 2026 with the home page; the shell, navigation and the other pages follow |
+| 4. Website | Started 20 November 2026 with the home page and Build a prototype; the shell, navigation and the other pages follow |
 | 5. Verify and deliver | Not started |
 
 Phase 3 (19 and 20 November 2026). Every step ended with `node scripts/build.mjs` and a green `npm run check`.
@@ -504,6 +505,8 @@ After Phase 3, pull request #4 (from moving Repack Pilot to 2.0) added the princ
 Phase 4, home page (20 November 2026). You asked to see every change on the main page. The live home page still showed the 1.0 content: five principles, tiles, section cards and a palette band, and nothing about 2.0. It now has the planned shape from section 4: the headline, a one-sentence lead, Get started and Browse components (All components once that page exists), a live slice of the app starter, and the install lines without the avatar. A line under the actions links to the new section What's new in Vici 2.0, which lists every change since 1.0.0 with a link to where it can be seen: both new pages, the three new principles, the guide component, the byline, the six colour references with swatches, the 22 new icons, the retired classes and tokens, the rules on other pages, the starters, the checks, the site-wide clean-up and the two records in the repository. `.unlazy/s3/coverage.mjs` computes that inventory from git and fails if anything is missing. "Built with Vici" waits until the prototypes that run on Vici and their addresses are confirmed.
 
 Wide screens (20 November 2026). On screens from 1600 px, and on smaller ones zoomed out, the docs text drifted far to the right of the sidebar and On this page could run off the edge: a 1.0 layout rule (`margin-inline: auto 0` in a column that took all the free space) that Phase 1 missed because it measured at 1280 px. The sidebar, the article and On this page now form one centred block of at most 100rem (`--doc-page-max`), the header and footer line up with it, and the article and On this page stay together. Layouts at 1440 px and below don't move. `check:render` now also renders every page at 1920 and 2560 px and fails if the content drifts again (`scripts/lib/layout-probe.mjs`).
+
+Build a prototype (20 November 2026). You asked for a section that AI agents use when they build prototypes, demos and tech showcases with 2.0, based on what matters to you in prototypes. `start/prototypes.html` (source `src/docs/pages/start/prototypes.html`) opens with a brief to copy or to send as `start/prototype-brief.md` (source `src/docs/prototype-brief.md`, rendered by the `@prototype-brief` widget), then explains the rules behind it: the dumbest user possible, the three things (byline, talk track, key figures), the seven kinds of key figure, the layout from top to bottom with a working example and its guide, the partner review with its verdict and cut, fix and keep lists (R37), and the checks a prototype imports. The rules come from the PartnerOptimizer project's instructions you pasted (its chats can't be read from this project), from Dispatch Lab, and from what your other prototypes already do: the SIMULATION and LIVE marks, testing at 1920 × 1080 and 1280 × 720, open-source or synthetic data, the choice of simulated or live run with a session-only key, approval and an audit log where the AI acts, an honest README, favicons in the colour of their kind and no link to their own repository. The same change calls the guide the talk track, names money gained, lost or saved among the key figures, allows the byline in a strip under the header of a single-screen app, lists the blank starter on Starters, lets `bylineProblems()` accept "Erstellt von", adds a check for quotes escaped with a backslash (it found three on Byline and profile links), pins the new page's sections in `check-docs`, and makes the guide's phone test wait for the dialog's opening animation, which it had measured half a pixel narrow about one run in four. For the AI notice and the key-figure table it follows pull request #7 (Every live run says it is an AI, R35 and R36), merged while this page was written. The app starter doesn't show SIMULATION yet; it gets it when the starters are reworked later in Phase 4.
 
 Next: the rest of Phase 4, the website (section 4), and your answer on D4.
 
@@ -584,9 +587,10 @@ What a page, prototype or demo built with Vici 2.0 must meet, and how to tell. T
 | R32 | Relative links only, so the docs work from disk and on GitHub Pages | The build: `check-docs` resolves every internal link and anchor; open `index.html` from disk | Getting started |
 | R33 | Generated files are never edited by hand | The build: `node scripts/build.mjs --check` | Getting started |
 | R34 | Prototypes pin a tagged release, such as `@v2.0.0`, and never `@main` | Read the stylesheet `href` in each prototype | Getting started |
-| R35 | Two to four key figures at the top, each a `vc-stat` tile marked `data-vc-kpi`, and the How it works chapter explains each in a table row: the figure, what it measures and its value | The build: `check-guide` for the starters; for a prototype, `guideProblems()` from `scripts/lib/guide.mjs` returns nothing | Principles, How it works guide |
-| R36 | A page that can start a live run with a model says "You are interacting with an AI system" wherever the run is possible, and nothing leaves it without a person's approval | The build: `check-ai` self-tests the rule; for a prototype, `aiNoticeProblems()` from `scripts/lib/ai.mjs` returns nothing | Principles |
-| R35 | Every prototype, demo, challenge and showcase shows two to four key figures at the top, each a `vc-stat` tile named in `data-vc-kpi` and explained by its guide | The build: `check-guide` fails when the guide doesn't name a key figure; for a prototype, `guideProblems()` from `scripts/lib/guide.mjs`; review that there are two to four | Principles, How it works guide |
+| R35 | Two to four key figures at the top, usually top right, each a `vc-stat` tile marked `data-vc-kpi`, and the How it works chapter explains each in a table row: the figure, what it measures and its value | The build: `check-guide` for the starters; for a prototype, `guideProblems()` from `scripts/lib/guide.mjs` returns nothing | Principles, How it works guide, Build a prototype |
+| R36 | A page that can start a live run with a model says "You are interacting with an AI system" wherever the run is possible, and nothing leaves it without a person's approval | The build: `check-ai` self-tests the rule; for a prototype, `aiNoticeProblems()` from `scripts/lib/ai.mjs` returns nothing | Principles, Build a prototype |
+| R37 | A prototype passes the partner review before it goes to a customer: its One Thing fits one sentence, every step shows what it is doing, what it is worth and which key figure moved, its fix list is empty, and the byline, the talk track and the key figures are on its keep list | Review: run the partner review on Build a prototype and keep its verdict with the cut, fix and keep lists | Build a prototype |
+| R38 | A prototype's header shows SIMULATION or LIVE in capitals, and its data is open-source or synthetic and labelled as such | Review the header at 1920 × 1080 and 1280 × 720 in both themes, and the README's account of what is real | Build a prototype |
 
 ## Appendix A: Phase 1 diagnosis
 

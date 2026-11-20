@@ -17,7 +17,7 @@ description: How every prototype, demo and website made with Vici says that Vict
 </header>
 
 <h2 id="every-surface">Every surface</h2>
-<p>Every prototype, demo and website made with Vici ends with the byline, Victor's personal site and these docs included. Its look may change between versions. What it does stays the same:</p>
+<p>Every prototype, demo and website made with Vici carries the byline, Victor's personal site and these docs included. Its look may change between versions. What it does stays the same:</p>
 <ul>
   <li>it says “Built by” (“Erstellt von” on a German surface) and names Victor Pflüger;</li>
   <li>it links to his LinkedIn profile and to his website, both with <code>rel="author"</code>;</li>
@@ -27,7 +27,7 @@ description: How every prototype, demo and website made with Vici says that Vict
 <p><code>npm run check</code> fails when a docs page, a starter or the Streamlit helper has no byline, or when either link is missing. A prototype checks its own page with <code>bylineProblems(html)</code> from <code>scripts/lib/byline.mjs</code>.</p>
 
 <h2>Byline</h2>
-<p>The byline goes at the end of a page or app: in the footer, under a dashboard, at the bottom of a prototype's sidebar. It reads “Built by”, then the portrait, the name and LinkedIn's logo as one link to LinkedIn, then a globe that links to the website. The first link gives one generous target and one clear name for screen readers, “Victor Pflüger on LinkedIn”. The globe's name is “Victor Pflüger's website”, and its tooltip reads “Website”.</p>
+<p>The byline goes at the end of a page or app: in the footer, under a dashboard, at the bottom of a prototype's sidebar. A single-screen app that doesn't scroll can carry it in a strip under its header instead, as Dispatch Lab does. It reads “Built by”, then the portrait, the name and LinkedIn's logo as one link to LinkedIn, then a globe that links to the website. The first link gives one generous target and one clear name for screen readers, “Victor Pflüger on LinkedIn”. The globe's name is “Victor Pflüger's website”, and its tooltip reads “Website”.</p>
 <!-- demo split -->
 <!-- @byline -->
 <!-- /demo -->
@@ -100,7 +100,7 @@ st.sidebar.markdown(vici_byline(), unsafe_allow_html=True)            # light th
 </footer>
 <!-- /demo -->
 <h3 id="personal-site">On the personal site</h3>
-<p>Victor\'s personal site carries the byline too, at the end of every page like any other surface; there the globe links to the site\'s own home page. Its footer also lists the profiles, and its contact section turns them into buttons. Those links, unlike the byline\'s, use <code>rel="me"</code> (see the link rules). A platform's logo goes on secondary or ghost buttons, where <code>.vc-platform-mark</code> picks the right one of black and white. A primary button would need the opposite colour, so keep primary buttons to words.</p>
+<p>Victor's personal site carries the byline too, at the end of every page like any other surface; there the globe links to the site's own home page. Its footer also lists the profiles, and its contact section turns them into buttons. Those links, unlike the byline's, use <code>rel="me"</code> (see the link rules). A platform's logo goes on secondary or ghost buttons, where <code>.vc-platform-mark</code> picks the right one of black and white. A primary button would need the opposite colour, so keep primary buttons to words.</p>
 <!-- demo split -->
 <div class="vc-cluster">
   <a class="vc-button vc-button--secondary" href="https://www.linkedin.com/in/victorpflueger" rel="me"><!-- @platform-mark linkedin -->LinkedIn</a>

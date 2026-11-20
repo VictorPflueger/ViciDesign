@@ -79,6 +79,9 @@ const p3 = await ctx.newPage(); await p3.goto(withGuide('present')); await p3.wa
 ok(await p3.evaluate(() => { const d = document.querySelector('dialog.vc-guide'); return d.open && ![...d.querySelectorAll('.vc-guide__chapter')].find((c) => c.dataset.vcChapter === 'present').hidden; }), '?guide=present did not open at the presenting chapter');
 const phone = await browser.newContext({ viewport: { width: 375, height: 760 } });
 const p4 = await phone.newPage(); await p4.goto(url); await p4.waitForTimeout(300);
+// Measure once the dialog has finished its 340 ms opening animation, which scales it up from 97 %;
+// measured mid-animation, it came out half a pixel narrow about one run in four.
+await p4.evaluate(() => Promise.all(document.querySelector('dialog.vc-guide').getAnimations().map((a) => a.finished)));
 const box = await p4.evaluate(() => { const r = document.querySelector('dialog.vc-guide').getBoundingClientRect(); return [r.width, r.height, document.documentElement.scrollWidth]; });
 ok(box[0] >= 374 && box[1] >= 759, `not full screen at 375 px: ${box}`);
 if (shots) { await p4.screenshot({ path: join(shots, page.replace(/\W+/g, '_') + '-guide-375.png') }); }
