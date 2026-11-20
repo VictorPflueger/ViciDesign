@@ -194,3 +194,145 @@
     background: var(--vc-border-subtle);
   }
 }
+
+@layer vici.components {
+  /* ---------- How it works guide: a dialog with a chapter rail ----------
+     Markup: dialog.vc-dialog.vc-guide[data-vc-guide] holding a header, div.vc-guide__chapters with
+     one section.vc-guide__chapter per chapter, and a footer with the count, Back and Next.
+     vici.js builds the rail and shows one chapter at a time. */
+  .vc-guide {
+    --vc-dialog-width: 64rem;
+    height: min(85vh, 46rem);
+  }
+  .vc-guide__body {
+    display: grid;
+    flex: 1;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    min-height: 0;
+    border-top: 1px solid var(--vc-border-subtle);
+  }
+  .vc-guide__rail {
+    min-height: 0;
+    padding: var(--vc-space-5) var(--vc-space-4) var(--vc-space-5) var(--vc-space-5);
+    overflow-y: auto;
+    border-inline-end: 1px solid var(--vc-border-subtle);
+    background: var(--vc-bg-subtle);
+  }
+  .vc-guide__rail .vc-stepper { --_m: 1.75rem; gap: var(--vc-space-4); }
+  .vc-guide__rail .vc-step:not(:last-child)::after { bottom: calc(-1 * var(--vc-space-4) + var(--vc-space-1)); }
+  .vc-guide__chapters {
+    min-height: 0;
+    padding: var(--vc-space-6) var(--vc-space-8) var(--vc-space-8);
+    overflow-y: auto;
+  }
+  .vc-guide__chapter { max-width: 46rem; }
+  .vc-guide__chapter[hidden] { display: none; }
+  .vc-guide__chapter > h3 {
+    margin: 0 0 var(--vc-space-3);
+    font-family: var(--vc-font-display);
+    font-size: var(--vc-font-size-2xl);
+    line-height: var(--vc-leading-tight);
+    text-wrap: balance;
+  }
+  .vc-guide__chapter > h3:focus { outline: none; }
+  .vc-guide__chapter > h3:focus-visible { outline: 2px solid var(--vc-focus); outline-offset: 4px; border-radius: var(--vc-radius-sm); }
+  .vc-guide__lead {
+    max-width: 40rem;
+    margin: 0 0 var(--vc-space-6);
+    color: var(--vc-text);
+    font-size: var(--vc-font-size-lg);
+    line-height: var(--vc-leading-snug);
+  }
+  .vc-guide__chapter > figure { margin: 0; }
+  .vc-guide__chapter > figure > figcaption {
+    margin-top: var(--vc-space-2);
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+  }
+  /* The presenter's path: numbered hexagons, what to show in bold, the line to say, the time. */
+  .vc-guide__path {
+    display: grid;
+    gap: var(--vc-space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: vc-path;
+  }
+  .vc-guide__path > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--vc-space-1) var(--vc-space-4);
+    margin: 0;
+    padding-inline-start: 2.75rem;
+    counter-increment: vc-path;
+  }
+  .vc-guide__path > li::before {
+    content: counter(vc-path);
+    position: absolute;
+    top: -0.1rem;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: calc(1.75rem * 1.1547);
+    height: 1.75rem;
+    background: var(--vc-accent-soft);
+    color: var(--vc-on-accent-soft);
+    font-size: var(--vc-font-size-sm);
+    font-weight: var(--vc-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    clip-path: var(--vc-hex);
+  }
+  .vc-guide__path > li > :not(.vc-guide__time) { grid-column: 1; }
+  .vc-guide__time {
+    grid-column: 2;
+    grid-row: 1;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .vc-guide__footer { align-items: center; }
+  .vc-guide__count {
+    margin-inline-end: auto;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  /* Below 900 px the rail becomes a strip of numbered hexagons above the chapter. */
+  @media (max-width: 899px) {
+    .vc-guide__body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+    .vc-guide__rail {
+      padding: var(--vc-space-3) var(--vc-space-4);
+      overflow-x: auto;
+      overflow-y: hidden;
+      border-inline-end: 0;
+      border-bottom: 1px solid var(--vc-border-subtle);
+    }
+    .vc-guide__rail .vc-stepper { flex-direction: row; gap: var(--vc-space-2); }
+    .vc-guide__rail .vc-step { flex: none; }
+    .vc-guide__rail .vc-step:not(:last-child)::after { display: none; }
+    .vc-guide__rail .vc-step__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .vc-guide__chapters { padding: var(--vc-space-5); }
+  }
+  /* At 600 px and below the guide fills the screen. */
+  @media (max-width: 600px) {
+    .vc-guide {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100dvh;
+      max-height: 100dvh;
+      border: 0;
+      border-radius: 0;
+    }
+    .vc-guide__path > li { grid-template-columns: minmax(0, 1fr); }
+    .vc-guide__time { grid-column: 1; grid-row: auto; }
+  }
+}

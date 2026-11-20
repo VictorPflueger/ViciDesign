@@ -17,7 +17,7 @@
   "backgroundLight": "#f3ebe7",
   "backgroundNeutral": "#d6c9c6",
   "tableAccent": "#8f2f42",
-  "good": "#396c46",
+  "good": "#193521",
   "neutral": "#e2cfa0",
   "bad": "#954238",
   "maximum": "#250010",
@@ -25,7 +25,7 @@
   "minimum": "#ffe5e7",
   "null": "#8e7f80",
   "hyperlink": "#8f2f42",
-  "visitedHyperlink": "#8f2f42",
+  "visitedHyperlink": "#5c1230",
   "textClasses": {
     "callout": {
       "fontSize": 28,

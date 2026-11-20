@@ -64,6 +64,9 @@ const fixtures = [
   ['<svg><rect width="20" height="10" rx="5"/></svg>', 'svg'],
   ['<span style="border-radius: 999px">pill</span>', 'html'],
   [".a { background: url(\"data:image/svg+xml,%3Csvg%3E%3Ccircle r='2'/%3E%3C/svg%3E\"); }", 'css'],
+  // 2.0: a round step number in the How it works guide, and a round portrait in a byline
+  ['.vc-guide__path > li::before { clip-path: circle(50%); }', 'css'],
+  ['<span class="vc-avatar"><img src="portrait.jpg" alt="" style="border-radius: 50%"></span>', 'html'],
 ];
 for (const [text, kind] of fixtures) {
   if (!scan('fixture', text, kind).length) {
@@ -126,7 +129,10 @@ const required = [
   ['.vc-tile', 'honeycomb tile'],
   ['.vc-radio::before', 'radio focus ring'],
   ['.vc-switch::before', 'switch focus ring'],
-  ['.vc-eyebrow::before', 'eyebrow marker'],
+  ['.vc-guide__path > li::before', 'guide path marker'],
+  ['.vc-hex-ring', 'hexagon ring'],
+  ['.vc-capsule', 'hex capsule'],
+  ['.vc-hex-img', 'hexagon image'],
   ['.vc-sidenav a[aria-current=\'page\']::before', 'current-page marker'],
 ];
 let hexComponents = 0;

@@ -1,0 +1,7 @@
+{
+  "_comment": "Victor Pflüger's profile, the one source for every byline and profile link the build writes (docs, starters, Streamlit helper, llms.txt). When the personal site moves to its own domain, change website here and rebuild.",
+  "name": "Victor Pflüger",
+  "linkedin": "https://www.linkedin.com/in/victorpflueger",
+  "github": "https://github.com/VictorPflueger",
+  "website": "https://victorpflueger.github.io/VIP/index.html"
+}

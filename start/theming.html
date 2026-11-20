@@ -55,7 +55,6 @@
     <main class="doc-main" id="main" tabindex="-1">
       <article class="doc-article">
 <header class="doc-hero">
-  <p class="vc-eyebrow">Start</p>
   <h1>Theming</h1>
   <p class="vc-lead">Vici ships a light and a dark theme built from the same tokens. Components never use raw colours. They read semantic custom properties such as <code>--vc-surface</code> or <code>--vc-accent</code>, and switching the theme simply redefines those properties.</p>
 </header>
@@ -91,7 +90,7 @@
 <p><code>data-theme</code> works on any element, so a single section can switch theme on its own: a dark hero on a light page, or a light card inside a dark dashboard.</p>
 <div class="doc-demo doc-demo--stack doc-demo--plain"><div class="doc-demo__preview">
 <div data-theme="dark" style="padding: var(--vc-space-6); border-radius: var(--vc-radius-lg)">
-  <p class="vc-eyebrow">Dark island</p>
+  <p class="vc-caption">Dark island</p>
   <h3 style="margin: 0 0 var(--vc-space-2)">The base colour becomes the canvas</h3>
   <p class="vc-text-muted" style="margin: 0 0 var(--vc-space-4)">Pastels glow on #250010. Every component inside follows automatically.</p>
   <div class="vc-cluster">
@@ -101,7 +100,7 @@
   </div>
 </div>
 </div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-89"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">data-theme</span>=<span class="tk-str">&quot;dark&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;padding: var(--vc-space-6); border-radius: var(--vc-radius-lg)&quot;</span><span class="tk-punct">&gt;</span>
-  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-eyebrow&quot;</span><span class="tk-punct">&gt;</span>Dark island<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-caption&quot;</span><span class="tk-punct">&gt;</span>Dark island<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;margin: 0 0 var(--vc-space-2)&quot;</span><span class="tk-punct">&gt;</span>The base colour becomes the canvas<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-text-muted&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;margin: 0 0 var(--vc-space-4)&quot;</span><span class="tk-punct">&gt;</span>Pastels glow on #250010. Every component inside follows automatically.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-cluster&quot;</span><span class="tk-punct">&gt;</span>
@@ -116,7 +115,7 @@
 <div class="doc-demo doc-demo--stack doc-demo--plain"><div class="doc-demo__preview">
 <div data-theme="dark" style="padding: var(--vc-space-5); border-radius: var(--vc-radius-lg)">
   <section class="vc-tint-sage" style="padding: var(--vc-space-6); border-radius: var(--vc-radius-md)">
-    <p class="vc-eyebrow">Pastel section</p>
+    <p class="vc-caption">Pastel section</p>
     <p class="vc-text-muted" style="margin: 0 0 var(--vc-space-4)">Sage wash inside a dark island. Muted text, buttons and tags keep their light-theme contrast.</p>
     <div class="vc-cluster">
       <button class="vc-button vc-button--sm">Primary</button>
@@ -126,7 +125,7 @@
 </div>
 </div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-90"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">data-theme</span>=<span class="tk-str">&quot;dark&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;padding: var(--vc-space-5); border-radius: var(--vc-radius-lg)&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-tint-sage&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;padding: var(--vc-space-6); border-radius: var(--vc-radius-md)&quot;</span><span class="tk-punct">&gt;</span>
-    <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-eyebrow&quot;</span><span class="tk-punct">&gt;</span>Pastel section<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-caption&quot;</span><span class="tk-punct">&gt;</span>Pastel section<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-text-muted&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;margin: 0 0 var(--vc-space-4)&quot;</span><span class="tk-punct">&gt;</span>Sage wash inside a dark island. Muted text, buttons and tags keep their light-theme contrast.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-cluster&quot;</span><span class="tk-punct">&gt;</span>
       <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--sm&quot;</span><span class="tk-punct">&gt;</span>Primary<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
@@ -181,14 +180,18 @@
     <div class="vc-container vc-container--wide">
       <div class="vc-footer__bottom">
         <p class="vc-byline">
-          <span class="vc-byline__label">Built by</span>
-          <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
-            <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
-            <span class="vc-byline__name">Victor Pflüger</span>
-            <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
-            <span class="vc-visually-hidden"> on LinkedIn</span>
-          </a>
-        </p>
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+    <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+    <span class="vc-byline__name">Victor Pflüger</span>
+    <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-labelledby="vc-byline-site"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" role="tooltip" id="vc-byline-site">Victor Pflüger's website</span>
+  </span>
+</p>
         <span>Vici Design System v1.0.0 · code under the <a href="../start/licence.html">MIT licence</a>, logo and name reserved · fonts under SIL OFL 1.1, served from this site</span>
       </div>
     </div>

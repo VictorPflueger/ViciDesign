@@ -13,20 +13,79 @@
   <script src="../dist/vici.js" defer></script>
 </head>
 <body>
-  <main class="vc-container vc-section vc-stack vc-stack--lg">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header">
+    <div class="vc-header__inner">
+      <span class="vc-header__brand">New prototype</span>
+      <div class="vc-header__actions">
+        <button type="button" class="vc-button vc-button--secondary vc-button--sm" data-vc-guide-open="guide"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works</button>
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Dark theme</span>
+        </span>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="vc-container vc-section vc-stack vc-stack--lg" tabindex="-1">
     <header class="vc-stack vc-stack--sm">
-      <p class="vc-eyebrow">Prototype</p>
       <h1 style="margin:0">A blank page, already on brand</h1>
       <p class="vc-lead" style="margin:0">Everything on this page is plain HTML plus a handful of Vici classes.</p>
     </header>
     <div class="vc-cluster">
       <button type="button" class="vc-button">Primary action</button>
       <button type="button" class="vc-button vc-button--secondary">Secondary</button>
-      <span class="vc-tooltip-anchor">
-        <button type="button" class="vc-icon-button vc-icon-button--soft" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
-        <span class="vc-tooltip" role="tooltip" id="tip-theme">Dark theme</span>
-      </span>
     </div>
   </main>
+  <footer class="vc-footer">
+    <div class="vc-container">
+      <div class="vc-footer__bottom">
+        <p class="vc-byline">
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+    <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+    <span class="vc-byline__name">Victor Pflüger</span>
+    <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-labelledby="vc-byline-site"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" role="tooltip" id="vc-byline-site">Victor Pflüger's website</span>
+  </span>
+</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- How it works: Vici's guide. vici.js builds the chapter rail and opens it once per browser tab. -->
+  <dialog class="vc-dialog vc-guide" id="guide" aria-labelledby="guide-title" data-vc-guide data-vc-guide-auto data-vc-guide-count="{n} of {total}">
+    <header class="vc-dialog__header">
+      <h2 class="vc-dialog__title" id="guide-title">How the prototype works</h2>
+      <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+    </header>
+    <div class="vc-guide__chapters">
+      <section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="What it does">
+        <h3>Say what it does in one line</h3>
+        <p class="vc-guide__lead">Replace this: who the prototype is for and which question it answers, in one or two sentences.</p>
+      </section>
+      <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
+        <h3>Show how it works in one picture</h3>
+        <p class="vc-guide__lead">Replace this: what goes in, what the prototype does with it and what comes out. Say what is simulated and what is real.</p>
+      </section>
+      <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present">
+        <h3>Show it in five minutes</h3>
+        <p class="vc-guide__lead">Replace these steps with your own path through the prototype.</p>
+        <ol class="vc-guide__path">
+          <li><strong>Open the first screen.</strong> "Say what the viewer is looking at." <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Show the one thing it does.</strong> "Say why it matters to the people in the room." <span class="vc-guide__time">2 min</span></li>
+          <li><strong>End on the result.</strong> "Say what you would build next." <span class="vc-guide__time">2 min</span></li>
+        </ol>
+      </section>
+    </div>
+    <footer class="vc-dialog__footer vc-guide__footer">
+      <span class="vc-guide__count"></span>
+      <button type="button" class="vc-button vc-button--ghost" data-vc-guide-back><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span>Back</button>
+      <button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Start">Next<span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+    </footer>
+  </dialog>
 </body>
 </html>

@@ -96,10 +96,41 @@ for (const theme of ['light', 'dark']) {
   }
 }
 
+// 6. Status colours stay apart from the brand and from each other, so an error never reads as
+//    brand text, a primary button never reads as a danger fill, and danger and success differ
+//    for colour-blind readers too (ΔOK in OKLab; lightness in OKLCH).
+const SEPARATION = [
+  // [a, b, minimum ΔOK in normal vision, also check under protan and deutan simulation]
+  ['accent-text', 'danger-solid', 0.1, false],
+  ['accent', 'danger-solid', 0.1, false],
+  ['danger-solid', 'success-solid', 0.08, true],
+  ['danger-solid', 'warning-solid', 0.08, false],
+  ['danger-solid', 'info-solid', 0.08, false],
+  ['warning-solid', 'success-solid', 0.08, false],
+  ['info-solid', 'success-solid', 0.08, false],
+  ['surface-selected', 'danger-bg', 0.04, false],
+];
+let separations = 0;
+for (const theme of ['light', 'dark']) {
+  const t = resolvedTheme(tokens, theme);
+  for (const [a, b, min, cvd] of SEPARATION) {
+    const d = deltaOk(t[a], t[b]);
+    separations++;
+    if (d < min) fail(`${theme}: ${a} ${t[a]} and ${b} ${t[b]} are too close (ΔOK ${d.toFixed(3)}, needs ${min})`);
+    if (cvd) for (const mode of ['protan', 'deutan']) {
+      const s = deltaOk(simulate(t[a], mode), simulate(t[b], mode));
+      if (s < min) fail(`${theme}: ${a} and ${b} are too close under ${mode} vision (ΔOK ${s.toFixed(3)}, needs ${min})`);
+    }
+  }
+  const gap = Math.abs(hexToOklch(t['danger-solid'])[0] - hexToOklch(t['success-solid'])[0]);
+  if (gap < 0.08) fail(`${theme}: danger-solid and success-solid differ by only ${gap.toFixed(3)} in lightness (needs 0.08)`);
+}
+
 if (failures.length) {
   console.error(failures.map((f) => '✗ ' + f).join('\n'));
   console.error(`\n${failures.length} token check(s) failed`);
   process.exit(1);
 }
 console.log(`${pairs} contrast pairs checked across light and dark; weakest pair has ${(minSeen).toFixed(2)}× its minimum.`);
+console.log(`${separations} status separations checked: danger stays apart from the brand, and danger and success stay apart under protan and deutan vision.`);
 console.log('TOKENS OK');

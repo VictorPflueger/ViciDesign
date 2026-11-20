@@ -51,7 +51,6 @@
 
     /* Outlined hexagon parts */
     :where(ul:not([class]):not(nav ul, header ul, footer ul, menu ul), .vc-prose ul) > li::before,
-    .vc-eyebrow::before,
     .vc-list > li::before,
     .vc-divider--hex > span,
     .vc-timeline > li::after,
@@ -62,6 +61,7 @@
     .vc-rating > label::before,
     .vc-rating > .vc-rating__cell::before,
     .vc-step__marker::before,
+    .vc-guide__path > li::before,
     .vc-carousel__dots > button::before {
       forced-color-adjust: none;
       background-color: CanvasText;

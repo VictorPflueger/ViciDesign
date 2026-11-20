@@ -34,6 +34,7 @@
         <a href="#">Reports</a>
       </nav>
       <div class="vc-header__actions">
+        <button type="button" class="vc-button vc-button--secondary vc-button--sm" data-vc-guide-open="guide"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works</button>
         <span class="vc-tooltip-anchor">
           <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
           <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Dark theme</span>
@@ -199,14 +200,18 @@
       <footer class="app__credit">
         <!-- Profile links: see Brand → Profile links in the Vici docs -->
         <p class="vc-byline">
-          <span class="vc-byline__label">Built by</span>
-          <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
-            <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
-            <span class="vc-byline__name">Victor Pflüger</span>
-            <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
-            <span class="vc-visually-hidden"> on LinkedIn</span>
-          </a>
-        </p>
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+    <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+    <span class="vc-byline__name">Victor Pflüger</span>
+    <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-labelledby="vc-byline-site"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" role="tooltip" id="vc-byline-site">Victor Pflüger's website</span>
+  </span>
+</p>
       </footer>
     </main>
   </div>
@@ -239,6 +244,52 @@
         <button type="submit" class="vc-button" onclick="Vici.toast({title:'Rule created',message:'It applies from the next agent run.',tone:'success'})">Create rule</button>
       </footer>
     </form>
+  </dialog>
+
+  <!-- How it works: Vici's guide. vici.js builds the chapter rail and opens it once per browser tab. -->
+  <dialog class="vc-dialog vc-guide" id="guide" aria-labelledby="guide-title" data-vc-guide data-vc-guide-auto data-vc-guide-count="{n} of {total}">
+    <header class="vc-dialog__header">
+      <h2 class="vc-dialog__title" id="guide-title">How the prototype works</h2>
+      <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+    </header>
+    <div class="vc-guide__chapters">
+      <section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="What it does">
+        <h3>Shows the 128 invoices the agent couldn't match</h3>
+        <p class="vc-guide__lead">Atlas is a sample prototype. Every morning an agent matches supplier invoices to their orders and leaves the rest for a person, who works through them on this page.</p>
+        <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+          <caption>This morning's run</caption>
+          <tbody>
+            <tr><th scope="row">Invoices checked</th><td class="vc-num">470</td></tr>
+            <tr><th scope="row">Matched by the agent</th><td class="vc-num">342 (72.8 %)</td></tr>
+            <tr><th scope="row">Left for a person</th><td class="vc-num">128</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
+        <h3>Three reasons send an invoice to a person</h3>
+        <p class="vc-guide__lead">The agent compares each invoice with its purchase order. When the price, the quantity or the order itself doesn't match, the invoice lands here with that reason.</p>
+        <ul>
+          <li><strong>Price mismatch:</strong> the invoice charges more than the order agreed.</li>
+          <li><strong>Quantity:</strong> the invoice bills a different quantity than the order.</li>
+          <li><strong>Missing PO:</strong> no purchase order matches the invoice.</li>
+        </ul>
+      </section>
+      <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present">
+        <h3>Show it in five minutes</h3>
+        <p class="vc-guide__lead">Four steps, five minutes in all. Start on the exception list.</p>
+        <ol class="vc-guide__path">
+          <li><strong>Open the exception list.</strong> "Each morning the agent leaves only these for a person." <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Read the lilac banner.</strong> "Lilac marks what the agent did: it matched 342 invoices without help." <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Filter by Price mismatch.</strong> "Here a person decides whether a price difference is acceptable." <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Open New rule.</strong> "A rule lets the agent settle this kind of difference by itself next time." <span class="vc-guide__time">2 min</span></li>
+        </ol>
+      </section>
+    </div>
+    <footer class="vc-dialog__footer vc-guide__footer">
+      <span class="vc-guide__count"></span>
+      <button type="button" class="vc-button vc-button--ghost" data-vc-guide-back><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span>Back</button>
+      <button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Start">Next<span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+    </footer>
   </dialog>
 </body>
 </html>
