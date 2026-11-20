@@ -241,6 +241,22 @@
   <span class="tk-punct">&lt;/</span><span class="tk-tag">article</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-28" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 <p>Colour follows meaning, not direction. Shorter cycle times are good, so a falling number gets the sage <code>--up</code> tone, and the arrow still shows the direction.</p>
+<p>When a decision moves a figure during a demo, the tile keeps where it came from: the old value in an <code>s.vc-stat__was</code> before the new one, struck through, with an arrow between them. The note says what moved it.</p>
+<div class="doc-demo"><div class="doc-demo__preview">
+<div class="vc-grid" style="--vc-grid-min: 16rem; max-width: 34rem">
+  <article class="vc-stat">
+    <p class="vc-stat__label">Unexplained a year</p>
+    <p class="vc-stat__value"><s class="vc-stat__was">€14,146</s>€1,644</p>
+    <p class="vc-stat__note">€12,501 a year approved</p>
+  </article>
+</div>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-29"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-grid&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;--vc-grid-min: 16rem; max-width: 34rem&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">article</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__label&quot;</span><span class="tk-punct">&gt;</span>Unexplained a year<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__value&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">s</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__was&quot;</span><span class="tk-punct">&gt;</span>€14,146<span class="tk-punct">&lt;/</span><span class="tk-tag">s</span><span class="tk-punct">&gt;</span>€1,644<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__note&quot;</span><span class="tk-punct">&gt;</span>€12,501 a year approved<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">article</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-29" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
 <h2 id="legend">Legend</h2>
 <p>Series swatches are hexagons that follow the categorical order automatically, or take any colour through <code>--vc-series</code>.</p>
@@ -252,13 +268,13 @@
   <li>Consulting</li>
   <li style="--vc-series: var(--vc-data-7)">Other</li>
 </ul>
-</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-29"><span class="tk-punct">&lt;</span><span class="tk-tag">ul</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-legend&quot;</span><span class="tk-punct">&gt;</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-30"><span class="tk-punct">&lt;</span><span class="tk-tag">ul</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-legend&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Hardware<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Services<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Software<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Consulting<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;--vc-series: var(--vc-data-7)&quot;</span><span class="tk-punct">&gt;</span>Other<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
-<span class="tk-punct">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-29" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-30" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
 <h2 id="chart-frame">Chart frame</h2>
 <p><code>.vc-chart</code> is a <code>&lt;figure&gt;</code> with a title, a subtitle, the chart, a legend and a source line. Vici doesn't include a charting library. Draw with SVG, D3, Observable Plot or Vega-Lite and use the <code>--vc-data-*</code> tokens for colour. Recommended chart types and the palettes are on <a href="../guidelines/data-viz.html">Data visualisation</a>.</p>
@@ -288,7 +304,7 @@
   </div>
   <p class="vc-chart__source">Source: help desk export, sample data</p>
 </figure>
-</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-30"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart&quot;</span><span class="tk-punct">&gt;</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-31"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">figcaption</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__title&quot;</span><span class="tk-punct">&gt;</span>Tickets by channel<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__subtitle&quot;</span><span class="tk-punct">&gt;</span>Share of this month’s volume<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
@@ -308,7 +324,7 @@
     <span class="tk-punct">&lt;/</span><span class="tk-tag">svg</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__source&quot;</span><span class="tk-punct">&gt;</span>Source: help desk export, sample data<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
-<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-30" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-31" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/overlays.html" rel="prev"><span class="vc-caption">Previous</span><span>Overlays</span></a><a class="doc-pager__link doc-pager__link--next" href="../components/guide.html" rel="next"><span class="vc-caption">Next</span><span>How it works guide</span></a></nav>
       </article>

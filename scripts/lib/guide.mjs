@@ -3,16 +3,42 @@
 // scripts/check-guide.mjs runs it with a self-test over the starters. It also holds the key-figure rule:
 // the How it works chapter explains every tile marked data-vc-kpi="<name>" in a table row of its own,
 // whose header names the figure and whose cells say what it measures and its value.
+//
+// A page in two languages carries one guide per language: each dialog says its language in lang, no two
+// share one, each follows the whole standard, has its own header button and a title in its language, and
+// gives every key figure its row under the figure's name in that language (data-vc-kpi-<lang>, such as
+// data-vc-kpi-de, where the tile has one, else data-vc-kpi).
 
-const TITLE = /^(How the (prototype|demo|challenge|showcase) works|So funktioniert (der Prototyp|die Demo|die Challenge|der Showcase))$/;
+const TITLES = {
+  en: /^How the (prototype|demo|challenge|showcase) works$/,
+  de: /^So funktioniert (der Prototyp|die Demo|die Challenge|der Showcase)$/
+};
+const TITLE = new RegExp(`^(${Object.values(TITLES).map((r) => r.source.slice(1, -1)).join('|')})$`);
 const text = (html) => html.replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim();
+/** The primary language of a lang attribute, lower case: "en-GB" gives "en"; null without one. */
+const primary = (attrs) => ((attrs.match(/\blang="([^"]+)"/) || [])[1] || '').split('-')[0].toLowerCase() || null;
 
 /** Problems with the guide in one HTML page; an empty list means it follows the standard. */
 export function guideProblems(html) {
-  const out = [];
   const dialogs = [...html.matchAll(/<dialog\b([^>]*\bclass="[^"]*\bvc-guide\b[^"]*"[^>]*)>([\s\S]*?)<\/dialog>/g)];
-  if (dialogs.length !== 1) return [dialogs.length ? `${dialogs.length} guides, expected one` : 'no How it works guide'];
-  const [, attrs, body] = dialogs[0];
+  if (!dialogs.length) return ['no How it works guide'];
+  if (dialogs.length === 1) {
+    const page = primary((html.match(/<html\b([^>]*)>/) || [])[1] || '');
+    return oneGuide(html, dialogs[0], primary(dialogs[0][1]) || page, false);
+  }
+  const langs = dialogs.map(([, attrs]) => primary(attrs));
+  if (langs.some((l) => !l) || new Set(langs).size !== langs.length) {
+    return [`${dialogs.length} guides, expected one, or one per language, each saying its own language in lang`];
+  }
+  return dialogs.flatMap((d, i) => {
+    const id = (d[1].match(/\bid="([^"]+)"/) || [])[1] || '?';
+    return oneGuide(html, d, langs[i], true).map((p) => `guide "${id}" (${langs[i]}): ${p}`);
+  });
+}
+
+/** One guide's problems; `lang` is its primary language, `several` true on a page with one per language. */
+function oneGuide(html, [, attrs, body], lang, several) {
+  const out = [];
   const id = (attrs.match(/\bid="([^"]+)"/) || [])[1];
   if (!/\bdata-vc-guide\b/.test(attrs)) out.push('dialog lacks data-vc-guide');
   if (!/\bdata-vc-guide-auto\b/.test(attrs)) out.push('guide does not open by itself (data-vc-guide-auto)');
@@ -20,6 +46,7 @@ export function guideProblems(html) {
   const title = labelled ? (body.match(new RegExp(`<h2\\b[^>]*id="${labelled}"[^>]*>([\\s\\S]*?)</h2>`)) || [])[1] : null;
   if (!title) out.push('no title labelling the dialog');
   else if (!TITLE.test(text(title))) out.push(`title "${text(title)}" breaks the pattern`);
+  else if (several && TITLES[lang] && !TITLES[lang].test(text(title))) out.push(`title "${text(title)}" is not in the guide's language (${lang})`);
   if (/vc-eyebrow/.test(body)) out.push('eyebrow inside the guide');
   const chapters = [...body.matchAll(/<section\b([^>]*\bclass="[^"]*\bvc-guide__chapter\b[^"]*"[^>]*)>([\s\S]*?)<\/section>/g)]
     .map(([, a, b]) => ({ id: (a.match(/\bdata-vc-chapter="([^"]+)"/) || [])[1], nav: (a.match(/\bdata-vc-nav="([^"]+)"/) || [])[1], body: b }));
@@ -65,11 +92,13 @@ export function guideProblems(html) {
     }
   }
   // Key figures: the How it works chapter explains every tile marked data-vc-kpi="<name>" in a table row
-  // of its own: the row's header names the figure, and its cells say what it measures and its value.
+  // of its own: the row's header names the figure, and its cells say what it measures and its value. The
+  // name is the one in the guide's language, data-vc-kpi-<lang>, where the tile has one.
   const plain = (s) => s.toLowerCase().replace(/&[a-z#0-9]+;/gi, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
   const how = chapters.find((c) => c.id === 'how');
   const rows = how ? [...how.body.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map((m) => m[1]) : [];
-  for (const [, name] of html.matchAll(/\bdata-vc-kpi="([^"]+)"/g)) {
+  for (const [tag, kpi] of html.matchAll(/<[^>]*\bdata-vc-kpi="([^"]+)"[^>]*>/g)) {
+    const name = (lang && (tag.match(new RegExp(`\\bdata-vc-kpi-${lang}="([^"]+)"`)) || [])[1]) || kpi;
     const row = rows.find((r) => {
       const head = r.match(/<th\b[^>]*>([\s\S]*?)<\/th>/);
       return head && plain(text(head[1])) === plain(name);

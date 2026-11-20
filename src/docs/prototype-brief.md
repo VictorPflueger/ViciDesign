@@ -21,7 +21,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 - Copy dist/, assets/fonts/, assets/brand/portrait-96.jpg and assets/marks/ unchanged into a vici/ folder, and link vici/dist/vici.min.css and vici/dist/vici.js. Add no framework, no web font and no third-party request other than the AI service a live run calls. https://victorpflueger.github.io/ViciDesign/start/getting-started.html
 - The header shows the name with its icon, SIMULATION or LIVE in capitals, the How it works button and the theme toggle. The layout, with code: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#page-structure
 - One sentence under the header says what the prototype does and whether its data is real.
-- The work area follows the order of the story, with one primary action for the next step. Lilac marks what the AI generated, suggested or summarised.
+- The work area follows the order of the story. Wherever it waits for a person, a bar right under what just happened says in words what to do next, such as "Your decision", and holds the one primary action, which draws attention until it is pressed and stays in view however long the work area grows. A Next button alone is easily overlooked. Lilac marks what the AI generated, suggested or summarised.
 - Nothing the agent prepares, such as a payment or a message, leaves the page without a person's approval, and the prototype logs who approved what.
 - Wherever a live run with a model can start, "You are interacting with an AI system" stands in a lilac tag (vc-tag--feature) beside the control and stays while the run lasts; mark that control with data-vc-live. A replay that calls no model needs no notice. https://victorpflueger.github.io/ViciDesign/guidelines/principles.html#ai
 - Use open-source or synthetic data only, never a client's or internal data, and label what is synthetic or simulated.
@@ -43,7 +43,7 @@ From the prototype's folder, with the ViciDesign clone beside it:
 Before you call it done, review it cold, at 1280 × 720, as a consultancy partner who has to present it tomorrow:
 
 1. Write the One Thing: one sentence on what it shows the customer, with the key figure that proves it.
-2. Walk every step as the dumbest user possible. Where they can't say what it is doing, what it is worth or which key figure moved, fix the step or cut it.
+2. Walk every step as the dumbest user possible. Where they can't say what it is doing, what it is worth or which key figure moved, fix the step or cut it. Where it waits for them and they could miss what to press, fix the bar.
 3. Count the steps until a key figure first moves, and cut every step that doesn't move the story.
 4. Check that the case survived the cuts: every figure comes from the prototype's own data, and its evidence is one click away.
 5. Look at the screens nobody demos: loading, empty, a failed live run, the other theme.
