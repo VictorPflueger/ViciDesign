@@ -24,7 +24,7 @@ description: How every prototype, demo and website made with Vici says that Vict
   <li>the website link, which shows only a globe, has the accessible name “Victor Pflüger's website” and the tooltip “Website”, and is at least 24 × 24&nbsp;px.</li>
 </ul>
 <p>The addresses live in one file, <code>src/brand/profile.json</code>. The build writes them into these docs, the starters and the Streamlit helper, so when the website moves to its own domain, one line changes. A surface that can't hold links, such as a Power BI report, has a footer that reads “Built by Victor Pflüger” followed by the website address.</p>
-<p><code>npm run check</code> fails when a docs page, a starter or the Streamlit helper has no byline, or when either link is missing.</p>
+<p><code>npm run check</code> fails when a docs page, a starter or the Streamlit helper has no byline, or when either link is missing. A prototype checks its own page with <code>bylineProblems(html)</code> from <code>scripts/lib/byline.mjs</code>.</p>
 
 <h2>Byline</h2>
 <p>The byline goes at the end of a page or app: in the footer, under a dashboard, at the bottom of a prototype's sidebar. It reads “Built by”, then the portrait, the name and LinkedIn's logo as one link to LinkedIn, then a globe that links to the website. The first link gives one generous target and one clear name for screen readers, “Victor Pflüger on LinkedIn”. The globe's name is “Victor Pflüger's website”, and its tooltip reads “Website”.</p>

@@ -183,7 +183,7 @@
   <tbody>
     <tr><th scope="row">First</th><td><code>what</code></td><td>What it does</td><td>What it is, who it is for and which question it answers</td></tr>
     <tr><th scope="row">Second</th><td><code>how</code></td><td>How it works</td><td>Inputs, logic and outputs, and what is simulated and what is real</td></tr>
-    <tr><th scope="row">Between</th><td>Your own</td><td>Up to five words</td><td>Optional: results, how to read the page, limits. “How” can run over several chapters.</td></tr>
+    <tr><th scope="row">Between</th><td>Your own</td><td>Up to five words</td><td>Optional: the key figures, results, how to read the page, limits. “How” can run over several chapters.</td></tr>
     <tr><th scope="row">Last</th><td><code>present</code></td><td>How to present</td><td>The presenter's path, described under <a href="#presenting">The presenting chapter</a></td></tr>
   </tbody>
 </table>
@@ -376,17 +376,32 @@
 <ul>
   <li>It holds three to seven steps in an <code>ol.vc-guide__path</code>.</li>
   <li>Each step names the control or view to show, in bold, then one sentence to say, in quotation marks, then its time in <code>.vc-guide__time</code>, such as “1&nbsp;min”.</li>
+  <li>When the sentence holds markup, such as figures a script fills in, it goes in one <code>span.vc-guide__say</code>, so the path keeps it whole.</li>
   <li>The lead gives the total time, and the steps add up to it.</li>
   <li>If the prototype has a demo script, this chapter condenses it.</li>
   <li>The last button closes the guide, so the page behind it should already show the first step. Its label comes from <code>data-vc-guide-done</code>.</li>
 </ul>
 
+<h2 id="key-figures">Key figures</h2>
+<p>A prototype shows two to four key figures at the top of the page, usually top right, so a customer sees at once what the case delivers: money saved, lead time, time from detection to decision, session cost (estimated for a simulated run), people affected, a benchmark or a score. Each is a <code>vc-stat</code> tile that carries its name in <code>data-vc-kpi</code>.</p>
+<ul>
+  <li>The guide explains every key figure: what it measures, where its number comes from and what is simulated. A chapter of its own between “How it works” and the presenting chapter does it best.</li>
+  <li>The presenting path points at the figures when they move, so the talk track says what each one shows.</li>
+  <li>A figure that changes during a demo starts from a value that makes sense before anything happens, such as “0 of 12”, rather than an empty tile.</li>
+</ul>
+<pre><code>&lt;article class="vc-stat" data-vc-kpi="Labour per 1,000 units"&gt;
+  &lt;p class="vc-stat__label"&gt;Labour per 1,000 units&lt;/p&gt;
+  &lt;p class="vc-stat__value"&gt;€32.49&lt;/p&gt;
+  &lt;p class="vc-stat__delta"&gt;€89.50 by hand: −64&amp;nbsp;%&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+
 <h2 id="check">Check</h2>
-<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, and a header button with visible text. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
+<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a guide that names every key figure marked <code>data-vc-kpi</code>. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
+<p>A prototype checks its own guide the same way. <code>guideProblems(html)</code> from <code>scripts/lib/guide.mjs</code> returns the rules a page breaks, none when it follows them, and <code>node scripts/check-guide-render.mjs http://localhost:8000/</code> runs the browser test against a prototype served over http.</p>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/data.html" rel="prev"><span class="vc-caption">Previous</span><span>Data display</span></a><a class="doc-pager__link doc-pager__link--next" href="../brand/logo.html" rel="next"><span class="vc-caption">Next</span><span>Logo</span></a></nav>
       </article>
-<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#title-pattern">Title</a></li><li><a href="#chapters">Chapters</a></li><li><a href="#copy-rules">Copy rules</a></li><li><a href="#content-format">Content format</a></li><li><a href="#behaviour">Behaviour</a></li><li><a href="#opening">Opening</a></li><li><a href="#presenting">The presenting chapter</a></li><li><a href="#check">Check</a></li></ul></nav>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#title-pattern">Title</a></li><li><a href="#chapters">Chapters</a></li><li><a href="#copy-rules">Copy rules</a></li><li><a href="#content-format">Content format</a></li><li><a href="#behaviour">Behaviour</a></li><li><a href="#opening">Opening</a></li><li><a href="#presenting">The presenting chapter</a></li><li><a href="#key-figures">Key figures</a></li><li><a href="#check">Check</a></li></ul></nav>
     </main>
   </div>
 
