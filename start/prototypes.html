@@ -70,7 +70,7 @@
     </div>
   </div>
   <div class="doc-demo__code doc-brief__text">
-    <details><summary>Read the brief (51 lines)</summary><pre><code id="prototype-brief"># Brief: build a prototype with Vici 2.0
+    <details><summary>Read the brief (52 lines)</summary><pre><code id="prototype-brief"># Brief: build a prototype with Vici 2.0
 
 You are building a prototype, demo or tech showcase for Victor Pflüger with Vici, his design system: https://victorpflueger.github.io/ViciDesign/
 
@@ -83,7 +83,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 ## Every prototype has these three
 
 1. The byline: &quot;Built by&quot;, Victor's portrait and name linking to LinkedIn, and a globe linking to his website, both links with rel=&quot;author&quot;. It sits at the end of the page, or in a strip under the header of a single-screen app. Markup: https://victorpflueger.github.io/ViciDesign/brand/profile-links.html#byline-anywhere
-2. The talk track: a How it works guide that opens by itself when the prototype starts (data-vc-guide-auto) and again from a &quot;How it works&quot; button in the header. Its chapters say what the prototype does, how it works and what each key figure means. The last chapter is the presenter's script, three to seven timed steps. Rules: https://victorpflueger.github.io/ViciDesign/components/guide.html
+2. The talk track: a How it works guide that opens by itself when the prototype starts (data-vc-guide-auto) and again from a &quot;How it works&quot; button in the header. Its How it works chapter explains every key figure in a table, one row each: the name as on its tile, what it measures and its value. The last chapter is the presenter's script, three to seven timed steps. Rules: https://victorpflueger.github.io/ViciDesign/components/guide.html
 3. Key figures: two to four vc-stat tiles at the top, usually top right, each marked data-vc-kpi=&quot;&lt;name&gt;&quot; and explained in the guide. Choose from money gained, lost or saved; lead time; time from detection to decision; session cost (measured in a live run, estimated in a simulated one, and labelled as such); people affected; performance against a benchmark; a score. Define another when the case needs it. Rules: https://victorpflueger.github.io/ViciDesign/components/guide.html#key-figures
 
 ## Build it
@@ -91,10 +91,11 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 - Clone https://github.com/VictorPflueger/ViciDesign beside the prototype. It has the starters, the files to copy and the checks.
 - Start from a starter: starters/app.html for a tool with a sidebar and tables, starters/blank.html for anything else. Both have the header, the guide and the byline. https://victorpflueger.github.io/ViciDesign/start/starters.html
 - Copy dist/, assets/fonts/, assets/brand/portrait-96.jpg and assets/marks/ unchanged into a vici/ folder, and link vici/dist/vici.min.css and vici/dist/vici.js. Add no framework, no web font and no third-party request other than the AI service a live run calls. https://victorpflueger.github.io/ViciDesign/start/getting-started.html
-- The header shows the name with its icon, SIMULATION or LIVE in capitals, &quot;You are interacting with an AI system&quot; in a lilac tag (vc-tag--feature), the How it works button and the theme toggle. The layout, with code: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#page-structure
+- The header shows the name with its icon, SIMULATION or LIVE in capitals, the How it works button and the theme toggle. The layout, with code: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#page-structure
 - One sentence under the header says what the prototype does and whether its data is real.
 - The work area follows the order of the story, with one primary action for the next step. Lilac marks what the AI generated, suggested or summarised.
-- When a step of the AI has consequences, such as paying money or sending a message, a person approves it and the prototype logs who did what.
+- Nothing the agent prepares, such as a payment or a message, leaves the page without a person's approval, and the prototype logs who approved what.
+- Wherever a live run with a model can start, &quot;You are interacting with an AI system&quot; stands in a lilac tag (vc-tag--feature) beside the control and stays while the run lasts; mark that control with data-vc-live. A replay that calls no model needs no notice. https://victorpflueger.github.io/ViciDesign/guidelines/principles.html#ai
 - Use open-source or synthetic data only, never a client's or internal data, and label what is synthetic or simulated.
 - If it can run live, it asks at the start: simulation or live. A live run takes an API key for this session only and never stores it.
 - Test it at 1920 × 1080 and 1280 × 720 in both themes, and keep text at Vici's sizes or larger: the room reads it from a distance.
@@ -106,7 +107,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 
 From the prototype's folder, with the ViciDesign clone beside it:
 
-- guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs and writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs each return an empty list for every page.
+- guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs, writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs and aiNoticeProblems(html) from ../ViciDesign/scripts/lib/ai.mjs each return an empty list for every page.
 - node ../ViciDesign/scripts/check-guide-render.mjs http://localhost:8000/ tests the guide in a browser while the prototype is served there.
 
 ## Review it as a partner would
@@ -136,7 +137,7 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
   <thead><tr><th scope="col">What</th><th scope="col">Rule</th></tr></thead>
   <tbody>
     <tr><th scope="row" class="vc-nowrap"><a href="../brand/profile-links.html">Byline</a></th><td>“Built by”, with Victor's portrait and name linking to LinkedIn and a globe linking to his website, both with <code>rel="author"</code>. It goes at the end of the page, or in a strip under the header of a single-screen app.</td></tr>
-    <tr><th scope="row" class="vc-nowrap"><a href="../components/guide.html">Talk track</a></th><td>A How it works guide that says what the prototype does, how it works and what each key figure means, then gives the presenter a script of three to seven timed steps. A “How it works” button in the header reopens it.</td></tr>
+    <tr><th scope="row" class="vc-nowrap"><a href="../components/guide.html">Talk track</a></th><td>A How it works guide that says what the prototype does and how it works, gives every key figure a table row in its How it works chapter, and ends with the presenter's script of three to seven timed steps. A “How it works” button in the header reopens it.</td></tr>
     <tr><th scope="row" class="vc-nowrap"><a href="../components/guide.html#key-figures">Key figures</a></th><td>Two to four <code>vc-stat</code> tiles marked with <code>data-vc-kpi</code>, top right, in or right under the header, that show what the case is worth.</td></tr>
   </tbody>
 </table>
@@ -144,7 +145,7 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
 <p>The talk track opens by itself when the prototype starts, so whoever only gets the link still understands what they are looking at. <a href="https://victorpflueger.github.io/mobilitychallenge/?map=koeln&amp;run=optimized&amp;step=0">Dispatch Lab</a> is the model: its guide walks through the challenge in seven chapters before the first click.</p>
 
 <h2 id="key-figures">Key figures</h2>
-<p>A customer should see at once what the case is worth. Show two to four key figures at the top right, chosen from these or defined for the case, and let the talk track explain each one: what it measures, where its number comes from and what is simulated.</p>
+<p>A customer should see at once what the case is worth. Show two to four key figures at the top right, chosen from these or defined for the case. The talk track explains each one in its How it works chapter, in a table row: the figure's name as on its tile, what it measures and its value.</p>
 <div class="vc-table-wrap">
 <table class="vc-table">
   <caption>Key figures to choose from</caption>
@@ -161,7 +162,8 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
 </table>
 </div>
 <ul>
-  <li>Each figure is a <code>vc-stat</code> tile with its name in <code>data-vc-kpi</code>, and the guide check fails when the guide doesn't name it.</li>
+  <li>Each figure is a <code>vc-stat</code> tile with its name in <code>data-vc-kpi</code>, and the guide check fails when the How it works chapter has no row for it.</li>
+  <li>Where the numbers come from and what is simulated go in a chapter of their own, such as “What is real”.</li>
   <li>A figure that changes during the demo starts from a value that makes sense before anything happens, such as “0 of 12”.</li>
   <li>The presenter's script points at a figure when it moves, so the room sees the change happen.</li>
 </ul>
@@ -169,10 +171,10 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
 <h2 id="page-structure">From top to bottom</h2>
 <p>Victor's prototypes follow one layout, so a partner who has presented one finds their way around the next:</p>
 <ol>
-  <li>The header: the name with its icon in a hexagon of its kind's colour, SIMULATION or LIVE in capitals, the notice “You are interacting with an AI system” in lilac, the How it works button and the theme toggle.</li>
+  <li>The header: the name with its icon in a hexagon of its kind's colour, SIMULATION or LIVE in capitals, the How it works button and the theme toggle.</li>
   <li>One sentence under the header that says what the prototype does and whether its data is real.</li>
   <li>The key figures, top right.</li>
-  <li>The work area, in the order of the story, with one primary action for the next step. Lilac marks what the AI generated, suggested or summarised, and a step with consequences waits for a person to approve it.</li>
+  <li>The work area, in the order of the story, with one primary action for the next step. Lilac marks what the AI generated, suggested or summarised, and nothing the agent prepares leaves the page until a person approves it. Where a live run with a model can start, “You are interacting with an AI system” stands in a lilac tag beside the control and stays while the run lasts, as <a href="../guidelines/principles.html#ai">Every live run says it is an AI</a> sets out.</li>
   <li>The byline at the end of the page. A single-screen app that doesn't scroll carries it in the strip under the header instead.</li>
 </ol>
 <div class="doc-demo doc-demo--flush"><div class="doc-demo__preview">
@@ -180,7 +182,6 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
   <div class="vc-header__inner">
     <a class="vc-header__brand" href="#page-structure"><span class="vc-cell vc-cell--sm vc-cell--lilac" aria-hidden="true"><span class="vc-icon vc-icon--truck"></span></span>Freight audit</a>
     <span class="vc-tag vc-tag--lg">SIMULATION</span>
-    <span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>You are interacting with an AI system</span>
     <div class="vc-header__actions">
       <button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="freight-guide"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works</button>
       <span class="vc-tooltip-anchor">
@@ -244,26 +245,27 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
       </table></div>
     </section>
     <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
-      <h3>The agent flags, a person decides</h3>
-      <p class="vc-guide__lead">The agent explains each flag in lilac. Nothing is disputed until a person approves it, and the log keeps every decision.</p>
+      <h3>Three figures follow every decision</h3>
+      <p class="vc-guide__lead">The agent flags each overcharge and explains why in lilac. Nothing is disputed until a person approves it, and the figures at the top right move with every decision.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Key figures</caption>
+        <thead><tr><th scope="col">Figure</th><th scope="col">What it measures</th><th scope="col" class="vc-num">This run</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Money recovered</th><td>Overcharges a person approved, out of all the agent flagged</td><td class="vc-num">€12,400</td></tr>
+          <tr><th scope="row">Detection to decision</th><td>From the invoice arriving to an approved dispute; 3&nbsp;days by hand</td><td class="vc-num">6&nbsp;min</td></tr>
+          <tr><th scope="row">Session cost</th><td>What the model would cost for this run if it were live, estimated</td><td class="vc-num">€0.38</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="real" data-vc-nav="What is real">
+      <h3>Synthetic invoices, a recorded agent, real rules</h3>
+      <p class="vc-guide__lead">This run replays answers the agent gave before, so it calls no model and costs nothing.</p>
       <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
         <caption>What is real</caption>
         <tbody>
           <tr><th scope="row">Invoices and contracts</th><td>Synthetic</td></tr>
           <tr><th scope="row">The agent's answers</th><td>Replayed from a recorded run</td></tr>
           <tr><th scope="row">Contract rules and sums</th><td>Real</td></tr>
-        </tbody>
-      </table></div>
-    </section>
-    <section class="vc-guide__chapter" data-vc-chapter="figures" data-vc-nav="Key figures">
-      <h3>Three figures show what the run is worth</h3>
-      <p class="vc-guide__lead">They sit at the top right and change while you work through the flags.</p>
-      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
-        <caption>Key figures</caption>
-        <tbody>
-          <tr><th scope="row">Money recovered</th><td>Overcharges a person approved, out of all the agent flagged</td></tr>
-          <tr><th scope="row">Detection to decision</th><td>From the invoice arriving to an approved dispute; 3&nbsp;days by hand</td></tr>
-          <tr><th scope="row">Session cost</th><td>What the AI would cost for this run if it were live: an estimate</td></tr>
         </tbody>
       </table></div>
     </section>
@@ -287,7 +289,6 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
   <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-header__inner&quot;</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">a</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-header__brand&quot;</span> <span class="tk-attr">href</span>=<span class="tk-str">&quot;#page-structure&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-cell vc-cell--sm vc-cell--lilac&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--truck&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Freight audit<span class="tk-punct">&lt;/</span><span class="tk-tag">a</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-tag vc-tag--lg&quot;</span><span class="tk-punct">&gt;</span>SIMULATION<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
-    <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-tag vc-tag--feature&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--sparkle&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>You are interacting with an AI system<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-header__actions&quot;</span><span class="tk-punct">&gt;</span>
       <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--secondary&quot;</span> <span class="tk-attr">data-vc-guide-open</span>=<span class="tk-str">&quot;freight-guide&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--info&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>How it works<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
       <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-tooltip-anchor&quot;</span><span class="tk-punct">&gt;</span>
@@ -351,26 +352,27 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
       <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;how&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;How it works&quot;</span><span class="tk-punct">&gt;</span>
-      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>The agent flags, a person decides<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
-      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>The agent explains each flag in lilac. Nothing is disputed until a person approves it, and the log keeps every decision.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Three figures follow every decision<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>The agent flags each overcharge and explains why in lilac. Nothing is disputed until a person approves it, and the figures at the top right move with every decision.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>Key figures<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">thead</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;col&quot;</span><span class="tk-punct">&gt;</span>Figure<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;col&quot;</span><span class="tk-punct">&gt;</span>What it measures<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;col&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>This run<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">thead</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Money recovered<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Overcharges a person approved, out of all the agent flagged<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>€12,400<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Detection to decision<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>From the invoice arriving to an approved dispute; 3&amp;nbsp;days by hand<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>6&amp;nbsp;min<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Session cost<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>What the model would cost for this run if it were live, estimated<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>€0.38<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;real&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;What is real&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Synthetic invoices, a recorded agent, real rules<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>This run replays answers the agent gave before, so it calls no model and costs nothing.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
       <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
         <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>What is real<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
         <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
           <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Invoices and contracts<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Synthetic<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
           <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>The agent's answers<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Replayed from a recorded run<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
           <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Contract rules and sums<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Real<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
-        <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
-      <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
-    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
-    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;figures&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;Key figures&quot;</span><span class="tk-punct">&gt;</span>
-      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Three figures show what the run is worth<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
-      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>They sit at the top right and change while you work through the flags.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
-      <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
-        <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>Key figures<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
-        <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
-          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Money recovered<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Overcharges a person approved, out of all the agent flagged<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
-          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Detection to decision<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>From the invoice arriving to an approved dispute; 3&amp;nbsp;days by hand<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
-          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Session cost<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>What the AI would cost for this run if it were live: an estimate<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
         <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
       <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
@@ -390,7 +392,7 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
     <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button&quot;</span> <span class="tk-attr">data-vc-guide-next</span> <span class="tk-attr">data-vc-guide-done</span>=<span class="tk-str">&quot;Start&quot;</span><span class="tk-punct">&gt;</span>Next<span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--chevron-right&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;/</span><span class="tk-tag">footer</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-90" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
-<p class="vc-caption">The top of a single-screen prototype, with its guide behind How it works. In a prototype the guide also carries <code>data-vc-guide-auto</code>, so it opens when the prototype starts. Outside this site, the byline loads its images from the CDN or the prototype's own copy: see <a href="../brand/profile-links.html#byline-anywhere">the byline's markup for other sites</a>.</p>
+<p class="vc-caption">The top of a single-screen prototype, with its guide behind How it works. It replays a recorded run and calls no model, so it needs no AI notice. In a prototype the guide also carries <code>data-vc-guide-auto</code>, so it opens when the prototype starts. Outside this site, the byline loads its images from the CDN or the prototype's own copy: see <a href="../brand/profile-links.html#byline-anywhere">the byline's markup for other sites</a>.</p>
 
 <h2 id="partner-review">The partner review</h2>
 <p>Before a prototype goes to a customer, Victor reviews it the way a partner of a consultancy would, and an agent runs the same review on its own work before calling it done. It takes the view of the dumbest user possible, in this order:</p>
@@ -424,6 +426,7 @@ Keep list: the byline, the talk track, the key figures and whatever else must no
     <tr><td>The guide follows the standard and names every key figure</td><td><code>guideProblems(html)</code> from <code>scripts/lib/guide.mjs</code></td></tr>
     <tr><td>The byline is complete, with both links</td><td><code>bylineProblems(html)</code> from <code>scripts/lib/byline.mjs</code></td></tr>
     <tr><td>The text avoids the <a href="../guidelines/writing.html#patterns-vici-doesnt-use">patterns Vici doesn't use</a></td><td><code>writingProblems(html)</code> from <code>scripts/lib/writing.mjs</code></td></tr>
+    <tr><td>A page that can start a live run with a model says “You are interacting with an AI system”</td><td><code>aiNoticeProblems(html)</code> from <code>scripts/lib/ai.mjs</code></td></tr>
     <tr><td>The guide opens, moves and closes as it should in a browser</td><td><code>node scripts/check-guide-render.mjs &lt;address&gt;</code></td></tr>
   </tbody>
 </table>
@@ -433,9 +436,10 @@ import { readFileSync } from 'node:fs';
 import { guideProblems } from '../ViciDesign/scripts/lib/guide.mjs';
 import { bylineProblems } from '../ViciDesign/scripts/lib/byline.mjs';
 import { writingProblems } from '../ViciDesign/scripts/lib/writing.mjs';
+import { aiNoticeProblems } from '../ViciDesign/scripts/lib/ai.mjs';
 
 const html = readFileSync('index.html', 'utf8');
-const problems = [...guideProblems(html), ...bylineProblems(html), ...writingProblems(html)];
+const problems = [...guideProblems(html), ...bylineProblems(html), ...writingProblems(html), ...aiNoticeProblems(html)];
 if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
 console.log('Vici checks passed');</code></pre>
 <p>The checks find broken rules. Only the partner review finds a prototype that keeps every rule and still doesn't make its case, so run it last.</p>

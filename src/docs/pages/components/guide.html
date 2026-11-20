@@ -32,6 +32,19 @@ description: The standard talk track: the short guide that opens with every prot
       </table></div>
     </section>
     <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
+      <h3>Three figures show what the agent took off your desk</h3>
+      <p class="vc-guide__lead">The agent compares each invoice with its purchase order and matches it, or leaves it here for a person with a reason. The three figures at the top say how this morning went.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Key figures</caption>
+        <thead><tr><th scope="col">Figure</th><th scope="col">What it measures</th><th scope="col" class="vc-num">This morning</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Open exceptions</th><td>Invoices the agent left for a person</td><td class="vc-num">128</td></tr>
+          <tr><th scope="row">Auto-resolved</th><td>Share of invoices the agent matched without help</td><td class="vc-num">72.8&nbsp;%</td></tr>
+          <tr><th scope="row">Value at risk</th><td>The amount on the open invoices</td><td class="vc-num">€&nbsp;418k</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="reasons" data-vc-nav="Why invoices stop">
       <h3>Three reasons send an invoice to a person</h3>
       <p class="vc-guide__lead">The agent compares each invoice with its purchase order. When the price, the quantity or the order itself doesn't match, the invoice lands here with that reason.</p>
       <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
@@ -87,8 +100,8 @@ description: The standard talk track: the short guide that opens with every prot
   <thead><tr><th scope="col">Position</th><th scope="col">Chapter id</th><th scope="col">Rail label</th><th scope="col">Answers</th></tr></thead>
   <tbody>
     <tr><th scope="row">First</th><td><code>what</code></td><td>What it does</td><td>What it is, who it is for and which question it answers</td></tr>
-    <tr><th scope="row">Second</th><td><code>how</code></td><td>How it works</td><td>Inputs, logic and outputs, and what is simulated and what is real</td></tr>
-    <tr><th scope="row">Between</th><td>Your own</td><td>Up to five words</td><td>Optional: the key figures, results, how to read the page, limits. “How” can run over several chapters.</td></tr>
+    <tr><th scope="row">Second</th><td><code>how</code></td><td>How it works</td><td>Inputs, logic and outputs, and the key figures: a table with one row per figure, what it measures and its value. See <a href="#key-figures">Key figures</a></td></tr>
+    <tr><th scope="row">Between</th><td>Your own</td><td>Up to five words</td><td>Optional: what is simulated and what is real, results, how to read the page, limits. “How” can run over several chapters.</td></tr>
     <tr><th scope="row">Last</th><td><code>present</code></td><td>How to present</td><td>The presenter's path, described under <a href="#presenting">The presenting chapter</a></td></tr>
   </tbody>
 </table>
@@ -181,6 +194,19 @@ description: The standard talk track: the short guide that opens with every prot
       </table></div>
     </section>
     <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="So funktioniert's">
+      <h3>Drei Kennzahlen zeigen, was der Agent Ihnen abnimmt</h3>
+      <p class="vc-guide__lead">Der Agent vergleicht jede Rechnung mit ihrer Bestellung und ordnet sie zu oder lässt sie mit einem Grund für eine Person hier. Die drei Kennzahlen oben zeigen, wie der Morgen lief.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Kennzahlen</caption>
+        <thead><tr><th scope="col">Kennzahl</th><th scope="col">Was sie misst</th><th scope="col" class="vc-num">Heute Morgen</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Offene Ausnahmen</th><td>Rechnungen, die der Agent einer Person überlässt</td><td class="vc-num">128</td></tr>
+          <tr><th scope="row">Automatisch erledigt</th><td>Anteil der Rechnungen, die der Agent allein zugeordnet hat</td><td class="vc-num">72,8&nbsp;%</td></tr>
+          <tr><th scope="row">Gefährdeter Betrag</th><td>Der Betrag der offenen Rechnungen</td><td class="vc-num">418&nbsp;Tsd.&nbsp;€</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="reasons" data-vc-nav="Warum Rechnungen hängen">
       <h3>Drei Gründe schicken eine Rechnung zu einer Person</h3>
       <p class="vc-guide__lead">Der Agent vergleicht jede Rechnung mit ihrer Bestellung. Passen Preis, Menge oder die Bestellung selbst nicht, landet die Rechnung mit diesem Grund hier.</p>
       <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
@@ -243,7 +269,7 @@ description: The standard talk track: the short guide that opens with every prot
 <h2 id="key-figures">Key figures</h2>
 <p>A prototype shows two to four key figures at the top of the page, usually top right, so a customer sees at once what the case delivers: money gained, lost or saved, lead time, time from detection to decision, session cost (measured in a live run, estimated in a simulated one), people affected, performance against a benchmark or a score. Each is a <code>vc-stat</code> tile that carries its name in <code>data-vc-kpi</code>. <a href="{{root}}start/prototypes.html#key-figures">Build a prototype</a> has an example of each.</p>
 <ul>
-  <li>The guide explains every key figure: what it measures, where its number comes from and what is simulated. A chapter of its own between “How it works” and the presenting chapter does it best.</li>
+  <li>The How it works chapter explains every key figure in a table, one row each: the figure's name as on its tile, what it measures and its value. Where the numbers come from and what is simulated go in a chapter of their own, such as “What is real”.</li>
   <li>The presenting path points at the figures when they move, so the talk track says what each one shows.</li>
   <li>A figure that changes during a demo starts from a value that makes sense before anything happens, such as “0 of 12”, rather than an empty tile.</li>
 </ul>
@@ -251,8 +277,17 @@ description: The standard talk track: the short guide that opens with every prot
   &lt;p class="vc-stat__label"&gt;Labour per 1,000 units&lt;/p&gt;
   &lt;p class="vc-stat__value"&gt;€32.49&lt;/p&gt;
   &lt;p class="vc-stat__delta"&gt;€89.50 by hand: −64&amp;nbsp;%&lt;/p&gt;
-&lt;/article&gt;</code></pre>
+&lt;/article&gt;
+
+&lt;!-- in the How it works chapter --&gt;
+&lt;table class="vc-table vc-table--compact"&gt;
+  &lt;caption&gt;Key figures&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;Figure&lt;/th&gt;&lt;th scope="col"&gt;What it measures&lt;/th&gt;&lt;th scope="col" class="vc-num"&gt;Tonight&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;th scope="row"&gt;Labour per 1,000 units&lt;/th&gt;&lt;td&gt;Labour cost of repacking, by hand and with the cell&lt;/td&gt;&lt;td class="vc-num"&gt;€32.49&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 
 <h2 id="check">Check</h2>
-<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a guide that names every key figure marked <code>data-vc-kpi</code>. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
+<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a How it works chapter with a row for every key figure marked <code>data-vc-kpi</code>, saying what it measures and its value. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
 <p>A prototype checks its own guide the same way. <code>guideProblems(html)</code> from <code>scripts/lib/guide.mjs</code> returns the rules a page breaks, none when it follows them, and <code>node scripts/check-guide-render.mjs http://localhost:8000/</code> runs the browser test against a prototype served over http.</p>
