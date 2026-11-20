@@ -17,7 +17,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 ## Build it
 
 - Clone https://github.com/VictorPflueger/ViciDesign beside the prototype. It has the starters, the files to copy and the checks.
-- Start from a starter: starters/app.html for a tool with a sidebar and tables, starters/blank.html for anything else. Both have the header, the guide and the byline. https://victorpflueger.github.io/ViciDesign/start/starters.html
+- Start from a starter: starters/app.html for a tool with a sidebar and tables, starters/blank.html for anything else. Both have the header with SIMULATION, the guide and the byline. https://victorpflueger.github.io/ViciDesign/start/starters.html
 - Copy dist/, assets/fonts/, assets/brand/portrait-96.jpg and assets/marks/ unchanged into a vici/ folder, and link vici/dist/vici.min.css and vici/dist/vici.js. Add no framework, no web font and no third-party request other than the AI service a live run calls. https://victorpflueger.github.io/ViciDesign/start/getting-started.html
 - The header shows the name with its icon, SIMULATION or LIVE in capitals, the How it works button and the theme toggle. The layout, with code: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#page-structure
 - One sentence under the header says what the prototype does and whether its data is real.
