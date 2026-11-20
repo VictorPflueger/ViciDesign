@@ -1,7 +1,8 @@
 // The How it works rule as a pure function, so a prototype's own tests can import it without running
 // the docs checks: import { guideProblems } from '<ViciDesign>/scripts/lib/guide.mjs'.
 // scripts/check-guide.mjs runs it with a self-test over the starters. It also holds the key-figure rule:
-// every tile marked data-vc-kpi="<name>" is named in the guide, so the talk track explains it.
+// the How it works chapter explains every tile marked data-vc-kpi="<name>" in a table row of its own,
+// whose header names the figure and whose cells say what it measures and its value.
 
 const TITLE = /^(How the (prototype|demo|challenge|showcase) works|So funktioniert (der Prototyp|die Demo|die Challenge|der Showcase))$/;
 const text = (html) => html.replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim();
@@ -63,11 +64,18 @@ export function guideProblems(html) {
       });
     }
   }
-  // Key figures: the guide names every tile marked data-vc-kpi="<name>", so the talk track explains it.
+  // Key figures: the How it works chapter explains every tile marked data-vc-kpi="<name>" in a table row
+  // of its own: the row's header names the figure, and its cells say what it measures and its value.
   const plain = (s) => s.toLowerCase().replace(/&[a-z#0-9]+;/gi, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
-  const said = ` ${plain(text(body))} `;
+  const how = chapters.find((c) => c.id === 'how');
+  const rows = how ? [...how.body.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map((m) => m[1]) : [];
   for (const [, name] of html.matchAll(/\bdata-vc-kpi="([^"]+)"/g)) {
-    if (!said.includes(` ${plain(name)} `)) out.push(`key figure "${name}" is not named in the guide`);
+    const row = rows.find((r) => {
+      const head = r.match(/<th\b[^>]*>([\s\S]*?)<\/th>/);
+      return head && plain(text(head[1])) === plain(name);
+    });
+    if (!row) out.push(`key figure "${name}" has no row in the How it works chapter`);
+    else if ((row.match(/<td\b/g) || []).length < 2) out.push(`key figure "${name}": its row needs what it measures and its value`);
   }
   if (!/data-vc-guide-next\b/.test(body) || !/data-vc-guide-back\b/.test(body) || !/class="vc-guide__count"/.test(body)) out.push('footer lacks Back, Next or the count');
   if (id) {

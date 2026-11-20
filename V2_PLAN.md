@@ -173,7 +173,7 @@ The header button that reopens it reads "How it works" ("So funktioniert's" in G
 | Position | Chapter id | Rail label | Required | Answers |
 |---|---|---|---|---|
 | First | `what` | What it does | Yes | What it is, who it is for, which question it answers |
-| Second | `how` | How it works | Yes | Inputs, logic and outputs; what is simulated and what is real |
+| Second | `how` | How it works | Yes | Inputs, logic and outputs, and the key figures: one table row per figure with what it measures and its value |
 | Middle | free ids | Up to five words | No | For example results, how to read the page, limits; "how" may continue over several chapters |
 | Last | `present` | How to present | Yes | The presenter's path: what to show, in which order, what to say, how long it takes |
 
@@ -584,6 +584,8 @@ What a page, prototype or demo built with Vici 2.0 must meet, and how to tell. T
 | R32 | Relative links only, so the docs work from disk and on GitHub Pages | The build: `check-docs` resolves every internal link and anchor; open `index.html` from disk | Getting started |
 | R33 | Generated files are never edited by hand | The build: `node scripts/build.mjs --check` | Getting started |
 | R34 | Prototypes pin a tagged release, such as `@v2.0.0`, and never `@main` | Read the stylesheet `href` in each prototype | Getting started |
+| R35 | Two to four key figures at the top, each a `vc-stat` tile marked `data-vc-kpi`, and the How it works chapter explains each in a table row: the figure, what it measures and its value | The build: `check-guide` for the starters; for a prototype, `guideProblems()` from `scripts/lib/guide.mjs` returns nothing | Principles, How it works guide |
+| R36 | A page that can start a live run with a model says "You are interacting with an AI system" wherever the run is possible, and nothing leaves it without a person's approval | The build: `check-ai` self-tests the rule; for a prototype, `aiNoticeProblems()` from `scripts/lib/ai.mjs` returns nothing | Principles |
 | R35 | Every prototype, demo, challenge and showcase shows two to four key figures at the top, each a `vc-stat` tile named in `data-vc-kpi` and explained by its guide | The build: `check-guide` fails when the guide doesn't name a key figure; for a prototype, `guideProblems()` from `scripts/lib/guide.mjs`; review that there are two to four | Principles, How it works guide |
 
 ## Appendix A: Phase 1 diagnosis
