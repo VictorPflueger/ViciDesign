@@ -18,16 +18,19 @@ const planted = {
   'website link without rel': good.replace(`href="${profile.website}" rel="author"`, `href="${profile.website}"`),
   'LinkedIn link without rel': good.replace(`href="${profile.linkedin}" rel="author"`, `href="${profile.linkedin}"`),
   'wrong name': good.replace(profile.name, 'Someone Else'),
+  'no "Built by"': good.replace('Built by', 'Made by'),
 };
 const selfFailures = [];
 if (bylineProblems(good).length) selfFailures.push(`a complete byline was rejected: ${bylineProblems(good).join('; ')}`);
+const german = good.replace('Built by', 'Erstellt von');
+if (bylineProblems(german).length) selfFailures.push(`a complete German byline was rejected: ${bylineProblems(german).join('; ')}`);
 for (const [name, html] of Object.entries(planted)) if (!bylineProblems(html).length) selfFailures.push(`missed: ${name}`);
 if (selfFailures.length) {
   console.error(selfFailures.map((f) => `self-test failed: ${f}`).join('\n'));
   process.exit(1);
 }
 if (process.argv.includes('--self-test')) {
-  console.log(`Self-test caught ${Object.keys(planted).length}/${Object.keys(planted).length} planted mistakes and accepted a complete byline.`);
+  console.log(`Self-test caught ${Object.keys(planted).length}/${Object.keys(planted).length} planted mistakes and accepted a complete byline in English and in German.`);
   console.log('BYLINE SELF-TEST OK');
   process.exit(0);
 }

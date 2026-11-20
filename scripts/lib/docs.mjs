@@ -565,6 +565,26 @@ ${rows}
   </table></div>`;
     },
 
+    // <!-- @prototype-brief --> → the agent brief from src/docs/prototype-brief.md: the file's name, a
+    // link to the plain-text copy the build writes to start/prototype-brief.md and a button that
+    // copies it, then the text itself, folded so the page stays readable. The copy button's three
+    // labels follow vici.js's data-vc-copied state.
+    'prototype-brief': () => {
+      const text = ctx.brief.trim();
+      return `<div class="doc-brief">
+  <div class="doc-brief__bar">
+    <span class="doc-brief__file"><span class="vc-icon vc-icon--memo" aria-hidden="true"></span>prototype-brief.md</span>
+    <div class="vc-cluster vc-cluster--sm">
+      <a class="vc-button vc-button--ghost vc-button--sm" href="{{root}}start/prototype-brief.md">Open the file</a>
+      <button type="button" class="vc-button vc-button--sm" data-vc-copy="#prototype-brief" data-vc-label="Copy the brief"><span class="doc-brief__idle"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy the brief</span><span class="doc-brief__done"><span class="vc-icon vc-icon--check" aria-hidden="true"></span>Copied</span><span class="doc-brief__failed"><span class="vc-icon vc-icon--warning" aria-hidden="true"></span>Copy failed</span></button>
+    </div>
+  </div>
+  <div class="doc-demo__code doc-brief__text">
+    <details><summary>Read the brief (${text.split('\n').length} lines)</summary><pre><code id="prototype-brief">${esc(text)}</code></pre></details>
+  </div>
+</div>`;
+    },
+
     // <!-- @profile key --> → one value from src/brand/profile.json, such as the website address
     profile: (key) => esc(String(ctx.profile[(key || '').trim()] ?? '')),
 
@@ -701,7 +721,9 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
 
   const profile = JSON.parse(readFileSync(join(root, 'src/brand/profile.json'), 'utf8'));
   const banned = JSON.parse(readFileSync(join(root, 'src/docs/banned-words.json'), 'utf8'));
-  const ctx = { root, tokens, flat, icons, pages, version, profile, banned, stats: stats || { minCss: 0, gzCss: 0 } };
+  // The agent brief on Build a prototype, also published as plain text next to the page
+  const brief = readFileSync(join(SRC, 'prototype-brief.md'), 'utf8');
+  const ctx = { root, tokens, flat, icons, pages, version, profile, banned, brief, stats: stats || { minCss: 0, gzCss: 0 } };
   const widgets = makeWidgets(ctx);
   const counter = { n: 0 };
   const out = [];
@@ -803,6 +825,7 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
     out.push([`starters/${file}`, html]);
   }
 
+  out.push(['start/prototype-brief.md', brief]);
   out.push(['assets/docs/docs.css', readFileSync(join(SRC, 'docs.css'), 'utf8')]);
   out.push(['assets/docs/docs.js', readFileSync(join(SRC, 'docs.js'), 'utf8')]);
   return out;

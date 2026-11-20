@@ -31,5 +31,8 @@ export function writingProblems(html) {
   if (dash) out.push(`em dash as punctuation: "${dash[0].trim()}"`);
   const word = visible.match(STOCK);
   if (word) out.push(`stock word "${word[1]}" (see guidelines/writing.html#stock-words)`);
+  // A backslash before a quote is an escape that leaked out of a script or a string into the text.
+  const escaped = visible.match(/.{0,30}\\['"’].{0,30}/);
+  if (escaped) out.push(`escaped quote in the text: "${escaped[0].trim()}"`);
   return out;
 }

@@ -1,0 +1,214 @@
+<!--
+title: Build a prototype
+nav: Build a prototype
+section: Start
+order: 2
+icon: cube
+description: The brief for an agent that builds a prototype, demo or tech showcase for Victor, and the rules behind it: who it is for, the byline, the talk track, key figures, the layout from top to bottom, the partner review and the checks.
+-->
+<header class="doc-hero">
+  <h1>Build a prototype</h1>
+  <p class="vc-lead">Victor's prototypes, demos and tech showcases are made for one moment: a partner shows one to a customer who has never seen it. This page is the brief for the agent that builds it, and the review it must pass.</p>
+</header>
+
+<h2 id="agent-brief">The brief for agents</h2>
+<p>Give the agent this brief with the task: paste it into the first message, or send it the address of the plain-text copy. It holds the rules on this page in short form and links to the details.</p>
+<!-- @prototype-brief -->
+
+<h2 id="audience">Who it's for</h2>
+<p>Build for the dumbest user possible: someone who knows nothing about the subject, has no interest in it and no time to work it out. That is the customer in the meeting, and sometimes the partner presenting too. At every step, without help, they can say what the prototype is doing, what it is worth and which key figure just moved.</p>
+<p>A step that leaves one of these open needs a clearer label, a key figure or a sentence in the guide, or it goes. Keep the prototype lean, cut whatever the story doesn't need, and keep the case intact: the evidence behind every figure stays one click away. When the case needs more detail than a customer can take in, add a Customer view and a Full view, switched in the header, as Repack Pilot does.</p>
+
+<h2 id="three-things">Three things every prototype has</h2>
+<p>However lean a prototype gets, it keeps these three. They are on the keep list of every partner review.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>What every prototype, demo and tech showcase has</caption>
+  <thead><tr><th scope="col">What</th><th scope="col">Rule</th></tr></thead>
+  <tbody>
+    <tr><th scope="row" class="vc-nowrap"><a href="{{root}}brand/profile-links.html">Byline</a></th><td>“Built by”, with Victor's portrait and name linking to LinkedIn and a globe linking to his website, both with <code>rel="author"</code>. It goes at the end of the page, or in a strip under the header of a single-screen app.</td></tr>
+    <tr><th scope="row" class="vc-nowrap"><a href="{{root}}components/guide.html">Talk track</a></th><td>A How it works guide that says what the prototype does, how it works and what each key figure means, then gives the presenter a script of three to seven timed steps. A “How it works” button in the header reopens it.</td></tr>
+    <tr><th scope="row" class="vc-nowrap"><a href="{{root}}components/guide.html#key-figures">Key figures</a></th><td>Two to four <code>vc-stat</code> tiles marked with <code>data-vc-kpi</code>, top right, in or right under the header, that show what the case is worth.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The talk track opens by itself when the prototype starts, so whoever only gets the link still understands what they are looking at. <a href="https://victorpflueger.github.io/mobilitychallenge/?map=koeln&amp;run=optimized&amp;step=0">Dispatch Lab</a> is the model: its guide walks through the challenge in seven chapters before the first click.</p>
+
+<h2 id="key-figures">Key figures</h2>
+<p>A customer should see at once what the case is worth. Show two to four key figures at the top right, chosen from these or defined for the case, and let the talk track explain each one: what it measures, where its number comes from and what is simulated.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Key figures to choose from</caption>
+  <thead><tr><th scope="col">Key figure</th><th scope="col">Example</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Money gained, lost or saved</th><td>€48,200 in overcharges recovered</td></tr>
+    <tr><th scope="row">Lead time</th><td>2&nbsp;days from order to delivery, instead of 9</td></tr>
+    <tr><th scope="row">Detection to decision</th><td>6&nbsp;min from spotting a problem to deciding what to do, instead of 3&nbsp;days</td></tr>
+    <tr><th scope="row">Session cost</th><td>€0.38 for this run: measured in a live run, estimated in a simulated one and labelled as such</td></tr>
+    <tr><th scope="row">People affected</th><td>1,240 passengers rebooked</td></tr>
+    <tr><th scope="row">Against a benchmark</th><td>−64&nbsp;% labour per 1,000 units, against packing by hand</td></tr>
+    <tr><th scope="row">Score</th><td>87 of 100 for the run</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li>Each figure is a <code>vc-stat</code> tile with its name in <code>data-vc-kpi</code>, and the guide check fails when the guide doesn't name it.</li>
+  <li>A figure that changes during the demo starts from a value that makes sense before anything happens, such as “0 of 12”.</li>
+  <li>The presenter's script points at a figure when it moves, so the room sees the change happen.</li>
+</ul>
+
+<h2 id="page-structure">From top to bottom</h2>
+<p>Victor's prototypes follow one layout, so a partner who has presented one finds their way around the next:</p>
+<ol>
+  <li>The header: the name with its icon in a hexagon of its kind's colour, SIMULATION or LIVE in capitals, the notice “You are interacting with an AI system” in lilac, the How it works button and the theme toggle.</li>
+  <li>One sentence under the header that says what the prototype does and whether its data is real.</li>
+  <li>The key figures, top right.</li>
+  <li>The work area, in the order of the story, with one primary action for the next step. Lilac marks what the AI generated, suggested or summarised, and a step with consequences waits for a person to approve it.</li>
+  <li>The byline at the end of the page. A single-screen app that doesn't scroll carries it in the strip under the header instead.</li>
+</ol>
+<!-- demo flush -->
+<header class="vc-header" style="position:relative">
+  <div class="vc-header__inner">
+    <a class="vc-header__brand" href="#page-structure"><span class="vc-cell vc-cell--sm vc-cell--lilac" aria-hidden="true"><span class="vc-icon vc-icon--truck"></span></span>Freight audit</a>
+    <span class="vc-tag vc-tag--lg">SIMULATION</span>
+    <span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>You are interacting with an AI system</span>
+    <div class="vc-header__actions">
+      <button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="freight-guide"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works</button>
+      <span class="vc-tooltip-anchor">
+        <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="freight-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
+        <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="freight-theme">Dark theme</span>
+      </span>
+    </div>
+  </div>
+</header>
+<div class="vc-container vc-container--wide vc-cluster vc-cluster--between" style="padding-block: var(--vc-space-3); border-bottom: 1px solid var(--vc-border-subtle)">
+  <p class="vc-text-sm vc-text-muted" style="margin:0">Checks carrier invoices against their contracts and flags overcharges, on synthetic data.</p>
+  <!-- @byline -->
+</div>
+<section class="vc-container vc-container--wide" style="padding-block: var(--vc-space-6)" aria-label="Key figures">
+  <div class="vc-grid" style="--vc-grid-min: 11rem; --vc-grid-gap: var(--vc-space-3); max-width: 40rem; margin-inline-start: auto">
+    <article class="vc-stat" data-vc-kpi="Money recovered">
+      <p class="vc-stat__label">Money recovered</p>
+      <p class="vc-stat__value">€12,400</p>
+      <p class="vc-stat__note">of €48,200 flagged</p>
+    </article>
+    <article class="vc-stat" data-vc-kpi="Detection to decision">
+      <p class="vc-stat__label">Detection to decision</p>
+      <p class="vc-stat__value">6<span class="vc-stat__unit">min</span></p>
+      <p class="vc-stat__note">3&nbsp;days by hand</p>
+    </article>
+    <article class="vc-stat" data-vc-kpi="Session cost">
+      <p class="vc-stat__label">Session cost</p>
+      <p class="vc-stat__value">€0.38</p>
+      <p class="vc-stat__note">Estimated, simulated run</p>
+    </article>
+  </div>
+</section>
+<dialog class="vc-dialog vc-guide" id="freight-guide" aria-labelledby="freight-guide-title" data-vc-guide data-vc-guide-count="{n} of {total}">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="freight-guide-title">How the prototype works</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-guide__chapters">
+    <section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="What it does">
+      <h3>Finds €48,200 that carriers charged too much</h3>
+      <p class="vc-guide__lead">Freight audit is a sample prototype. An AI agent compares each carrier invoice with its contract and flags every charge the contract doesn't cover.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>This week's run</caption>
+        <tbody>
+          <tr><th scope="row">Invoices checked</th><td class="vc-num">312</td></tr>
+          <tr><th scope="row">Flagged by the agent</th><td class="vc-num">14</td></tr>
+          <tr><th scope="row">Overcharges flagged</th><td class="vc-num">€48,200</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
+      <h3>The agent flags, a person decides</h3>
+      <p class="vc-guide__lead">The agent explains each flag in lilac. Nothing is disputed until a person approves it, and the log keeps every decision.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>What is real</caption>
+        <tbody>
+          <tr><th scope="row">Invoices and contracts</th><td>Synthetic</td></tr>
+          <tr><th scope="row">The agent's answers</th><td>Replayed from a recorded run</td></tr>
+          <tr><th scope="row">Contract rules and sums</th><td>Real</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="figures" data-vc-nav="Key figures">
+      <h3>Three figures show what the run is worth</h3>
+      <p class="vc-guide__lead">They sit at the top right and change while you work through the flags.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Key figures</caption>
+        <tbody>
+          <tr><th scope="row">Money recovered</th><td>Overcharges a person approved, out of all the agent flagged</td></tr>
+          <tr><th scope="row">Detection to decision</th><td>From the invoice arriving to an approved dispute; 3&nbsp;days by hand</td></tr>
+          <tr><th scope="row">Session cost</th><td>What the AI would cost for this run if it were live: an estimate</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present">
+      <h3>Show it in four minutes</h3>
+      <p class="vc-guide__lead">Three steps, four minutes in all. Start on this screen.</p>
+      <ol class="vc-guide__path">
+        <li><strong>Point at the key figures.</strong> “These three figures move as we work: money recovered, time to a decision and the cost of this run.” <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Open the first flag.</strong> “The agent found a fuel surcharge above the 8&nbsp;% the contract allows.” <span class="vc-guide__time">2 min</span></li>
+        <li><strong>Approve the dispute.</strong> “A person decides, and Money recovered goes up.” <span class="vc-guide__time">1 min</span></li>
+      </ol>
+    </section>
+  </div>
+  <footer class="vc-dialog__footer vc-guide__footer">
+    <span class="vc-guide__count"></span>
+    <button type="button" class="vc-button vc-button--ghost" data-vc-guide-back><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span>Back</button>
+    <button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Start">Next<span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+  </footer>
+</dialog>
+<!-- /demo -->
+<p class="vc-caption">The top of a single-screen prototype, with its guide behind How it works. In a prototype the guide also carries <code>data-vc-guide-auto</code>, so it opens when the prototype starts. Outside this site, the byline loads its images from the CDN or the prototype's own copy: see <a href="{{root}}brand/profile-links.html#byline-anywhere">the byline's markup for other sites</a>.</p>
+
+<h2 id="partner-review">The partner review</h2>
+<p>Before a prototype goes to a customer, Victor reviews it the way a partner of a consultancy would, and an agent runs the same review on its own work before calling it done. It takes the view of the dumbest user possible, in this order:</p>
+<ol>
+  <li>Name the One Thing: one sentence on what the prototype shows the customer, with the key figure that proves it. If it takes two sentences, it is two prototypes, or the case isn't clear yet.</li>
+  <li>Open it cold, in a new browser tab at 1280&nbsp;×&nbsp;720, with nobody explaining it. Note what the guide and the first screen make clear in the first ten seconds, and what they don't.</li>
+  <li>Walk every step and say at each one what the prototype is doing, what it is worth and which key figure just moved. A step where one of the three is missing goes on the fix list.</li>
+  <li>Count the steps until a key figure first moves. Every step that doesn't move the story goes on the cut list.</li>
+  <li>Check that the case survives the cuts: each figure comes from the prototype's own data, its evidence is one click away, and whatever is simulated or synthetic says so.</li>
+  <li>Check the three things: the byline, the talk track that opens on start and explains every key figure, and the key figures at the top right.</li>
+  <li>Look at the screens nobody demos: loading, an empty state, a failed live run, the other theme, 1920&nbsp;×&nbsp;1080 and the page opened from a file.</li>
+  <li>Present it once along the guide's script, with a timer. The steps take the time the guide says they take.</li>
+</ol>
+<p>The review ends with a verdict and three lists:</p>
+<pre><code>Partner review: &lt;name&gt;
+Verdict: ready or not ready
+The One Thing: &lt;one sentence, with the key figure that proves it&gt;
+Keeps its promise: yes or no, with the evidence
+Cut list: what goes, and why the case survives without it
+Fix list: ranked; what, where and the direction of the fix
+Keep list: the byline, the talk track, the key figures and whatever else must not be cut</code></pre>
+<p>There is no “almost ready”. A prototype with anything left on its fix list is not ready.</p>
+
+<h2 id="before-you-share">Before you share it</h2>
+<p>A prototype runs Vici's own checks over its pages. Clone the <a href="https://github.com/VictorPflueger/ViciDesign">ViciDesign repository</a> beside it and import them. Each returns the rules a page breaks, and an empty list when it keeps them.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Checks a prototype runs</caption>
+  <thead><tr><th scope="col">What it checks</th><th scope="col">Run</th></tr></thead>
+  <tbody>
+    <tr><td>The guide follows the standard and names every key figure</td><td><code>guideProblems(html)</code> from <code>scripts/lib/guide.mjs</code></td></tr>
+    <tr><td>The byline is complete, with both links</td><td><code>bylineProblems(html)</code> from <code>scripts/lib/byline.mjs</code></td></tr>
+    <tr><td>The text avoids the <a href="{{root}}guidelines/writing.html#patterns-vici-doesnt-use">patterns Vici doesn't use</a></td><td><code>writingProblems(html)</code> from <code>scripts/lib/writing.mjs</code></td></tr>
+    <tr><td>The guide opens, moves and closes as it should in a browser</td><td><code>node scripts/check-guide-render.mjs &lt;address&gt;</code></td></tr>
+  </tbody>
+</table>
+</div>
+<pre><code>// check-vici.mjs in the prototype's folder, with the ViciDesign clone beside it
+import { readFileSync } from 'node:fs';
+import { guideProblems } from '../ViciDesign/scripts/lib/guide.mjs';
+import { bylineProblems } from '../ViciDesign/scripts/lib/byline.mjs';
+import { writingProblems } from '../ViciDesign/scripts/lib/writing.mjs';
+
+const html = readFileSync('index.html', 'utf8');
+const problems = [...guideProblems(html), ...bylineProblems(html), ...writingProblems(html)];
+if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
+console.log('Vici checks passed');</code></pre>
+<p>The checks find broken rules. Only the partner review finds a prototype that keeps every rule and still doesn't make its case, so run it last.</p>

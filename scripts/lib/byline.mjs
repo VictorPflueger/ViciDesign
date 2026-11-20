@@ -16,7 +16,7 @@ export function bylineProblems(html, p = profile) {
   const reasons = [];
   for (const b of blocks) {
     const why = [];
-    if (!/Built by/.test(b)) why.push('no "Built by"');
+    if (!/Built by|Erstellt von/.test(b)) why.push('no "Built by" ("Erstellt von" on a German page)');
     if (!b.includes(p.name)) why.push(`does not name ${p.name}`);
     const li = linkTo(b, p.linkedin);
     if (!li.length) why.push('no link to LinkedIn');

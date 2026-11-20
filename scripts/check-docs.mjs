@@ -3,8 +3,9 @@
 // basic document metadata, ids are unique, and every internal link and anchor resolves. The docs
 // pages and starters also keep to the Writing guideline's checkable rules: no eyebrows or aurora,
 // no numbered headings with a middle dot, no list items that start with a bold label and a colon,
-// no em dashes as punctuation and no stock words from src/docs/banned-words.json. A self-test
-// first proves that each of those rules catches a planted example and passes a clean one.
+// no em dashes as punctuation, no stock words from src/docs/banned-words.json and no escaped quotes
+// left in the text by a script. A self-test first proves that each of those rules catches a planted
+// example and passes a clean one.
 import { existsSync } from 'node:fs';
 import { join, dirname, posix } from 'node:path';
 import { ROOT, read, sitePages } from './lib/files.mjs';
@@ -25,6 +26,7 @@ const PLANTED = {
   'stock word': '<p>A seamless way to build pages.</p>',
   'stock word, inflected': '<p>It streamlines the review.</p>',
   'stock phrase': '<p>In today’s world, pages matter.</p>',
+  'escaped quote': "<p>There the globe links to the site\\'s own home page.</p>",
 };
 const CLEAN = '<table class="vc-table" data-doc-banned><tr><td>seamless — robust</td><td><strong>Performance:</strong> x</td></tr></table>'
   + '<h3>Cells carry meaning</h3><ul><li><strong>Keep the same order everywhere.</strong> LinkedIn first.</li></ul>'
@@ -73,7 +75,9 @@ const REQUIRED = {
   'guidelines/accessibility.html': ['focus', 'keyboard-patterns', 'semantics-checklist'],
   'brand/logo.html': ['symbol', 'lockup', 'app-icon-and-favicon', 'wordmark', 'monogram', 'monogram-ligature', 'monogram-stem', 'monogram-cell', 'monogram-seal', 'monogram-initials', 'monogram-compare', 'usage', 'earlier-concepts'],
   'brand/profile-links.html': ['every-surface', 'byline', 'byline-several', 'byline-anywhere', 'in-footers-and-contact-sections', 'personal-site', 'other-brands-logos', 'link-rules', 'portrait'],
-  'components/guide.html': ['title-pattern', 'chapters', 'copy-rules', 'content-format', 'german-example', 'behaviour', 'opening', 'presenting', 'check'],
+  'components/guide.html': ['title-pattern', 'chapters', 'copy-rules', 'content-format', 'german-example', 'behaviour', 'opening', 'presenting', 'key-figures', 'check'],
+  // What every prototype, demo and tech showcase needs, with the agent brief.
+  'start/prototypes.html': ['agent-brief', 'audience', 'three-things', 'key-figures', 'page-structure', 'partner-review', 'before-you-share'],
   // The sections the How it works guide is built from.
   'components/actions.html': ['button'],
   'components/overlays.html': ['dialog'],
