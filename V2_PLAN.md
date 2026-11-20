@@ -480,7 +480,7 @@ Scope: Vici 2.0 and its website meet the brief's Definition of done and every ru
 | 1. Diagnose | Done, 19 November 2026 (Appendix A) |
 | 2. Plan | Done; approved 19 November 2026 (scope Full) |
 | 3. System | Done, 20 November 2026. The D4 status colours wait for your approval of `v2-status-colours.html` |
-| 4. Website | Not started |
+| 4. Website | Started 20 November 2026 with the home page; the shell, navigation and the other pages follow |
 | 5. Verify and deliver | Not started |
 
 Phase 3 (19 and 20 November 2026). Every step ended with `node scripts/build.mjs` and a green `npm run check`.
@@ -499,7 +499,11 @@ Phase 3 (19 and 20 November 2026). Every step ended with `node scripts/build.mjs
 | Version | `dist/vici.js` takes its version from `package.json` |
 | check-hex | Stricter: self-test 11 of 11 (9 before), 34 would-be-round components (31 before) |
 
-Next: Phase 4, the website (section 4), and your answer on D4.
+After Phase 3, pull request #4 (from moving Repack Pilot to 2.0) added the principle "Every prototype shows what it is worth" with key figures marked `data-vc-kpi`, moved `guideProblems()`, `bylineProblems()` and `writingProblems()` into importable modules in `scripts/lib`, added the `pause` icon (86 in all), `.vc-guide__say`, and the guide's browser test over http.
+
+Phase 4, home page (20 November 2026). You asked to see every change on the main page. The live home page still showed the 1.0 content: five principles, tiles, section cards and a palette band, and nothing about 2.0. It now has the planned shape from section 4: the headline, a one-sentence lead, Get started and Browse components (All components once that page exists), a live slice of the app starter, and the install lines without the avatar. A line under the actions links to the new section What's new in Vici 2.0, which lists every change since 1.0.0 with a link to where it can be seen: both new pages, the three new principles, the guide component, the byline, the six colour references with swatches, the 22 new icons, the retired classes and tokens, the rules on other pages, the starters, the checks, the site-wide clean-up and the two records in the repository. `.unlazy/s3/coverage.mjs` computes that inventory from git and fails if anything is missing. "Built with Vici" waits until the prototypes that run on Vici and their addresses are confirmed.
+
+Next: the rest of Phase 4, the website (section 4), and your answer on D4.
 
 P0 and P1 findings, which the Definition of done requires closed:
 
@@ -507,7 +511,7 @@ P0 and P1 findings, which the Definition of done requires closed:
 |---|---|---|---|
 | F01 | P0 | Open | Pins already come from `package.json`; the `v1.0.0` tag still has to be pushed, and `v2.0.0` at release |
 | F02 | P1 | Open | |
-| F03 | P1 | Open | |
+| F03 | P1 | In progress | `src/docs/pages/index.html` shows a live slice of the app starter (an iframe of `starters/app.html`); "Built with Vici" with the live prototypes is still to come |
 | F04 | P1 | Fixed | `src/brand/profile.json`, `@byline` widget in `scripts/lib/docs.mjs`, `src/docs/layout.html`, starters, Streamlit helper in `scripts/build.mjs` |
 | F05 | P1 | Fixed | All four starters carry the byline; `scripts/check-byline.mjs` in `npm run check` |
 | F06 | P1 | Fixed | `src/docs/pages/brand/profile-links.html` (every surface, the personal site included); `check-docs` pins `every-surface` and `personal-site` |
@@ -525,13 +529,18 @@ P2 and P3 findings closed or changed in Phase 3:
 |---|---|---|---|
 | F14 | P2 | Fixed | `.vc-eyebrow` retired; Writing bans it; `check-docs` fails on the class |
 | F15 | P2 | Fixed | 15 numbered headings on Getting started, Principles and Logo made plain; `check-docs` fails on "n ·" headings |
-| F16 | P2 | Fixed in the system | `.vc-bg-aurora` and its tokens retired; Colour asks for flat pastel grounds; the home page and landing starter are rebuilt in Phase 4 |
-| F27 | P2 | Rule done | Hexagon: cells carry meaning, `.vc-cell` no longer "for feature lists and cards"; the icon-card grids on home and Starters go in Phase 4 |
+| F16 | P2 | Fixed in the system | `.vc-bg-aurora` and its tokens retired; Colour asks for flat pastel grounds; the home page has none (`src/docs/pages/index.html`); the landing starter is rebuilt later in Phase 4 |
+| F27 | P2 | Rule done, home fixed | Hexagon: cells carry meaning, `.vc-cell` no longer "for feature lists and cards"; the home page's icon-card grids are gone (`src/docs/pages/index.html`); the Starters page's go later in Phase 4 |
 | F31 | P2 | Done, awaiting approval | Light `surface-selected` to merlot 200; the pair is in the separation rule |
 | F34 | P2 | Fixed | The guide moves focus to each chapter heading and has no live region |
 | F35 | P2 | Fixed | The guide opens once per tab; `?guide=0` and `?guide=present` |
 | F38 | P3 | Fixed | `lang="en-GB"` in `src/docs/layout.html` and the starters; Accessibility and Writing say when to use `de` |
 | F45 | P3 | Fixed | The guide button has visible text and no tooltip |
+| F17 | P2 | Fixed | The eight tiles are gone from `src/docs/pages/index.html`; the app starter slice opens the page |
+| F18 | P2 | Fixed | The principle grid, section cards and palette band are gone from `src/docs/pages/index.html` |
+| F19 | P2 | Fixed | Two hero actions in `src/docs/pages/index.html`: Get started, then Browse components |
+| F40 | P3 | Fixed | The install snippet in `src/docs/pages/index.html` shows a button and no avatar, and points to the byline |
+| F44 | P3 | Fixed | The lead in `src/docs/pages/index.html` says what Vici is in one sentence |
 
 ## 10. The 2.0 checklist
 
@@ -573,6 +582,7 @@ What a page, prototype or demo built with Vici 2.0 must meet, and how to tell. T
 | R32 | Relative links only, so the docs work from disk and on GitHub Pages | The build: `check-docs` resolves every internal link and anchor; open `index.html` from disk | Getting started |
 | R33 | Generated files are never edited by hand | The build: `node scripts/build.mjs --check` | Getting started |
 | R34 | Prototypes pin a tagged release, such as `@v2.0.0`, and never `@main` | Read the stylesheet `href` in each prototype | Getting started |
+| R35 | Every prototype, demo, challenge and showcase shows two to four key figures at the top, each a `vc-stat` tile named in `data-vc-kpi` and explained by its guide | The build: `check-guide` fails when the guide doesn't name a key figure; for a prototype, `guideProblems()` from `scripts/lib/guide.mjs`; review that there are two to four | Principles, How it works guide |
 
 ## Appendix A: Phase 1 diagnosis
 

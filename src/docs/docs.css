@@ -563,28 +563,25 @@
   padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(3rem, 7vw, 6rem);
   border-bottom: 1px solid var(--vc-border-subtle);
 }
-.doc-home-hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: var(--vc-space-12);
-}
-@media (max-width: 899px) { .doc-home-hero__grid { grid-template-columns: minmax(0, 1fr); } }
 .doc-home-hero h1 { margin: 0 0 var(--vc-space-5); }
-.doc-home-hero .vc-lead { max-width: 36rem; margin-bottom: var(--vc-space-8); }
-.doc-home-art { position: relative; justify-self: center; }
-.doc-home-art .vc-tile { box-shadow: none; }
+.doc-home-hero .vc-lead { max-width: 40rem; margin-bottom: var(--vc-space-8); }
+.doc-home-status { margin: var(--vc-space-6) 0 0; color: var(--vc-text-muted); }
 .doc-home-section { padding-block: clamp(3rem, 6vw, 5rem); }
 .doc-home-section + .doc-home-section { border-top: 1px solid var(--vc-border-subtle); }
 .doc-home-section h2 { margin-top: 0; padding-top: 0; border-top: 0; }
-.doc-principle {
-  display: grid;
-  gap: var(--vc-space-3);
-  align-content: start;
-}
-.doc-principle > * { margin: 0; }
-.doc-principle h3 { margin: 0 !important; font-size: var(--vc-font-size-lg) !important; }
-.doc-principle p { color: var(--vc-text-muted); font-size: var(--vc-font-size-sm); }
+.doc-home-intro { max-width: 44rem; }
+/* a live slice of the app starter */
+.doc-home-slice { margin-block: var(--vc-space-6) var(--vc-space-4); border: 1px solid var(--vc-border); border-radius: var(--vc-radius-lg); overflow: hidden; background: var(--vc-bg); }
+.doc-home-slice iframe { display: block; inline-size: 100%; block-size: clamp(30rem, 72vh, 42rem); border: 0; }
+/* What's new: groups flow into columns of a readable measure */
+.doc-news { columns: 21rem; column-gap: var(--vc-space-12); margin-top: var(--vc-space-8); }
+.doc-news__group { break-inside: avoid; margin-bottom: var(--vc-space-8); }
+.doc-news__group h3, .doc-news-wide h3 { margin-top: 0; }
+.doc-news__group ul { margin: 0; }
+.doc-news-wide { margin-block: 0 var(--vc-space-10); }
+.doc-news-wide > p { max-width: 44rem; }
+.doc-ref { white-space: nowrap; }
+.doc-ref-swatch { display: inline-block; inline-size: 1.25rem; block-size: 1.25rem; margin-inline-end: var(--vc-space-2); vertical-align: -0.25em; border-radius: var(--vc-radius-sm); box-shadow: inset 0 0 0 1px var(--vc-border); }
 .doc-palette-band { display: flex; height: 3.5rem; overflow: hidden; border-radius: var(--vc-radius-md); margin-top: var(--vc-space-6); box-shadow: 0 0 0 1px var(--vc-border-subtle); /* the merlot end stays visible on the dark canvas */ }
 .doc-palette-band > span { flex: 1; }
 .doc-nav-cards .vc-card__body { gap: var(--vc-space-3); }

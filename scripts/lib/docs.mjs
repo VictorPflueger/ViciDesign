@@ -527,8 +527,11 @@ function makeWidgets(ctx) {
         .map((p) => `<tr><th scope="row"><code>--vc-z-${p.split('.')[1]}</code></th><td class="vc-num">${v(p)}</td></tr>`)
         .join('')}</tbody></table></div>`,
 
-    'icon-gallery': () =>
-      `<div class="doc-icon-grid">${icons
+    // <!-- @icon-gallery [name …] --> → every icon, or only the ones named; an unknown name fails the build.
+    'icon-gallery': (args) =>
+      `<div class="doc-icon-grid">${(args && args.trim()
+        ? args.trim().split(/\s+/).map((n) => icons.find((i) => i.name === n) || (() => { throw new Error(`@icon-gallery: no icon called "${n}"`); })())
+        : icons)
         .map(({ name }) => `<button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--${name}" data-vc-label="Copy class for ${name}" aria-label="Copy class for ${name}"><span class="vc-icon vc-icon--${name}" aria-hidden="true"></span><span>${name}</span></button>`)
         .join('')}</div>`,
 

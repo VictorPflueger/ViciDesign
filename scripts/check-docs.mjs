@@ -97,7 +97,8 @@ for (const page of pages) {
     const url = m[2];
     if (/^(https?:|mailto:|tel:|data:|javascript:)/.test(url) || url === '#') continue;
     links++;
-    const [path, hash] = url.split('#');
+    const [withQuery, hash] = url.split('#');
+    const path = withQuery.split('?')[0];
     const target = path ? posix.normalize(posix.join(posix.dirname(page), path)) : page;
     if (path && !existsSync(join(ROOT, target))) { failures.push(`${page}: broken link ${url}`); continue; }
     if (hash && target.endsWith('.html')) {
