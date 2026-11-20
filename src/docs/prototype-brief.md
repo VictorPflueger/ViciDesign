@@ -21,7 +21,8 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 - Copy dist/, assets/fonts/, assets/brand/portrait-96.jpg and assets/marks/ unchanged into a vici/ folder, and link vici/dist/vici.min.css and vici/dist/vici.js. Add no framework, no web font and no third-party request other than the AI service a live run calls. https://victorpflueger.github.io/ViciDesign/start/getting-started.html
 - The header shows the name with its icon, SIMULATION or LIVE in capitals, the How it works button and the theme toggle. The layout, with code: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#page-structure
 - One sentence under the header says what the prototype does and whether its data is real.
-- The work area follows the order of the story, with one primary action for the next step. Lilac marks what the AI generated, suggested or summarised.
+- The work area follows the order of the story, with one primary action for the next step. A story in steps plays by itself and stops where a person acts, with a "Your turn" callout above the action: https://victorpflueger.github.io/ViciDesign/components/guide.html#steps
+- Lilac marks what the AI generated, suggested or summarised.
 - Nothing the agent prepares, such as a payment or a message, leaves the page without a person's approval, and the prototype logs who approved what.
 - Wherever a live run with a model can start, "You are interacting with an AI system" stands in a lilac tag (vc-tag--feature) beside the control and stays while the run lasts; mark that control with data-vc-live. A replay that calls no model needs no notice. https://victorpflueger.github.io/ViciDesign/guidelines/principles.html#ai
 - Use open-source or synthetic data only, never a client's or internal data, and label what is synthetic or simulated.

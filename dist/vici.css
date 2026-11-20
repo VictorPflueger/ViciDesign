@@ -1909,6 +1909,19 @@
     z-index: 1;
   }
 
+  /* ---------- Attention: the control a person acts on next ----------
+     Where a run waits for a person ("Your turn"), the button they press next draws the eye: a merlot
+     ring pulses out three times, then rests as a soft frame. Reduced motion keeps only the frame. */
+  .vc-attention {
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--vc-accent) 28%, transparent);
+    animation: vc-attention 1.4s var(--vc-ease-standard) 3;
+  }
+  @keyframes vc-attention {
+    0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--vc-accent) 60%, transparent); }
+    70% { box-shadow: 0 0 0 12px color-mix(in oklab, var(--vc-accent) 0%, transparent); }
+    100% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--vc-accent) 28%, transparent); }
+  }
+
   /* ---------- Icon button: a hexagon cell ----------
      The host stays unclipped so the focus ring (::after) can sit outside the
      hexagon; ::before paints the cell. */
@@ -4043,9 +4056,12 @@
     .vc-pagination__gap { width: 1rem; }
   }
 
-  /* ---------- Stepper: hexagon markers joined by rails ---------- */
+  /* ---------- Stepper: hexagon markers joined by rails ----------
+     --vc-step-fill (0 to 1) on a step fills its rail towards the next step: a prototype that plays
+     its steps by itself shows how far the current one has been read. */
   .vc-stepper {
     --_m: 2rem;
+    --_rail: to right;
     display: flex;
     margin: 0;
     padding: 0;
@@ -4070,7 +4086,7 @@
     left: calc(50% + var(--_m) * 0.577 + var(--vc-space-2));
     right: calc(-50% + var(--_m) * 0.577 + var(--vc-space-2));
     height: 2px;
-    background: var(--vc-border);
+    background: linear-gradient(var(--_rail, to right), var(--vc-merlot-400) calc(var(--vc-step-fill, 0) * 100%), var(--vc-border) 0);
   }
   .vc-step--done:not(:last-child)::after { background: var(--vc-merlot-400); }
   .vc-step__marker {
@@ -4133,6 +4149,7 @@
     font-weight: var(--vc-weight-regular);
   }
   .vc-stepper--vertical {
+    --_rail: to bottom;
     flex-direction: column;
     gap: var(--vc-space-6);
   }

@@ -148,6 +148,19 @@
     z-index: 1;
   }
 
+  /* ---------- Attention: the control a person acts on next ----------
+     Where a run waits for a person ("Your turn"), the button they press next draws the eye: a merlot
+     ring pulses out three times, then rests as a soft frame. Reduced motion keeps only the frame. */
+  .vc-attention {
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--vc-accent) 28%, transparent);
+    animation: vc-attention 1.4s var(--vc-ease-standard) 3;
+  }
+  @keyframes vc-attention {
+    0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--vc-accent) 60%, transparent); }
+    70% { box-shadow: 0 0 0 12px color-mix(in oklab, var(--vc-accent) 0%, transparent); }
+    100% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--vc-accent) 28%, transparent); }
+  }
+
   /* ---------- Icon button: a hexagon cell ----------
      The host stays unclipped so the focus ring (::after) can sit outside the
      hexagon; ::before paints the cell. */

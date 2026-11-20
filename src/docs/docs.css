@@ -704,3 +704,13 @@
 .doc-licence > :last-child { margin-bottom: 0; }
 .doc-licence__heading { margin-top: var(--vc-space-6); font-weight: var(--vc-weight-semibold); color: var(--vc-text); }
 .doc-licence ul { padding-inline-start: var(--vc-space-5); }
+
+/* Presenting step by step: the Your turn demo shows its pulse again on request (data-doc-play). */
+.doc-turn { display: grid; gap: var(--vc-space-4); }
+.doc-turn__actions { display: flex; flex-wrap: wrap; gap: var(--vc-space-3); margin: 0; }
+.doc-turn[data-playing] .vc-attention { animation-name: doc-attention-again; }
+@keyframes doc-attention-again {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--vc-accent) 60%, transparent); }
+  70% { box-shadow: 0 0 0 12px color-mix(in oklab, var(--vc-accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--vc-accent) 28%, transparent); }
+}
