@@ -115,6 +115,16 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 </div>
 <!-- /demo -->
 <p>Colour follows meaning, not direction. Shorter cycle times are good, so a falling number gets the sage <code>--up</code> tone, and the arrow still shows the direction.</p>
+<p>When a decision moves a figure during a demo, the tile keeps where it came from: the old value in an <code>s.vc-stat__was</code> before the new one, struck through, with an arrow between them. The note says what moved it.</p>
+<!-- demo -->
+<div class="vc-grid" style="--vc-grid-min: 16rem; max-width: 34rem">
+  <article class="vc-stat">
+    <p class="vc-stat__label">Unexplained a year</p>
+    <p class="vc-stat__value"><s class="vc-stat__was">€14,146</s>€1,644</p>
+    <p class="vc-stat__note">€12,501 a year approved</p>
+  </article>
+</div>
+<!-- /demo -->
 
 <h2>Legend</h2>
 <p>Series swatches are hexagons that follow the categorical order automatically, or take any colour through <code>--vc-series</code>.</p>
