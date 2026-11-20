@@ -236,6 +236,8 @@
   }
   .vc-guide__chapter > h3:focus { outline: none; }
   .vc-guide__chapter > h3:focus-visible { outline: 2px solid var(--vc-focus); outline-offset: 4px; border-radius: var(--vc-radius-sm); }
+  /* Turned by a click or a tap (vici.js sets data-vc-pointer): the heading takes focus for screen readers, without a ring. */
+  .vc-guide[data-vc-pointer] .vc-guide__chapter > h3:focus-visible { outline: none; }
   .vc-guide__lead {
     max-width: 40rem;
     margin: 0 0 var(--vc-space-6);
@@ -284,6 +286,9 @@
     clip-path: var(--vc-hex);
   }
   .vc-guide__path > li > :not(.vc-guide__time) { grid-column: 1; }
+  /* The sentence to say, as one element when it holds markup such as figures a script fills in.
+     Each child of a step takes its own grid row, so loose text between elements would split it. */
+  .vc-guide__say { grid-column: 1; }
   .vc-guide__time {
     grid-column: 2;
     grid-row: 1;
