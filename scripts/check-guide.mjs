@@ -7,7 +7,9 @@
 // items; a presenting path of three to seven steps, each with a sentence to say in quotation marks
 // and a time in minutes; a header button with visible text; Back, Next and the count; no eyebrow;
 // and every key figure the page marks with data-vc-kpi explained in a row of the How it works
-// chapter's table: the figure, what it measures and its value.
+// chapter's table: the figure, what it measures and its value. A page in two languages may carry one
+// such guide per language, each saying its language in lang, titled in it, with its own header button
+// and a row for every key figure under its name in that language (data-vc-kpi-de and so on).
 // A self-test first proves that the checker catches planted mistakes.
 import { read } from './lib/files.mjs';
 import { guideProblems } from './lib/guide.mjs';
@@ -19,6 +21,21 @@ const STARTERS = ['starters/app.html', 'starters/dashboard.html', 'starters/blan
 
 // ------------------------------------------------------------------ self-test
 const good = read('starters/app.html');
+// The app starter in two languages: a German guide beside the English one, each with its button, and the
+// key figures named in German in the German guide's How it works rows.
+const KPI_DE = { 'Open exceptions': 'Offene Ausnahmen', 'Auto-resolved': 'Automatisch geklärt', 'Value at risk': 'Wert im Risiko' };
+let dialogDe = good.match(/<dialog\b[^>]*vc-guide[\s\S]*?<\/dialog>/)[0]
+  .replace('id="guide"', 'id="guide-de" lang="de"')
+  .replace('aria-labelledby="guide-title"', 'aria-labelledby="guide-de-title"')
+  .replace('id="guide-title">How the prototype works<', 'id="guide-de-title">So funktioniert der Prototyp<');
+let twoLanguages = good
+  .replace('<dialog class="vc-dialog vc-guide" id="guide"', '<dialog class="vc-dialog vc-guide" id="guide" lang="en"')
+  .replace(/(<button\b[^>]*data-vc-guide-open="guide"[^>]*>[\s\S]*?<\/button>)/, '$1<button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="guide-de" lang="de" hidden><span class="vc-icon vc-icon--info" aria-hidden="true"></span>So funktioniert\'s</button>');
+for (const [en, de] of Object.entries(KPI_DE)) {
+  dialogDe = dialogDe.replace(`<th scope="row">${en}</th>`, `<th scope="row">${de}</th>`);
+  twoLanguages = twoLanguages.replace(`data-vc-kpi="${en}"`, `data-vc-kpi="${en}" data-vc-kpi-de="${de}"`);
+}
+twoLanguages = twoLanguages.replace('</body>', `${dialogDe}\n</body>`);
 const planted = {
   'no guide': good.replace(/<dialog\b[^>]*vc-guide[\s\S]*?<\/dialog>/, ''),
   'title off pattern': good.replace('>How the prototype works</h2>', '>About this prototype</h2>'),
@@ -35,6 +52,11 @@ const planted = {
     .replace('<p class="vc-guide__lead">Four steps', '<p class="vc-guide__lead">Pallets per hour counts the work. Four steps'),
   'key figure row without its value': good.replace(/(<th scope="row">Open exceptions<\/th><td>[^<]*<\/td>)<td[^>]*>[^<]*<\/td>/, '$1'),
   'heading too long': good.replace(/<h3>[^<]*<\/h3>/, `<h3>${'A heading that runs far beyond the sixty characters a guide allows'}</h3>`),
+  'two guides, one without lang': twoLanguages.replace('id="guide-de" lang="de"', 'id="guide-de"'),
+  'two guides in one language': twoLanguages.replace('id="guide-de" lang="de"', 'id="guide-de" lang="en-GB"'),
+  'a German guide with an English title': twoLanguages.replace('id="guide-de-title">So funktioniert der Prototyp<', 'id="guide-de-title">How the prototype works<'),
+  'a key figure the German guide has no row for': twoLanguages.replace('data-vc-kpi-de="Wert im Risiko"', 'data-vc-kpi-de="Gefährdeter Wert"'),
+  'a second guide without its own button': twoLanguages.replace(/<button\b[^>]*data-vc-guide-open="guide-de"[^>]*>[\s\S]*?<\/button>/, ''),
 };
 const selfFailures = [];
 const goodProblems = guideProblems(good);
@@ -48,13 +70,17 @@ const named = planted['key figure the guide never names'].replace('<tr><th scope
 const namedProblems = guideProblems(named);
 if (named === planted['key figure the guide never names']) selfFailures.push('the control changed nothing');
 else if (namedProblems.length) selfFailures.push(`a key figure with its row in How it works was rejected: ${namedProblems.join('; ')}`);
+// And a page with one complete guide per language passes.
+const twoProblems = guideProblems(twoLanguages);
+if (twoLanguages.split('class="vc-dialog vc-guide"').length !== 3) selfFailures.push('the two-language page has no second guide');
+else if (twoProblems.length) selfFailures.push(`a page with one guide per language was rejected: ${twoProblems.join('; ')}`);
 if (selfFailures.length) {
   console.error(selfFailures.map((f) => `self-test failed: ${f}`).join('\n'));
   process.exit(1);
 }
 const n = Object.keys(planted).length;
 if (process.argv.includes('--self-test')) {
-  console.log(`Self-test caught ${n}/${n} planted mistakes and accepted a complete guide.`);
+  console.log(`Self-test caught ${n}/${n} planted mistakes and accepted a complete guide, also one per language.`);
   console.log('GUIDE SELF-TEST OK');
   process.exit(0);
 }
