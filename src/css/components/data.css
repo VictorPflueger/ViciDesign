@@ -171,6 +171,23 @@
     font-weight: var(--vc-weight-medium);
     letter-spacing: 0;
   }
+  /* The value before a decision moved the figure: struck through, then an arrow to the new value. */
+  .vc-stat__was {
+    margin-inline-end: 0.3em;
+    color: var(--vc-text-muted);
+    font-size: 0.55em;
+    font-weight: var(--vc-weight-medium);
+    letter-spacing: 0;
+    text-decoration-thickness: 1px;
+    vertical-align: 0.15em;
+  }
+  .vc-stat__was::after {
+    content: '\2192' / '';
+    display: inline-block;
+    margin-inline-start: 0.3em;
+    color: var(--vc-text-subtle);
+  }
+  .vc-stat__value:has(> .vc-stat__was) { white-space: nowrap; }
   .vc-stat__delta {
     --_h: 1.5rem;
     --_bg: var(--vc-neutral-bg);

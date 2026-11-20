@@ -56,7 +56,7 @@ Vici replaces every circle with a flat-top hexagon ("cells, not circles") on a d
 
 - The live documentation at `https://victorpflueger.github.io/ViciDesign/`.
 - The four starters in `starters/`, including the "Atlas" app prototype.
-- Five live prototypes on GitHub Pages: Dispatch Lab, Rebate Hunter, Navigator, Timetable Translator and Repack Pilot. Dispatch Lab's guide is the reference for the new How it works standard.
+- Six live prototypes on GitHub Pages: Dispatch Lab, Rebate Hunter, Navigator, Timetable Translator, Repack Pilot and Price Variance Agent. Dispatch Lab's guide is the reference for the new How it works standard.
 - Victor's portrait in `assets/brand/` and other brands' profile logos in `assets/marks/`.
 - There are no testimonials, usage figures or outside adopters. Nothing of the kind may be invented.
 
