@@ -44,9 +44,9 @@ Order of work, as the brief sets it: tokens and palette, component CSS and `src/
 
 | Change | Why | Approval |
 |---|---|---|
-| Keep danger at least ΔOK 0.10 from `--vc-accent` and `--vc-accent-text` in both themes. Done in Phase 3: in dark mode danger moved (coral 500 solid, coral 400 text); in light mode no danger red dark enough for text gets that far from merlot 700, so `--vc-accent-text` moved to merlot 800 and links keep merlot 700 | Brand text and the dark-mode primary action read as error colours today (F11, F13) | Yes, D4 (non-negotiables 2 and 5); final values in `v2-status-colours.html` |
-| Spread the status solids in lightness: danger and success at least 0.08 apart in OKLCH lightness in both themes, warning and info distinct from both | Danger, success and info share one lightness, so colour-blind viewers can't tell them apart by colour (F12) | Yes, D4 |
-| Separate `--vc-surface-selected` from `--vc-danger-bg` by at least ΔOK 0.04 | A selected row looks like an error row (F31) | Yes, D4 |
+| Keep danger at least ΔOK 0.10 from `--vc-accent` and `--vc-accent-text` in both themes. Done in Phase 3: in dark mode danger moved (coral 500 solid, coral 400 text); in light mode no danger red dark enough for text gets that far from merlot 700, so `--vc-accent-text` moved to merlot 800 and links keep merlot 700 | Brand text and the dark-mode primary action read as error colours today (F11, F13) | Yes, D4 (non-negotiables 2 and 5); final values in `v2-status-colours.html`, approved on 20 November 2026 |
+| Spread the status solids in lightness: danger and success at least 0.08 apart in OKLCH lightness in both themes, warning and info distinct from both | Danger, success and info share one lightness, so colour-blind viewers can't tell them apart by colour (F12) | Yes, D4; approved on 20 November 2026 |
+| Separate `--vc-surface-selected` from `--vc-danger-bg` by at least ΔOK 0.04 | A selected row looks like an error row (F31) | Yes, D4; approved on 20 November 2026 |
 | Retire `--vc-aurora-1`, `--vc-aurora-2`, `--vc-aurora-3` with `.vc-bg-aurora` | Template tell (F16, hypothesis 3) | Yes, D3 (breaking) |
 | Add `src/brand/profile.json` (name, LinkedIn, GitHub, website) as the one source the build uses for every byline and profile link | The website address is typed by hand today and will change when the site moves to its own domain (F04) | No |
 | Generate `Vici.version` and every pinned CDN address from `package.json` | 1.0.0 is typed in four places and the pin points at a tag that doesn't exist (F01, F42) | No |
@@ -357,7 +357,7 @@ New pages:
 | D1 | The One Thing | Recommended: adopt the sharpened sentence above |
 | D2 | Scope | Recommended: Medium (section 7) |
 | D3 | Remove `.vc-eyebrow`, `.vc-bg-aurora` and the aurora tokens in 2.0, or keep them deprecated until 3.0 | Recommended: remove now. Only your projects use them, and they keep a pinned 1.0.0 until they move |
-| D4 | New values for the status and selection colours (touches non-negotiables 2 and 5) | Recommended: approve the separation targets now; you approve the final values from before and after swatches at the end of Phase 3 |
+| D4 | New values for the status and selection colours (touches non-negotiables 2 and 5) | Recommended: approve the separation targets now; you approve the final values from before and after swatches at the end of Phase 3. Targets approved on 19 November; the final values approved on 20 November 2026 |
 | D5 | When the guide opens by itself | Recommended: every new tab, not on reload, with `?guide=0` and `?guide=present` |
 | D6 | Byline form | Recommended: keep the prototypes' form with the globe required; the name keeps linking to LinkedIn |
 | D7 | Byline on the personal site | Recommended: the same byline, its globe linking to the site's home page, so one rule and one check cover everything |
@@ -365,7 +365,7 @@ New pages:
 | D9 | A generated `llms.txt` for agents | Recommended: yes |
 | D10 | The 21 icons your prototypes need | Recommended: 2.1, after the prototypes move |
 | D11 | Moved pages | Recommended: move them and leave redirect pages at the old addresses |
-| D12 | The missing release tag | Recommended: create `v1.0.0` on GitHub today (Releases, Draft a new release, tag `v1.0.0` on `main` at `fdd868b`); this session can't push tags |
+| D12 | The missing release tag | Recommended: create `v1.0.0` on GitHub today (Releases, Draft a new release, tag `v1.0.0` on `main` at `fdd868b`); this session can't push tags. Still to do on 20 November 2026. From a clone: `git fetch origin`, then `git tag -a v1.0.0 fdd868b -m "Vici 1.0.0"` and `git push origin v1.0.0`; then on GitHub open Releases, Draft a new release, choose the tag `v1.0.0`, title it Vici 1.0.0, paste the 1.0.0 section of `CHANGELOG.md` and publish |
 | D13 | The guide's content format | Recommended: HTML in the page, which works under a strict CSP and can be checked, with script events for computed figures |
 | D14 | Writing as a new guideline page | Recommended: yes; it gives agents the rules that keep pages from reading as generated |
 
@@ -480,7 +480,7 @@ Scope: Vici 2.0 and its website meet the brief's Definition of done and every ru
 |---|---|
 | 1. Diagnose | Done, 19 November 2026 (Appendix A) |
 | 2. Plan | Done; approved 19 November 2026 (scope Full) |
-| 3. System | Done, 20 November 2026. The D4 status colours wait for your approval of `v2-status-colours.html` |
+| 3. System | Done, 20 November 2026. You approved the D4 status colours on 20 November 2026 |
 | 4. Website | Started 20 November 2026 with the home page and Build a prototype; the shell, navigation and the other pages follow |
 | 5. Verify and deliver | Not started |
 
@@ -506,9 +506,11 @@ Phase 4, home page (20 November 2026). You asked to see every change on the main
 
 Wide screens (20 November 2026). On screens from 1600 px, and on smaller ones zoomed out, the docs text drifted far to the right of the sidebar and On this page could run off the edge: a 1.0 layout rule (`margin-inline: auto 0` in a column that took all the free space) that Phase 1 missed because it measured at 1280 px. The sidebar, the article and On this page now form one centred block of at most 100rem (`--doc-page-max`), the header and footer line up with it, and the article and On this page stay together. Layouts at 1440 px and below don't move. `check:render` now also renders every page at 1920 and 2560 px and fails if the content drifts again (`scripts/lib/layout-probe.mjs`).
 
-Build a prototype (20 November 2026). You asked for a section that AI agents use when they build prototypes, demos and tech showcases with 2.0, based on what matters to you in prototypes. `start/prototypes.html` (source `src/docs/pages/start/prototypes.html`) opens with a brief to copy or to send as `start/prototype-brief.md` (source `src/docs/prototype-brief.md`, rendered by the `@prototype-brief` widget), then explains the rules behind it: the dumbest user possible, the three things (byline, talk track, key figures), the seven kinds of key figure, the layout from top to bottom with a working example and its guide, the partner review with its verdict and cut, fix and keep lists (R37), and the checks a prototype imports. The rules come from the PartnerOptimizer project's instructions you pasted (its chats can't be read from this project), from Dispatch Lab, and from what your other prototypes already do: the SIMULATION and LIVE marks, testing at 1920 × 1080 and 1280 × 720, open-source or synthetic data, the choice of simulated or live run with a session-only key, approval and an audit log where the AI acts, an honest README, favicons in the colour of their kind and no link to their own repository. The same change calls the guide the talk track, names money gained, lost or saved among the key figures, allows the byline in a strip under the header of a single-screen app, lists the blank starter on Starters, lets `bylineProblems()` accept "Erstellt von", adds a check for quotes escaped with a backslash (it found three on Byline and profile links), pins the new page's sections in `check-docs`, and makes the guide's phone test wait for the dialog's opening animation, which it had measured half a pixel narrow about one run in four. For the AI notice and the key-figure table it follows pull request #7 (Every live run says it is an AI, R35 and R36), merged while this page was written. The app starter doesn't show SIMULATION yet; it gets it when the starters are reworked later in Phase 4.
+Build a prototype (20 November 2026). You asked for a section that AI agents use when they build prototypes, demos and tech showcases with 2.0, based on what matters to you in prototypes. `start/prototypes.html` (source `src/docs/pages/start/prototypes.html`) opens with a brief to copy or to send as `start/prototype-brief.md` (source `src/docs/prototype-brief.md`, rendered by the `@prototype-brief` widget), then explains the rules behind it: the dumbest user possible, the three things (byline, talk track, key figures), the seven kinds of key figure, the layout from top to bottom with a working example and its guide, the partner review with its verdict and cut, fix and keep lists (R37), and the checks a prototype imports. The rules come from the PartnerOptimizer project's instructions you pasted (its chats can't be read from this project), from Dispatch Lab, and from what your other prototypes already do: the SIMULATION and LIVE marks, testing at 1920 × 1080 and 1280 × 720, open-source or synthetic data, the choice of simulated or live run with a session-only key, approval and an audit log where the AI acts, an honest README, favicons in the colour of their kind and no link to their own repository. The same change calls the guide the talk track, names money gained, lost or saved among the key figures, allows the byline in a strip under the header of a single-screen app, lists the blank starter on Starters, lets `bylineProblems()` accept "Erstellt von", adds a check for quotes escaped with a backslash (it found three on Byline and profile links), pins the new page's sections in `check-docs`, and makes the guide's phone test wait for the dialog's opening animation, which it had measured half a pixel narrow about one run in four. For the AI notice and the key-figure table it follows pull request #7 (Every live run says it is an AI, R35 and R36), merged while this page was written. On 20 November 2026 the app and blank starters got SIMULATION in their headers too.
 
-Next: the rest of Phase 4, the website (section 4), and your answer on D4.
+Approvals (20 November 2026). You approved the D4 status colours as `v2-status-colours.html` showed them, so the six theme references that changed in Phase 3 are final, and F11, F12, F13 and F31 are fixed. You asked for v1.0.0 to be released. GitHub refused it again from this session ("Creating, editing, or deleting releases is not permitted for this session type", HTTP 403), so the tag has to come from you; the steps are under D12. Until it exists, the CDN addresses pinned to `@v1.0.0` don't load (F01). You approved the SIMULATION label for the starters' headers: the app and blank starters, the two starting points for a prototype, now show it.
+
+Next: the rest of Phase 4, the website (section 4).
 
 P0 and P1 findings, which the Definition of done requires closed:
 
@@ -524,9 +526,9 @@ P0 and P1 findings, which the Definition of done requires closed:
 | F08 | P1 | Fixed | `check-guide` requires a presenting chapter of three to seven steps, each with a sentence to say and its minutes; documented in `components/guide.html#presenting` |
 | F09 | P1 | Open | |
 | F10 | P1 | Open | |
-| F11 | P1 | Done, awaiting approval | `--vc-accent-text` light to merlot 800; separation rule in `scripts/check-tokens.mjs` |
-| F12 | P1 | Done, awaiting approval | Light success 900, dark success 100 and danger 500; protan and deutan rule in `check-tokens` |
-| F13 | P1 | Done, awaiting approval | Dark danger solid coral 500, danger text coral 400 |
+| F11 | P1 | Fixed | `--vc-accent-text` light to merlot 800; separation rule in `scripts/check-tokens.mjs` |
+| F12 | P1 | Fixed | Light success 900, dark success 100 and danger 500; protan and deutan rule in `check-tokens` |
+| F13 | P1 | Fixed | Dark danger solid coral 500, danger text coral 400 |
 
 P2 and P3 findings closed or changed in Phase 3:
 
@@ -536,7 +538,7 @@ P2 and P3 findings closed or changed in Phase 3:
 | F15 | P2 | Fixed | 15 numbered headings on Getting started, Principles and Logo made plain; `check-docs` fails on "n ·" headings |
 | F16 | P2 | Fixed in the system | `.vc-bg-aurora` and its tokens retired; Colour asks for flat pastel grounds; the home page has none (`src/docs/pages/index.html`); the landing starter is rebuilt later in Phase 4 |
 | F27 | P2 | Rule done, home fixed | Hexagon: cells carry meaning, `.vc-cell` no longer "for feature lists and cards"; the home page's icon-card grids are gone (`src/docs/pages/index.html`); the Starters page's go later in Phase 4 |
-| F31 | P2 | Done, awaiting approval | Light `surface-selected` to merlot 200; the pair is in the separation rule |
+| F31 | P2 | Fixed | Light `surface-selected` to merlot 200; the pair is in the separation rule |
 | F34 | P2 | Fixed | The guide moves focus to each chapter heading and has no live region |
 | F35 | P2 | Fixed | The guide opens once per tab; `?guide=0` and `?guide=present` |
 | F38 | P3 | Fixed | `lang="en-GB"` in `src/docs/layout.html` and the starters; Accessibility and Writing say when to use `de` |
