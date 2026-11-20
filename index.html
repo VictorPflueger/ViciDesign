@@ -111,11 +111,12 @@
       </div>
 
       <div class="doc-news__group">
-        <h3 id="three-new-principles">Three new principles</h3>
+        <h3 id="four-new-principles">Four new principles</h3>
         <ul>
           <li><a href="guidelines/principles.html#signed">Every surface is signed</a>, so every prototype, demo and website ends with the byline, the personal site included.</li>
           <li><a href="guidelines/principles.html#explained">Every prototype explains itself</a> with a How it works guide.</li>
           <li><a href="guidelines/principles.html#worth">Every prototype shows what it is worth</a> with two to four key figures at the top, each explained by its guide.</li>
+          <li><a href="guidelines/principles.html#ai">Every live run says it is an AI</a>: “You are interacting with an AI system” wherever a prototype can start a live run with a model, and nothing leaves without a person's approval.</li>
           <li>The five earlier principles keep their meaning and lose their numbers, and Accessible by default now names WCAG 2.2 AA as the floor.</li>
         </ul>
       </div>
@@ -129,7 +130,7 @@
           <li>Focus moves to each chapter's heading, so a screen reader reads every chapter once. After a mouse click the heading shows no focus ring; with the keyboard it does. See <a href="components/guide.html#behaviour">Behaviour</a>.</li>
           <li>Steps in a stepper can now be buttons, <code>vc-step__button</code>, as in the guide's list of chapters.</li>
           <li><code>vc-guide__say</code> holds a sentence to say that contains markup, such as figures a script fills in. See <a href="components/guide.html#presenting">The presenting chapter</a>.</li>
-          <li>Key figures are <code>vc-stat</code> tiles marked with <code>data-vc-kpi</code>, and the check fails when the guide doesn't name one. See <a href="components/guide.html#key-figures">Key figures</a>.</li>
+          <li>Key figures are <code>vc-stat</code> tiles marked with <code>data-vc-kpi</code>. The How it works chapter gives each one a table row with what it measures and its value, and the check fails when one has none. See <a href="components/guide.html#key-figures">Key figures</a>.</li>
         </ul>
       </div>
 
@@ -203,8 +204,9 @@
         <ul>
           <li><code>npm run check</code> now also checks every byline, the guides in the starters, the Writing rules on every page and the distance between status colours, and it is stricter about anything round. See <a href="components/guide.html#check">what the guide check covers</a>.</li>
           <li><code>npm run check:render</code> opens each starter in a browser and tests its guide.</li>
-          <li>A prototype can import the same checks: <code>guideProblems()</code>, <code>bylineProblems()</code> and <code>writingProblems()</code>.</li>
-          <li>The new files are <code>check-byline.mjs</code>, <code>check-guide.mjs</code> and <code>check-guide-render.mjs</code> in <code>scripts</code>; <code>byline.mjs</code>, <code>guide.mjs</code>, <code>writing.mjs</code> and <code>separation.mjs</code> in <code>scripts/lib</code>; <code>profile.json</code> and <code>banned-words.json</code> as data.</li>
+          <li>A prototype can import the same checks: <code>guideProblems()</code>, <code>bylineProblems()</code>, <code>writingProblems()</code> and <code>aiNoticeProblems()</code>.</li>
+          <li>The new files are <code>check-byline.mjs</code>, <code>check-guide.mjs</code>, <code>check-guide-render.mjs</code> and <code>check-ai.mjs</code> in <code>scripts</code>; <code>byline.mjs</code>, <code>guide.mjs</code>, <code>writing.mjs</code>, <code>ai.mjs</code> and <code>separation.mjs</code> in <code>scripts/lib</code>; <code>profile.json</code> and <code>banned-words.json</code> as data.</li>
+          <li>GitHub Actions runs <code>npm run check</code> and <code>npm run check:render</code> on every push and pull request.</li>
         </ul>
       </div>
 

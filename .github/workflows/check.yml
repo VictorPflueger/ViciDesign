@@ -1,0 +1,37 @@
+# Runs Vici's checks on every push and pull request: npm run check (tokens, build freshness, hexagons,
+# fonts, docs and writing, byline, guide, AI notice, logo, integrations) and npm run check:render (every
+# page and starter in Chromium, and each starter's guide). Vici has no dependencies; Playwright is
+# installed here only for the browser checks.
+name: check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: npm run check
+        run: npm run check
+      - name: Cache the Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-1.56.0-chromium-${{ runner.os }}
+      - run: npm install -g playwright@1.56.0 && npx playwright install --with-deps chromium
+      - name: npm run check:render
+        run: NODE_PATH="$(npm root -g)" npm run check:render
