@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { resolve } from './tokens.mjs';
 import { contrast, hexToOklch, deltaOk, simulate } from './color.mjs';
 import { logoMarkSvg, viciWordmarkSvg } from './logos.mjs';
+import { SEPARATION, DANGER_SUCCESS_LIGHTNESS_GAP } from './separation.mjs';
 
 const SECTIONS = ['Start', 'Guidelines', 'Components', 'Brand'];
 
@@ -207,7 +208,7 @@ export const CHARTS = {
       const last = s.values.at(-1);
       out += `<text class="vc-chart__axis" x="${n1(x(months.length - 1) + 12)}" y="${n1(y(last) + 4)}" style="fill:var(--vc-text);font-weight:600">${s.name} ${last}%</text>`;
     });
-    return `<figure class="vc-chart"><figcaption><p class="vc-chart__title">Share of tickets resolved, by channel</p><p class="vc-chart__subtitle">Percent of monthly volume — labelled directly at the line ends</p></figcaption><div class="vc-chart__plot"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Line chart over twelve months: tickets resolved by the agent rise from 12 to 79 percent, the assistant from 20 to 44 percent, manual handling falls from 64 to 26 percent.">${out}</svg></div><p class="vc-chart__source">Sample data · hexagon markers, the last point enlarged</p></figure>`;
+    return `<figure class="vc-chart"><figcaption><p class="vc-chart__title">Share of tickets resolved, by channel</p><p class="vc-chart__subtitle">Percent of monthly volume, labelled directly at the line ends</p></figcaption><div class="vc-chart__plot"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Line chart over twelve months: tickets resolved by the agent rise from 12 to 79 percent, the assistant from 20 to 44 percent, manual handling falls from 64 to 26 percent.">${out}</svg></div><p class="vc-chart__source">Sample data · hexagon markers, the last point enlarged</p></figure>`;
   },
 
   waffle() {
@@ -411,6 +412,26 @@ function makeWidgets(ctx) {
         .join('')}</tbody></table></div>`;
     },
 
+    // <!-- @separation-table --> → the status separations check-tokens enforces, measured from the
+    // tokens in both themes.
+    'separation-table': () => {
+      // Every row passes, or the build has already failed, so the cells show measurements only.
+      const sw = (hex) => `<span class="doc-contrast-sample" style="background:${hex}" aria-hidden="true"></span>`;
+      const cell = (T, a, b, cvd) => {
+        const d = deltaOk(T[a], T[b]);
+        const cb = cvd ? Math.min(...['protan', 'deutan'].map((m) => deltaOk(simulate(T[a], m), simulate(T[b], m)))) : null;
+        return `<td>${sw(T[a])}${sw(T[b])} <span class="vc-tabular">${d.toFixed(3)}</span>${cb === null ? '' : `<br><span class="vc-caption">Red-green: <span class="vc-tabular">${cb.toFixed(3)}</span></span>`}</td>`;
+      };
+      const gapCell = (T) => {
+        const g = Math.abs(hexToOklch(T['danger-solid'])[0] - hexToOklch(T['success-solid'])[0]);
+        return `<td>${sw(T['danger-solid'])}${sw(T['success-solid'])} <span class="vc-tabular">${g.toFixed(3)}</span></td>`;
+      };
+      return `<div class="vc-table-wrap"><table class="vc-table doc-token-table">
+<caption>Distances between status colours in ΔOK, measured from the tokens</caption>
+<thead><tr><th scope="col">Pair</th><th scope="col">At least</th><th scope="col">Light</th><th scope="col">Dark</th></tr></thead>
+<tbody>${SEPARATION.map(([a, b, min, cvd]) => `<tr><th scope="row"><code>${a}</code><br><code>${b}</code></th><td class="vc-tabular">${min.toFixed(2)}</td>${cell(L, a, b, cvd)}${cell(D, a, b, cvd)}</tr>`).join('')}<tr><th scope="row">Lightness of<br><code>danger-solid</code> and <code>success-solid</code></th><td class="vc-tabular">${DANGER_SUCCESS_LIGHTNESS_GAP.toFixed(2)}</td>${gapCell(L)}${gapCell(D)}</tr></tbody></table></div>`;
+    },
+
     'data-palette': () => {
       const strip = (T, keys, label) =>
         `<div class="doc-data-strip" role="img" aria-label="${esc(label)}">${keys.map((k) => `<span class="doc-data-cell" style="--sw:${T[k]};color:${readable(T[k])}" title="${k}: ${T[k]}"><span>${k.replace('data-', '').replace('seq-', '').replace('div-', '')}</span></span>`).join('')}</div>`;
@@ -425,12 +446,12 @@ function makeWidgets(ctx) {
       };
       const distRow = (T) => ['normal', 'protan', 'deutan', 'tritan'].map((m) => `<td class="vc-num">${minDist(T, m)}</td>`).join('');
       return `<div class="doc-data-grid">
-  <div><h3 class="doc-data-grid__title">Categorical — light</h3>${strip(L, cat, 'Categorical series colours, light theme')}</div>
-  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Categorical — dark</h3>${strip(D, cat, 'Categorical series colours, dark theme')}</div>
-  <div><h3 class="doc-data-grid__title">Sequential — light</h3>${strip(L, seq, 'Sequential ramp, light theme')}</div>
-  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Sequential — dark</h3>${strip(D, seq, 'Sequential ramp, dark theme')}</div>
-  <div><h3 class="doc-data-grid__title">Diverging — light</h3>${strip(L, div, 'Diverging ramp, light theme')}</div>
-  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Diverging — dark</h3>${strip(D, div, 'Diverging ramp, dark theme')}</div>
+  <div><h3 class="doc-data-grid__title">Categorical, light theme</h3>${strip(L, cat, 'Categorical series colours, light theme')}</div>
+  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Categorical, dark theme</h3>${strip(D, cat, 'Categorical series colours, dark theme')}</div>
+  <div><h3 class="doc-data-grid__title">Sequential, light theme</h3>${strip(L, seq, 'Sequential ramp, light theme')}</div>
+  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Sequential, dark theme</h3>${strip(D, seq, 'Sequential ramp, dark theme')}</div>
+  <div><h3 class="doc-data-grid__title">Diverging, light theme</h3>${strip(L, div, 'Diverging ramp, light theme')}</div>
+  <div class="doc-dark-panel" data-theme="dark"><h3 class="doc-data-grid__title">Diverging, dark theme</h3>${strip(D, div, 'Diverging ramp, dark theme')}</div>
 </div>
 <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
 <caption>Smallest perceptual distance (ΔOKLab) between any two of the six categorical series, measured by the build, also under simulated colour-vision deficiencies.</caption>
@@ -528,12 +549,27 @@ function makeWidgets(ctx) {
       return `<img class="vc-platform-mark" src="{{root}}assets/marks/${name.trim()}.png" alt="" width="${w}" height="${h}">`;
     },
 
-    // <!-- @byline [id] --> → the "Built by" byline from src/brand/profile.json: portrait, name and
+    // <!-- @banned-words --> → the Writing guideline's table of stock words, from
+    // src/docs/banned-words.json. check-docs reads the same file, so the page and the check agree.
+    'banned-words': () => {
+      const rows = ctx.banned.groups.map((g) => `      <tr><td>${g.words.map(esc).join(', ')}${g.check === false ? ' <span class="vc-text-muted">(when figurative)</span>' : ''}</td><td>${esc(g.instead)}</td></tr>`).join('\n');
+      return `<div class="vc-table-wrap"><table class="vc-table" data-doc-banned>
+    <caption>Words Vici's pages leave out</caption>
+    <thead><tr><th scope="col">Instead of</th><th scope="col">Write</th></tr></thead>
+    <tbody>
+${rows}
+    </tbody>
+  </table></div>`;
+    },
+
+    // <!-- @profile key --> → one value from src/brand/profile.json, such as the website address
+    profile: (key) => esc(String(ctx.profile[(key || '').trim()] ?? '')),
+
+    // <!-- @byline --> → the "Built by" byline from src/brand/profile.json: portrait, name and
     // LinkedIn's [in] as one link to LinkedIn, then a globe linking to the website, both rel="author".
-    // The id names the globe's tooltip; a page that shows several bylines gives each its own.
-    byline: (id) => {
+    // The globe's name is "Victor Pflüger's website"; its tooltip, "Website", is visual only.
+    byline: () => {
       const p = ctx.profile;
-      const tip = `vc-byline-site${id && id.trim() ? '-' + id.trim() : ''}`;
       return `<p class="vc-byline">
   <span class="vc-byline__label">Built by</span>
   <a class="vc-byline__person" href="${esc(p.linkedin)}" rel="author">
@@ -543,8 +579,8 @@ function makeWidgets(ctx) {
     <span class="vc-visually-hidden"> on LinkedIn</span>
   </a>
   <span class="vc-tooltip-anchor">
-    <a class="vc-byline__icon" href="${esc(p.website)}" rel="author" aria-labelledby="${tip}"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
-    <span class="vc-tooltip" role="tooltip" id="${tip}">${esc(p.name)}'s website</span>
+    <a class="vc-byline__icon" href="${esc(p.website)}" rel="author" aria-label="${esc(p.name)}'s website"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" aria-hidden="true">Website</span>
   </span>
 </p>`;
     },
@@ -661,7 +697,8 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
   const sequence = home ? [home, ...ordered] : ordered;
 
   const profile = JSON.parse(readFileSync(join(root, 'src/brand/profile.json'), 'utf8'));
-  const ctx = { root, tokens, flat, icons, pages, version, profile, stats: stats || { minCss: 0, gzCss: 0 } };
+  const banned = JSON.parse(readFileSync(join(root, 'src/docs/banned-words.json'), 'utf8'));
+  const ctx = { root, tokens, flat, icons, pages, version, profile, banned, stats: stats || { minCss: 0, gzCss: 0 } };
   const widgets = makeWidgets(ctx);
   const counter = { n: 0 };
   const out = [];
@@ -734,7 +771,7 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
 
     const html = layout
       .replace(/\{\{pageTitle\}\}/g, esc(isHome ? 'Vici Design System' : `${page.meta.title} · Vici Design System`))
-      .replace(/\{\{description\}\}/g, esc(page.meta.description || 'Vici — a personal design system built on hexagons, merlot and pastels.'))
+      .replace(/\{\{description\}\}/g, esc(page.meta.description || 'Vici, a personal design system built on hexagons, merlot and pastels.'))
       .replace(/\{\{logo\}\}/g, logoMarkSvg({ size: 26, title: false }) + viciWordmarkSvg(root, { height: 21, title: 'Vici' }))
       .replace(/\{\{headernav\}\}/g, headernav)
       .replace(/\{\{sidebar\}\}/g, sidebar)

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atlas — app prototype · Vici starter</title>
+  <title>Atlas · Vici app starter</title>
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
   <!-- Vici: point these two lines at your copy of dist/ or at the CDN -->
@@ -160,7 +160,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td class="vc-mono">INV-20931</td><td>Nordlicht Logistik</td><td class="vc-num">48,210.00</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">Price +6.2 %</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--fjord">AK</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary" onclick="Vici.toast({title:'Approved',message:'INV-20931 was released for payment.',tone:'success'})">Approve</button></td></tr>
+                <tr><td class="vc-mono">INV-20931</td><td>Nordlicht Logistik</td><td class="vc-num">48,210.00</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">Price +6.2&nbsp;%</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--fjord">AK</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary" onclick="Vici.toast({title:'Approved',message:'INV-20931 was released for payment.',tone:'success'})">Approve</button></td></tr>
                 <tr><td class="vc-mono">INV-20918</td><td>Rheinwerk Components</td><td class="vc-num">31,775.40</td><td><span class="vc-tag vc-tag--sm vc-tag--warning">Quantity 480/500</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--sage">JS</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
                 <tr><td class="vc-mono">INV-20907</td><td>Kranich Software</td><td class="vc-num">12,400.00</td><td><span class="vc-tag vc-tag--sm vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>PO suggested</span></td><td><span class="vc-avatar vc-avatar--xs">VP</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
                 <tr><td class="vc-mono">INV-20899</td><td>Elbufer Facility</td><td class="vc-num">8,960.15</td><td><span class="vc-tag vc-tag--sm vc-tag--danger">Missing PO</span></td><td><span class="vc-avatar vc-avatar--xs vc-avatar--lilac">MR</span></td><td><button type="button" class="vc-button vc-button--sm vc-button--secondary">Review</button></td></tr>
@@ -208,8 +208,8 @@
     <span class="vc-visually-hidden"> on LinkedIn</span>
   </a>
   <span class="vc-tooltip-anchor">
-    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-labelledby="vc-byline-site"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
-    <span class="vc-tooltip" role="tooltip" id="vc-byline-site">Victor Pflüger's website</span>
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-label="Victor Pflüger's website"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" aria-hidden="true">Website</span>
   </span>
 </p>
       </footer>
@@ -225,7 +225,7 @@
       <div class="vc-dialog__body vc-stack">
         <div class="vc-field">
           <label class="vc-label" for="rule-name">Name</label>
-          <input class="vc-input" id="rule-name" placeholder="e.g. Freight within 2 %">
+          <input class="vc-input" id="rule-name" placeholder="e.g. Freight within 2&nbsp;%">
         </div>
         <div class="vc-field">
           <label class="vc-label" for="rule-tol">Price tolerance</label>
@@ -260,7 +260,7 @@
           <caption>This morning's run</caption>
           <tbody>
             <tr><th scope="row">Invoices checked</th><td class="vc-num">470</td></tr>
-            <tr><th scope="row">Matched by the agent</th><td class="vc-num">342 (72.8 %)</td></tr>
+            <tr><th scope="row">Matched by the agent</th><td class="vc-num">342 (72.8&nbsp;%)</td></tr>
             <tr><th scope="row">Left for a person</th><td class="vc-num">128</td></tr>
           </tbody>
         </table></div>
@@ -268,20 +268,23 @@
       <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
         <h3>Three reasons send an invoice to a person</h3>
         <p class="vc-guide__lead">The agent compares each invoice with its purchase order. When the price, the quantity or the order itself doesn't match, the invoice lands here with that reason.</p>
-        <ul>
-          <li><strong>Price mismatch:</strong> the invoice charges more than the order agreed.</li>
-          <li><strong>Quantity:</strong> the invoice bills a different quantity than the order.</li>
-          <li><strong>Missing PO:</strong> no purchase order matches the invoice.</li>
-        </ul>
+        <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+          <caption>Reasons</caption>
+          <tbody>
+            <tr><th scope="row">Price mismatch</th><td>The invoice charges more than the order agreed.</td></tr>
+            <tr><th scope="row">Quantity</th><td>The invoice bills a different quantity than the order.</td></tr>
+            <tr><th scope="row">Missing PO</th><td>No purchase order matches the invoice.</td></tr>
+          </tbody>
+        </table></div>
       </section>
       <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present">
         <h3>Show it in five minutes</h3>
         <p class="vc-guide__lead">Four steps, five minutes in all. Start on the exception list.</p>
         <ol class="vc-guide__path">
-          <li><strong>Open the exception list.</strong> "Each morning the agent leaves only these for a person." <span class="vc-guide__time">1 min</span></li>
-          <li><strong>Read the lilac banner.</strong> "Lilac marks what the agent did: it matched 342 invoices without help." <span class="vc-guide__time">1 min</span></li>
-          <li><strong>Filter by Price mismatch.</strong> "Here a person decides whether a price difference is acceptable." <span class="vc-guide__time">1 min</span></li>
-          <li><strong>Open New rule.</strong> "A rule lets the agent settle this kind of difference by itself next time." <span class="vc-guide__time">2 min</span></li>
+          <li><strong>Open the exception list.</strong> “Each morning the agent leaves only these for a person.” <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Read the lilac banner.</strong> “Lilac marks what the agent did: it matched 342 invoices without help.” <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Filter by Price mismatch.</strong> “Here a person decides whether a price difference is acceptable.” <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Open New rule.</strong> “A rule lets the agent settle this kind of difference by itself next time.” <span class="vc-guide__time">2 min</span></li>
         </ol>
       </section>
     </div>

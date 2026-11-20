@@ -3,9 +3,10 @@
 // standard on Components > How it works guide. One dialog.vc-guide that opens by itself; a title
 // "How the prototype|demo|challenge|showcase works" (or its German form); chapters "what" first,
 // "how" second and "present" last, three to eight in all; in each chapter one heading of at most
-// 60 characters, one lead of at most 40 words and at most one figure, table or list; a presenting
-// path of three to seven timed steps; a header button with visible text; Back, Next and the count;
-// no eyebrow. A self-test first proves that the checker catches planted mistakes.
+// 60 characters, one lead of at most 40 words and at most one figure, table or list of at most five
+// items; a presenting path of three to seven steps, each with a sentence to say in quotation marks
+// and a time in minutes; a header button with visible text; Back, Next and the count; no eyebrow.
+// A self-test first proves that the checker catches planted mistakes.
 import { read } from './lib/files.mjs';
 
 const STARTERS = ['starters/app.html', 'starters/dashboard.html', 'starters/blank.html'];
@@ -47,9 +48,14 @@ export function guideProblems(html) {
     // a table inside a figure counts once
     const tables = (c.body.match(/<table\b/g) || []).length;
     const figures = (c.body.match(/<figure\b/g) || []).length;
-    const lists = (c.body.match(/<(ul|ol)\b/g) || []).length;
+    const lists = (c.body.match(/<(ul|ol|dl)\b/g) || []).length;
     const parts = figures + lists + (figures ? 0 : tables);
     if (parts > 1) out.push(`${where}: more than one figure, table or list`);
+    for (const l of c.body.matchAll(/<(ul|ol|dl)\b([^>]*)>([\s\S]*?)<\/\1>/g)) {
+      if (/vc-guide__path/.test(l[2])) continue;
+      const items = (l[3].match(/<(li|dt)\b/g) || []).length;
+      if (items > 5) out.push(`${where}: a list of ${items} items, at most five`);
+    }
   }
   const present = chapters.find((c) => c.id === 'present');
   if (present) {
@@ -58,7 +64,10 @@ export function guideProblems(html) {
     else {
       const steps = [...path.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map((m) => m[1]);
       if (steps.length < 3 || steps.length > 7) out.push(`presenting path has ${steps.length} steps, needs 3 to 7`);
-      steps.forEach((s, i) => { if (!/class="vc-guide__time"[^>]*>\s*\d+(\.\d+)?\s*min\b/.test(s)) out.push(`presenting step ${i + 1} has no time in minutes`); });
+      steps.forEach((s, i) => {
+        if (!/class="vc-guide__time"[^>]*>\s*\d+([.,]\d+)?\s*min\b/.test(s)) out.push(`presenting step ${i + 1} has no time in minutes`);
+        if (!/[“"„][^“”"„]{3,}[”"“]/.test(text(s))) out.push(`presenting step ${i + 1} has no sentence to say in quotation marks`);
+      });
     }
   }
   if (!/data-vc-guide-next\b/.test(body) || !/data-vc-guide-back\b/.test(body) || !/class="vc-guide__count"/.test(body)) out.push('footer lacks Back, Next or the count');
@@ -78,6 +87,8 @@ const planted = {
   'presenting chapter not last': good.replace('data-vc-chapter="present"', 'data-vc-chapter="later"'),
   'two leads in a chapter': good.replace('<p class="vc-guide__lead">', '<p class="vc-guide__lead">One more.</p><p class="vc-guide__lead">'),
   'step without a time': good.replace(/<span class="vc-guide__time">1 min<\/span>/, ''),
+  'step without a sentence to say': good.replace(/(<ol class="vc-guide__path">\s*<li><strong>[^<]*<\/strong>) “[^”]*”/, '$1'),
+  'list of six items': good.replace(/<div class="vc-table-wrap"><table class="vc-table vc-table--compact">\s*<caption>This morning's run<\/caption>[\s\S]*?<\/table><\/div>/, `<ul>${'<li>An item</li>'.repeat(6)}</ul>`),
   'does not open by itself': good.replace(' data-vc-guide-auto', ''),
   'eyebrow inside': good.replace('<h3>', '<p class="vc-eyebrow">Chapter 1 of 3</p><h3>'),
   'heading too long': good.replace(/<h3>[^<]*<\/h3>/, `<h3>${'A heading that runs far beyond the sixty characters a guide allows'}</h3>`),

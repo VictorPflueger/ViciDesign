@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="vici-build">
+  <title>How it works guide · Vici Design System</title>
+  <meta name="description" content="The short guide that opens with every prototype, demo, challenge and showcase: what it does, how it works and how to present it. Title, chapters, copy rules, markup, behaviour, opening and the presenting chapter.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../dist/vici.css">
+  <link rel="stylesheet" href="../assets/docs/docs.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <script src="../assets/docs/docs.js" defer></script>
+</head>
+<body class="doc">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header doc-header">
+    <div class="vc-header__inner">
+      <span class="vc-tooltip-anchor doc-sidebar-toggle-anchor">
+        <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-labelledby="doc-tip-nav">
+          <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+        </button>
+        <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="doc-tip-nav">Open navigation</span>
+      </span>
+      <a class="vc-header__brand doc-brand" href="../index.html" aria-label="Vici Design System, home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24.55 15.48 73.84 69.63" width="27.57" height="26" aria-hidden="true" focusable="false" class="vc-logo"><path d="M35.86 32.71 L56.58 68.59" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><path d="M63.42 68.59 L79 41.6" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><polygon points="41.45,33.78 34,38.08 26.55,33.78 26.55,25.18 34,20.88 41.45,25.18" style="fill:var(--vc-text)"/><path d="M67.45 78.82 L60 83.12 L52.55 78.82 L52.55 70.22 L60 65.92 L67.45 70.22 Z M63.45 76.51 L60 78.5 L56.55 76.51 L56.55 72.53 L60 70.54 L63.45 72.53 Z" style="fill:var(--vc-text)" fill-rule="evenodd"/><path d="M96.39 35.48 L86 41.48 L75.61 35.48 L75.61 23.48 L86 17.48 L96.39 23.48 Z M92.39 33.17 L86 36.86 L79.61 33.17 L79.61 25.79 L86 22.1 L92.39 25.79 Z" style="fill:var(--vc-merlot-500)" fill-rule="evenodd"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -712 1560 720" width="45.5" height="21" role="img" class="vc-wordmark"><title>Vici</title><path d="M222.25 0.0H397.0L613.0 -660.0H465.5L312.25 -113.75H309.25L153.75 -660.0H6.0ZM1100.0 13.75Q1162.75 13.75 1207.875 -3.875Q1253.0 -21.5 1281.375 -52.75Q1309.75 -84.0 1321.125 -124.375Q1332.5 -164.75 1328.25 -209.5L1202.75 -216.5Q1205.75 -185.75 1197.0 -156.375Q1188.25 -127.0 1165.5 -108.375Q1142.75 -89.75 1102.25 -89.75Q1063.75 -89.75 1035.75 -109.125Q1007.75 -128.5 992.5 -167.375Q977.25 -206.25 977.25 -263.75Q977.25 -308.5 986.125 -339.625Q995.0 -370.75 1011.0 -390.75Q1027.0 -410.75 1048.5 -420.0Q1070.0 -429.25 1095.25 -429.25Q1125.5 -429.25 1147.75 -416.625Q1170.0 -404.0 1182.0 -378.875Q1194.0 -353.75 1192.75 -315.75L1311.5 -326.5Q1318.0 -382.0 1296.75 -429.75Q1275.5 -477.5 1225.875 -507.5Q1176.25 -537.5 1097.0 -537.5Q1030.5 -537.5 982.0 -515.5Q933.5 -493.5 902.375 -454.125Q871.25 -414.75 856.0 -364.5Q840.75 -314.25 840.75 -257.25Q840.75 -200.5 856.0 -151.375Q871.25 -102.25 903.0 -65.0Q934.75 -27.75 983.875 -7.0Q1033.0 13.75 1100.0 13.75ZM649.0 0.0H784.5V-523.5H649.0ZM1376.0 0.0H1511.5V-523.5H1376.0ZM807.8148803710938 -637.5 762.0324096679688 -716.7974853515625H670.4675903320312L624.6851196289062 -637.5L670.4675903320312 -558.2025146484375H762.0324096679688ZM1534.8148193359375 -637.5 1489.032470703125 -716.7974853515625H1397.467529296875L1351.6851806640625 -637.5L1397.467529296875 -558.2025146484375H1489.032470703125Z" style="fill:currentColor"/></svg><span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v1.0.0</span></a>
+      <nav class="vc-header__nav doc-header__nav" aria-label="Sections"><a href="../start/getting-started.html">Start</a><a href="../guidelines/principles.html">Guidelines</a><a href="../components/actions.html" aria-current="true">Components</a><a href="../brand/logo.html">Brand</a></nav>
+      <div class="vc-header__actions">
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="doc-tip-theme">
+            <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+            <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+          </button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="doc-tip-theme">Dark theme</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-shell">
+    <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation">
+      <nav class="vc-sidenav">
+<ul><li><a href="../index.html"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li></ul>
+<div><p class="vc-sidenav__title">Start</p><ul><li><a href="../start/getting-started.html"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Getting started</a></li><li><a href="../start/theming.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Theming</a></li><li><a href="../start/integrations.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Integrations</a></li><li><a href="../start/starters.html"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Starters</a></li><li><a href="../start/tokens.html"><span class="vc-icon vc-icon--code" aria-hidden="true"></span>Tokens</a></li><li><a href="../start/licence.html"><span class="vc-icon vc-icon--book" aria-hidden="true"></span>Licence</a></li></ul></div>
+<div><p class="vc-sidenav__title">Guidelines</p><ul><li><a href="../guidelines/principles.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Principles</a></li><li><a href="../guidelines/writing.html"><span class="vc-icon vc-icon--memo" aria-hidden="true"></span>Writing</a></li><li><a href="../guidelines/colour.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Colour</a></li><li><a href="../guidelines/typography.html"><span class="vc-icon vc-icon--type" aria-hidden="true"></span>Typography</a></li><li><a href="../guidelines/hexagon.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Hexagon</a></li><li><a href="../guidelines/layout.html"><span class="vc-icon vc-icon--layout" aria-hidden="true"></span>Layout &amp; spacing</a></li><li><a href="../guidelines/elevation.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Elevation</a></li><li><a href="../guidelines/motion.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Motion</a></li><li><a href="../guidelines/icons.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Icons</a></li><li><a href="../guidelines/data-viz.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data visualisation</a></li><li><a href="../guidelines/accessibility.html"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span>Accessibility</a></li></ul></div>
+<div><p class="vc-sidenav__title">Components</p><ul><li><a href="../components/actions.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Actions</a></li><li><a href="../components/forms.html"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Forms</a></li><li><a href="../components/content.html"><span class="vc-icon vc-icon--cube" aria-hidden="true"></span>Content</a></li><li><a href="../components/navigation.html"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span>Navigation</a></li><li><a href="../components/feedback.html"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span>Feedback</a></li><li><a href="../components/overlays.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Overlays</a></li><li><a href="../components/data.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data display</a></li><li><a href="../components/guide.html" aria-current="page"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works guide</a></li></ul></div>
+<div><p class="vc-sidenav__title">Brand</p><ul><li><a href="../brand/logo.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Logo</a></li><li><a href="../brand/profile-links.html"><span class="vc-icon vc-icon--user" aria-hidden="true"></span>Byline and profile links</a></li></ul></div>
+      </nav>
+    </aside>
+    <div class="doc-scrim" data-doc-close-sidebar hidden></div>
+
+    <main class="doc-main" id="main" tabindex="-1">
+      <article class="doc-article">
+<header class="doc-hero">
+  <h1>How it works guide</h1>
+  <p class="vc-lead">Every prototype, demo, challenge and showcase opens with a short guide: what it does, how it works and how to present it. Someone who only gets the link still understands it.</p>
+</header>
+
+<div class="doc-demo doc-demo--center"><div class="doc-demo__preview">
+<button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="guide-example"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works</button>
+<dialog class="vc-dialog vc-guide" id="guide-example" aria-labelledby="guide-example-title" data-vc-guide data-vc-guide-count="{n} of {total}">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="guide-example-title">How the prototype works</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-guide__chapters">
+    <section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="What it does">
+      <h3>Shows the 128 invoices the agent couldn't match</h3>
+      <p class="vc-guide__lead">Atlas is a sample prototype. Every morning an agent matches supplier invoices to their orders and leaves the rest for a person, who works through them on this page.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>This morning's run</caption>
+        <tbody>
+          <tr><th scope="row">Invoices checked</th><td class="vc-num">470</td></tr>
+          <tr><th scope="row">Matched by the agent</th><td class="vc-num">342 (72.8&nbsp;%)</td></tr>
+          <tr><th scope="row">Left for a person</th><td class="vc-num">128</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
+      <h3>Three reasons send an invoice to a person</h3>
+      <p class="vc-guide__lead">The agent compares each invoice with its purchase order. When the price, the quantity or the order itself doesn't match, the invoice lands here with that reason.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Reasons</caption>
+        <tbody>
+          <tr><th scope="row">Price mismatch</th><td>The invoice charges more than the order agreed.</td></tr>
+          <tr><th scope="row">Quantity</th><td>The invoice bills a different quantity than the order.</td></tr>
+          <tr><th scope="row">Missing PO</th><td>No purchase order matches the invoice.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present">
+      <h3>Show it in five minutes</h3>
+      <p class="vc-guide__lead">Four steps, five minutes in all. Start on the exception list.</p>
+      <ol class="vc-guide__path">
+        <li><strong>Open the exception list.</strong> “Each morning the agent leaves only these for a person.” <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Read the lilac banner.</strong> “Lilac marks what the agent did: it matched 342 invoices without help.” <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Filter by Price mismatch.</strong> “Here a person decides whether a price difference is acceptable.” <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Open New rule.</strong> “A rule lets the agent settle this kind of difference by itself next time.” <span class="vc-guide__time">2 min</span></li>
+      </ol>
+    </section>
+  </div>
+  <footer class="vc-dialog__footer vc-guide__footer">
+    <span class="vc-guide__count"></span>
+    <button type="button" class="vc-button vc-button--ghost" data-vc-guide-back><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span>Back</button>
+    <button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Start">Next<span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+  </footer>
+</dialog>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-55"><span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--secondary&quot;</span> <span class="tk-attr">data-vc-guide-open</span>=<span class="tk-str">&quot;guide-example&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--info&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>How it works<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">dialog</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog vc-guide&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;guide-example&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;guide-example-title&quot;</span> <span class="tk-attr">data-vc-guide</span> <span class="tk-attr">data-vc-guide-count</span>=<span class="tk-str">&quot;{n} of {total}&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">header</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__header&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">h2</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__title&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;guide-example-title&quot;</span><span class="tk-punct">&gt;</span>How the prototype works<span class="tk-punct">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button&quot;</span> <span class="tk-attr">data-vc-close</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Close&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--close&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">header</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapters&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;what&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;What it does&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Shows the 128 invoices the agent couldn't match<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>Atlas is a sample prototype. Every morning an agent matches supplier invoices to their orders and leaves the rest for a person, who works through them on this page.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>This morning's run<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Invoices checked<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>470<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Matched by the agent<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>342 (72.8&amp;nbsp;%)<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Left for a person<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>128<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;how&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;How it works&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Three reasons send an invoice to a person<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>The agent compares each invoice with its purchase order. When the price, the quantity or the order itself doesn't match, the invoice lands here with that reason.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>Reasons<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Price mismatch<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>The invoice charges more than the order agreed.<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Quantity<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>The invoice bills a different quantity than the order.<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Missing PO<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>No purchase order matches the invoice.<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;present&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;How to present&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Show it in five minutes<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>Four steps, five minutes in all. Start on the exception list.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">ol</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__path&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Open the exception list.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> “Each morning the agent leaves only these for a person.” <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>1 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Read the lilac banner.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> “Lilac marks what the agent did: it matched 342 invoices without help.” <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>1 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Filter by Price mismatch.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> “Here a person decides whether a price difference is acceptable.” <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>1 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Open New rule.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> “A rule lets the agent settle this kind of difference by itself next time.” <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>2 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">ol</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">footer</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__footer vc-guide__footer&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__count&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--ghost&quot;</span> <span class="tk-attr">data-vc-guide-back</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--chevron-left&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Back<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button&quot;</span> <span class="tk-attr">data-vc-guide-next</span> <span class="tk-attr">data-vc-guide-done</span>=<span class="tk-str">&quot;Start&quot;</span><span class="tk-punct">&gt;</span>Next<span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--chevron-right&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">footer</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-55" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<p class="vc-caption">This is the guide of the <a href="../starters/app.html">app starter</a>. On a prototype it opens by itself; on this page the button opens it.</p>
+
+<h2 id="title-pattern">Title</h2>
+<p>The title says what kind of thing the guide explains. The words are fixed, so every guide is recognisable at a glance.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Guide titles</caption>
+  <thead><tr><th scope="col">Kind</th><th scope="col">English</th><th scope="col">German</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Prototype</th><td>How the prototype works</td><td>So funktioniert der Prototyp</td></tr>
+    <tr><th scope="row">Demo</th><td>How the demo works</td><td>So funktioniert die Demo</td></tr>
+    <tr><th scope="row">Challenge</th><td>How the challenge works</td><td>So funktioniert die Challenge</td></tr>
+    <tr><th scope="row">Showcase</th><td>How the showcase works</td><td>So funktioniert der Showcase</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The header button that reopens the guide reads “How it works” (“So funktioniert's” in German), with the <span class="vc-icon vc-icon--info" aria-hidden="true"></span> info icon and visible text. Pages that are none of these four kinds, such as the personal site, these docs and the landing starter, have no guide.</p>
+
+<h2 id="chapters">Chapters</h2>
+<p>A guide has three to eight chapters, and four to six read best. The first two and the last are fixed; the chapters between them are yours.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Chapter order</caption>
+  <thead><tr><th scope="col">Position</th><th scope="col">Chapter id</th><th scope="col">Rail label</th><th scope="col">Answers</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">First</th><td><code>what</code></td><td>What it does</td><td>What it is, who it is for and which question it answers</td></tr>
+    <tr><th scope="row">Second</th><td><code>how</code></td><td>How it works</td><td>Inputs, logic and outputs, and what is simulated and what is real</td></tr>
+    <tr><th scope="row">Between</th><td>Your own</td><td>Up to five words</td><td>Optional: results, how to read the page, limits. “How” can run over several chapters.</td></tr>
+    <tr><th scope="row">Last</th><td><code>present</code></td><td>How to present</td><td>The presenter's path, described under <a href="#presenting">The presenting chapter</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="copy-rules">Copy rules</h2>
+<ul>
+  <li>The heading is one claim in sentence case, at most 60 characters, and specific to the product: a number or a noun from the prototype. No questions and no colon kickers.</li>
+  <li>The lead is one or two sentences, at most 40 words.</li>
+  <li>The body is one figure, table or short list of at most five items.</li>
+  <li>Numbers come from the prototype's own data. An app that computes its figures fills them in when it receives <code>vc:guidechange</code>.</li>
+  <li>No eyebrow and no “Chapter 2 of 5” label: the rail and the footer already say where you are.</li>
+  <li>Plain words in British English or German, following the <a href="../guidelines/writing.html">Writing</a> rules.</li>
+</ul>
+
+<h2 id="content-format">Content format</h2>
+<p>The guide is HTML in the page: a <code>vc-dialog</code> with one section per chapter. It needs no inline script, works under a strict content security policy, and the build can read it. <code>vici.js</code> builds the chapter rail from the sections.</p>
+<pre><code>&lt;button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="guide"&gt;
+  &lt;span class="vc-icon vc-icon--info" aria-hidden="true"&gt;&lt;/span&gt;How it works
+&lt;/button&gt;
+
+&lt;dialog class="vc-dialog vc-guide" id="guide" aria-labelledby="guide-title"
+        data-vc-guide data-vc-guide-auto data-vc-guide-count="{n} of {total}"&gt;
+  &lt;header class="vc-dialog__header"&gt;
+    &lt;h2 class="vc-dialog__title" id="guide-title"&gt;How the prototype works&lt;/h2&gt;
+    &lt;button type="button" class="vc-icon-button" data-vc-close aria-label="Close"&gt;…&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;div class="vc-guide__chapters"&gt;
+    &lt;section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="What it does"&gt;
+      &lt;h3&gt;One claim, at most 60 characters&lt;/h3&gt;
+      &lt;p class="vc-guide__lead"&gt;One or two sentences.&lt;/p&gt;
+      &lt;!-- one figure, table or short list --&gt;
+    &lt;/section&gt;
+    &lt;section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works"&gt;…&lt;/section&gt;
+    &lt;section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present"&gt;
+      &lt;h3&gt;Show it in five minutes&lt;/h3&gt;
+      &lt;p class="vc-guide__lead"&gt;Four steps, five minutes in all.&lt;/p&gt;
+      &lt;ol class="vc-guide__path"&gt;
+        &lt;li&gt;&lt;strong&gt;Open the exception list.&lt;/strong&gt; “The sentence to say.” &lt;span class="vc-guide__time"&gt;1 min&lt;/span&gt;&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+  &lt;footer class="vc-dialog__footer vc-guide__footer"&gt;
+    &lt;span class="vc-guide__count"&gt;&lt;/span&gt;
+    &lt;button type="button" class="vc-button vc-button--ghost" data-vc-guide-back&gt;Back&lt;/button&gt;
+    &lt;button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Start"&gt;Next&lt;/button&gt;
+  &lt;/footer&gt;
+&lt;/dialog&gt;</code></pre>
+<p>Every visible word is in the markup, so a German prototype writes its own. These attributes do the work:</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Guide attributes</caption>
+  <thead><tr><th scope="col">Attribute</th><th scope="col">On</th><th scope="col">Does</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-vc-guide</code></td><td>Dialog</td><td>Makes the dialog a guide</td></tr>
+    <tr><td><code>data-vc-guide-auto</code></td><td>Dialog</td><td>Opens it by itself; see <a href="#opening">Opening</a></td></tr>
+    <tr><td><code>data-vc-guide-count</code></td><td>Dialog</td><td>The footer count, with <code>{n}</code> and <code>{total}</code>; “{n} of {total}” by default</td></tr>
+    <tr><td><code>data-vc-guide-rail</code></td><td>Dialog</td><td>The rail's accessible name; “Chapters” by default</td></tr>
+    <tr><td><code>data-vc-chapter</code></td><td>Section</td><td>The chapter id: <code>what</code>, <code>how</code>, <code>present</code> or your own</td></tr>
+    <tr><td><code>data-vc-nav</code></td><td>Section</td><td>The chapter's label in the rail</td></tr>
+    <tr><td><code>data-vc-guide-back</code>, <code>data-vc-guide-next</code></td><td>Footer buttons</td><td>Move to the previous or next chapter</td></tr>
+    <tr><td><code>data-vc-guide-done</code></td><td>Next button</td><td>Its label on the last chapter, where it closes the guide; “Start” by default</td></tr>
+    <tr><td><code>data-vc-guide-open</code></td><td>Any button</td><td>Opens the guide with that id</td></tr>
+    <tr><td><code>data-vc-guide-chapter</code></td><td>The same button</td><td>Opens it at a chapter, by id or number</td></tr>
+  </tbody>
+</table>
+</div>
+<p>From a script, <code>Vici.guide.open('guide', 'present')</code> opens a guide at a chapter and <code>Vici.guide.show('guide', 2)</code> moves an open guide to another one. The dialog fires <code>vc:guidechange</code> with the chapter's <code>id</code> and <code>index</code>, and <code>vc:guideclose</code> with its <code>returnValue</code>.</p>
+
+<h3 id="german-example">In German</h3>
+<p>A German prototype writes every word in German, the built-in ones included: the count, the rail's name and the buttons. <code>lang="de"</code> on the dialog tells screen readers to switch language.</p>
+<div class="doc-demo doc-demo--center"><div class="doc-demo__preview">
+<button type="button" class="vc-button vc-button--secondary" data-vc-guide-open="guide-example-de" lang="de"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>So funktioniert's</button>
+<dialog class="vc-dialog vc-guide" id="guide-example-de" lang="de" aria-labelledby="guide-example-de-title" data-vc-guide data-vc-guide-count="{n} von {total}" data-vc-guide-rail="Kapitel">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="guide-example-de-title">So funktioniert der Prototyp</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Schließen"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-guide__chapters">
+    <section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="Was er zeigt">
+      <h3>128 Rechnungen, die der Agent nicht zuordnen konnte</h3>
+      <p class="vc-guide__lead">Atlas ist ein Beispielprototyp. Jeden Morgen ordnet ein Agent Lieferantenrechnungen ihren Bestellungen zu und lässt den Rest für eine Person, die ihn auf dieser Seite abarbeitet.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Der Lauf von heute Morgen</caption>
+        <tbody>
+          <tr><th scope="row">Geprüfte Rechnungen</th><td class="vc-num">470</td></tr>
+          <tr><th scope="row">Vom Agenten zugeordnet</th><td class="vc-num">342 (72,8&nbsp;%)</td></tr>
+          <tr><th scope="row">Für eine Person übrig</th><td class="vc-num">128</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="So funktioniert's">
+      <h3>Drei Gründe schicken eine Rechnung zu einer Person</h3>
+      <p class="vc-guide__lead">Der Agent vergleicht jede Rechnung mit ihrer Bestellung. Passen Preis, Menge oder die Bestellung selbst nicht, landet die Rechnung mit diesem Grund hier.</p>
+      <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
+        <caption>Gründe</caption>
+        <tbody>
+          <tr><th scope="row">Preisabweichung</th><td>Die Rechnung verlangt mehr als vereinbart.</td></tr>
+          <tr><th scope="row">Menge</th><td>Die Rechnung berechnet eine andere Menge als bestellt.</td></tr>
+          <tr><th scope="row">Bestellung fehlt</th><td>Keine Bestellung passt zur Rechnung.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="Präsentieren">
+      <h3>In fünf Minuten vorführen</h3>
+      <p class="vc-guide__lead">Vier Schritte, fünf Minuten insgesamt, beginnend mit der Ausnahmeliste.</p>
+      <ol class="vc-guide__path">
+        <li><strong>Die Ausnahmeliste öffnen.</strong> „Jeden Morgen lässt der Agent nur diese Rechnungen für eine Person übrig.“ <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Den lila Hinweis lesen.</strong> „Lila markiert, was der Agent getan hat: Er hat 342 Rechnungen allein zugeordnet.“ <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Nach Preisabweichung filtern.</strong> „Hier entscheidet eine Person, ob eine Preisdifferenz in Ordnung ist.“ <span class="vc-guide__time">1 min</span></li>
+        <li><strong>Neue Regel öffnen.</strong> „Mit einer Regel klärt der Agent diese Art Abweichung beim nächsten Mal selbst.“ <span class="vc-guide__time">2 min</span></li>
+      </ol>
+    </section>
+  </div>
+  <footer class="vc-dialog__footer vc-guide__footer">
+    <span class="vc-guide__count"></span>
+    <button type="button" class="vc-button vc-button--ghost" data-vc-guide-back><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span>Zurück</button>
+    <button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Starten">Weiter<span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+  </footer>
+</dialog>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-56"><span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--secondary&quot;</span> <span class="tk-attr">data-vc-guide-open</span>=<span class="tk-str">&quot;guide-example-de&quot;</span> <span class="tk-attr">lang</span>=<span class="tk-str">&quot;de&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--info&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>So funktioniert's<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">dialog</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog vc-guide&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;guide-example-de&quot;</span> <span class="tk-attr">lang</span>=<span class="tk-str">&quot;de&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;guide-example-de-title&quot;</span> <span class="tk-attr">data-vc-guide</span> <span class="tk-attr">data-vc-guide-count</span>=<span class="tk-str">&quot;{n} von {total}&quot;</span> <span class="tk-attr">data-vc-guide-rail</span>=<span class="tk-str">&quot;Kapitel&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">header</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__header&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">h2</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__title&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;guide-example-de-title&quot;</span><span class="tk-punct">&gt;</span>So funktioniert der Prototyp<span class="tk-punct">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button&quot;</span> <span class="tk-attr">data-vc-close</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Schließen&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--close&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">header</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapters&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;what&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;Was er zeigt&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>128 Rechnungen, die der Agent nicht zuordnen konnte<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>Atlas ist ein Beispielprototyp. Jeden Morgen ordnet ein Agent Lieferantenrechnungen ihren Bestellungen zu und lässt den Rest für eine Person, die ihn auf dieser Seite abarbeitet.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>Der Lauf von heute Morgen<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Geprüfte Rechnungen<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>470<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Vom Agenten zugeordnet<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>342 (72,8&amp;nbsp;%)<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Für eine Person übrig<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-num&quot;</span><span class="tk-punct">&gt;</span>128<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;how&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;So funktioniert's&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>Drei Gründe schicken eine Rechnung zu einer Person<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>Der Agent vergleicht jede Rechnung mit ihrer Bestellung. Passen Preis, Menge oder die Bestellung selbst nicht, landet die Rechnung mit diesem Grund hier.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table-wrap&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">table</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-table vc-table--compact&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>Gründe<span class="tk-punct">&lt;/</span><span class="tk-tag">caption</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Preisabweichung<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Die Rechnung verlangt mehr als vereinbart.<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Menge<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Die Rechnung berechnet eine andere Menge als bestellt.<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+          <span class="tk-punct">&lt;</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">th</span> <span class="tk-attr">scope</span>=<span class="tk-str">&quot;row&quot;</span><span class="tk-punct">&gt;</span>Bestellung fehlt<span class="tk-punct">&lt;/</span><span class="tk-tag">th</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span>Keine Bestellung passt zur Rechnung.<span class="tk-punct">&lt;/</span><span class="tk-tag">td</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">tr</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;/</span><span class="tk-tag">tbody</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">section</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__chapter&quot;</span> <span class="tk-attr">data-vc-chapter</span>=<span class="tk-str">&quot;present&quot;</span> <span class="tk-attr">data-vc-nav</span>=<span class="tk-str">&quot;Präsentieren&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>In fünf Minuten vorführen<span class="tk-punct">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__lead&quot;</span><span class="tk-punct">&gt;</span>Vier Schritte, fünf Minuten insgesamt, beginnend mit der Ausnahmeliste.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">ol</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__path&quot;</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Die Ausnahmeliste öffnen.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> „Jeden Morgen lässt der Agent nur diese Rechnungen für eine Person übrig.“ <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>1 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Den lila Hinweis lesen.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> „Lila markiert, was der Agent getan hat: Er hat 342 Rechnungen allein zugeordnet.“ <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>1 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Nach Preisabweichung filtern.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> „Hier entscheidet eine Person, ob eine Preisdifferenz in Ordnung ist.“ <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>1 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+        <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span>Neue Regel öffnen.<span class="tk-punct">&lt;/</span><span class="tk-tag">strong</span><span class="tk-punct">&gt;</span> „Mit einer Regel klärt der Agent diese Art Abweichung beim nächsten Mal selbst.“ <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__time&quot;</span><span class="tk-punct">&gt;</span>2 min<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;/</span><span class="tk-tag">ol</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">section</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">footer</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__footer vc-guide__footer&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-guide__count&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--ghost&quot;</span> <span class="tk-attr">data-vc-guide-back</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--chevron-left&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>Zurück<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button&quot;</span> <span class="tk-attr">data-vc-guide-next</span> <span class="tk-attr">data-vc-guide-done</span>=<span class="tk-str">&quot;Starten&quot;</span><span class="tk-punct">&gt;</span>Weiter<span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--chevron-right&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">footer</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-56" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+
+<h2 id="behaviour">Behaviour</h2>
+<ul>
+  <li>The guide is a modal dialog: Escape and the close button close it, focus stays inside, and closing returns focus to whatever opened it.</li>
+  <li>When it opens, focus goes to Next. On every change of chapter, focus moves to the new chapter's heading, so a screen reader reads each chapter once. There is no live region.</li>
+  <li>From 900&nbsp;px the rail lists the chapters with numbers in hexagons. Below that it shrinks to a strip of numbers, and at 600&nbsp;px and below the guide fills the screen.</li>
+  <li>The rail's items are buttons, and the current one has <code>aria-current="step"</code>.</li>
+  <li>The footer shows the count in tabular figures, Back, which is disabled on the first chapter, and Next. On the last chapter Next closes the guide.</li>
+  <li>Chapters change without animation, and the hexagon markers keep their outlines in Windows contrast themes.</li>
+</ul>
+
+<h2 id="opening">Opening</h2>
+<ul>
+  <li>With <code>data-vc-guide-auto</code>, the guide opens by itself the first time a prototype loads in a browser tab, and not again when that tab reloads. If the browser blocks storage, it opens on every load.</li>
+  <li><code>?guide=0</code> in the address keeps it closed, for a presenter who has already explained the prototype.</li>
+  <li><code>?guide=present</code> opens it at the presenting chapter. Any chapter id or number works the same way.</li>
+  <li>The header button reopens it at the first chapter.</li>
+</ul>
+
+<h2 id="presenting">The presenting chapter</h2>
+<p>The last chapter is a script for whoever shows the prototype, Victor or anyone he sends the link to.</p>
+<ul>
+  <li>It holds three to seven steps in an <code>ol.vc-guide__path</code>.</li>
+  <li>Each step names the control or view to show, in bold, then one sentence to say, in quotation marks, then its time in <code>.vc-guide__time</code>, such as “1&nbsp;min”.</li>
+  <li>The lead gives the total time, and the steps add up to it.</li>
+  <li>If the prototype has a demo script, this chapter condenses it.</li>
+  <li>The last button closes the guide, so the page behind it should already show the first step. Its label comes from <code>data-vc-guide-done</code>.</li>
+</ul>
+
+<h2 id="check">Check</h2>
+<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, and a header button with visible text. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
+
+<nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/data.html" rel="prev"><span class="vc-caption">Previous</span><span>Data display</span></a><a class="doc-pager__link doc-pager__link--next" href="../brand/logo.html" rel="next"><span class="vc-caption">Next</span><span>Logo</span></a></nav>
+      </article>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#title-pattern">Title</a></li><li><a href="#chapters">Chapters</a></li><li><a href="#copy-rules">Copy rules</a></li><li><a href="#content-format">Content format</a></li><li><a href="#behaviour">Behaviour</a></li><li><a href="#opening">Opening</a></li><li><a href="#presenting">The presenting chapter</a></li><li><a href="#check">Check</a></li></ul></nav>
+    </main>
+  </div>
+
+  <footer class="vc-footer doc-footer">
+    <div class="vc-container vc-container--wide">
+      <div class="vc-footer__bottom">
+        <p class="vc-byline">
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+    <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+    <span class="vc-byline__name">Victor Pflüger</span>
+    <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-label="Victor Pflüger's website"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" aria-hidden="true">Website</span>
+  </span>
+</p>
+        <span>Vici Design System v1.0.0 · code under the <a href="../start/licence.html">MIT licence</a>, logo and name reserved · fonts under SIL OFL 1.1, served from this site</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

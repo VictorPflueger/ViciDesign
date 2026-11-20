@@ -1,0 +1,20 @@
+{
+  "_comment": "Stock words the Writing guideline (guidelines/writing.html) asks Vici's pages and starters to leave out. The Writing page renders this table with the @banned-words widget, and check-docs fails when any word marked for checking appears in the visible text of a docs page or starter. Words that are only filler when used figuratively, such as landscape, set check to false: the page lists them, the check leaves them alone.",
+  "allow": ["elevated"],
+  "_allow": "Forms of a stock word that are fine in Vici: elevated is the name of a shadow level and a card variant.",
+  "groups": [
+    { "words": ["leverage", "utilise", "utilize"], "instead": "use" },
+    { "words": ["seamless", "effortless"], "instead": "say what is quicker or gone: “one click”, “no sign-in”" },
+    { "words": ["robust", "powerful", "cutting-edge", "state-of-the-art", "world-class", "best-in-class", "next-level", "game-changing"], "instead": "say what it handles: “10,000 rows”, “works offline”" },
+    { "words": ["empower", "elevate", "supercharge", "unleash", "revolutionise", "revolutionize"], "instead": "say what the reader can now do" },
+    { "words": ["streamline"], "instead": "say what got shorter or faster" },
+    { "words": ["delve", "deep dive", "dive into"], "instead": "look at, read, cover" },
+    { "words": ["crucial", "pivotal"], "instead": "important, or say why it matters" },
+    { "words": ["comprehensive", "holistic"], "instead": "complete, or say what it covers" },
+    { "words": ["furthermore", "moreover", "additionally"], "instead": "also, or start a new sentence" },
+    { "words": ["synergy", "paradigm"], "instead": "say what works together, or what changed" },
+    { "words": ["testament", "tapestry", "vibrant", "stunning", "breathtaking", "nestled", "boasts", "plethora", "myriad"], "instead": "leave it out and describe the thing" },
+    { "words": ["in today's", "it's worth noting", "it is important to note", "at its core"], "instead": "start with the point" },
+    { "words": ["landscape", "journey", "realm", "ecosystem"], "check": false, "instead": "when figurative, name the thing: the market, the process, the field" }
+  ]
+}

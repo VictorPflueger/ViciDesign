@@ -1,0 +1,137 @@
+<!--
+title: Writing
+nav: Writing
+section: Guidelines
+order: 2
+icon: memo
+description: How Vici's pages, prototypes and guides are worded: voice, headings and labels, numbers and units, punctuation, German, and the patterns Vici leaves out.
+-->
+<header class="doc-hero">
+  <h1>Writing</h1>
+  <p class="vc-lead">How Vici's pages, prototypes and guides are worded. The rules are for Victor and for the agents that build with him, and the build checks the ones it can.</p>
+</header>
+
+<h2 id="voice">Voice</h2>
+<p>Write like a colleague explaining work they did: plain words, short sentences and the specific thing. If a sentence would fit any product, rewrite it until it fits only this one.</p>
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><span class="vc-h6">Shows the 128 invoices the agent couldn't match</span></div>
+    <p>A number and a noun from the prototype. Nobody could put this heading on another product.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><span class="vc-h6">Turn your invoices into insight</span></div>
+    <p>It would fit any product, so it tells the reader nothing about this one.</p>
+  </div>
+</div>
+<ul>
+  <li>The docs site is in British English: colour, licence, organise, grey.</li>
+  <li>A prototype speaks its audience's language, British English or German, from the guide to the error messages. See <a href="#german">German</a>.</li>
+  <li>Address the reader as “you”. In these docs that is whoever builds with Vici; in a prototype, the person using it.</li>
+  <li>Use the active voice and say who does what: “The agent matched 342 invoices”, not “342 invoices were matched”.</li>
+  <li>Contractions are fine: isn't, you'll, doesn't.</li>
+  <li>Cut words that change nothing: simply, just, really, in order to, please note.</li>
+  <li>Mark what a model wrote with the <span class="vc-tag vc-tag--sm vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI</span> feature tone, so readers know which content is generated.</li>
+</ul>
+
+<h2 id="headings-and-labels">Headings and labels</h2>
+<p>Readers scan before they read, so headings and labels carry the page. Each one names its subject in a few plain words.</p>
+<ul>
+  <li>Write headings, buttons, tabs, menu items and table headers in sentence case. Where a style shows capitals, such as table column headers, CSS sets them; see <a href="{{root}}guidelines/typography.html#capitals">Typography</a>.</li>
+  <li>A page's title, its navigation label and the links to it use the same words.</li>
+  <li>A heading names what follows. No questions (“Why Vici?”), puns or taglines.</li>
+  <li>A lead is one or two sentences, at most 40 words, and says what the page or section helps you do.</li>
+  <li>Buttons start with a verb and say what happens: “Export CSV”, “Save changes”. Places are nouns: “Settings”, “Reports”. “How it works” is the one fixed exception, because it opens the guide on every prototype.</li>
+  <li>Links name where they go: “the accessibility rules”, not “learn more” or “click here”.</li>
+  <li>Errors say what happened and what to do next: “The file is larger than 20&nbsp;MB. Choose a smaller file or compress it.”</li>
+  <li>Empty states say what is missing and what comes next: “No invoices need a person today. New ones arrive after the morning run.”</li>
+</ul>
+
+<h2 id="numbers-and-units">Numbers and units</h2>
+<p>Numbers are often the point of a Vici page, so they are written the same way everywhere.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Number formats in English and German</caption>
+  <thead><tr><th scope="col">What</th><th scope="col">English</th><th scope="col">German</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Thousands and decimals</th><td>12,450.5</td><td>12.450,5</td></tr>
+    <tr><th scope="row">Percentages</th><td>72.8&nbsp;%</td><td>72,8&nbsp;%</td></tr>
+    <tr><th scope="row">Units</th><td>16&nbsp;px, 20&nbsp;MB, 5&nbsp;min</td><td>16&nbsp;px, 20&nbsp;MB, 5&nbsp;min</td></tr>
+    <tr><th scope="row">Money</th><td>€1,250</td><td>1.250&nbsp;€</td></tr>
+    <tr><th scope="row">Dates in text</th><td>19 November 2026</td><td>19. November 2026</td></tr>
+    <tr><th scope="row">Dates in tables</th><td>19 Nov 2026</td><td>19.11.2026</td></tr>
+    <tr><th scope="row">Times</th><td>14:30</td><td>14:30 Uhr</td></tr>
+    <tr><th scope="row">Ranges</th><td>10–20&nbsp;px</td><td>10–20&nbsp;px</td></tr>
+    <tr><th scope="row">Negative numbers</th><td>−3.2&nbsp;%</td><td>−3,2&nbsp;%</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li>Use figures for anything counted or measured: 3 suppliers, 128 invoices, 5&nbsp;min. In running prose, one to nine can be words when nothing is measured, as in “two options”.</li>
+  <li>Put a no-break space (<code>&amp;nbsp;</code>) between a number and its unit, the percent sign included, so the two never wrap apart. This follows SI usage, and German style asks for it too.</li>
+  <li>Round to what the reader needs, and keep the same number of decimals within a column: 72.8&nbsp;%, not 72.8125&nbsp;%.</li>
+  <li>Set columns of numbers, counters and anything that updates in tabular figures. Vici's table cells with <code>.vc-num</code>, stats and badges already use them; elsewhere add <code>.vc-tabular</code>.</li>
+  <li>Use the minus sign (−) for negative numbers and the multiplication sign for dimensions: 640 × 640&nbsp;px.</li>
+  <li>Keep ISO dates (2026-11-19) for exports, file names and code.</li>
+</ul>
+
+<h2 id="punctuation">Punctuation</h2>
+<ul>
+  <li>Use curly quotation marks in prose: “double”, with ‘single’ inside. Code keeps straight quotes. German uses „these“; see <a href="{{root}}guidelines/typography.html#typesetting-german">Typesetting German</a>.</li>
+  <li>Don't use dashes as punctuation in English sentences. A comma, a colon, brackets or a full stop does the job. The en dash joins ranges: 10–20&nbsp;px, P0–P3.</li>
+  <li>Leave exclamation marks out of interface text.</li>
+  <li>Leave out the serial comma (red, green and blue) unless the sentence would be misread without it.</li>
+</ul>
+
+<h2 id="patterns-vici-doesnt-use">Patterns Vici doesn't use</h2>
+<p>These patterns make a page look generated. Each has a plainer alternative, and <code>npm run check</code> fails on the ones it can find in the docs and starters.</p>
+<div class="vc-table-wrap">
+<table class="vc-table" data-doc-banned>
+  <caption>Patterns and what to write instead</caption>
+  <thead><tr><th scope="col">Pattern</th><th scope="col">Example</th><th scope="col">Instead</th><th scope="col">Checked</th></tr></thead>
+  <tbody>
+    <tr><td>An eyebrow or kicker: a small capitalised label above a heading</td><td>GUIDELINES above “Colour”</td><td>Nothing. The navigation already says where you are. If the label carried information, such as a date or a status, put it after the heading as a caption or a tag.</td><td>Yes</td></tr>
+    <tr><td>Fragments stapled together with middle dots</td><td>“Fast · Simple · Yours”</td><td>A sentence. Middle dots are fine between metadata, as in “12 Nov · 4 min read”, and in page titles.</td><td>No</td></tr>
+    <tr><td>Numbered headings that aren't steps</td><td>“1 · Cells, not circles”</td><td>Plain headings. Number only a real sequence, with an ordered list or the <a href="{{root}}components/navigation.html#stepper">stepper</a>.</td><td>Yes</td></tr>
+    <tr><td>List items that start with a bold label and a colon</td><td>“<strong>Performance:</strong> faster loading”</td><td>A sentence, or a table when every item pairs a term with its meaning.</td><td>Yes</td></tr>
+    <tr><td>Dashes as all-purpose punctuation</td><td>“Built for speed — and for you”</td><td>A comma, a colon, brackets or a full stop.</td><td>Em dashes</td></tr>
+    <tr><td>Happy talk and hero clichés</td><td>“Welcome to…”, “Hello, I'm…”, “Why Vici?”</td><td>Start with what the page is for.</td><td>No</td></tr>
+    <tr><td>Groups of three, and “not just X, it's Y”</td><td>“Fast, flexible and fun”</td><td>The one claim that is true, with its evidence.</td><td>No</td></tr>
+    <tr><td>Decorative icon grids</td><td>Three icons in shapes over three short blurbs</td><td>Icons only where they help someone find or recognise something; see <a href="{{root}}guidelines/hexagon.html#where-cells-appear">where cells appear</a>.</td><td>No</td></tr>
+    <tr><td>Stock words</td><td>seamless, robust, leverage</td><td>The words in the table below.</td><td>Yes</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="stock-words">Stock words</h3>
+<p>These words turn up in generated text far more often than in people's writing, and most say nothing that a plainer word wouldn't. The check reads the same list as this table.</p>
+<!-- @banned-words -->
+
+<h2 id="german">German</h2>
+<p>Some prototypes and demos are in German. A German surface is German throughout: the guide, buttons, table headers, errors and the byline. Product names and established terms, such as Dashboard or Agentic AI, stay as they are.</p>
+<ul>
+  <li>Set <code>lang="de"</code> on <code>&lt;html&gt;</code>, or on the element when a German part sits inside an English page.</li>
+  <li>Prefer labels that address no one: “Bericht exportieren”. Where a sentence has to address the reader, use “Sie”.</li>
+  <li>Write buttons as infinitives or short commands without a pronoun: “Exportieren”, “Weiter”.</li>
+  <li>Join compounds, and hyphenate around English parts: “Lieferantenrabatt”, “Agentic-AI-Showcase”.</li>
+  <li>Numbers and dates follow the German column of the <a href="#numbers-and-units">table above</a>. Quotation marks, dashes and hyphenation are covered in <a href="{{root}}guidelines/typography.html#typesetting-german">Typesetting German</a>.</li>
+</ul>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Built-in words in English and German</caption>
+  <thead><tr><th scope="col">Where</th><th scope="col">English</th><th scope="col">German</th></tr></thead>
+  <tbody>
+    <tr><td>Guide title</td><td>How the prototype works</td><td>So funktioniert der Prototyp</td></tr>
+    <tr><td>Guide button</td><td>How it works</td><td>So funktioniert's</td></tr>
+    <tr><td>Guide footer</td><td>Back, Next, Start</td><td>Zurück, Weiter, Starten</td></tr>
+    <tr><td>Guide count, <code>data-vc-guide-count</code></td><td>{n} of {total}</td><td>{n} von {total}</td></tr>
+    <tr><td>Guide rail, <code>data-vc-guide-rail</code></td><td>Chapters</td><td>Kapitel</td></tr>
+    <tr><td>Close button</td><td>Close</td><td>Schließen</td></tr>
+    <tr><td>Byline</td><td>Built by</td><td>Erstellt von</td></tr>
+    <tr><td>Byline, LinkedIn link</td><td>Victor Pflüger on LinkedIn</td><td>Victor Pflüger auf LinkedIn</td></tr>
+    <tr><td>Byline, website link</td><td>Victor Pflüger's website</td><td>Website von Victor Pflüger</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The guide titles for demos, challenges and showcases are on the <a href="{{root}}components/guide.html#title-pattern">How it works guide</a> page.</p>

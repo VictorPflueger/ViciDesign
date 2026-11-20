@@ -2,9 +2,9 @@
 title: Hexagon geometry
 nav: Hexagon
 section: Guidelines
-order: 4
+order: 5
 icon: hexagon
-description: Vici's signature rule — every circle becomes a flat-top hexagon, every pill a hex capsule. Geometry, sizes, recipes and where cells appear.
+description: Vici's signature rule: every circle becomes a flat-top hexagon, every pill a hex capsule. Geometry, sizes, recipes and where cells appear.
 -->
 <header class="doc-hero">
   <h1>Hexagon geometry</h1>
@@ -31,10 +31,10 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
   <text x="74" y="124" style="fill:var(--vc-accent-text);font-weight:600">hexagon</text>
 </svg>
 <ul>
-  <li><strong>Proportion</strong>: width = height × 1.1547 (2/√3). Size a hexagon by its height and derive the width.</li>
-  <li><strong>Capsule ends</strong>: the point sits <code>0.2887 × height</code> in from each end. A capsule exactly 1.1547× as wide as it is tall is a regular hexagon, which is why a one-digit badge is a perfect cell.</li>
-  <li><strong>Rings and focus</strong>: an outline of thickness <em>t</em> moves the inner corners by 0.577·t and the side points by 1.1547·t. Vici's rings use these offsets, so their edges stay exactly parallel.</li>
-  <li><strong>Orientation</strong>: flat-top everywhere in the interface. Pointy-top cells are reserved for illustrations and honeycomb artwork, where the 60° lattice needs them.</li>
+  <li>Width is height × 1.1547 (2/√3). Size a hexagon by its height and derive the width.</li>
+  <li>A capsule's points sit <code>0.2887 × height</code> in from each end. A capsule exactly 1.1547× as wide as it is tall is a regular hexagon, which is why a one-digit badge is a perfect cell.</li>
+  <li>An outline of thickness <em>t</em> moves the inner corners by 0.577·t and the side points by 1.1547·t. Vici's rings and focus outlines use these offsets, so their edges stay exactly parallel.</li>
+  <li>Cells are flat-top everywhere in the interface. Pointy-top cells are reserved for illustrations and honeycomb artwork, where the 60° lattice needs them.</li>
 </ul>
 
 <h2>Where cells appear</h2>
@@ -72,6 +72,9 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
 </div>
 <p>One exception: other brands' logos, such as GitHub's or LinkedIn's in a profile link, keep their own shape and colours, even when they are round. They aren't Vici's to redraw (see <a href="{{root}}brand/profile-links.html#other-brands-logos">Profile links</a>).</p>
 
+<h3 id="cells-carry-meaning">Cells carry meaning</h3>
+<p>A hexagon in Vici always stands for something: a person, a state, a choice, a step or a value. Don't add cells as ornament, such as a row of icon cells above three feature blurbs or a hexagon behind a heading. If removing a cell loses no information, remove it.</p>
+
 <h2>Sizes</h2>
 <p>Cell sizes are heights. The width always follows from the 1.1547 ratio.</p>
 <!-- @cell-scale -->
@@ -108,7 +111,7 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
 &lt;span class="vc-cell vc-cell--lg"&gt;&lt;span class="vc-icon vc-icon--chart-bar"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
 
 <h3>Cell colours</h3>
-<p><code>.vc-cell</code> holds an icon in a hexagon, for feature lists and cards. Sizes run from <code>--xs</code> to <code>--2xl</code>. Without a modifier it takes the soft accent colour. <code>--solid</code> fills it with the base colour, the status tones (<code>--info</code>, <code>--success</code>, <code>--warning</code>, <code>--danger</code>, <code>--feature</code>) mark a state, and the pastel families (<code>--merlot</code>, <code>--teal</code>, <code>--apricot</code>, <code>--fjord</code>, <code>--lilac</code> and <code>--honey</code> for topics, <code>--sage</code> and <code>--coral</code> for status) match the tags and tiles of the same category. The families stay light in both themes.</p>
+<p><code>.vc-cell</code> holds an icon in a hexagon. Use it where the icon carries meaning, such as the type of an item in a list, a status or a step, and not as decoration. Sizes run from <code>--xs</code> to <code>--2xl</code>. Without a modifier it takes the soft accent colour. <code>--solid</code> fills it with the base colour, the status tones (<code>--info</code>, <code>--success</code>, <code>--warning</code>, <code>--danger</code>, <code>--feature</code>) mark a state, and the pastel families (<code>--merlot</code>, <code>--teal</code>, <code>--apricot</code>, <code>--fjord</code>, <code>--lilac</code> and <code>--honey</code> for topics, <code>--sage</code> and <code>--coral</code> for status) match the tags and tiles of the same category. The families stay light in both themes.</p>
 <!-- demo center -->
 <span class="vc-cell vc-cell--lg"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span></span>
 <span class="vc-cell vc-cell--lg vc-cell--solid"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span></span>
@@ -125,6 +128,7 @@ description: Vici's signature rule — every circle becomes a flat-top hexagon, 
 <p><code>clip-path</code> also clips outlines, so a hexagon can't simply use <code>outline</code> for its focus ring. Vici's hexagon controls draw the ring on a pseudo-element outside the shape: a 2&nbsp;px hexagon ring with a 2&nbsp;px gap, in the theme's focus colour. Tab to the icon button, radio or switch under <a href="#where-cells-appear">Where cells appear</a> to see it. Rectangles keep a standard outline with an offset.</p>
 
 <h2>Honeycomb layout</h2>
+<p>Use the honeycomb only for real content that people explore, such as the topics on the personal site. It isn't a background pattern or a way to arrange three features.</p>
 <p><code>.vc-honeycomb</code> tessellates <code>.vc-tile</code> elements: columns overlap by a quarter of a cell and every second column drops by half a cell. Use an even number of columns (<code>--vc-honeycomb-cols</code>). On phones it drops to two columns of <code>--vc-honeycomb-cell-sm</code> cells; set <code>--vc-honeycomb-cols-sm: 4</code> to keep four columns for short labels. Tile labels shrink with the cell.</p>
 <!-- demo center -->
 <ul class="vc-honeycomb" style="--vc-honeycomb-cell: 6.5rem; --vc-honeycomb-cols: 4">

@@ -1,9 +1,9 @@
 <!--
 title: Typography
 section: Guidelines
-order: 3
+order: 4
 icon: type
-description: Bricolage Grotesque for headlines, Inter for reading and UI, JetBrains Mono for code — all open source, self-hosted and variable.
+description: Bricolage Grotesque for headlines, Inter for reading and UI, JetBrains Mono for code. All three are open source, self-hosted and variable.
 -->
 <header class="doc-hero">
   <h1>Typography</h1>
@@ -58,8 +58,11 @@ description: Bricolage Grotesque for headlines, Inter for reading and UI, JetBra
 <p class="vc-h6">Heading 6 in Inter</p>
 <p class="vc-lead">A lead paragraph introduces a page. It's set a step larger and in the muted text colour.</p>
 <p>Body text is Inter at 16&nbsp;px with a line height of 1.5. Use <strong>semibold for emphasis</strong>, <em>italics for titles and terms</em>, <a href="#text-styles">links in merlot</a>, <code>inline code</code> and <kbd>Ctrl</kbd> + <kbd>K</kbd> for keys.</p>
-<p class="vc-caption">Caption — 12 px, muted. For figure notes, sources and timestamps.</p>
+<p class="vc-caption">Caption, 12 px, muted. For figure notes, sources and timestamps.</p>
 <!-- /demo -->
+
+<h3 id="capitals">When to use capitals</h3>
+<p>Write every heading and label in sentence case. A few short component labels are set in capitals by CSS: table column headers, group titles in the side navigation and in menus, divider labels, timeline dates and the initials in an avatar. Write their text in sentence case too and let the style add the capitals, so a screen reader doesn't take a word for an abbreviation and spell it out. The one other place for capitals is a status word that has to read from across the room, such as SIMULATION or LIVE on a prototype that is being presented.</p>
 
 <h2>Numbers</h2>
 <p>Numbers in tables, KPIs and anything that changes live use <strong>tabular figures</strong>. Every digit is equally wide, so columns line up and values don't jitter while they update. Vici's tables and stat cards switch them on automatically; elsewhere add <code>.vc-tabular</code>.</p>

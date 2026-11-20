@@ -4,14 +4,14 @@ nav: Getting started
 section: Start
 order: 1
 icon: flag
-description: Add Vici to any page with one stylesheet and an optional script — from a CDN, a local copy or a clone of the repository.
+description: Add Vici to any page with one stylesheet and an optional script, from a CDN, a local copy or a clone of the repository.
 -->
 <header class="doc-hero">
   <h1>Getting started</h1>
   <p class="vc-lead">Vici is plain CSS with an optional sprinkle of JavaScript. There is no framework, no build step and no package to install. Link one stylesheet and the components work in any HTML: a static website, a Streamlit custom component, a Jinja template or a React app.</p>
 </header>
 
-<h2>1 · Link the stylesheet</h2>
+<h2>Link the stylesheet</h2>
 <p>Choose one of three sources. All of them serve the same files from <code>dist/</code>, and the fonts load from <code>assets/fonts/</code> next to it.</p>
 
 <h3>From the CDN</h3>
@@ -39,7 +39,7 @@ description: Add Vici to any page with one stylesheet and an optional script —
   </div>
 </div>
 
-<h2>2 · Start from a blank page</h2>
+<h2>Start from a blank page</h2>
 <p>This is the smallest complete page. The inline script in <code>&lt;head&gt;</code> applies a saved theme before the first paint, so dark mode never flashes white.</p>
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
@@ -65,7 +65,7 @@ description: Add Vici to any page with one stylesheet and an optional script —
 <p>Ready-made pages for an app prototype, a dashboard and a personal landing page are on <a href="{{root}}start/starters.html">Starters</a>.</p>
 <p><strong>With a content security policy</strong> that allows only the page's own files (<code>script-src 'self'; style-src 'self'</code>), inline scripts and <code>style</code> attributes are blocked. Vici's stylesheet, script, icons and fonts still work. Move the theme line into a small file that you load the same way, without <code>defer</code>, and keep your own styles in a stylesheet. For the logo in a header, use the colour and dark files as two images with <code>.vc-when-light</code> and <code>.vc-when-dark</code>. Victor's website works this way.</p>
 
-<h2>3 · Use the components</h2>
+<h2>Use the components</h2>
 <p>Every component is a class prefixed with <code>vc-</code> and uses BEM-style parts and modifiers: <code>.vc-card</code>, <code>.vc-card__title</code>, <code>.vc-card--elevated</code>. The demos throughout these pages are live, and each one has its exact HTML under <strong>HTML</strong>, ready to copy.</p>
 <!-- demo center -->
 <button class="vc-button">Save changes</button>
@@ -78,7 +78,7 @@ description: Add Vici to any page with one stylesheet and an optional script —
 <h3>Plain HTML gets sensible defaults</h3>
 <p>Headings, paragraphs, links, lists, tables, code and form controls are styled without classes, so quick prototypes look finished before you add a single class. Unordered lists get hexagon bullets.</p>
 
-<h2>4 · Know the files</h2>
+<h2>Know the files</h2>
 <div class="vc-table-wrap">
 <table class="vc-table">
   <thead><tr><th scope="col">File</th><th scope="col">What it is</th></tr></thead>
@@ -98,7 +98,7 @@ description: Add Vici to any page with one stylesheet and an optional script —
 </table>
 </div>
 
-<h2>5 · Change the system</h2>
+<h2>Change the system</h2>
 <p>The generated files are committed, so nobody needs to build anything to use them. To change Vici itself, edit the sources and rebuild. The only requirement is Node 18 or later; there are no dependencies to install.</p>
 <pre><code>node scripts/build.mjs        # rebuild dist/, the docs pages and the exports
 npm run check                 # contrast, hexagon rule, fonts, links, logos, exports
@@ -106,14 +106,20 @@ npm run palette               # regenerate the colour ramps after editing script
 <p><code>npm run check</code> fails if, for example, a colour pair drops below WCAG AA, a circle sneaks into the CSS, or a generated file is out of date.</p>
 
 <h2>Left out on purpose</h2>
-<p>Vici stays small by leaning on the platform. Some components from larger systems are deliberately missing:</p>
-<ul>
-  <li><strong>Custom select, listbox and multi-select:</strong> use the native <code>&lt;select&gt;</code>, a <a href="{{root}}components/forms.html#chip">chip group</a> for multiple choices, or a <a href="{{root}}components/forms.html#combobox">combobox</a> built on <code>&lt;datalist&gt;</code>.</li>
-  <li><strong>Custom date picker:</strong> the native date input brings the platform's own calendar, keyboard support and localisation.</li>
-  <li><strong>Range slider with two thumbs:</strong> use two sliders or two number inputs for “from” and “to”.</li>
-  <li><strong>Data grid:</strong> tables stay plain HTML. Sorting, row selection and bulk actions are covered on <a href="{{root}}components/data.html#table">Data display</a>; for editing cells or virtual scrolling, bring a grid library and style it with the tokens.</li>
-  <li><strong>Mega menu:</strong> personal sites and prototypes rarely need one; the header, side navigation and menus cover the rest.</li>
-</ul>
+<p>Vici stays small by leaning on the platform. Some components from larger systems are missing on purpose:</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Components Vici leaves out</caption>
+  <thead><tr><th scope="col">Instead of</th><th scope="col">Use</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">A custom select, listbox or multi-select</th><td>The native <code>&lt;select&gt;</code>, a <a href="{{root}}components/forms.html#chip">chip group</a> for multiple choices, or a <a href="{{root}}components/forms.html#combobox">combobox</a> built on <code>&lt;datalist&gt;</code>.</td></tr>
+    <tr><th scope="row">A custom date picker</th><td>The native date input, which brings the platform's own calendar, keyboard support and localisation.</td></tr>
+    <tr><th scope="row">A range slider with two thumbs</th><td>Two sliders, or two number inputs for “from” and “to”.</td></tr>
+    <tr><th scope="row">A data grid</th><td>Plain HTML tables. Sorting, row selection and bulk actions are covered on <a href="{{root}}components/data.html#table">Data display</a>; for editing cells or virtual scrolling, bring a grid library and style it with the tokens.</td></tr>
+    <tr><th scope="row">A mega menu</th><td>The header, side navigation and menus. Personal sites and prototypes rarely need more.</td></tr>
+  </tbody>
+</table>
+</div>
 
 <h2>Browser support</h2>
 <p>Vici targets evergreen browsers from 2024 onwards: Chrome, Edge, Firefox and Safari. It relies on CSS cascade layers, custom properties, <code>clip-path</code>, <code>color-mix()</code>, <code>:has()</code>, the <code>&lt;dialog&gt;</code> element and the Popover API. Older browsers still get readable content, but the hexagon shapes and some interactive details may be missing.</p>
