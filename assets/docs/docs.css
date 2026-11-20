@@ -4,12 +4,16 @@
   --doc-header-h: 4rem;
   --doc-sidebar-w: 16.5rem;
   --doc-toc-w: 13rem;
+  --doc-article-max: 54rem;
+  /* On wide screens the sidebar, the article and On this page form one centred block this wide,
+     so the text stays beside the navigation instead of drifting to the right. */
+  --doc-page-max: 100rem;
   --vc-scroll-offset: 5.5rem;
 }
 
 /* ---------------------------------------------------------------- shell */
 .doc { background: var(--vc-bg); }
-.doc-header { --vc-header-max: 100%; }
+.doc-header { --vc-header-max: calc(var(--doc-page-max) - 5rem); } /* plus its 2.5rem gutters: the page block's width */
 .doc-header .vc-header__inner { gap: var(--vc-space-3); }
 .doc-brand { gap: 0.55rem; margin-inline-end: var(--vc-space-6); }
 .doc-brand .vc-logo { height: 26px; width: auto; }
@@ -21,6 +25,8 @@
   display: grid;
   grid-template-columns: var(--doc-sidebar-w) minmax(0, 1fr);
   min-height: calc(100dvh - var(--doc-header-h));
+  max-width: var(--doc-page-max);
+  margin-inline: auto;
 }
 .doc-sidebar {
   position: sticky;
@@ -46,17 +52,23 @@
 .doc-main:focus { outline: none; }
 .doc-article {
   width: 100%;
-  max-width: 54rem;
+  max-width: var(--doc-article-max);
   margin-inline: auto;
   min-width: 0;
 }
-.doc--wide .doc-article { max-width: 62rem; }
+.doc--wide { --doc-article-max: 62rem; }
 
+/* From 1280 px the article and On this page sit side by side as one group, centred in the main
+   column (.doc-main's justify-content). The article's column stops at its reading width, so extra
+   space goes around the group, never between the sidebar and the text. */
 @media (min-width: 1280px) {
-  .doc-main:has(.doc-toc) {
-    grid-template-columns: minmax(0, 1fr) var(--doc-toc-w);
-  }
-  .doc-main:has(.doc-toc) .doc-article { margin-inline: auto 0; }
+  .doc-main:has(.doc-toc) { grid-template-columns: minmax(0, var(--doc-article-max)) var(--doc-toc-w); }
+  .doc-main:has(.doc-toc) .doc-article { margin-inline: 0; }
+}
+/* Once the page block is at its full width, pages without On this page keep the same left edge. */
+@media (min-width: 100rem) {
+  .doc-main { grid-template-columns: minmax(0, var(--doc-article-max)) var(--doc-toc-w); }
+  .doc-main .doc-article { margin-inline: 0; }
 }
 @media (min-width: 900px) {
   .doc-header__nav { display: flex; }
@@ -94,7 +106,7 @@
 }
 
 /* Home: no sidebar, full-bleed sections */
-.doc--home .doc-shell { grid-template-columns: minmax(0, 1fr); }
+.doc--home .doc-shell { grid-template-columns: minmax(0, 1fr); max-width: none; } /* home sections run edge to edge with their own containers */
 .doc--home .doc-sidebar { display: none; }
 .doc--home .doc-sidebar-toggle-anchor { display: none; }
 .doc--home .doc-main { padding: 0; display: block; }
@@ -554,6 +566,7 @@
 .doc-toc .vc-sidenav__title { padding-inline: 0; }
 
 .doc-footer { padding-block: var(--vc-space-6); }
+.doc-footer .vc-container--wide { --_max: calc(var(--doc-page-max) - 5rem); }
 .doc-footer .vc-footer__bottom { margin-top: 0; padding-top: 0; border-top: 0; }
 
 /* ---------------------------------------------------------------- home */

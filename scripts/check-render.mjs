@@ -2,12 +2,15 @@
 // Renders every documentation page and starter in Chromium (light and dark at 1280 px, light at
 // 375 px and 320 px) and fails on console errors, failed requests, horizontal overflow on phones, elements
 // that render as circles or pills, hexagon components without a polygon clip-path, or fonts that
-// did not load. Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
+// did not load. A second pass at 1920 and 2560 px fails when the docs content drifts away from the
+// sidebar, On this page runs past the window, the page block is off centre or anything overflows
+// (scripts/lib/layout-probe.mjs). Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
 import { createRequire } from 'node:module';
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, sitePages } from './lib/files.mjs';
+import { wideLayoutProblems } from './lib/layout-probe.mjs';
 
 // Finds Playwright locally, through PLAYWRIGHT_MODULE or in the global npm folder
 // (the same helper as in VictorPflueger/PROC-Rebate-Hunter's test harness).
@@ -123,6 +126,20 @@ for (const run of runs) {
   }
   await context.close();
 }
+
+// Wide screens: the docs content stays beside the sidebar inside a centred page block.
+let wideRenders = 0;
+for (const width of [1920, 2560]) {
+  const context = await browser.newContext({ viewport: { width, height: 900 } });
+  const page = await context.newPage();
+  for (const p of pages) {
+    await page.goto(pathToFileURL(join(ROOT, p)).href, { waitUntil: 'load' });
+    await page.evaluate(() => document.fonts.ready);
+    wideRenders++;
+    for (const problem of await page.evaluate(wideLayoutProblems)) failures.push(`${p} [${width}px]: ${problem}`);
+  }
+  await context.close();
+}
 await browser.close();
 
 if (failures.length) {
@@ -136,4 +153,5 @@ if (hexChecked === 0) {
 }
 console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow.`);
 console.log(`${hexChecked} rendered hexagon parts compute a polygon clip-path; nothing renders as a circle or pill; fonts loaded.`);
+console.log(`${wideRenders} wide renders (${pages.length} pages × 1920 and 2560 px): the content sits beside the sidebar, On this page fits, the page block is centred.`);
 console.log('RENDER OK');
