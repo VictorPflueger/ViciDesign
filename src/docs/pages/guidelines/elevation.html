@@ -2,7 +2,7 @@
 title: Elevation & surfaces
 nav: Elevation
 section: Guidelines
-order: 6
+order: 7
 icon: layers
 description: Canvas, surfaces and raised layers, wine-tinted shadows, borders versus shadows, dark-mode elevation and the z-index scale.
 -->
@@ -22,12 +22,18 @@ description: Canvas, surfaces and raised layers, wine-tinted shadows, borders ve
   </div>
 </div>
 <!-- /demo -->
-<ul>
-  <li><strong>Canvas</strong> (<code>--vc-bg</code>): linen paper in light mode, the base colour #250010 in dark mode.</li>
-  <li><strong>Subtle</strong> (<code>--vc-bg-subtle</code>): sidebars, table headers, footers, code wells.</li>
-  <li><strong>Surface</strong> (<code>--vc-surface</code>): cards, inputs, panels. White in light mode, a slightly lighter wine in dark mode.</li>
-  <li><strong>Raised</strong> (<code>--vc-surface-raised</code>): anything on top of other content.</li>
-</ul>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Surface levels</caption>
+  <thead><tr><th scope="col">Level</th><th scope="col">Token</th><th scope="col">For</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Canvas</th><td><code>--vc-bg</code></td><td>The page: linen paper in light mode, the base colour #250010 in dark mode</td></tr>
+    <tr><th scope="row">Subtle</th><td><code>--vc-bg-subtle</code></td><td>Sidebars, table headers, footers and code wells</td></tr>
+    <tr><th scope="row">Surface</th><td><code>--vc-surface</code></td><td>Cards, inputs and panels: white in light mode, a slightly lighter wine in dark mode</td></tr>
+    <tr><th scope="row">Raised</th><td><code>--vc-surface-raised</code></td><td>Anything on top of other content</td></tr>
+  </tbody>
+</table>
+</div>
 
 <h2>Shadows</h2>
 <p>Shadows are tinted with the base colour instead of grey, so they feel warm on linen. In dark mode they get darker and denser, because a lighter surface does most of the lifting there.</p>

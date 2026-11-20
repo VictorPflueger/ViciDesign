@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="vici-build">
+  <title>Writing · Vici Design System</title>
+  <meta name="description" content="How Vici's pages, prototypes and guides are worded: voice, headings and labels, numbers and units, punctuation, German, and the patterns Vici leaves out.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../dist/vici.css">
+  <link rel="stylesheet" href="../assets/docs/docs.css">
+  <script>try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <script src="../dist/vici.js" defer></script>
+  <script src="../assets/docs/docs.js" defer></script>
+</head>
+<body class="doc">
+  <a class="vc-skip-link" href="#main">Skip to content</a>
+  <header class="vc-header doc-header">
+    <div class="vc-header__inner">
+      <span class="vc-tooltip-anchor doc-sidebar-toggle-anchor">
+        <button type="button" class="vc-icon-button doc-sidebar-toggle" aria-controls="doc-sidebar" aria-expanded="false" aria-labelledby="doc-tip-nav">
+          <span class="vc-icon vc-icon--menu" aria-hidden="true"></span>
+        </button>
+        <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="doc-tip-nav">Open navigation</span>
+      </span>
+      <a class="vc-header__brand doc-brand" href="../index.html" aria-label="Vici Design System, home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24.55 15.48 73.84 69.63" width="27.57" height="26" aria-hidden="true" focusable="false" class="vc-logo"><path d="M35.86 32.71 L56.58 68.59" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><path d="M63.42 68.59 L79 41.6" fill="none" style="stroke:var(--vc-text)" stroke-width="6.2" stroke-linecap="butt"/><polygon points="41.45,33.78 34,38.08 26.55,33.78 26.55,25.18 34,20.88 41.45,25.18" style="fill:var(--vc-text)"/><path d="M67.45 78.82 L60 83.12 L52.55 78.82 L52.55 70.22 L60 65.92 L67.45 70.22 Z M63.45 76.51 L60 78.5 L56.55 76.51 L56.55 72.53 L60 70.54 L63.45 72.53 Z" style="fill:var(--vc-text)" fill-rule="evenodd"/><path d="M96.39 35.48 L86 41.48 L75.61 35.48 L75.61 23.48 L86 17.48 L96.39 23.48 Z M92.39 33.17 L86 36.86 L79.61 33.17 L79.61 25.79 L86 22.1 L92.39 25.79 Z" style="fill:var(--vc-merlot-500)" fill-rule="evenodd"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -712 1560 720" width="45.5" height="21" role="img" class="vc-wordmark"><title>Vici</title><path d="M222.25 0.0H397.0L613.0 -660.0H465.5L312.25 -113.75H309.25L153.75 -660.0H6.0ZM1100.0 13.75Q1162.75 13.75 1207.875 -3.875Q1253.0 -21.5 1281.375 -52.75Q1309.75 -84.0 1321.125 -124.375Q1332.5 -164.75 1328.25 -209.5L1202.75 -216.5Q1205.75 -185.75 1197.0 -156.375Q1188.25 -127.0 1165.5 -108.375Q1142.75 -89.75 1102.25 -89.75Q1063.75 -89.75 1035.75 -109.125Q1007.75 -128.5 992.5 -167.375Q977.25 -206.25 977.25 -263.75Q977.25 -308.5 986.125 -339.625Q995.0 -370.75 1011.0 -390.75Q1027.0 -410.75 1048.5 -420.0Q1070.0 -429.25 1095.25 -429.25Q1125.5 -429.25 1147.75 -416.625Q1170.0 -404.0 1182.0 -378.875Q1194.0 -353.75 1192.75 -315.75L1311.5 -326.5Q1318.0 -382.0 1296.75 -429.75Q1275.5 -477.5 1225.875 -507.5Q1176.25 -537.5 1097.0 -537.5Q1030.5 -537.5 982.0 -515.5Q933.5 -493.5 902.375 -454.125Q871.25 -414.75 856.0 -364.5Q840.75 -314.25 840.75 -257.25Q840.75 -200.5 856.0 -151.375Q871.25 -102.25 903.0 -65.0Q934.75 -27.75 983.875 -7.0Q1033.0 13.75 1100.0 13.75ZM649.0 0.0H784.5V-523.5H649.0ZM1376.0 0.0H1511.5V-523.5H1376.0ZM807.8148803710938 -637.5 762.0324096679688 -716.7974853515625H670.4675903320312L624.6851196289062 -637.5L670.4675903320312 -558.2025146484375H762.0324096679688ZM1534.8148193359375 -637.5 1489.032470703125 -716.7974853515625H1397.467529296875L1351.6851806640625 -637.5L1397.467529296875 -558.2025146484375H1489.032470703125Z" style="fill:currentColor"/></svg><span class="vc-tag vc-tag--sm vc-tag--accent doc-version">v1.0.0</span></a>
+      <nav class="vc-header__nav doc-header__nav" aria-label="Sections"><a href="../start/getting-started.html">Start</a><a href="../guidelines/principles.html" aria-current="true">Guidelines</a><a href="../components/actions.html">Components</a><a href="../brand/logo.html">Brand</a></nav>
+      <div class="vc-header__actions">
+        <span class="vc-tooltip-anchor">
+          <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="doc-tip-theme">
+            <span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span>
+            <span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span>
+          </button>
+          <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="doc-tip-theme">Dark theme</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-shell">
+    <aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation">
+      <nav class="vc-sidenav">
+<ul><li><a href="../index.html"><span class="vc-icon vc-icon--home" aria-hidden="true"></span>Overview</a></li></ul>
+<div><p class="vc-sidenav__title">Start</p><ul><li><a href="../start/getting-started.html"><span class="vc-icon vc-icon--flag" aria-hidden="true"></span>Getting started</a></li><li><a href="../start/theming.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Theming</a></li><li><a href="../start/integrations.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Integrations</a></li><li><a href="../start/starters.html"><span class="vc-icon vc-icon--play" aria-hidden="true"></span>Starters</a></li><li><a href="../start/tokens.html"><span class="vc-icon vc-icon--code" aria-hidden="true"></span>Tokens</a></li><li><a href="../start/licence.html"><span class="vc-icon vc-icon--book" aria-hidden="true"></span>Licence</a></li></ul></div>
+<div><p class="vc-sidenav__title">Guidelines</p><ul><li><a href="../guidelines/principles.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Principles</a></li><li><a href="../guidelines/writing.html" aria-current="page"><span class="vc-icon vc-icon--memo" aria-hidden="true"></span>Writing</a></li><li><a href="../guidelines/colour.html"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span>Colour</a></li><li><a href="../guidelines/typography.html"><span class="vc-icon vc-icon--type" aria-hidden="true"></span>Typography</a></li><li><a href="../guidelines/hexagon.html"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span>Hexagon</a></li><li><a href="../guidelines/layout.html"><span class="vc-icon vc-icon--layout" aria-hidden="true"></span>Layout &amp; spacing</a></li><li><a href="../guidelines/elevation.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Elevation</a></li><li><a href="../guidelines/motion.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Motion</a></li><li><a href="../guidelines/icons.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Icons</a></li><li><a href="../guidelines/data-viz.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data visualisation</a></li><li><a href="../guidelines/accessibility.html"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span>Accessibility</a></li></ul></div>
+<div><p class="vc-sidenav__title">Components</p><ul><li><a href="../components/actions.html"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Actions</a></li><li><a href="../components/forms.html"><span class="vc-icon vc-icon--edit" aria-hidden="true"></span>Forms</a></li><li><a href="../components/content.html"><span class="vc-icon vc-icon--cube" aria-hidden="true"></span>Content</a></li><li><a href="../components/navigation.html"><span class="vc-icon vc-icon--menu" aria-hidden="true"></span>Navigation</a></li><li><a href="../components/feedback.html"><span class="vc-icon vc-icon--bell" aria-hidden="true"></span>Feedback</a></li><li><a href="../components/overlays.html"><span class="vc-icon vc-icon--layers" aria-hidden="true"></span>Overlays</a></li><li><a href="../components/data.html"><span class="vc-icon vc-icon--chart-bar" aria-hidden="true"></span>Data display</a></li><li><a href="../components/guide.html"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works guide</a></li></ul></div>
+<div><p class="vc-sidenav__title">Brand</p><ul><li><a href="../brand/logo.html"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>Logo</a></li><li><a href="../brand/profile-links.html"><span class="vc-icon vc-icon--user" aria-hidden="true"></span>Byline and profile links</a></li></ul></div>
+      </nav>
+    </aside>
+    <div class="doc-scrim" data-doc-close-sidebar hidden></div>
+
+    <main class="doc-main" id="main" tabindex="-1">
+      <article class="doc-article">
+<header class="doc-hero">
+  <h1>Writing</h1>
+  <p class="vc-lead">How Vici's pages, prototypes and guides are worded. The rules are for Victor and for the agents that build with him, and the build checks the ones it can.</p>
+</header>
+
+<h2 id="voice">Voice</h2>
+<p>Write like a colleague explaining work they did: plain words, short sentences and the specific thing. If a sentence would fit any product, rewrite it until it fits only this one.</p>
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><span class="vc-h6">Shows the 128 invoices the agent couldn't match</span></div>
+    <p>A number and a noun from the prototype. Nobody could put this heading on another product.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><span class="vc-h6">Turn your invoices into insight</span></div>
+    <p>It would fit any product, so it tells the reader nothing about this one.</p>
+  </div>
+</div>
+<ul>
+  <li>The docs site is in British English: colour, licence, organise, grey.</li>
+  <li>A prototype speaks its audience's language, British English or German, from the guide to the error messages. See <a href="#german">German</a>.</li>
+  <li>Address the reader as “you”. In these docs that is whoever builds with Vici; in a prototype, the person using it.</li>
+  <li>Use the active voice and say who does what: “The agent matched 342 invoices”, not “342 invoices were matched”.</li>
+  <li>Contractions are fine: isn't, you'll, doesn't.</li>
+  <li>Cut words that change nothing: simply, just, really, in order to, please note.</li>
+  <li>Mark what a model wrote with the <span class="vc-tag vc-tag--sm vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI</span> feature tone, so readers know which content is generated.</li>
+</ul>
+
+<h2 id="headings-and-labels">Headings and labels</h2>
+<p>Readers scan before they read, so headings and labels carry the page. Each one names its subject in a few plain words.</p>
+<ul>
+  <li>Write headings, buttons, tabs, menu items and table headers in sentence case. Where a style shows capitals, such as table column headers, CSS sets them; see <a href="../guidelines/typography.html#capitals">Typography</a>.</li>
+  <li>A page's title, its navigation label and the links to it use the same words.</li>
+  <li>A heading names what follows. No questions (“Why Vici?”), puns or taglines.</li>
+  <li>A lead is one or two sentences, at most 40 words, and says what the page or section helps you do.</li>
+  <li>Buttons start with a verb and say what happens: “Export CSV”, “Save changes”. Places are nouns: “Settings”, “Reports”. “How it works” is the one fixed exception, because it opens the guide on every prototype.</li>
+  <li>Links name where they go: “the accessibility rules”, not “learn more” or “click here”.</li>
+  <li>Errors say what happened and what to do next: “The file is larger than 20&nbsp;MB. Choose a smaller file or compress it.”</li>
+  <li>Empty states say what is missing and what comes next: “No invoices need a person today. New ones arrive after the morning run.”</li>
+</ul>
+
+<h2 id="numbers-and-units">Numbers and units</h2>
+<p>Numbers are often the point of a Vici page, so they are written the same way everywhere.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Number formats in English and German</caption>
+  <thead><tr><th scope="col">What</th><th scope="col">English</th><th scope="col">German</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Thousands and decimals</th><td>12,450.5</td><td>12.450,5</td></tr>
+    <tr><th scope="row">Percentages</th><td>72.8&nbsp;%</td><td>72,8&nbsp;%</td></tr>
+    <tr><th scope="row">Units</th><td>16&nbsp;px, 20&nbsp;MB, 5&nbsp;min</td><td>16&nbsp;px, 20&nbsp;MB, 5&nbsp;min</td></tr>
+    <tr><th scope="row">Money</th><td>€1,250</td><td>1.250&nbsp;€</td></tr>
+    <tr><th scope="row">Dates in text</th><td>19 November 2026</td><td>19. November 2026</td></tr>
+    <tr><th scope="row">Dates in tables</th><td>19 Nov 2026</td><td>19.11.2026</td></tr>
+    <tr><th scope="row">Times</th><td>14:30</td><td>14:30 Uhr</td></tr>
+    <tr><th scope="row">Ranges</th><td>10–20&nbsp;px</td><td>10–20&nbsp;px</td></tr>
+    <tr><th scope="row">Negative numbers</th><td>−3.2&nbsp;%</td><td>−3,2&nbsp;%</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li>Use figures for anything counted or measured: 3 suppliers, 128 invoices, 5&nbsp;min. In running prose, one to nine can be words when nothing is measured, as in “two options”.</li>
+  <li>Put a no-break space (<code>&amp;nbsp;</code>) between a number and its unit, the percent sign included, so the two never wrap apart. This follows SI usage, and German style asks for it too.</li>
+  <li>Round to what the reader needs, and keep the same number of decimals within a column: 72.8&nbsp;%, not 72.8125&nbsp;%.</li>
+  <li>Set columns of numbers, counters and anything that updates in tabular figures. Vici's table cells with <code>.vc-num</code>, stats and badges already use them; elsewhere add <code>.vc-tabular</code>.</li>
+  <li>Use the minus sign (−) for negative numbers and the multiplication sign for dimensions: 640 × 640&nbsp;px.</li>
+  <li>Keep ISO dates (2026-11-19) for exports, file names and code.</li>
+</ul>
+
+<h2 id="punctuation">Punctuation</h2>
+<ul>
+  <li>Use curly quotation marks in prose: “double”, with ‘single’ inside. Code keeps straight quotes. German uses „these“; see <a href="../guidelines/typography.html#typesetting-german">Typesetting German</a>.</li>
+  <li>Don't use dashes as punctuation in English sentences. A comma, a colon, brackets or a full stop does the job. The en dash joins ranges: 10–20&nbsp;px, P0–P3.</li>
+  <li>Leave exclamation marks out of interface text.</li>
+  <li>Leave out the serial comma (red, green and blue) unless the sentence would be misread without it.</li>
+</ul>
+
+<h2 id="patterns-vici-doesnt-use">Patterns Vici doesn't use</h2>
+<p>These patterns make a page look generated. Each has a plainer alternative, and <code>npm run check</code> fails on the ones it can find in the docs and starters.</p>
+<div class="vc-table-wrap">
+<table class="vc-table" data-doc-banned>
+  <caption>Patterns and what to write instead</caption>
+  <thead><tr><th scope="col">Pattern</th><th scope="col">Example</th><th scope="col">Instead</th><th scope="col">Checked</th></tr></thead>
+  <tbody>
+    <tr><td>An eyebrow or kicker: a small capitalised label above a heading</td><td>GUIDELINES above “Colour”</td><td>Nothing. The navigation already says where you are. If the label carried information, such as a date or a status, put it after the heading as a caption or a tag.</td><td>Yes</td></tr>
+    <tr><td>Fragments stapled together with middle dots</td><td>“Fast · Simple · Yours”</td><td>A sentence. Middle dots are fine between metadata, as in “12 Nov · 4 min read”, and in page titles.</td><td>No</td></tr>
+    <tr><td>Numbered headings that aren't steps</td><td>“1 · Cells, not circles”</td><td>Plain headings. Number only a real sequence, with an ordered list or the <a href="../components/navigation.html#stepper">stepper</a>.</td><td>Yes</td></tr>
+    <tr><td>List items that start with a bold label and a colon</td><td>“<strong>Performance:</strong> faster loading”</td><td>A sentence, or a table when every item pairs a term with its meaning.</td><td>Yes</td></tr>
+    <tr><td>Dashes as all-purpose punctuation</td><td>“Built for speed — and for you”</td><td>A comma, a colon, brackets or a full stop.</td><td>Em dashes</td></tr>
+    <tr><td>Happy talk and hero clichés</td><td>“Welcome to…”, “Hello, I'm…”, “Why Vici?”</td><td>Start with what the page is for.</td><td>No</td></tr>
+    <tr><td>Groups of three, and “not just X, it's Y”</td><td>“Fast, flexible and fun”</td><td>The one claim that is true, with its evidence.</td><td>No</td></tr>
+    <tr><td>Decorative icon grids</td><td>Three icons in shapes over three short blurbs</td><td>Icons only where they help someone find or recognise something; see <a href="../guidelines/hexagon.html#where-cells-appear">where cells appear</a>.</td><td>No</td></tr>
+    <tr><td>Stock words</td><td>seamless, robust, leverage</td><td>The words in the table below.</td><td>Yes</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="stock-words">Stock words</h3>
+<p>These words turn up in generated text far more often than in people's writing, and most say nothing that a plainer word wouldn't. The check reads the same list as this table.</p>
+<div class="vc-table-wrap"><table class="vc-table" data-doc-banned>
+    <caption>Words Vici's pages leave out</caption>
+    <thead><tr><th scope="col">Instead of</th><th scope="col">Write</th></tr></thead>
+    <tbody>
+      <tr><td>leverage, utilise, utilize</td><td>use</td></tr>
+      <tr><td>seamless, effortless</td><td>say what is quicker or gone: “one click”, “no sign-in”</td></tr>
+      <tr><td>robust, powerful, cutting-edge, state-of-the-art, world-class, best-in-class, next-level, game-changing</td><td>say what it handles: “10,000 rows”, “works offline”</td></tr>
+      <tr><td>empower, elevate, supercharge, unleash, revolutionise, revolutionize</td><td>say what the reader can now do</td></tr>
+      <tr><td>streamline</td><td>say what got shorter or faster</td></tr>
+      <tr><td>delve, deep dive, dive into</td><td>look at, read, cover</td></tr>
+      <tr><td>crucial, pivotal</td><td>important, or say why it matters</td></tr>
+      <tr><td>comprehensive, holistic</td><td>complete, or say what it covers</td></tr>
+      <tr><td>furthermore, moreover, additionally</td><td>also, or start a new sentence</td></tr>
+      <tr><td>synergy, paradigm</td><td>say what works together, or what changed</td></tr>
+      <tr><td>testament, tapestry, vibrant, stunning, breathtaking, nestled, boasts, plethora, myriad</td><td>leave it out and describe the thing</td></tr>
+      <tr><td>in today's, it's worth noting, it is important to note, at its core</td><td>start with the point</td></tr>
+      <tr><td>landscape, journey, realm, ecosystem <span class="vc-text-muted">(when figurative)</span></td><td>when figurative, name the thing: the market, the process, the field</td></tr>
+    </tbody>
+  </table></div>
+
+<h2 id="german">German</h2>
+<p>Some prototypes and demos are in German. A German surface is German throughout: the guide, buttons, table headers, errors and the byline. Product names and established terms, such as Dashboard or Agentic AI, stay as they are.</p>
+<ul>
+  <li>Set <code>lang="de"</code> on <code>&lt;html&gt;</code>, or on the element when a German part sits inside an English page.</li>
+  <li>Prefer labels that address no one: “Bericht exportieren”. Where a sentence has to address the reader, use “Sie”.</li>
+  <li>Write buttons as infinitives or short commands without a pronoun: “Exportieren”, “Weiter”.</li>
+  <li>Join compounds, and hyphenate around English parts: “Lieferantenrabatt”, “Agentic-AI-Showcase”.</li>
+  <li>Numbers and dates follow the German column of the <a href="#numbers-and-units">table above</a>. Quotation marks, dashes and hyphenation are covered in <a href="../guidelines/typography.html#typesetting-german">Typesetting German</a>.</li>
+</ul>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Built-in words in English and German</caption>
+  <thead><tr><th scope="col">Where</th><th scope="col">English</th><th scope="col">German</th></tr></thead>
+  <tbody>
+    <tr><td>Guide title</td><td>How the prototype works</td><td>So funktioniert der Prototyp</td></tr>
+    <tr><td>Guide button</td><td>How it works</td><td>So funktioniert's</td></tr>
+    <tr><td>Guide footer</td><td>Back, Next, Start</td><td>Zurück, Weiter, Starten</td></tr>
+    <tr><td>Guide count, <code>data-vc-guide-count</code></td><td>{n} of {total}</td><td>{n} von {total}</td></tr>
+    <tr><td>Guide rail, <code>data-vc-guide-rail</code></td><td>Chapters</td><td>Kapitel</td></tr>
+    <tr><td>Close button</td><td>Close</td><td>Schließen</td></tr>
+    <tr><td>Byline</td><td>Built by</td><td>Erstellt von</td></tr>
+    <tr><td>Byline, LinkedIn link</td><td>Victor Pflüger on LinkedIn</td><td>Victor Pflüger auf LinkedIn</td></tr>
+    <tr><td>Byline, website link</td><td>Victor Pflüger's website</td><td>Website von Victor Pflüger</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The guide titles for demos, challenges and showcases are on the <a href="../components/guide.html#title-pattern">How it works guide</a> page.</p>
+
+<nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../guidelines/principles.html" rel="prev"><span class="vc-caption">Previous</span><span>Concept &amp; principles</span></a><a class="doc-pager__link doc-pager__link--next" href="../guidelines/colour.html" rel="next"><span class="vc-caption">Next</span><span>Colour</span></a></nav>
+      </article>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#voice">Voice</a></li><li><a href="#headings-and-labels">Headings and labels</a></li><li><a href="#numbers-and-units">Numbers and units</a></li><li><a href="#punctuation">Punctuation</a></li><li><a href="#patterns-vici-doesnt-use">Patterns Vici doesn't use</a></li><li><a href="#german">German</a></li></ul></nav>
+    </main>
+  </div>
+
+  <footer class="vc-footer doc-footer">
+    <div class="vc-container vc-container--wide">
+      <div class="vc-footer__bottom">
+        <p class="vc-byline">
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+    <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+    <span class="vc-byline__name">Victor Pflüger</span>
+    <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-label="Victor Pflüger's website"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" aria-hidden="true">Website</span>
+  </span>
+</p>
+        <span>Vici Design System v1.0.0 · code under the <a href="../start/licence.html">MIT licence</a>, logo and name reserved · fonts under SIL OFL 1.1, served from this site</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

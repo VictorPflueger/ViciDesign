@@ -1,7 +1,7 @@
 <!--
 title: Colour
 section: Guidelines
-order: 2
+order: 3
 icon: drop
 layout: wide
 description: The merlot base colour, eight pastel families, colour coding rules, semantic tokens for light and dark, and measured contrast ratios.
@@ -22,7 +22,7 @@ description: The merlot base colour, eight pastel families, colour coding rules,
     <p>A near-black wine. It does three jobs:</p>
     <ul>
       <li><strong>Ink</strong> in the light theme: headings, body text and icons (contrast <!-- @ratio text bg light --> on the linen canvas).</li>
-      <li><strong>Action</strong>: the fill of primary buttons, checked controls and the selected page in pagination.</li>
+      <li><strong>Action</strong> in the light theme: the fill of primary buttons, checked controls and the selected page in pagination.</li>
       <li><strong>Canvas</strong> in the dark theme: the page background itself, with lighter wine surfaces stacked on top.</li>
     </ul>
     <p>The ramp around it is anchored on five hand-picked mood colours: <code>#250010</code>, <code>#5c1230</code>, <code>#8f2f42</code>, <code>#c77d74</code> and the linen <code>#f3ebe7</code>. They are steps 950, 800, 700, 500 and neutral-100. The steps in between are interpolated in OKLCH.</p>
@@ -83,8 +83,14 @@ description: The merlot base colour, eight pastel families, colour coding rules,
   <li><strong>Fjord</strong> carries neutral information. Teal and apricot are for categories and data only.</li>
 </ul>
 
+<h3 id="status-separation">Status colours stay apart</h3>
+<p>Danger has to read as danger at a glance, so nothing else may look like it. The build measures how far apart colours are in OKLab (ΔOK) and fails when danger comes too close to merlot or to another status colour, in either theme. Danger and success must also stay apart for people who can't tell red from green, so they differ in lightness as well as hue; the “Red-green” values are measured on simulated protanopia and deuteranopia.</p>
+<!-- @separation-table -->
+<p>When two colours come too close, move one of them along its own ramp, lighter or darker, rather than changing its hue: a family keeps its meaning only while it keeps its colour. That is why, in the light theme, accent text uses merlot 800 while links stay on merlot 700: one step darker keeps it clear of danger's coral.</p>
+
 <h2>Proportions</h2>
 <p>A Vici screen is mostly paper. As a rule of thumb, use about 70&nbsp;% linen neutrals, 20&nbsp;% merlot (text and one strong action) and 10&nbsp;% pastel for meaning and highlights. Pastels lose their effect when they cover everything.</p>
+<p>Atmosphere comes from flat pastel grounds, such as a blush panel behind a page's introduction or a sage band behind a result. Vici doesn't use blurred gradients, glows or mesh backgrounds: they make a page look generated, and they lower the contrast of anything placed on them.</p>
 <div class="doc-palette-band" role="img" aria-label="Proportions: 70 percent neutrals, 20 percent merlot, 10 percent pastels" style="height:2.75rem">
   <span style="flex:70;background:var(--vc-neutral-100)"></span><span style="flex:20;background:var(--vc-merlot-950)"></span><span style="flex:4;background:var(--vc-merlot-200)"></span><span style="flex:3;background:var(--vc-lilac-200)"></span><span style="flex:3;background:var(--vc-sage-200)"></span>
 </div>

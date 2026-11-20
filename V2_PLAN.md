@@ -479,41 +479,100 @@ Scope: Vici 2.0 and its website meet the brief's Definition of done and every ru
 |---|---|
 | 1. Diagnose | Done, 19 November 2026 (Appendix A) |
 | 2. Plan | Done; approved 19 November 2026 (scope Full) |
-| 3. System | In progress: tokens and palette, components and script done; icons and the rules on the Guidelines and Brand pages next |
+| 3. System | Done, 20 November 2026. The D4 status colours wait for your approval of `v2-status-colours.html` |
 | 4. Website | Not started |
 | 5. Verify and deliver | Not started |
 
-Phase 3 so far (19 November 2026). Every step ended with `node scripts/build.mjs` and a green `npm run check`.
+Phase 3 (19 and 20 November 2026). Every step ended with `node scripts/build.mjs` and a green `npm run check`.
 
 | Step | Done |
 |---|---|
-| Gates | The Definition of done is a live ledger in `.unlazy/v2/GATES.md` (untracked), linted, with oracle scripts beside it |
-| Tokens and palette | Six theme references changed (no palette change); aurora tokens retired; `check-tokens` enforces 16 separations, including danger against success under protan and deutan vision. The 1.0 values fail it with 12 violations |
+| Gates | The Definition of done is a live ledger in `.unlazy/v2/GATES.md`, and this phase's work in `.unlazy/s2/GATES.md` (both untracked), linted, with oracle scripts beside them |
+| Tokens and palette | Six theme references changed (no palette change); aurora tokens retired; `check-tokens` enforces 16 separations, including danger against success under protan and deutan vision. The 1.0 values fail it with 12 violations. The pairs live in `scripts/lib/separation.mjs`, which the Colour page reads too |
 | Retirements (D3) | `.vc-eyebrow` and `.vc-bg-aurora` removed from the CSS; 45 eyebrows removed or turned into captions across 29 docs pages and starters |
-| Guide | `vc-guide` CSS and behaviour, interactive stepper steps, first guides in the app, dashboard and blank starters, `check-guide` (self-test 8 of 8) and a browser test in `check:render` (20 assertions per starter) |
-| Byline | One source in `src/brand/profile.json`; the 2.0 byline with the website link on all 26 docs pages and four starters and in the Streamlit helper; `check-byline` (self-test 5 of 5) |
+| Guide | `vc-guide` CSS and behaviour, interactive stepper steps, guides in the app, dashboard and blank starters, `check-guide` (self-test 10 of 10, now also checking list length and a sentence to say in every step) and a browser test in `check:render` (20 assertions per starter) |
+| Byline | One source in `src/brand/profile.json`, which now holds the only copy of the website address; the 2.0 byline on all 28 docs pages, four starters and the Streamlit helper; globe named "Victor Pflüger's website" with the tooltip "Website"; `check-byline` (self-test 5 of 5) |
+| Icons | 21 new icons from your prototypes, 85 in all, each drawn on the 24 px grid with hexagon round forms; `translate` became `swap`, two arrows, because the concept is switching; reviewed at 16, 20 and 24 px in both themes (`icon-review.html`, `icon-zoom.html`) |
+| Rules | Writing (new), How it works guide (new), Principles (unnumbered; signed and explained added), Colour (separation table, flat grounds instead of gradients), Typography (when to use capitals), Hexagon (cells carry meaning; honeycomb for real content), Accessibility (guide, byline targets, `lang`), Byline and profile links (every surface, the personal site included) |
+| Writing checks | `check-docs` enforces the Writing guideline's checkable rules on every built page: no eyebrow or aurora class, no numbered middle-dot headings, no bold label-and-colon list items, no em dashes as punctuation, none of the 45 stock words in `src/docs/banned-words.json`; a self-test plants nine patterns first. Pages and starters were cleaned to pass: 30 list items that began with a bold label and a colon, 15 numbered headings, 13 token descriptions, seven generated captions and 23 percentages without a no-break space |
+| Language | `lang="en-GB"` on every docs page and starter; `check-docs` fails on anything but `en-GB` or `de` |
 | Version | `dist/vici.js` takes its version from `package.json` |
 | check-hex | Stricter: self-test 11 of 11 (9 before), 34 would-be-round components (31 before) |
 
-Next, in a new chat: your approval of `v2-status-colours.html` (D4), the 21 icons, and the rules on the Guidelines and Brand pages (Writing, Principles, Colour, Hexagon, Accessibility, the How it works guide page, and the Byline and profile links rule, which closes F06). Then the 2.0 checklist goes into this file and Phase 3 closes.
+Next: Phase 4, the website (section 4), and your answer on D4.
 
 P0 and P1 findings, which the Definition of done requires closed:
 
 | ID | Severity | Status | Fixed in |
 |---|---|---|---|
-| F01 | P0 | Open | |
+| F01 | P0 | Open | Pins already come from `package.json`; the `v1.0.0` tag still has to be pushed, and `v2.0.0` at release |
 | F02 | P1 | Open | |
 | F03 | P1 | Open | |
 | F04 | P1 | Fixed | `src/brand/profile.json`, `@byline` widget in `scripts/lib/docs.mjs`, `src/docs/layout.html`, starters, Streamlit helper in `scripts/build.mjs` |
 | F05 | P1 | Fixed | All four starters carry the byline; `scripts/check-byline.mjs` in `npm run check` |
-| F06 | P1 | Open | |
-| F07 | P1 | In progress | `vc-guide` in `src/css/components/overlays.css` and `src/js/vici.js`; guides in three starters; `scripts/check-guide.mjs`, `scripts/check-guide-render.mjs`. The guideline page follows with the rules |
-| F08 | P1 | In progress | The presenting chapter is required by `check-guide`; the guideline page follows |
+| F06 | P1 | Fixed | `src/docs/pages/brand/profile-links.html` (every surface, the personal site included); `check-docs` pins `every-surface` and `personal-site` |
+| F07 | P1 | Fixed | `vc-guide` in `src/css/components/overlays.css` and `src/js/vici.js`; `src/docs/pages/components/guide.html` with an English and a German example; guides in three starters; `scripts/check-guide.mjs`, `scripts/check-guide-render.mjs` |
+| F08 | P1 | Fixed | `check-guide` requires a presenting chapter of three to seven steps, each with a sentence to say and its minutes; documented in `components/guide.html#presenting` |
 | F09 | P1 | Open | |
 | F10 | P1 | Open | |
 | F11 | P1 | Done, awaiting approval | `--vc-accent-text` light to merlot 800; separation rule in `scripts/check-tokens.mjs` |
 | F12 | P1 | Done, awaiting approval | Light success 900, dark success 100 and danger 500; protan and deutan rule in `check-tokens` |
 | F13 | P1 | Done, awaiting approval | Dark danger solid coral 500, danger text coral 400 |
+
+P2 and P3 findings closed or changed in Phase 3:
+
+| ID | Severity | Status | Fixed in |
+|---|---|---|---|
+| F14 | P2 | Fixed | `.vc-eyebrow` retired; Writing bans it; `check-docs` fails on the class |
+| F15 | P2 | Fixed | 15 numbered headings on Getting started, Principles and Logo made plain; `check-docs` fails on "n ·" headings |
+| F16 | P2 | Fixed in the system | `.vc-bg-aurora` and its tokens retired; Colour asks for flat pastel grounds; the home page and landing starter are rebuilt in Phase 4 |
+| F27 | P2 | Rule done | Hexagon: cells carry meaning, `.vc-cell` no longer "for feature lists and cards"; the icon-card grids on home and Starters go in Phase 4 |
+| F31 | P2 | Done, awaiting approval | Light `surface-selected` to merlot 200; the pair is in the separation rule |
+| F34 | P2 | Fixed | The guide moves focus to each chapter heading and has no live region |
+| F35 | P2 | Fixed | The guide opens once per tab; `?guide=0` and `?guide=present` |
+| F38 | P3 | Fixed | `lang="en-GB"` in `src/docs/layout.html` and the starters; Accessibility and Writing say when to use `de` |
+| F45 | P3 | Fixed | The guide button has visible text and no tooltip |
+
+## 10. The 2.0 checklist
+
+What a page, prototype or demo built with Vici 2.0 must meet, and how to tell. The first column is what to check; the second says how. Rows marked "the build" fail `npm run check` or `npm run check:render` in this repository; for a prototype in another repository, the same functions can be imported from the scripts named, and the rest is a review.
+
+| ID | Rule | How to verify | Written in |
+|---|---|---|---|
+| R1 | Cells, not circles: anything that would be round is a flat-top hexagon, anything pill-shaped a hex capsule | The build: `check-hex` prints HEX OK and `check-render` finds no element that renders as a circle or pill. In a prototype, search its own CSS for `border-radius: 50%`, `9999px`, `circle(` and `rounded-full` | Principles, Hexagon |
+| R2 | Merlot `#250010` is the deep base: ink and the primary action in the light theme, the canvas in the dark theme | `--vc-merlot-950` is `#250010` in `dist/vici.css`; `check-tokens` prints TOKENS OK | Principles, Colour |
+| R3 | Every semantic text pair reaches 4.5:1, and borders, focus rings and chart marks 3:1, in both themes | The build: `check-tokens`; the contrast table on Colour | Colour, Accessibility |
+| R4 | Status colours stay apart: danger from merlot and from the other status colours, and danger from success for red-green colour blindness | The build: `check-tokens` prints "16 status separations checked"; the separation table on Colour | Colour |
+| R5 | Data first: tabular figures in numeric columns, at most six categorical chart colours, labels on the data | Review: numeric cells carry `.vc-num` or `.vc-tabular`; charts use `--vc-data-1` to `--vc-data-6` | Principles, Data visualisation, Writing |
+| R6 | Zero friction: one stylesheet and an optional script, no build step and no framework | The page works with only `vici.min.css` and `vici.js` linked; `package.json` has no runtime dependencies | Principles, Getting started |
+| R7 | WCAG 2.2 AA in use: visible focus, every control reachable by keyboard, reduced motion respected, reflow at 320 px, targets of at least 24 by 24 px | The build: `check-render` (no overflow at 320 px, no console errors); then a keyboard-only pass and axe on the main flows | Accessibility |
+| R8 | Light and dark themes both work | The build: `check-render` renders every page and starter in both themes at 1280 px | Colour, Theming |
+| R9 | Fonts are the three OFL families, self-hosted, and nothing is requested from a third-party host | The build: `check-fonts` prints FONTS OK, `check-render` fails on failed requests; the network panel shows same-origin requests only | Typography |
+| R10 | The brand is reserved: logo, monograms, wordmarks and portrait belong to Victor and aren't under the MIT licence | `LICENSE` names the brand assets; they appear only on Victor's own work | Logo, Byline and profile links |
+| R11 | Every surface is signed: "Built by", the LinkedIn link and the website link, both `rel="author"` | The build: `check-byline` prints BYLINE OK; for a prototype, `bylineProblems()` from `scripts/check-byline.mjs` returns nothing | Principles, Byline and profile links |
+| R12 | The website address comes from `src/brand/profile.json` only | `grep -rl "VIP/index.html" src scripts` lists `src/brand/profile.json` and nothing else | Byline and profile links |
+| R13 | Every prototype, demo, challenge and showcase opens with a How it works guide titled in the fixed pattern | The build: `check-guide` prints GUIDE OK for the starters; for a prototype, `guideProblems()` from `scripts/check-guide.mjs` returns nothing | Principles, How it works guide |
+| R14 | Guide chapters run `what`, `how`, then any of your own, then `present`, three to eight in all | The build: `check-guide` | How it works guide |
+| R15 | Each chapter has one heading of at most 60 characters, a lead of at most 40 words and one figure, table or list of at most five items | The build: `check-guide` | How it works guide |
+| R16 | The presenting chapter has three to seven steps, each with what to show, a sentence to say in quotation marks and its minutes | The build: `check-guide` | How it works guide |
+| R17 | The guide opens once per tab, `?guide=0` keeps it closed, `?guide=present` opens the last chapter, focus moves to each chapter's heading and there is no live region | The build: `check-guide-render` prints GUIDE BEHAVIOUR OK for each starter | How it works guide, Accessibility |
+| R18 | No eyebrows or kickers above headings | The build: `check-docs` fails on the `vc-eyebrow` class; review for any small capitalised label over a heading | Writing, Typography |
+| R19 | No numbered headings unless they are steps, and never "n ·" | The build: `check-docs` | Writing |
+| R20 | No list items that start with a bold label and a colon | The build: `check-docs` | Writing |
+| R21 | No em dashes as punctuation; en dashes only join ranges | The build: `check-docs` finds em dashes between words | Writing |
+| R22 | None of the stock words in `src/docs/banned-words.json` | The build: `check-docs` reads the same file as the table on Writing | Writing |
+| R23 | No blurred gradients, glows or aurora backgrounds; atmosphere comes from flat pastel grounds | The build: `check-docs` fails on `vc-bg-aurora`; review the screenshots for gradients | Colour |
+| R24 | Cells carry meaning: no decorative icon grids, the honeycomb only for real content | Review: take each cell away and ask what information is lost | Hexagon |
+| R25 | Sentence case for every heading and label; capitals only where CSS sets them, or for a status word read from across the room | Review headings, buttons and table headers in the source | Writing, Typography |
+| R26 | Numbers use figures for anything measured, a no-break space before the unit or %, and the same decimals within a column | Review tables and KPIs; search the source for a digit, a plain space and a unit | Writing |
+| R27 | Leads are one or two sentences of at most 40 words | Review each `.vc-lead`; `check-guide` does it for guide leads | Writing |
+| R28 | `lang="en-GB"` on English pages and `lang="de"` on German ones; a German part inside an English page has its own `lang` | The build: `check-docs` accepts only `en-GB` or `de` on `<html>` | Writing, Accessibility |
+| R29 | A German surface is German throughout, built-in words included | Compare the page with the built-in words table on Writing | Writing |
+| R30 | Profile links use `rel="me"` on the personal site and `rel="author"` everywhere else, with the canonical addresses and LinkedIn first | Review against Link rules | Byline and profile links |
+| R31 | Icons come from the set: 24 px grid, 1.75 stroke, round forms drawn as hexagons | The build: `check-hex` scans every SVG in `src/icons`; review a new icon at 16, 20 and 24 px in both themes | Icons |
+| R32 | Relative links only, so the docs work from disk and on GitHub Pages | The build: `check-docs` resolves every internal link and anchor; open `index.html` from disk | Getting started |
+| R33 | Generated files are never edited by hand | The build: `node scripts/build.mjs --check` | Getting started |
+| R34 | Prototypes pin a tagged release, such as `@v2.0.0`, and never `@main` | Read the stylesheet `href` in each prototype | Getting started |
 
 ## Appendix A: Phase 1 diagnosis
 

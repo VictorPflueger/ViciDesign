@@ -3,6 +3,7 @@
 // WCAG 2.2 contrast for every semantic pairing in both themes. Exit 1 on any failure.
 import { loadTokens, flatten, resolvedTheme } from './lib/tokens.mjs';
 import { contrast, hexToOklch, deltaOk, simulate } from './lib/color.mjs';
+import { SEPARATION, DANGER_SUCCESS_LIGHTNESS_GAP } from './lib/separation.mjs';
 
 const tokens = loadTokens();
 const flat = flatten(tokens);
@@ -99,17 +100,6 @@ for (const theme of ['light', 'dark']) {
 // 6. Status colours stay apart from the brand and from each other, so an error never reads as
 //    brand text, a primary button never reads as a danger fill, and danger and success differ
 //    for colour-blind readers too (ΔOK in OKLab; lightness in OKLCH).
-const SEPARATION = [
-  // [a, b, minimum ΔOK in normal vision, also check under protan and deutan simulation]
-  ['accent-text', 'danger-solid', 0.1, false],
-  ['accent', 'danger-solid', 0.1, false],
-  ['danger-solid', 'success-solid', 0.08, true],
-  ['danger-solid', 'warning-solid', 0.08, false],
-  ['danger-solid', 'info-solid', 0.08, false],
-  ['warning-solid', 'success-solid', 0.08, false],
-  ['info-solid', 'success-solid', 0.08, false],
-  ['surface-selected', 'danger-bg', 0.04, false],
-];
 let separations = 0;
 for (const theme of ['light', 'dark']) {
   const t = resolvedTheme(tokens, theme);
@@ -123,7 +113,7 @@ for (const theme of ['light', 'dark']) {
     }
   }
   const gap = Math.abs(hexToOklch(t['danger-solid'])[0] - hexToOklch(t['success-solid'])[0]);
-  if (gap < 0.08) fail(`${theme}: danger-solid and success-solid differ by only ${gap.toFixed(3)} in lightness (needs 0.08)`);
+  if (gap < DANGER_SUCCESS_LIGHTNESS_GAP) fail(`${theme}: danger-solid and success-solid differ by only ${gap.toFixed(3)} in lightness (needs ${DANGER_SUCCESS_LIGHTNESS_GAP})`);
 }
 
 if (failures.length) {

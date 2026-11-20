@@ -2,7 +2,7 @@
 title: Data visualisation
 nav: Data visualisation
 section: Guidelines
-order: 9
+order: 10
 icon: chart-bar
 layout: wide
 description: Categorical, sequential and diverging palettes tested against colour-blindness simulations, chart anatomy, hexagon markers and waffles instead of pies.
@@ -14,12 +14,18 @@ description: Categorical, sequential and diverging palettes tested against colou
 
 <h2>Palettes</h2>
 <!-- @data-palette -->
-<ul>
-  <li><strong>Categorical</strong> (<code>--vc-data-1…6</code>): merlot, teal, apricot, fjord, lilac, honey, always in this order. <code>--vc-data-7</code> is grey for “other”, <code>--vc-data-8</code> a darker grey for baselines and previous periods. In light mode the marks are deep jewel tones that reach 3:1 against white. In dark mode they turn to pastels.</li>
-  <li><strong>Pastel fills</strong> (<code>--vc-data-pastel-1…8</code>): the same families as soft fills, for areas behind a strong line, highlighted bands and backgrounds of annotations.</li>
-  <li><strong>Sequential</strong> (<code>--vc-seq-1…7</code>): one merlot ramp from blush to the base colour, for heat maps and choropleths.</li>
-  <li><strong>Diverging</strong> (<code>--vc-div-1…7</code>): coral below the midpoint, fjord above, linen in the middle. Blue against red-orange stays distinguishable for the common forms of colour blindness.</li>
-</ul>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>Chart palettes</caption>
+  <thead><tr><th scope="col">Palette</th><th scope="col">Tokens</th><th scope="col">Use</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Categorical</th><td><code>--vc-data-1…6</code></td><td>Merlot, teal, apricot, fjord, lilac, honey, always in this order. <code>--vc-data-7</code> is grey for “other”, <code>--vc-data-8</code> a darker grey for baselines and previous periods. In light mode the marks are deep jewel tones that reach 3:1 against white. In dark mode they turn to pastels.</td></tr>
+    <tr><th scope="row">Pastel fills</th><td><code>--vc-data-pastel-1…8</code></td><td>The same families as soft fills, for areas behind a strong line, highlighted bands and backgrounds of annotations.</td></tr>
+    <tr><th scope="row">Sequential</th><td><code>--vc-seq-1…7</code></td><td>One merlot ramp from blush to the base colour, for heat maps and choropleths.</td></tr>
+    <tr><th scope="row">Diverging</th><td><code>--vc-div-1…7</code></td><td>Coral below the midpoint, fjord above, linen in the middle. Blue against red-orange stays distinguishable for the common forms of colour blindness.</td></tr>
+  </tbody>
+</table>
+</div>
 
 <h2>Examples</h2>
 <div class="vc-stack">
@@ -37,7 +43,7 @@ description: Categorical, sequential and diverging palettes tested against colou
 <ul>
   <li><strong>Title</strong> says what the chart shows, <strong>subtitle</strong> the unit and period. Put both in the <code>&lt;figcaption&gt;</code> of a <code>.vc-chart</code>.</li>
   <li><strong>Gridlines</strong> use <code>--vc-chart-grid</code>, horizontal only, and sit behind the data. <strong>Axis labels</strong> use <code>--vc-chart-axis</code> at 11&nbsp;px with tabular figures.</li>
-  <li><strong>Size:</strong> draw a chart at the size it is shown and give the SVG that <code>width</code> and <code>height</code>, so 11&nbsp;px stays 11&nbsp;px. Wrap charts with text in <code>.vc-chart__plot</code>: on phones they scroll sideways instead of shrinking their labels. Charts without text, like the waffle and the hexbin map, can simply fill the frame.</li>
+  <li>Draw a chart at the size it is shown and give the SVG that <code>width</code> and <code>height</code>, so 11&nbsp;px stays 11&nbsp;px. Wrap charts with text in <code>.vc-chart__plot</code>: on phones they scroll sideways instead of shrinking their labels. Charts without text, like the waffle and the hexbin map, can simply fill the frame.</li>
   <li><strong>Markers</strong> are flat-top hexagons with a 1.5&nbsp;px ring in the surface colour, so overlapping points stay separate. Enlarge the most recent point.</li>
   <li><strong>Legends</strong> (<code>.vc-legend</code>) use hexagon swatches in the series order. Label lines directly at their ends whenever there is room.</li>
   <li><strong>Source</strong> goes underneath in caption size: <code>.vc-chart__source</code>.</li>
