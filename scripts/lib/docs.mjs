@@ -326,7 +326,7 @@ function makeWidgets(ctx) {
     return `<span class="vc-tag vc-tag--sm vc-tag--${tone}">${level}</span>`;
   };
 
-  return {
+  const table = {
     version: () => ctx.version,
 
     'css-size': () => `about ${Math.round(ctx.stats.gzCss / 1024)} KB (minified and gzipped)`,
@@ -528,6 +528,27 @@ function makeWidgets(ctx) {
       return `<img class="vc-platform-mark" src="{{root}}assets/marks/${name.trim()}.png" alt="" width="${w}" height="${h}">`;
     },
 
+    // <!-- @byline [id] --> → the "Built by" byline from src/brand/profile.json: portrait, name and
+    // LinkedIn's [in] as one link to LinkedIn, then a globe linking to the website, both rel="author".
+    // The id names the globe's tooltip; a page that shows several bylines gives each its own.
+    byline: (id) => {
+      const p = ctx.profile;
+      const tip = `vc-byline-site${id && id.trim() ? '-' + id.trim() : ''}`;
+      return `<p class="vc-byline">
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="${esc(p.linkedin)}" rel="author">
+    <span class="vc-avatar vc-avatar--xs">${table.portrait('96')}</span>
+    <span class="vc-byline__name">${esc(p.name)}</span>
+    ${table['platform-mark']('linkedin')}
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="${esc(p.website)}" rel="author" aria-labelledby="${tip}"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" role="tooltip" id="${tip}">${esc(p.name)}'s website</span>
+  </span>
+</p>`;
+    },
+
     // <!-- @licence-text --> → the repository's LICENSE file, word for word, reflowed for phones
     'licence-text': () => `<div class="doc-licence">\n${licenceHtml(readFileSync(join(ctx.root, 'LICENSE'), 'utf8'))}\n</div>`,
 
@@ -603,6 +624,7 @@ function makeWidgets(ctx) {
         .join('')}</div>`;
     },
   };
+  return table;
 }
 
 // ------------------------------------------------------------------ demos
@@ -638,7 +660,8 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
   const home = pages.find((p) => p.path === 'index.html');
   const sequence = home ? [home, ...ordered] : ordered;
 
-  const ctx = { root, tokens, flat, icons, pages, version, stats: stats || { minCss: 0, gzCss: 0 } };
+  const profile = JSON.parse(readFileSync(join(root, 'src/brand/profile.json'), 'utf8'));
+  const ctx = { root, tokens, flat, icons, pages, version, profile, stats: stats || { minCss: 0, gzCss: 0 } };
   const widgets = makeWidgets(ctx);
   const counter = { n: 0 };
   const out = [];
@@ -719,6 +742,7 @@ export function renderDocs({ root, version, tokens, flat, icons, stats }) {
       .replace(/\{\{pager\}\}/g, pager)
       .replace(/\{\{bodyClass\}\}/g, isHome ? 'doc doc--home' : page.meta.layout === 'wide' ? 'doc doc--wide' : 'doc')
       .replace(/\{\{version\}\}/g, version)
+      .replace(/\{\{byline\}\}/g, () => widgets.byline(''))
       .replace(/\{\{linkedinMark\}\}/g, () => widgets['platform-mark']('linkedin'))
       .replace(/\{\{portrait\}\}/g, () => widgets.portrait('96'))
       .replace(/\{\{root\}\}/g, rootRel)

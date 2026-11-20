@@ -259,13 +259,20 @@ font = "sans serif"
 `;
 }
 
+// Vici's globe icon as a self-contained data URI in one colour, for places without Vici's CSS.
+function globeDataUri(color) {
+  const svg = read('src/icons/globe-hex.svg').replace(/currentColor/g, color).replace(/\s+/g, ' ').trim();
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
 // A Streamlit helper that writes the profile-links byline with inline styles (Streamlit doesn't
 // load Vici's stylesheet). Images come from the CDN, pinned to this release.
 function streamlitByline() {
   const L = theme('light');
   const D = theme('dark');
+  const P = JSON.parse(read('src/brand/profile.json'));
   return `"""Vici byline for Streamlit: "Built by", Victor Pflüger's portrait in a hexagon, his name and
-LinkedIn's [in] logo, as one link to his LinkedIn profile.
+LinkedIn's [in] logo as one link to his LinkedIn profile, then a globe linking to his website.
 
     import streamlit as st
     from vici_byline import vici_byline
@@ -281,14 +288,17 @@ The portrait and LinkedIn's logo are not covered by Vici's MIT licence (see LICE
 from html import escape
 
 VICI = "https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v${VERSION}"
-LINKEDIN = "https://www.linkedin.com/in/victorpflueger"
+LINKEDIN = "${P.linkedin}"
+WEBSITE = "${P.website}"
+GLOBE = "${globeDataUri(L['accent-text'])}"
+GLOBE_DARK = "${globeDataUri(D['accent-text'])}"
 HEXAGON = "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)"
 HIDDEN = "position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap"
 
 
 def vici_byline(dark: bool = False, label: str = "Built by") -> str:
     """HTML for st.markdown(..., unsafe_allow_html=True). dark=True for a dark Streamlit theme."""
-    ink, muted = ("${D.text}", "${D['text-muted']}") if dark else ("${L.text}", "${L['text-muted']}")
+    ink, muted, accent = ("${D.text}", "${D['text-muted']}", "${D['accent-text']}") if dark else ("${L.text}", "${L['text-muted']}", "${L['accent-text']}")
     logo = "linkedin-white.png" if dark else "linkedin.png"
     return (
         f'<p style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0;'
@@ -301,6 +311,10 @@ def vici_byline(dark: bool = False, label: str = "Built by") -> str:
         "<span>Victor Pflüger</span>"
         f'<img src="{VICI}/assets/marks/{logo}" alt="" height="21" style="height:21px;width:auto;margin-left:4px">'
         f'<span style="{HIDDEN}"> on LinkedIn</span>'
+        "</a>"
+        f'<a href="{WEBSITE}" rel="author" aria-label="Victor Pflüger&#39;s website" title="Website" '
+        f'style="display:inline-grid;place-items:center;min-width:24px;min-height:24px;color:{accent}">'
+        f'<img src="{GLOBE_DARK if dark else GLOBE}" alt="" width="20" height="20">'
         "</a></p>"
     )
 `;
@@ -471,7 +485,9 @@ const minCss = minifyCss(css);
 emit('dist/vici.css', css);
 emit('dist/vici.min.css', minCss);
 emit('dist/vici-tokens.css', tokensCss());
-emit('dist/vici.js', read('src/js/vici.js'));
+const viciJs = read('src/js/vici.js');
+if (!viciJs.includes("'__VICI_VERSION__'")) throw new Error('src/js/vici.js must carry the version placeholder');
+emit('dist/vici.js', viciJs.replace("'__VICI_VERSION__'", `'${VERSION}'`));
 emit('dist/vici-icons.svg', iconSprite());
 emit('dist/tokens.json', tokensJson());
 emit('integrations/streamlit/config.toml', streamlit('light'));

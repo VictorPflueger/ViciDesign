@@ -36,6 +36,7 @@
         <a href="#">Agents</a>
       </nav>
       <div class="vc-header__actions">
+        <button type="button" class="vc-button vc-button--secondary vc-button--sm" data-vc-guide-open="guide"><span class="vc-icon vc-icon--info" aria-hidden="true"></span>How it works</button>
         <span class="vc-tooltip-anchor">
           <button type="button" class="vc-icon-button" data-vc-theme-toggle aria-labelledby="tip-theme"><span class="vc-icon vc-icon--moon vc-when-light" aria-hidden="true"></span><span class="vc-icon vc-icon--sun vc-when-dark" aria-hidden="true"></span></button>
           <span class="vc-tooltip vc-tooltip--bottom" role="tooltip" id="tip-theme">Dark theme</span>
@@ -51,8 +52,7 @@
   <main id="main" class="vc-container vc-container--wide" tabindex="-1" style="padding-bottom: var(--vc-space-16)">
     <div class="dash-head">
       <div>
-        <p class="vc-eyebrow">Operations · Q3 2026</p>
-        <h1>Overview</h1>
+        <h1>Operations overview</h1>
       </div>
       <div class="vc-cluster">
         <div class="vc-segmented" role="radiogroup" aria-label="Period">
@@ -125,17 +125,51 @@
     </div>
     <footer class="dash-credit">
       <!-- Profile links: see Brand → Profile links in the Vici docs -->
-      <p class="vc-byline">
-        <span class="vc-byline__label">Built by</span>
-        <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
-          <span class="vc-avatar vc-avatar--xs"><!-- @portrait 96 --></span>
-          <span class="vc-byline__name">Victor Pflüger</span>
-          <!-- @platform-mark linkedin -->
-          <span class="vc-visually-hidden"> on LinkedIn</span>
-        </a>
-      </p>
+      <!-- @byline -->
       <span>Sample data</span>
     </footer>
   </main>
+
+  <!-- How it works: Vici's guide. vici.js builds the chapter rail and opens it once per browser tab. -->
+  <dialog class="vc-dialog vc-guide" id="guide" aria-labelledby="guide-title" data-vc-guide data-vc-guide-auto data-vc-guide-count="{n} of {total}">
+    <header class="vc-dialog__header">
+      <h2 class="vc-dialog__title" id="guide-title">How the demo works</h2>
+      <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+    </header>
+    <div class="vc-guide__chapters">
+      <section class="vc-guide__chapter" data-vc-chapter="what" data-vc-nav="What it does">
+        <h3>One page for the quarter's operations</h3>
+        <p class="vc-guide__lead">A sample dashboard for one quarter: what each business line earned, how support tickets were resolved and how invoices were processed.</p>
+        <ul>
+          <li>Revenue by business line, in € million per quarter.</li>
+          <li>The share of tickets resolved by an agent, an assistant or a person, month by month.</li>
+          <li>How 12,400 invoices were processed.</li>
+        </ul>
+      </section>
+      <section class="vc-guide__chapter" data-vc-chapter="how" data-vc-nav="How it works">
+        <h3>Each chart answers one kind of question</h3>
+        <p class="vc-guide__lead">Bars compare the business lines, lines follow a change over twelve months, and the hexagon waffle shows parts of a whole: each cell is 2 % of the invoices.</p>
+        <ul>
+          <li><strong>Bars:</strong> amounts side by side.</li>
+          <li><strong>Lines:</strong> a trend, labelled at the line ends.</li>
+          <li><strong>Waffle:</strong> shares of a whole, where other dashboards use a pie.</li>
+        </ul>
+      </section>
+      <section class="vc-guide__chapter" data-vc-chapter="present" data-vc-nav="How to present">
+        <h3>Show it in four minutes</h3>
+        <p class="vc-guide__lead">Three steps, four minutes in all.</p>
+        <ol class="vc-guide__path">
+          <li><strong>Point at the KPI row.</strong> "This row is the quarter at a glance." <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Walk through the revenue bars.</strong> "All three business lines grew, and hardware leads in Q4." <span class="vc-guide__time">1 min</span></li>
+          <li><strong>Finish on the waffle.</strong> "Almost two in three invoices are now processed automatically." <span class="vc-guide__time">2 min</span></li>
+        </ol>
+      </section>
+    </div>
+    <footer class="vc-dialog__footer vc-guide__footer">
+      <span class="vc-guide__count"></span>
+      <button type="button" class="vc-button vc-button--ghost" data-vc-guide-back><span class="vc-icon vc-icon--chevron-left" aria-hidden="true"></span>Back</button>
+      <button type="button" class="vc-button" data-vc-guide-next data-vc-guide-done="Start">Next<span class="vc-icon vc-icon--chevron-right" aria-hidden="true"></span></button>
+    </footer>
+  </dialog>
 </body>
 </html>

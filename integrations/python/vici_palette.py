@@ -153,7 +153,7 @@ LIGHT = {
     "surface-raised": "#ffffff",
     "surface-hover": "#fff4f4",
     "surface-pressed": "#ffe5e7",
-    "surface-selected": "#ffe5e7",
+    "surface-selected": "#fcd2d5",
     "surface-inverse": "#250010",
     "scrim": "#250010",
     "text": "#250010",
@@ -173,7 +173,7 @@ LIGHT = {
     "accent-soft": "#ffe5e7",
     "accent-soft-hover": "#fcd2d5",
     "on-accent-soft": "#250010",
-    "accent-text": "#8f2f42",
+    "accent-text": "#5c1230",
     "focus": "#8f2f42",
     "shadow-color": "#250010",
     "info-bg": "#e1f0ff",
@@ -184,7 +184,7 @@ LIGHT = {
     "success-bg": "#e4f2e5",
     "success-border": "#badabe",
     "success-text": "#275033",
-    "success-solid": "#396c46",
+    "success-solid": "#193521",
     "success-on-solid": "#ffffff",
     "warning-bg": "#f5eed9",
     "warning-border": "#d1b679",
@@ -241,10 +241,7 @@ LIGHT = {
     "rating": "#9b751d",
     "knob": "#ffffff",
     "track": "#e7ddda",
-    "platform-mark": "#000000",
-    "aurora-1": "#fcd2d5",
-    "aurora-2": "#e8daf8",
-    "aurora-3": "#feeada"
+    "platform-mark": "#000000"
 }
 
 DARK = {
@@ -286,7 +283,7 @@ DARK = {
     "success-bg": "#1a301f",
     "success-border": "#396c46",
     "success-text": "#d0e8d3",
-    "success-solid": "#badabe",
+    "success-solid": "#e4f2e5",
     "success-on-solid": "#0d2013",
     "warning-bg": "#3b2502",
     "warning-border": "#7b5800",
@@ -295,8 +292,8 @@ DARK = {
     "warning-on-solid": "#261801",
     "danger-bg": "#471b18",
     "danger-border": "#954238",
-    "danger-text": "#ffd6cd",
-    "danger-solid": "#fcc0b4",
+    "danger-text": "#efa295",
+    "danger-solid": "#d88071",
     "danger-on-solid": "#2f110e",
     "feature-bg": "#35213f",
     "feature-border": "#6f4f89",
@@ -343,10 +340,7 @@ DARK = {
     "rating": "#e2cfa0",
     "knob": "#f3ebe7",
     "track": "#4d2834",
-    "platform-mark": "#ffffff",
-    "aurora-1": "#5c1230",
-    "aurora-2": "#372544",
-    "aurora-3": "#4e2532"
+    "platform-mark": "#ffffff"
 }
 
 CATEGORICAL = ["#5c1230","#006d70","#ae682d","#25476e","#8d6aab","#5c4000"]

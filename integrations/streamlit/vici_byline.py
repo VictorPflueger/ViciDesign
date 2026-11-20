@@ -1,5 +1,5 @@
 """Vici byline for Streamlit: "Built by", Victor Pflüger's portrait in a hexagon, his name and
-LinkedIn's [in] logo, as one link to his LinkedIn profile.
+LinkedIn's [in] logo as one link to his LinkedIn profile, then a globe linking to his website.
 
     import streamlit as st
     from vici_byline import vici_byline
@@ -16,13 +16,16 @@ from html import escape
 
 VICI = "https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@v1.0.0"
 LINKEDIN = "https://www.linkedin.com/in/victorpflueger"
+WEBSITE = "https://victorpflueger.github.io/VIP/index.html"
+GLOBE = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%235c1230%22%20stroke-width%3D%221.75%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cpath%20d%3D%22M12%202.8%20L19.97%207.4%20L19.97%2016.6%20L12%2021.2%20L4.03%2016.6%20L4.03%207.4%20Z%22%2F%3E%20%3Cpath%20d%3D%22M4%209%20H20%20M4%2015%20H20%20M12%202.8%20L9.5%207.5%20V16.5%20L12%2021.2%22%2F%3E%20%3C%2Fsvg%3E"
+GLOBE_DARK = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23fcd2d5%22%20stroke-width%3D%221.75%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cpath%20d%3D%22M12%202.8%20L19.97%207.4%20L19.97%2016.6%20L12%2021.2%20L4.03%2016.6%20L4.03%207.4%20Z%22%2F%3E%20%3Cpath%20d%3D%22M4%209%20H20%20M4%2015%20H20%20M12%202.8%20L9.5%207.5%20V16.5%20L12%2021.2%22%2F%3E%20%3C%2Fsvg%3E"
 HEXAGON = "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)"
 HIDDEN = "position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap"
 
 
 def vici_byline(dark: bool = False, label: str = "Built by") -> str:
     """HTML for st.markdown(..., unsafe_allow_html=True). dark=True for a dark Streamlit theme."""
-    ink, muted = ("#f3ebe7", "#d6c9c6") if dark else ("#250010", "#5b4b4e")
+    ink, muted, accent = ("#f3ebe7", "#d6c9c6", "#fcd2d5") if dark else ("#250010", "#5b4b4e", "#5c1230")
     logo = "linkedin-white.png" if dark else "linkedin.png"
     return (
         f'<p style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0;'
@@ -35,5 +38,9 @@ def vici_byline(dark: bool = False, label: str = "Built by") -> str:
         "<span>Victor Pflüger</span>"
         f'<img src="{VICI}/assets/marks/{logo}" alt="" height="21" style="height:21px;width:auto;margin-left:4px">'
         f'<span style="{HIDDEN}"> on LinkedIn</span>'
+        "</a>"
+        f'<a href="{WEBSITE}" rel="author" aria-label="Victor Pflüger&#39;s website" title="Website" '
+        f'style="display:inline-grid;place-items:center;min-width:24px;min-height:24px;color:{accent}">'
+        f'<img src="{GLOBE_DARK if dark else GLOBE}" alt="" width="20" height="20">'
         "</a></p>"
     )

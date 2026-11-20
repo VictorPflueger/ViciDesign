@@ -33,6 +33,7 @@ const HEX_PARTS = [
   ['.vc-progress', null], ['.vc-icon-button', '::before'], ['.vc-pagination__page', '::before'], ['.vc-step__marker', '::before'],
   ['.vc-carousel__dots > button', '::before'], ['.vc-rating > label', '::before'], ['.vc-timeline > li', '::after'],
   ['.vc-legend > li', '::before'], ['.vc-chip', '::before'], ['.vc-tag', '::before'], ['.vc-cell', null], ['.vc-tile', null],
+  ['.vc-guide__path > li', '::before'],
 ];
 
 const pages = sitePages();

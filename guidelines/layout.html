@@ -55,7 +55,6 @@
     <main class="doc-main" id="main" tabindex="-1">
       <article class="doc-article">
 <header class="doc-hero">
-  <p class="vc-eyebrow">Guidelines</p>
   <h1>Layout &amp; spacing</h1>
   <p class="vc-lead">Everything sits on a 4&nbsp;px grid. A handful of layout primitives (stack, cluster, grid, split) cover almost every arrangement, so a page is built from intent rather than from margins.</p>
 </header>
@@ -167,7 +166,7 @@
 <div class="vc-table-wrap"><table class="vc-table vc-table--compact">
   <thead><tr><th scope="col">Classes</th><th scope="col">Effect</th></tr></thead>
   <tbody>
-    <tr><td><code>.vc-display</code> <code>.vc-h1</code>…<code>.vc-h6</code> <code>.vc-lead</code> <code>.vc-eyebrow</code> <code>.vc-caption</code></td><td>Text styles, independent of the element (see <a href="../guidelines/typography.html#text-styles">Typography</a>)</td></tr>
+    <tr><td><code>.vc-display</code> <code>.vc-h1</code>…<code>.vc-h6</code> <code>.vc-lead</code> <code>.vc-caption</code></td><td>Text styles, independent of the element (see <a href="../guidelines/typography.html#text-styles">Typography</a>)</td></tr>
     <tr><td><code>.vc-text-xs</code> <code>-sm</code> <code>-md</code> <code>-lg</code></td><td>Font size from the type scale</td></tr>
     <tr><td><code>.vc-text-muted</code> <code>.vc-text-subtle</code> <code>.vc-text-accent</code></td><td>Secondary, tertiary and brand-coloured text</td></tr>
     <tr><td><code>.vc-mono</code> <code>.vc-tabular</code> <code>.vc-medium</code> <code>.vc-semibold</code></td><td>Monospace, tabular figures, weights</td></tr>
@@ -176,7 +175,7 @@
     <tr><td><code>.vc-surface</code> <code>.vc-surface-subtle</code></td><td>Card and subtle backgrounds</td></tr>
     <tr><td><code>.vc-surface-inverse</code></td><td>A section in the opposite theme: dark on a light page, light on a dark one</td></tr>
     <tr><td><code>.vc-tint-merlot</code> … <code>.vc-tint-lilac</code></td><td>Pastel section; stays light in both themes (see <a href="../start/theming.html#pastel-sections">Theming</a>)</td></tr>
-    <tr><td><code>.vc-bg-aurora</code> <code>.vc-bg-honeycomb</code></td><td>Soft pastel wash for heroes, honeycomb line pattern</td></tr>
+    <tr><td><code>.vc-bg-honeycomb</code></td><td>Honeycomb line pattern</td></tr>
     <tr><td><code>.vc-rounded</code> <code>.vc-border</code> <code>.vc-shadow-sm</code> <code>-md</code> <code>-lg</code></td><td>Radius, border and elevation</td></tr>
     <tr><td><code>.vc-hide</code> <code>.vc-hide-mobile</code> <code>.vc-hide-desktop</code></td><td>Hide always, below 768&nbsp;px, or from 768&nbsp;px</td></tr>
     <tr><td><code>.vc-when-light</code> <code>.vc-when-dark</code></td><td>Show only in one page theme, e.g. the moon and sun of a theme toggle</td></tr>
@@ -197,14 +196,18 @@
     <div class="vc-container vc-container--wide">
       <div class="vc-footer__bottom">
         <p class="vc-byline">
-          <span class="vc-byline__label">Built by</span>
-          <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
-            <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
-            <span class="vc-byline__name">Victor Pflüger</span>
-            <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
-            <span class="vc-visually-hidden"> on LinkedIn</span>
-          </a>
-        </p>
+  <span class="vc-byline__label">Built by</span>
+  <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+    <span class="vc-avatar vc-avatar--xs"><img src="../assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+    <span class="vc-byline__name">Victor Pflüger</span>
+    <img class="vc-platform-mark" src="../assets/marks/linkedin.png" alt="" width="840" height="779">
+    <span class="vc-visually-hidden"> on LinkedIn</span>
+  </a>
+  <span class="vc-tooltip-anchor">
+    <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-labelledby="vc-byline-site"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    <span class="vc-tooltip" role="tooltip" id="vc-byline-site">Victor Pflüger's website</span>
+  </span>
+</p>
         <span>Vici Design System v1.0.0 · code under the <a href="../start/licence.html">MIT licence</a>, logo and name reserved · fonts under SIL OFL 1.1, served from this site</span>
       </div>
     </div>

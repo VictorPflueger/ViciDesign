@@ -6,7 +6,6 @@ icon: drop
 description: Light and dark themes, theme islands, and how to override tokens without fighting the cascade.
 -->
 <header class="doc-hero">
-  <p class="vc-eyebrow">Start</p>
   <h1>Theming</h1>
   <p class="vc-lead">Vici ships a light and a dark theme built from the same tokens. Components never use raw colours. They read semantic custom properties such as <code>--vc-surface</code> or <code>--vc-accent</code>, and switching the theme simply redefines those properties.</p>
 </header>
@@ -33,7 +32,7 @@ description: Light and dark themes, theme islands, and how to override tokens wi
 <p><code>data-theme</code> works on any element, so a single section can switch theme on its own: a dark hero on a light page, or a light card inside a dark dashboard.</p>
 <!-- demo stack plain -->
 <div data-theme="dark" style="padding: var(--vc-space-6); border-radius: var(--vc-radius-lg)">
-  <p class="vc-eyebrow">Dark island</p>
+  <p class="vc-caption">Dark island</p>
   <h3 style="margin: 0 0 var(--vc-space-2)">The base colour becomes the canvas</h3>
   <p class="vc-text-muted" style="margin: 0 0 var(--vc-space-4)">Pastels glow on #250010. Every component inside follows automatically.</p>
   <div class="vc-cluster">
@@ -49,7 +48,7 @@ description: Light and dark themes, theme islands, and how to override tokens wi
 <!-- demo stack plain -->
 <div data-theme="dark" style="padding: var(--vc-space-5); border-radius: var(--vc-radius-lg)">
   <section class="vc-tint-sage" style="padding: var(--vc-space-6); border-radius: var(--vc-radius-md)">
-    <p class="vc-eyebrow">Pastel section</p>
+    <p class="vc-caption">Pastel section</p>
     <p class="vc-text-muted" style="margin: 0 0 var(--vc-space-4)">Sage wash inside a dark island. Muted text, buttons and tags keep their light-theme contrast.</p>
     <div class="vc-cluster">
       <button class="vc-button vc-button--sm">Primary</button>
