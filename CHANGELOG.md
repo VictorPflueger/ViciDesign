@@ -3,6 +3,15 @@
 All notable changes to Vici are listed here. Versions follow [Semantic Versioning](https://semver.org/):
 breaking changes to class names or token names bump the major version.
 
+## Unreleased
+
+- How it works guide: a page in two languages may carry one guide per language. `guideProblems` accepts it when each
+  guide says its language in `lang`, no two share one, and each is titled in its language, has its own header button
+  and gives every key figure its row in its How it works chapter under the name in its language (`data-vc-kpi-de`
+  beside `data-vc-kpi`). The guide page shows the pattern under Two languages, with the script that keeps the guide to
+  once per tab across both languages, and says where `vici.js` notes that a guide has opened. The self-test plants five
+  two-language mistakes and accepts the app starter with a German guide added.
+
 ## 1.0.0 — 2026-10-23
 
 First release.

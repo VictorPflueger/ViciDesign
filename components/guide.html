@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="vici-build">
   <title>How it works guide · Vici Design System</title>
-  <meta name="description" content="The standard talk track: the short guide that opens with every prototype, demo, challenge and showcase and says what it does, how it works and how to present it. Title, chapters, copy rules, markup, behaviour, opening, the presenting chapter, key figures and presenting step by step.">
+  <meta name="description" content="The standard talk track: the short guide that opens with every prototype, demo, challenge and showcase and says what it does, how it works and how to present it. Title, chapters, copy rules, markup, two languages, behaviour, opening, the presenting chapter, key figures and presenting step by step.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
@@ -405,6 +405,34 @@
   <span class="tk-punct">&lt;/</span><span class="tk-tag">footer</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-57" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
+<h3 id="two-languages">Two languages</h3>
+<p>A prototype with an EN | DE switch carries one guide per language, each written out in full. The check accepts such a page when every guide follows the whole standard and these rules hold:</p>
+<ul>
+  <li>Each dialog has its own id and says its language in <code>lang</code>, and no two share one. Its title is in that language.</li>
+  <li>Each guide has <code>data-vc-guide-auto</code> and its own header button. The page shows only the button of the language on screen.</li>
+  <li>A key figure carries its name in each language: <code>data-vc-kpi</code> in English and <code>data-vc-kpi-de</code> in German. Each guide's How it works chapter gives it a row under the name in its own language.</li>
+  <li>A plain script at the end of the body, which runs before the deferred <code>vici.js</code>, takes <code>data-vc-guide-auto</code> off the other language's guide, so the guide that opens by itself is in the page's language.</li>
+  <li>The two guides are one guide in two languages, so it opens once per tab, whichever language the visitor switches to: the script notes the page's guide as seen once the other one has opened (see <a href="#opening">Opening</a>).</li>
+</ul>
+<pre><code>&lt;button … data-vc-guide-open="guide-en" lang="en"&gt;…How it works&lt;/button&gt;
+&lt;button … data-vc-guide-open="guide-de" lang="de" hidden&gt;…So funktioniert's&lt;/button&gt;
+&lt;article class="vc-stat" data-vc-kpi="Relief a year" data-vc-kpi-de="Entlastung pro Jahr"&gt;…&lt;/article&gt;
+
+&lt;dialog class="vc-dialog vc-guide" id="guide-en" lang="en-GB" data-vc-guide data-vc-guide-auto …&gt;…&lt;/dialog&gt;
+&lt;dialog class="vc-dialog vc-guide" id="guide-de" lang="de" data-vc-guide data-vc-guide-auto …&gt;…&lt;/dialog&gt;
+&lt;script src="js/lang.js"&gt;&lt;/script&gt;
+
+// js/lang.js: lang is the page's language (?lang=, then the visitor's last choice, else English)
+['en', 'de'].forEach(function (l) {
+  if (l !== lang) document.getElementById('guide-' + l).removeAttribute('data-vc-guide-auto');
+  document.querySelector('[data-vc-guide-open="guide-' + l + '"]').hidden = l !== lang;
+});
+var seen = function (l) { return 'vc-guide:' + location.pathname + '#guide-' + l; };
+try {
+  if (sessionStorage.getItem(seen(lang === 'de' ? 'en' : 'de'))) sessionStorage.setItem(seen(lang), '1');
+} catch (e) { /* storage blocked: the guide opens */ }</code></pre>
+<p>The switch itself shows the other button and leaves the open state alone. Duty Radar, Victor's bureaucracy relief prototype, works this way.</p>
+
 <h2 id="behaviour">Behaviour</h2>
 <ul>
   <li>The guide is a modal dialog: Escape and the close button close it, focus stays inside, and closing returns focus to whatever opened it.</li>
@@ -417,7 +445,7 @@
 
 <h2 id="opening">Opening</h2>
 <ul>
-  <li>With <code>data-vc-guide-auto</code>, the guide opens by itself the first time a prototype loads in a browser tab, and not again when that tab reloads. If the browser blocks storage, it opens on every load.</li>
+  <li>With <code>data-vc-guide-auto</code>, the guide opens by itself the first time a prototype loads in a browser tab, and not again when that tab reloads. <code>vici.js</code> notes it in the tab's session storage under <code>vc-guide:</code>, the page's path, <code>#</code> and the guide's id. If the browser blocks storage, it opens on every load.</li>
   <li><code>?guide=0</code> in the address keeps it closed, for a presenter who has already explained the prototype.</li>
   <li><code>?guide=present</code> opens it at the presenting chapter. Any chapter id or number works the same way.</li>
   <li>The header button reopens it at the first chapter.</li>
@@ -435,7 +463,7 @@
 </ul>
 
 <h2 id="key-figures">Key figures</h2>
-<p>A prototype shows two to four key figures at the top of the page, usually top right, so a customer sees at once what the case delivers: money gained, lost or saved, lead time, time from detection to decision, session cost (measured in a live run, estimated in a simulated one), people affected, performance against a benchmark or a score. Each is a <code>vc-stat</code> tile that carries its name in <code>data-vc-kpi</code>. <a href="../start/prototypes.html#key-figures">Build a prototype</a> has an example of each.</p>
+<p>A prototype shows two to four key figures at the top of the page, usually top right, so a customer sees at once what the case delivers: money gained, lost or saved, lead time, time from detection to decision, session cost (measured in a live run, estimated in a simulated one), people affected, performance against a benchmark or a score. Each is a <code>vc-stat</code> tile that carries its name in <code>data-vc-kpi</code>, and on a page in two languages its German name in <code>data-vc-kpi-de</code> as well. <a href="../start/prototypes.html#key-figures">Build a prototype</a> has an example of each.</p>
 <ul>
   <li>The How it works chapter explains every key figure in a table, one row each: the figure's name as on its tile, what it measures and its value. Where the numbers come from and what is simulated go in a chapter of their own, such as “What is real”.</li>
   <li>The presenting path points at the figures when they move, so the talk track says what each one shows.</li>
@@ -473,7 +501,7 @@
 <pre><code>&lt;li&gt;&lt;strong&gt;Calculate.&lt;/strong&gt; &lt;span class="vc-guide__say"&gt;“Paying early cost &lt;span data-fact="lead.past"&gt;€3,482&lt;/span&gt; last year.”&lt;/span&gt; &lt;span class="vc-guide__time"&gt;0.5&amp;nbsp;min&lt;/span&gt;&lt;/li&gt;</code></pre>
 
 <h2 id="check">Check</h2>
-<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a How it works chapter with a row for every key figure marked <code>data-vc-kpi</code>, saying what it measures and its value. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
+<p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a How it works chapter with a row for every key figure marked <code>data-vc-kpi</code>, saying what it measures and its value. A page in two languages passes with one guide per language that keeps the rules under <a href="#two-languages">Two languages</a>. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
 <p>A prototype checks its own guide the same way. <code>guideProblems(html)</code> from <code>scripts/lib/guide.mjs</code> returns the rules a page breaks, none when it follows them, and <code>node scripts/check-guide-render.mjs http://localhost:8000/</code> runs the browser test against a prototype served over http.</p>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/data.html" rel="prev"><span class="vc-caption">Previous</span><span>Data display</span></a><a class="doc-pager__link doc-pager__link--next" href="../brand/logo.html" rel="next"><span class="vc-caption">Next</span><span>Logo</span></a></nav>
