@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="vici-build">
   <title>Vici Design System</title>
-  <meta name="description" content="Vici is Victor Pflüger's personal design system for prototypes, websites and data products: hexagons instead of circles, a deep merlot base and soft pastels.">
+  <meta name="description" content="Vici is Victor Pflüger's personal design system for prototypes, websites and data products: hexagons instead of circles, a deep merlot base and soft pastels. What's new in 2.0 is listed on this page.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
@@ -56,107 +56,33 @@
       <article class="doc-article">
 <section class="doc-home-hero">
   <div class="vc-container vc-container--wide">
-    <div class="doc-home-hero__grid">
-      <div>
-        <h1 class="vc-display">Built in cells, not&nbsp;circles.</h1>
-        <p class="vc-lead">Vici is the design system behind Victor Pflüger's prototypes, websites and data products. One stylesheet with a deep merlot base and soft pastels. Wherever you would expect a circle, you get a hexagon.</p>
-        <div class="vc-cluster">
-          <a class="vc-button vc-button--lg" href="start/getting-started.html">Get started <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a>
-          <a class="vc-button vc-button--lg vc-button--secondary" href="components/actions.html">Browse components</a>
-          <a class="vc-button vc-button--lg vc-button--ghost" href="brand/logo.html">Logo</a>
-        </div>
-      </div>
-      <div class="doc-home-art" aria-hidden="true">
-        <ul class="vc-honeycomb" style="--vc-honeycomb-cell: 7.25rem; --vc-honeycomb-cols: 4; --vc-honeycomb-cols-sm: 4; --vc-honeycomb-cell-sm: 5.2rem">
-          <li class="vc-tile vc-tile--solid"><span class="vc-icon vc-icon--drop"></span>Colour</li>
-          <li class="vc-tile vc-tile--lilac"><span class="vc-icon vc-icon--type"></span>Type</li>
-          <li class="vc-tile"><span class="vc-icon vc-icon--hexagon"></span>Cells</li>
-          <li class="vc-tile vc-tile--fjord"><span class="vc-icon vc-icon--chart-bar"></span>Data</li>
-          <li class="vc-tile vc-tile--apricot"><span class="vc-icon vc-icon--zap"></span>Motion</li>
-          <li class="vc-tile vc-tile--merlot"><span class="vc-icon vc-icon--accessibility"></span>Access</li>
-          <li class="vc-tile vc-tile--honey"><span class="vc-icon vc-icon--cube"></span>Parts</li>
-          <li class="vc-tile vc-tile--teal"><span class="vc-icon vc-icon--sparkle"></span>Brand</li>
-        </ul>
-      </div>
+    <h1 class="vc-display">Built in cells, not&nbsp;circles.</h1>
+    <p class="vc-lead">Vici is the design system behind Victor Pflüger's prototypes, websites and data products: one stylesheet with a deep merlot base and soft pastels, and a hexagon wherever you would expect a circle.</p>
+    <div class="vc-cluster">
+      <a class="vc-button vc-button--lg" href="start/getting-started.html">Get started <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a>
+      <a class="vc-button vc-button--lg vc-button--secondary" href="components/actions.html">Browse components</a>
     </div>
+    <p class="doc-home-status">Vici 2.0 is in progress, and these pages already follow it. <a class="vc-link" href="#whats-new">See everything that has changed so far</a>.</p>
   </div>
 </section>
 
-<section class="doc-home-section">
+<section class="doc-home-section" aria-labelledby="home-slice">
   <div class="vc-container vc-container--wide">
-    <h2 data-toc="false" id="five-rules-the-whole-system-follows">Five rules the whole system follows</h2>
-    <div class="vc-grid" style="--vc-grid-min: 13rem; margin-top: var(--vc-space-8)">
-      <div class="doc-principle">
-        <span class="vc-cell vc-cell--lg vc-cell--solid"><span class="vc-icon vc-icon--hexagon" aria-hidden="true"></span></span>
-        <h3 id="cells-not-circles">Cells, not circles</h3>
-        <p>Hexagons tessellate: they fit together without gaps. Avatars, radios, badges, spinners and bullets are all cells, and pill shapes become hex capsules.</p>
-      </div>
-      <div class="doc-principle">
-        <span class="vc-cell vc-cell--lg"><span class="vc-icon vc-icon--drop" aria-hidden="true"></span></span>
-        <h3 id="deep-base-soft-light">Deep base, soft light</h3>
-        <p>Merlot <code>#250010</code> carries text, primary actions and the dark canvas. The pastels carry meaning and atmosphere, never the other way round.</p>
-      </div>
-      <div class="doc-principle">
-        <span class="vc-cell vc-cell--lg vc-cell--fjord"><span class="vc-icon vc-icon--chart-line" aria-hidden="true"></span></span>
-        <h3 id="data-first">Data first</h3>
-        <p>Tabular figures, a chart palette tested against colour-blindness simulations, and no decoration that competes with the numbers.</p>
-      </div>
-      <div class="doc-principle">
-        <span class="vc-cell vc-cell--lg vc-cell--apricot"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span></span>
-        <h3 id="zero-friction">Zero friction</h3>
-        <p>One CSS file and one optional script. No build step and no framework lock-in. Copy a snippet into a static page, a prototype or a notebook and it works.</p>
-      </div>
-      <div class="doc-principle">
-        <span class="vc-cell vc-cell--lg vc-cell--merlot"><span class="vc-icon vc-icon--accessibility" aria-hidden="true"></span></span>
-        <h3 id="accessible-by-default">Accessible by default</h3>
-        <p>Every colour pair is checked against WCAG 2.2 AA by the build. Focus is always visible, everything works by keyboard, and motion respects the user's settings.</p>
-      </div>
+    <h2 id="home-slice">A page built with Vici</h2>
+    <p class="doc-home-intro">The app starter, running live: the How it works button in its header opens the guide, the three key figures sit at the top, and the byline ends the page.</p>
+    <div class="doc-home-slice">
+      <iframe src="starters/app.html?guide=0" title="App starter: Atlas invoice exceptions, live" loading="lazy"></iframe>
     </div>
+    <p><a class="vc-link" href="starters/app.html">Open the app starter <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a></p>
   </div>
 </section>
 
-<section class="doc-home-section">
-  <div class="vc-container vc-container--wide">
-    <h2 data-toc="false" id="foundations-parts-and-a-brand">Foundations, parts and a brand</h2>
-    <div class="vc-grid" style="--vc-grid-min: 15rem; margin-top: var(--vc-space-8)">
-      <article class="vc-card vc-card--interactive">
-        <div class="vc-card__body">
-          <span class="vc-cell vc-cell--lg" aria-hidden="true"><span class="vc-icon vc-icon--flag"></span></span>
-          <h3 class="vc-card__title" id="start"><a class="vc-card__link" href="start/getting-started.html">Start</a></h3>
-          <p class="vc-card__meta">Install in one line, switch themes, wire up Streamlit, Power BI, Python or Tailwind, or copy a starter page.</p>
-        </div>
-      </article>
-      <article class="vc-card vc-card--interactive">
-        <div class="vc-card__body">
-          <span class="vc-cell vc-cell--lg vc-cell--fjord" aria-hidden="true"><span class="vc-icon vc-icon--book"></span></span>
-          <h3 class="vc-card__title" id="guidelines"><a class="vc-card__link" href="guidelines/principles.html">Guidelines</a></h3>
-          <p class="vc-card__meta">Colour coding, typography, hexagon geometry, layout, elevation, motion, icons, data visualisation and accessibility.</p>
-        </div>
-      </article>
-      <article class="vc-card vc-card--interactive">
-        <div class="vc-card__body">
-          <span class="vc-cell vc-cell--lg vc-cell--honey" aria-hidden="true"><span class="vc-icon vc-icon--cube"></span></span>
-          <h3 class="vc-card__title" id="components"><a class="vc-card__link" href="components/actions.html">Components</a></h3>
-          <p class="vc-card__meta">More than forty components, from buttons and forms to navigation, feedback, overlays, tables and KPI cards. Each one is live and ready to copy.</p>
-        </div>
-      </article>
-      <article class="vc-card vc-card--interactive">
-        <div class="vc-card__body">
-          <span class="vc-cell vc-cell--lg vc-cell--teal" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span>
-          <h3 class="vc-card__title" id="brand"><a class="vc-card__link" href="brand/logo.html">Brand</a></h3>
-          <p class="vc-card__meta">The Vertex logo with its lockup, app icon and wordmark, five monogram options to choose from, and how every page credits and links to Victor Pflüger.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="doc-home-section">
+<section class="doc-home-section" aria-labelledby="home-install">
   <div class="vc-container vc-container--wide">
     <div class="vc-grid vc-grid--2" style="align-items: start">
       <div>
-        <h2 data-toc="false" id="two-lines-in-your-head">Two lines in your &lt;head&gt;</h2>
-        <p class="vc-text-muted">The stylesheet is about 29 KB (minified and gzipped) and includes the tokens, both themes, every component and 86 icons. The script is optional: it adds the theme toggle, tabs, toasts and a few other behaviours.</p>
+        <h2 id="home-install">Two lines in your &lt;head&gt;</h2>
+        <p class="vc-text-muted">The stylesheet is about 29 KB (minified and gzipped) and includes the tokens, both themes, every component and 86 icons. The script is optional: it adds the theme toggle, tabs, toasts, the How it works guide and a few other behaviours. Every page then ends with the <a href="brand/profile-links.html#byline">byline</a>.</p>
         <p><a class="vc-link" href="start/getting-started.html">All installation options <span class="vc-icon vc-icon--arrow-right" aria-hidden="true"></span></a></p>
       </div>
       <div class="vc-code">
@@ -164,12 +90,140 @@
 <pre><code id="home-snippet">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@main/dist/vici.min.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/gh/VictorPflueger/ViciDesign@main/dist/vici.js" defer&gt;&lt;/script&gt;
 
-&lt;button class="vc-button"&gt;Primary action&lt;/button&gt;
-&lt;span class="vc-avatar"&gt;VP&lt;/span&gt;</code></pre>
+&lt;button class="vc-button"&gt;Primary action&lt;/button&gt;</code></pre>
       </div>
     </div>
-    <div class="doc-palette-band" role="img" aria-label="The Vici palette from merlot to pastels">
-      <span style="background:var(--vc-merlot-950)"></span><span style="background:var(--vc-merlot-800)"></span><span style="background:var(--vc-merlot-700)"></span><span style="background:var(--vc-merlot-500)"></span><span style="background:var(--vc-merlot-200)"></span><span style="background:var(--vc-neutral-100)"></span><span style="background:var(--vc-apricot-200)"></span><span style="background:var(--vc-honey-200)"></span><span style="background:var(--vc-sage-200)"></span><span style="background:var(--vc-teal-200)"></span><span style="background:var(--vc-fjord-200)"></span><span style="background:var(--vc-lilac-200)"></span>
+  </div>
+</section>
+
+<section class="doc-home-section" id="whats-new" aria-labelledby="whats-new-title">
+  <div class="vc-container vc-container--wide">
+    <h2 id="whats-new-title">What's new in Vici 2.0</h2>
+    <p class="doc-home-intro">These changes are on main, so the docs and the stylesheet already use them; the version number stays 1.0.0 until the 2.0.0 release. Each item links to where you can see it.</p>
+
+    <div class="doc-news">
+      <div class="doc-news__group">
+        <h3 id="two-new-pages">Two new pages</h3>
+        <ul>
+          <li><a href="guidelines/writing.html">Writing</a>, in Guidelines, covers voice, headings and labels, numbers and units, punctuation, German, and the patterns Vici doesn't use, with the stock words the build rejects.</li>
+          <li><a href="components/guide.html">How it works guide</a>, in Components, sets the short guide every prototype, demo, challenge and showcase opens with. You can open its English and German examples there.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="three-new-principles">Three new principles</h3>
+        <ul>
+          <li><a href="guidelines/principles.html#signed">Every surface is signed</a>, so every prototype, demo and website ends with the byline, the personal site included.</li>
+          <li><a href="guidelines/principles.html#explained">Every prototype explains itself</a> with a How it works guide.</li>
+          <li><a href="guidelines/principles.html#worth">Every prototype shows what it is worth</a> with two to four key figures at the top, each explained by its guide.</li>
+          <li>The five earlier principles keep their meaning and lose their numbers, and Accessible by default now names WCAG 2.2 AA as the floor.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="the-guide-component">The guide component</h3>
+        <ul>
+          <li><code>vc-guide</code> is a dialog with one section per chapter, a list of chapters beside them, a presenting path with times, and Back and Next. See its <a href="components/guide.html#content-format">content format</a>.</li>
+          <li>It opens by itself once per browser tab; <code>?guide=0</code> keeps it closed and <code>?guide=present</code> opens the presenting chapter. See <a href="components/guide.html#opening">Opening</a>.</li>
+          <li><code>vici.js</code> runs it: <code>data-vc-guide-open</code> on any button, <code>Vici.guide.open()</code> and <code>Vici.guide.show()</code> from a script, and the events <code>vc:guidechange</code> and <code>vc:guideclose</code>. <code>Vici.version</code> now reports the release.</li>
+          <li>Focus moves to each chapter's heading, so a screen reader reads every chapter once. After a mouse click the heading shows no focus ring; with the keyboard it does. See <a href="components/guide.html#behaviour">Behaviour</a>.</li>
+          <li>Steps in a stepper can now be buttons, <code>vc-step__button</code>, as in the guide's list of chapters.</li>
+          <li><code>vc-guide__say</code> holds a sentence to say that contains markup, such as figures a script fills in. See <a href="components/guide.html#presenting">The presenting chapter</a>.</li>
+          <li>Key figures are <code>vc-stat</code> tiles marked with <code>data-vc-kpi</code>, and the check fails when the guide doesn't name one. See <a href="components/guide.html#key-figures">Key figures</a>.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="the-byline">The byline</h3>
+        <ul>
+          <li>It ends every page, this one included: “Built by”, the portrait and name linking to LinkedIn, and now a globe linking to the website, with the tooltip “Website”. See <a href="brand/profile-links.html#every-surface">Byline and profile links</a>, the page that was called Profile links.</li>
+          <li>The personal site carries it as well; its own profile links keep <code>rel="me"</code>. See <a href="brand/profile-links.html#personal-site">On the personal site</a>.</li>
+          <li>The addresses live in one file, <code>profile.json</code> in <code>src/brand</code>. The build writes them into the docs, the starters and the <a href="start/integrations.html#streamlit">Streamlit helper</a>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doc-news-wide">
+      <h3 id="status-colours">Status colours</h3>
+      <p>Six colour references changed, so danger stays clear of merlot, of the other status colours and, for red-green colour blindness, of success. The values are still under review; the measured distances are on <a href="guidelines/colour.html#status-separation">Colour</a>.</p>
+      <div class="vc-table-wrap">
+      <table class="vc-table">
+        <caption>Colour references that changed in 2.0</caption>
+        <thead><tr><th scope="col">Theme</th><th scope="col">Token</th><th scope="col">In 1.0</th><th scope="col">In 2.0</th><th scope="col">Why</th></tr></thead>
+        <tbody>
+          <tr data-ref><td>Light</td><td><code>--vc-accent-text</code></td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-merlot-700)"></span>Merlot 700</td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-merlot-800)"></span>Merlot 800</td><td>Keeps accent text clear of danger's coral</td></tr>
+          <tr data-ref><td>Light</td><td><code>--vc-success-solid</code></td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-sage-700)"></span>Sage 700</td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-sage-900)"></span>Sage 900</td><td>Success now differs from danger in lightness too</td></tr>
+          <tr data-ref><td>Light</td><td><code>--vc-surface-selected</code></td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-merlot-100)"></span>Merlot 100</td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-merlot-200)"></span>Merlot 200</td><td>A selected row no longer looks like a danger background</td></tr>
+          <tr data-ref><td>Dark</td><td><code>--vc-danger-solid</code></td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-coral-300)"></span>Coral 300</td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-coral-500)"></span>Coral 500</td><td>Clear of merlot and of success</td></tr>
+          <tr data-ref><td>Dark</td><td><code>--vc-danger-text</code></td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-coral-200)"></span>Coral 200</td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-coral-400)"></span>Coral 400</td><td>Follows danger solid</td></tr>
+          <tr data-ref><td>Dark</td><td><code>--vc-success-solid</code></td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-sage-300)"></span>Sage 300</td><td class="doc-ref"><span class="doc-ref-swatch" style="background: var(--vc-sage-100)"></span>Sage 100</td><td>Success now differs from danger in lightness too</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="doc-news-wide">
+      <h3 id="22-new-icons">22 new icons</h3>
+      <p>They were drawn for the prototypes on the same 24&nbsp;px grid, with hexagon round forms, and bring the set to 86. The translate concept is called swap. Select one to copy its class, or see them all on <a href="guidelines/icons.html">Icons</a>.</p>
+      <div class="doc-icon-grid"><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--building" data-vc-label="Copy class for building" aria-label="Copy class for building"><span class="vc-icon vc-icon--building" aria-hidden="true"></span><span>building</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--camera" data-vc-label="Copy class for camera" aria-label="Copy class for camera"><span class="vc-icon vc-icon--camera" aria-hidden="true"></span><span>camera</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--eye-off" data-vc-label="Copy class for eye-off" aria-label="Copy class for eye-off"><span class="vc-icon vc-icon--eye-off" aria-hidden="true"></span><span>eye-off</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--factory" data-vc-label="Copy class for factory" aria-label="Copy class for factory"><span class="vc-icon vc-icon--factory" aria-hidden="true"></span><span>factory</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--gripper" data-vc-label="Copy class for gripper" aria-label="Copy class for gripper"><span class="vc-icon vc-icon--gripper" aria-hidden="true"></span><span>gripper</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--hand" data-vc-label="Copy class for hand" aria-label="Copy class for hand"><span class="vc-icon vc-icon--hand" aria-hidden="true"></span><span>hand</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--key" data-vc-label="Copy class for key" aria-label="Copy class for key"><span class="vc-icon vc-icon--key" aria-hidden="true"></span><span>key</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--list" data-vc-label="Copy class for list" aria-label="Copy class for list"><span class="vc-icon vc-icon--list" aria-hidden="true"></span><span>list</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--megaphone" data-vc-label="Copy class for megaphone" aria-label="Copy class for megaphone"><span class="vc-icon vc-icon--megaphone" aria-hidden="true"></span><span>megaphone</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--memo" data-vc-label="Copy class for memo" aria-label="Copy class for memo"><span class="vc-icon vc-icon--memo" aria-hidden="true"></span><span>memo</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--pallet" data-vc-label="Copy class for pallet" aria-label="Copy class for pallet"><span class="vc-icon vc-icon--pallet" aria-hidden="true"></span><span>pallet</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--pause" data-vc-label="Copy class for pause" aria-label="Copy class for pause"><span class="vc-icon vc-icon--pause" aria-hidden="true"></span><span>pause</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--pulse" data-vc-label="Copy class for pulse" aria-label="Copy class for pulse"><span class="vc-icon vc-icon--pulse" aria-hidden="true"></span><span>pulse</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--radar" data-vc-label="Copy class for radar" aria-label="Copy class for radar"><span class="vc-icon vc-icon--radar" aria-hidden="true"></span><span>radar</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--receipt" data-vc-label="Copy class for receipt" aria-label="Copy class for receipt"><span class="vc-icon vc-icon--receipt" aria-hidden="true"></span><span>receipt</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--scale" data-vc-label="Copy class for scale" aria-label="Copy class for scale"><span class="vc-icon vc-icon--scale" aria-hidden="true"></span><span>scale</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--shield" data-vc-label="Copy class for shield" aria-label="Copy class for shield"><span class="vc-icon vc-icon--shield" aria-hidden="true"></span><span>shield</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--stop" data-vc-label="Copy class for stop" aria-label="Copy class for stop"><span class="vc-icon vc-icon--stop" aria-hidden="true"></span><span>stop</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--swap" data-vc-label="Copy class for swap" aria-label="Copy class for swap"><span class="vc-icon vc-icon--swap" aria-hidden="true"></span><span>swap</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--timetable" data-vc-label="Copy class for timetable" aria-label="Copy class for timetable"><span class="vc-icon vc-icon--timetable" aria-hidden="true"></span><span>timetable</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--tote" data-vc-label="Copy class for tote" aria-label="Copy class for tote"><span class="vc-icon vc-icon--tote" aria-hidden="true"></span><span>tote</span></button><button type="button" class="doc-icon" data-vc-copy="vc-icon vc-icon--truck" data-vc-label="Copy class for truck" aria-label="Copy class for truck"><span class="vc-icon vc-icon--truck" aria-hidden="true"></span><span>truck</span></button></div>
+    </div>
+
+    <div class="doc-news">
+      <div class="doc-news__group">
+        <h3 id="retired">Retired</h3>
+        <ul>
+          <li><code>.vc-eyebrow</code>, the small capitalised label over a heading, is gone. Use nothing, or a caption after the heading; see <a href="guidelines/writing.html#patterns-vici-doesnt-use">Patterns Vici doesn't use</a>.</li>
+          <li><code>.vc-bg-aurora</code> and the tokens <code>--vc-aurora-1</code>, <code>--vc-aurora-2</code> and <code>--vc-aurora-3</code>, the blurred gradient wash, are gone. Use a flat pastel ground, as <a href="guidelines/colour.html#proportions">Colour</a> describes.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="rules-on-other-pages">Rules on other pages</h3>
+        <ul>
+          <li><a href="guidelines/colour.html#status-separation">Colour</a> keeps status colours apart and asks for flat pastel grounds instead of gradients.</li>
+          <li><a href="guidelines/typography.html#capitals">Typography</a> says when capitals are allowed.</li>
+          <li><a href="guidelines/hexagon.html#cells-carry-meaning">Hexagon</a> says cells carry meaning, and keeps the honeycomb for real content.</li>
+          <li><a href="guidelines/accessibility.html">Accessibility</a> covers the guide's keyboard pattern, the byline's targets and the page language.</li>
+          <li><a href="guidelines/data-viz.html">Data visualisation</a> and <a href="guidelines/elevation.html">Elevation</a> show their palettes and surface levels as tables.</li>
+          <li><a href="brand/logo.html">Logo</a> and <a href="start/getting-started.html">Getting started</a> lose their numbered headings, and Getting started lists what Vici leaves out in a table.</li>
+          <li><a href="guidelines/layout.html">Layout and spacing</a> no longer lists the retired utilities.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="starters">Starters</h3>
+        <ul>
+          <li>The <a href="starters/app.html">app</a>, <a href="starters/dashboard.html">dashboard</a> and <a href="starters/blank.html">blank</a> starters open with a How it works guide and end with the byline; the app and dashboard mark their key figures.</li>
+          <li>The <a href="starters/landing.html">landing</a> starter lost its gradient and eyebrows and ends with the byline. It will be rebuilt for 2.0.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="checks">Checks</h3>
+        <ul>
+          <li><code>npm run check</code> now also checks every byline, the guides in the starters, the Writing rules on every page and the distance between status colours, and it is stricter about anything round. See <a href="components/guide.html#check">what the guide check covers</a>.</li>
+          <li><code>npm run check:render</code> opens each starter in a browser and tests its guide.</li>
+          <li>A prototype can import the same checks: <code>guideProblems()</code>, <code>bylineProblems()</code> and <code>writingProblems()</code>.</li>
+          <li>The new files are <code>check-byline.mjs</code>, <code>check-guide.mjs</code> and <code>check-guide-render.mjs</code> in <code>scripts</code>; <code>byline.mjs</code>, <code>guide.mjs</code>, <code>writing.mjs</code> and <code>separation.mjs</code> in <code>scripts/lib</code>; <code>profile.json</code> and <code>banned-words.json</code> as data.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="across-the-site">Across the site</h3>
+        <ul>
+          <li>Every page is marked as British English with <code>lang="en-GB"</code>, keeps a no-break space between a number and its unit or %, and has no em dashes in its text.</li>
+          <li>The small section label above each page title is gone. On these pages that, or a one-line fix, was the only change: <a href="components/actions.html">Actions</a>, <a href="components/content.html">Content</a>, <a href="components/data.html">Data display</a>, <a href="components/feedback.html">Feedback</a>, <a href="components/forms.html">Forms</a>, <a href="components/navigation.html">Navigation</a>, <a href="components/overlays.html">Overlays</a>, <a href="guidelines/motion.html">Motion</a>, <a href="start/integrations.html">Integrations</a>, <a href="start/licence.html">Licence</a>, <a href="start/starters.html">Starters</a>, <a href="start/theming.html">Theming</a> and <a href="start/tokens.html">Tokens</a>.</li>
+          <li>The sidebar lists Writing after Principles and How it works guide at the end of Components.</li>
+        </ul>
+      </div>
+
+      <div class="doc-news__group">
+        <h3 id="in-the-repository">In the repository</h3>
+        <ul>
+          <li><code>V2_PLAN.md</code> holds the plan for 2.0, its status and the 2.0 checklist, one rule per row with how to verify it.</li>
+          <li><code>PRODUCT.md</code> records who Vici is for and how it is used.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
