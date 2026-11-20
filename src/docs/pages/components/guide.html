@@ -4,7 +4,7 @@ nav: How it works guide
 section: Components
 order: 8
 icon: info
-description: The standard talk track: the short guide that opens with every prototype, demo, challenge and showcase and says what it does, how it works and how to present it. Title, chapters, copy rules, markup, behaviour, opening and the presenting chapter.
+description: The standard talk track: the short guide that opens with every prototype, demo, challenge and showcase and says what it does, how it works and how to present it. Title, chapters, copy rules, markup, behaviour, opening, the presenting chapter, key figures and presenting step by step.
 -->
 <header class="doc-hero">
   <h1>How it works guide</h1>
@@ -288,6 +288,20 @@ description: The standard talk track: the short guide that opens with every prot
     &lt;tr&gt;&lt;th scope="row"&gt;Labour per 1,000 units&lt;/th&gt;&lt;td&gt;Labour cost of repacking, by hand and with the cell&lt;/td&gt;&lt;td class="vc-num"&gt;€32.49&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
+
+<h2 id="steps">Presenting step by step</h2>
+<p>A prototype that tells a story in steps lets the presenter set the pace. The Data Quality Agent shows the pattern: the start and five steps, one screen each, with four key figures top right.</p>
+<ul>
+  <li>The steps sit in a <code>vc-stepper</code> bar between Back and Next. A click on a step, the arrow keys and a presentation clicker, which sends the arrow keys, move between them. A step the run has not reached is disabled.</li>
+  <li>Each step shows at once. A simulated run goes as far as it can and waits only where a person acts; a timed replay leaves the room watching a progress bar.</li>
+  <li>Where a person acts, the step says so in the bar, such as “Your decision”, and its marker turns merlot. Next cannot pass an open decision.</li>
+  <li>Each step answers one question in its title, in plain words and with its figure: “Paying early cost €3,482 last year”.</li>
+  <li>The address follows the presenter, such as <code>?case=early-pay&amp;step=4</code>, so a link opens the same screen. A link to a later step plays the run up to it.</li>
+  <li>Each step change moves the focus to the step's title, so a screen reader announces it. A title that only a screen reader sees stays hidden while it has the focus, so the buttons under the pointer do not move.</li>
+</ul>
+<p>The key figures move with the story. Before the decision, a figure's note says what is at stake, such as “€10,293 a year at stake”; the decision turns the value into the result, and a clock that runs from detection to decision stops there.</p>
+<p>The talk track quotes the figures on screen, never a copy of them. Each figure in the presenting chapter is a <code>span</code> with a <code>data-fact</code> name that the page fills from the same results its tiles show, so the script cannot drift from the demo.</p>
+<pre><code>&lt;li&gt;&lt;strong&gt;Calculate.&lt;/strong&gt; &lt;span class="vc-guide__say"&gt;“Paying early cost &lt;span data-fact="lead.past"&gt;€3,482&lt;/span&gt; last year.”&lt;/span&gt; &lt;span class="vc-guide__time"&gt;0.5&amp;nbsp;min&lt;/span&gt;&lt;/li&gt;</code></pre>
 
 <h2 id="check">Check</h2>
 <p><code>npm run check</code> reads the guides of the app, dashboard and blank starters and fails when one breaks these rules: the title, the order and number of chapters, one heading, lead and body in each, the length limits, a path of three to seven timed steps with a sentence to say, a header button with visible text, and a How it works chapter with a row for every key figure marked <code>data-vc-kpi</code>, saying what it measures and its value. <code>npm run check:render</code> opens each starter in a browser and tests the behaviour and opening rules above.</p>
