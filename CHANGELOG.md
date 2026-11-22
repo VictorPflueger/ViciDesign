@@ -10,6 +10,10 @@ breaking changes to class names or token names bump the major version.
   drafts included. The Writing guideline sets it out with a do and a don't, the prototype brief and the page structure
   point to it, and `recordIdProblems(text, ids)` in `scripts/lib/ids.mjs` lists every id of a prototype's data that
   still reaches a screen. `scripts/check-ids.mjs` proves it on planted ids and runs with `npm run check`.
+- Key figures: a figure computed from part of the data says so in its value, such as “77 on 5 of 6 layers”, and a
+  figure that needs all the data shows “…” until it is in (the Sovereignty Assessment). The brief, Build a prototype
+  and the guide page say so. The guide page now names the figure spans of the presenting chapter `data-fig`, as the
+  Price Variance Agent, Navigator and Duty Radar write them.
 - Presenting step by step: where every step shows at once, Play walks the steps at reading pace and stops wherever a
   person acts, with a merlot “Your turn” callout above the action (the Price Variance Agent). `.vc-attention` draws the
   eye to the one primary action: a merlot ring pulses out three times, then rests as a soft frame until it is pressed;
