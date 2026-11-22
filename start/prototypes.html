@@ -70,7 +70,7 @@
     </div>
   </div>
   <div class="doc-demo__code doc-brief__text">
-    <details><summary>Read the brief (52 lines)</summary><pre><code id="prototype-brief"># Brief: build a prototype with Vici 2.0
+    <details><summary>Read the brief (54 lines)</summary><pre><code id="prototype-brief"># Brief: build a prototype with Vici 2.0
 
 You are building a prototype, demo or tech showcase for Victor Pflüger with Vici, his design system: https://victorpflueger.github.io/ViciDesign/
 
@@ -96,6 +96,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 - The work area follows the order of the story. Wherever it waits for a person, a bar right under what just happened says in words what to do next, such as &quot;Your decision&quot;, and holds the one primary action, which draws attention until it is pressed and stays in view however long the work area grows. A Next button alone is easily overlooked. A story whose steps show at once can play them by itself and stop where a person acts: https://victorpflueger.github.io/ViciDesign/components/guide.html#steps. Lilac marks what the AI generated, suggested or summarised.
 - Nothing the agent prepares, such as a payment or a message, leaves the page without a person's approval, and the prototype logs who approved what.
 - Wherever a live run with a model can start, &quot;You are interacting with an AI system&quot; stands in a lilac tag (vc-tag--feature) beside the control and stays while the run lasts; mark that control with data-vc-live. A replay that calls no model needs no notice. https://victorpflueger.github.io/ViciDesign/guidelines/principles.html#ai
+- The screen shows names, places and words, never the ids the data gives a record (vendor 10003, RA-CISCO, CC-1000). One module turns ids into words, for the agent's text and its drafts too: https://victorpflueger.github.io/ViciDesign/guidelines/writing.html#names-not-ids
 - Use open-source or synthetic data only, never a client's or internal data, and label what is synthetic or simulated.
 - If it can run live, it asks at the start: simulation or live. A live run takes an API key for this session only and never stores it.
 - Test it at 1920 × 1080 and 1280 × 720 in both themes, and keep text at Vici's sizes or larger: the room reads it from a distance.
@@ -108,6 +109,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 From the prototype's folder, with the ViciDesign clone beside it:
 
 - guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs, writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs and aiNoticeProblems(html) from ../ViciDesign/scripts/lib/ai.mjs each return an empty list for every page.
+- recordIdProblems(text, ids) from ../ViciDesign/scripts/lib/ids.mjs returns an empty list for the text of every screen, given the ids of the prototype's data.
 - node ../ViciDesign/scripts/check-guide-render.mjs http://localhost:8000/ tests the guide in a browser while the prototype is served there.
 
 ## Review it as a partner would
@@ -174,7 +176,7 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
   <li>The header: the name with its icon in a hexagon of its kind's colour, SIMULATION or LIVE in capitals, the How it works button and the theme toggle.</li>
   <li>One sentence under the header that says what the prototype does and whether its data is real.</li>
   <li>The key figures, top right.</li>
-  <li>The work area, in the order of the story. Wherever it waits for a person, a bar right under what just happened says in words what to do next, such as “Your decision”, and holds the one primary action, which draws attention until it is pressed and stays in view however long the work area grows; a Next button alone is easily overlooked. A story whose steps show at once can play them by itself and stop where a person acts, as <a href="../components/guide.html#steps">Presenting step by step</a> sets out. Lilac marks what the AI generated, suggested or summarised, and nothing the agent prepares leaves the page until a person approves it. Where a live run with a model can start, “You are interacting with an AI system” stands in a lilac tag beside the control and stays while the run lasts, as <a href="../guidelines/principles.html#ai">Every live run says it is an AI</a> sets out.</li>
+  <li>The work area, in the order of the story. Wherever it waits for a person, a bar right under what just happened says in words what to do next, such as “Your decision”, and holds the one primary action, which draws attention until it is pressed and stays in view however long the work area grows; a Next button alone is easily overlooked. A story whose steps show at once can play them by itself and stop where a person acts, as <a href="../components/guide.html#steps">Presenting step by step</a> sets out. Lilac marks what the AI generated, suggested or summarised, and nothing the agent prepares leaves the page until a person approves it. Records appear by name, never by the ids of the data, as <a href="../guidelines/writing.html#names-not-ids">Names, not record ids</a> sets out. Where a live run with a model can start, “You are interacting with an AI system” stands in a lilac tag beside the control and stays while the run lasts, as <a href="../guidelines/principles.html#ai">Every live run says it is an AI</a> sets out.</li>
   <li>The byline at the end of the page. A single-screen app that doesn't scroll carries it in the strip under the header instead.</li>
 </ol>
 <div class="doc-demo doc-demo--flush"><div class="doc-demo__preview">

@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- Names, not record ids (from Rebate Hunter 8.0.0): a prototype's screen shows names, places and words, never the ids
+  its data gives a record (vendor 10003, RA-CISCO, CC-1000), and one module turns ids into words, the agent's text and
+  drafts included. The Writing guideline sets it out with a do and a don't, the prototype brief and the page structure
+  point to it, and `recordIdProblems(text, ids)` in `scripts/lib/ids.mjs` lists every id of a prototype's data that
+  still reaches a screen. `scripts/check-ids.mjs` proves it on planted ids and runs with `npm run check`.
 - Presenting step by step: where every step shows at once, Play walks the steps at reading pace and stops wherever a
   person acts, with a merlot “Your turn” callout above the action (the Price Variance Agent). `.vc-attention` draws the
   eye to the one primary action: a merlot ring pulses out three times, then rests as a soft frame until it is pressed;

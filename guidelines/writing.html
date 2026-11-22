@@ -96,6 +96,27 @@
   <li>Empty states say what is missing and what comes next: “No invoices need a person today. New ones arrive after the morning run.”</li>
 </ul>
 
+<h2 id="names-not-ids">Names, not record ids</h2>
+<p>A prototype's data gives every record an id: vendor 10003, agreement RA-CISCO, company code CC-1000. The visitor knows those things by name, so the screen says Meraki, the Cisco agreement and Frankfurt. The ids stay in the data, the engine, the tools and the logs.</p>
+<div class="doc-dos">
+  <div class="doc-do">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--success" aria-hidden="true"></span>Do</span>
+    <div class="doc-do__stage"><span class="vc-h6">Splunk bills on its own account, so the year-end report never counts it</span></div>
+    <p>A name the room knows, and what follows from it.</p>
+  </div>
+  <div class="doc-dont">
+    <span class="doc-do__label"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Don't</span>
+    <div class="doc-do__stage"><span class="vc-h6">Vendor 10005 has no KONZS for RA-CISCO</span></div>
+    <p>Three ids and a field name. Only the person who built the data can read it.</p>
+  </div>
+</div>
+<ul>
+  <li>One module turns ids into names, places and words, and everything that writes the screen goes through it, the agent's words and its drafts included. A new screen then can't forget to.</li>
+  <li>Several names in one breath take their short form: “Meraki, Acacia and Splunk”, not three legal names. Where two short forms would clash, keep the word that tells them apart.</li>
+  <li>A draft for someone who works in another system names what to change in words: “set the Cisco group key”, not “KONZS = CISCO”.</li>
+  <li>A prototype's tests run <code>recordIdProblems(text, ids)</code> from <code>scripts/lib/ids.mjs</code> over the text of every screen, with the ids of its own data. Each id that still reaches the screen comes back as a problem.</li>
+</ul>
+
 <h2 id="numbers-and-units">Numbers and units</h2>
 <p>Numbers are often the point of a Vici page, so they are written the same way everywhere.</p>
 <div class="vc-table-wrap">
@@ -204,7 +225,7 @@
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../guidelines/principles.html" rel="prev"><span class="vc-caption">Previous</span><span>Concept &amp; principles</span></a><a class="doc-pager__link doc-pager__link--next" href="../guidelines/colour.html" rel="next"><span class="vc-caption">Next</span><span>Colour</span></a></nav>
       </article>
-<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#voice">Voice</a></li><li><a href="#headings-and-labels">Headings and labels</a></li><li><a href="#numbers-and-units">Numbers and units</a></li><li><a href="#punctuation">Punctuation</a></li><li><a href="#patterns-vici-doesnt-use">Patterns Vici doesn't use</a></li><li><a href="#german">German</a></li></ul></nav>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#voice">Voice</a></li><li><a href="#headings-and-labels">Headings and labels</a></li><li><a href="#names-not-ids">Names, not record ids</a></li><li><a href="#numbers-and-units">Numbers and units</a></li><li><a href="#punctuation">Punctuation</a></li><li><a href="#patterns-vici-doesnt-use">Patterns Vici doesn't use</a></li><li><a href="#german">German</a></li></ul></nav>
     </main>
   </div>
 
