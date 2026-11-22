@@ -5,6 +5,10 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From the Sovereignty Assessment 2.0.0: Play holds until the story is over, on the last step too, so a decision that
+  brings the next one (a lever, then its draft) keeps it playing; the talk track says a figure as its tile does, with
+  the part of the data it rests on (“77 on 5 of 6 layers”). Numbers and units in the Writing guideline: a figure on part
+  of the data, or with a side the sources leave open, says so in words, never with a question mark after the number.
 - Presenting step by step (from Rebate Hunter 8.0.0): once the person has done the last step's action, Play ends at
   once and its button offers Replay, as the bar under the story does, rather than showing Pause beside a bar that says
   Done. A clock from detection to decision says when it has stopped (“stopped at your decision”), since “until your
