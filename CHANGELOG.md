@@ -5,6 +5,10 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- Presenting step by step (from Rebate Hunter 8.0.0): once the person has done the last step's action, Play ends at
+  once and its button offers Replay, as the bar under the story does, rather than showing Pause beside a bar that says
+  Done. A clock from detection to decision says when it has stopped (“stopped at your decision”), since “until your
+  decision” reads as a countdown.
 - Key figures answer first: before anything runs, they show what the case puts at stake rather than a row of zeros,
   and each is named for what it shows on the first screen (the Data Quality Agent's “At stake a year”). The brief,
   Build a prototype and the guide page say so. A first screen that waits for the person to start the run is their
