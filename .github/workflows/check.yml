@@ -1,5 +1,5 @@
 # Runs Vici's checks on every push and pull request: npm run check (tokens, build freshness, hexagons,
-# fonts, docs and writing, byline, guide, AI notice, logo, integrations) and npm run check:render (every
+# fonts, docs and writing, byline, guide, AI notice, record ids, logo, integrations) and npm run check:render (every
 # page and starter in Chromium, and each starter's guide). Vici has no dependencies; Playwright is
 # installed here only for the browser checks.
 name: check
