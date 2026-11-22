@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- Key figures answer first: before anything runs, they show what the case puts at stake rather than a row of zeros,
+  and each is named for what it shows on the first screen (the Data Quality Agent's “At stake a year”). The brief,
+  Build a prototype and the guide page say so. A first screen that waits for the person to start the run is their
+  turn: its “Your turn” bar holds the start button, and Play starts with it. `vc-attention` starts at once wherever
+  the page waits for the person, and after a few quiet seconds on a step that Play has paused. The guide page's
+  example of a figure span now uses `data-fig`, as its text does.
 - Names, not record ids (from Rebate Hunter 8.0.0): a prototype's screen shows names, places and words, never the ids
   its data gives a record (vendor 10003, RA-CISCO, CC-1000), and one module turns ids into words, the agent's text and
   drafts included. The Writing guideline sets it out with a do and a don't, the prototype brief and the page structure
