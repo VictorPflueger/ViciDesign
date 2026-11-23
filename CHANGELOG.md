@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.1.0: Nothing is kept, on Build a prototype. A prototype holds an API key, what a person
+  enters or uploads and what its agents make in memory only: never in local or session storage, IndexedDB, the
+  Cache API or a cookie, a URL, a log or an export. Only `vc-theme`, `<prefix>.lang` and the guide's `vc-guide:` note
+  may persist, and a result leaves as a download the person starts. A live demo holds a test value in a variable and
+  forgets it on reload. `scripts/lib/storage.mjs` gives prototypes `storageProblems()` for their scripts and
+  `storedKeyProblems()` for what a run leaves behind; `npm run check` holds Vici's own scripts to the rule. The brief
+  and the table of checks say so.
 - From Duty Radar 2.1.0: Short forms and unfamiliar names in the Writing guideline. A short form the room can't
   expand (BStatG, MiLoAufzV) never carries a screen: the name in words, or the figure first and the short form on
   hover and for screen readers. A citation keeps its short form beside the name in words; a name the room has never

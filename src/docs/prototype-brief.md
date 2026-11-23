@@ -27,7 +27,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 - The screen shows names, places and words, never the ids the data gives a record (vendor 10003, RA-CISCO, CC-1000). One module turns ids into words, for the agent's text and its drafts too: https://victorpflueger.github.io/ViciDesign/guidelines/writing.html#names-not-ids
 - A short form the room can't expand (BStatG) never carries a screen: write the name in words, or show the figure first and the short form on hover. A name the room has never heard (PflichtenLichten) says what it is where it first appears: https://victorpflueger.github.io/ViciDesign/guidelines/writing.html#short-forms
 - Use open-source or synthetic data only, never a client's or internal data, and label what is synthetic or simulated.
-- If it can run live, it asks at the start: simulation or live. Where the simulation starts by itself when the guide closes, the button for a live run says so, such as "Run it live", and stands after the steps, where nobody takes it for the way to start. A live run takes an API key for this session only and never stores it.
+- If it can run live, it asks at the start: simulation or live. Where the simulation starts by itself when the guide closes, the button for a live run says so, such as "Run it live", and stands after the steps, where nobody takes it for the way to start. A live run takes an API key for this session only. The key, everything a person enters or uploads and everything the agents make stay in the page's memory: never in local or session storage, IndexedDB, the Cache API or a cookie, a URL, a log or an export. Only vc-theme, <prefix>.lang and Vici's vc-guide: note may persist, and a result leaves only as a download the person starts: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#nothing-kept
 - Test it at 1920 × 1080 and 1280 × 720 in both themes, and keep text at Vici's sizes or larger: the room reads it from a distance.
 - Its favicon is its icon in a hexagon in the colour of its kind, as on its card on Victor's website: lilac for a prototype, fjord for a demo, teal for a tech showcase.
 - Write British English or German throughout, following https://victorpflueger.github.io/ViciDesign/guidelines/writing.html. Nothing may look generated.
@@ -38,6 +38,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 From the prototype's folder, with the ViciDesign clone beside it:
 
 - guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs, writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs and aiNoticeProblems(html) from ../ViciDesign/scripts/lib/ai.mjs each return an empty list for every page.
+- storageProblems(sources, { allow }) from ../ViciDesign/scripts/lib/storage.mjs returns an empty list for the prototype's scripts, and storedKeyProblems(keys, { prefix }) for what a full live run against a stand-in leaves in a fresh browser.
 - recordIdProblems(text, ids) from ../ViciDesign/scripts/lib/ids.mjs returns an empty list for the text of every screen, given the ids of the prototype's data.
 - node ../ViciDesign/scripts/check-guide-render.mjs http://localhost:8000/ tests the guide in a browser while the prototype is served there.
 

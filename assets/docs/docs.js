@@ -1,4 +1,5 @@
-/* Documentation-only behaviour: mobile sidebar, copy feedback, "on this page" highlight. */
+/* Documentation-only behaviour: mobile sidebar, copy feedback, "on this page" highlight, and the demo of a key
+ * held in memory on Build a prototype. Nothing here touches browser storage (scripts/check-storage.mjs). */
 (function () {
   'use strict';
   var body = document.body;
@@ -55,6 +56,39 @@
     if (!play) return;
     var grid = document.querySelector(play.getAttribute('data-doc-play'));
     if (grid) grid.toggleAttribute('data-playing');
+  });
+
+  // Build a prototype, Nothing is kept: the key lives in this variable and nowhere else, so a reload forgets it.
+  var heldKey = null;
+  function masked(v) {
+    return v.length > 11 ? v.slice(0, 7) + '\u2026' + v.slice(-4) : '\u2026' + v.slice(-Math.min(4, Math.ceil(v.length / 2)));
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target instanceof Element ? e.target : null;
+    var box = t ? t.closest('.doc-demo__preview') : null;
+    var field = box ? box.querySelector('[data-doc-key]') : null;
+    var state = box ? box.querySelector('[data-doc-key-state]') : null;
+    if (!field || !state) return;
+    var show = t.closest('[data-doc-key-show]');
+    if (show) {
+      var reveal = field.type === 'password';
+      field.type = reveal ? 'text' : 'password';
+      show.setAttribute('aria-pressed', String(reveal));
+      show.setAttribute('aria-label', reveal ? 'Hide key' : 'Show key');
+    } else if (t.closest('[data-doc-key-hold]')) {
+      var value = field.value.trim();
+      if (!value) { state.textContent = 'Type a test value first.'; field.focus(); return; }
+      heldKey = value;
+      field.value = '';
+      field.type = 'password';
+      var eye = box.querySelector('[data-doc-key-show]');
+      if (eye) { eye.setAttribute('aria-pressed', 'false'); eye.setAttribute('aria-label', 'Show key'); }
+      state.textContent = 'Held in memory: ' + masked(heldKey) + '. Reload the page and it is gone.';
+    } else if (t.closest('[data-doc-key-forget]')) {
+      heldKey = null;
+      field.value = '';
+      state.textContent = 'Nothing held.';
+    }
   });
 
   // Highlight the current section in "On this page".
