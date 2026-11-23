@@ -5,6 +5,14 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.2.0: the ring, on the Framework view page. `.vc-ring` puts a subject in the centre and the
+  six areas of a framework around it as flat-top hexagons, clockwise from the top, such as a company and the six
+  dimensions of PESTEL. The order of the markup is the layout, so a strict security policy needs no style attribute.
+  A cell takes an area's states with the same marks and words: under pressure (coral face, wide coral edge, the
+  warning mark), on watch (honey, the eye) or addressed (sage, the check), in `.vc-ring__state`. Button cells select
+  the area a list beside the ring shows, with `aria-pressed` and the accent edge, and focus draws a ring outside the
+  cell. Forced colours repaint the edges and faces in system colours. `ringProblems(html)` checks the name, the
+  order, the six names and every state's mark and word, with a self-test of planted mistakes.
 - From Business Model Canvas Challenger 0.2.0: block states on the framework view. A whole area can be under pressure
   (coral edge, the warning mark and its issues in words, such as "2 issues · high"), on watch (honey edge, the eye and
   "1 issue · low") or addressed by a chosen answer (sage edge, the check and a word such as "Adapted"), and
