@@ -6,7 +6,8 @@
 // Each cell's band follows impact × likelihood: low 1 to 4, medium 5 to 9, high 10 to 15, critical 16
 // to 25. The rule: 25 cells, each pair of impact and likelihood once, every cell in its band and showing
 // its score, every marker in a cell that matches its own impact and likelihood, a key that names all
-// four bands in words, and a table of the numbers one click away.
+// four bands in words, and a table of the numbers one click away. Markers sized by what an issue puts at
+// stake (vc-risk__marker--sm, --lg) need the key to name each size used in words.
 
 /** The band of a score: impact × likelihood, each 1 to 5. */
 export function band(score) {
@@ -74,6 +75,10 @@ export function riskMatrixProblems(html) {
     const named = key ? [...key.inner.matchAll(/<li\b([^>]*)>([\s\S]*?)<\/li>/gi)].filter((m) => textOf(m[2])).map((m) => attr(m[1], 'data-band')) : [];
     const unnamed = BANDS.filter((b) => !named.includes(b));
     if (unnamed.length) problems.push(`${where}: the key does not name ${unnamed.join(', ')} in words`);
+    const sized = new Set(elementsWithClass(fig.inner, 'vc-risk__marker').flatMap((m) => ['sm', 'lg'].filter((s) => hasClass(m.attrs, `vc-risk__marker--${s}`))));
+    const sizesNamed = key ? [...key.inner.matchAll(/<li\b([^>]*)>([\s\S]*?)<\/li>/gi)].filter((m) => textOf(m[2])).map((m) => attr(m[1], 'data-size')) : [];
+    const unexplained = [...sized].filter((s) => !sizesNamed.includes(s));
+    if (unexplained.length) problems.push(`${where}: markers are sized ${unexplained.join(' and ')}, but the key does not name ${unexplained.length === 1 ? 'that size' : 'those sizes'} in words`);
     if (!/<table\b/i.test(fig.inner)) problems.push(`${where} has no table of its numbers`);
   });
   return problems;

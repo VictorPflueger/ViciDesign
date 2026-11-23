@@ -5525,6 +5525,10 @@
   .vc-risk__marker--residual::after { inset: 2px; background: var(--_band, var(--vc-surface)); }
   /* A card elsewhere points at this issue. */
   .vc-risk__marker[aria-current='true'] { --_fill: var(--vc-accent); --_ink: var(--vc-on-accent); transform: scale(1.18); }
+  /* Sized by what an issue puts at stake, in three steps: --sm, the default and --lg. The key names the
+     sizes in words and the table carries the figures, so a size never stands for a number on its own. */
+  .vc-risk__marker--sm { width: 1.5rem; }
+  .vc-risk__marker--lg { width: 2.4rem; font-size: var(--vc-font-size-xs); }
 
   .vc-risk__key {
     display: flex;
@@ -5548,6 +5552,9 @@
   .vc-risk__key > [data-band='medium']::before { background: var(--vc-warning-bg); }
   .vc-risk__key > [data-band='high']::before { background: var(--vc-danger-bg); }
   .vc-risk__key > [data-band='critical']::before { background: var(--vc-danger-border); }
+  .vc-risk__key > [data-size]::before { background: var(--vc-text); box-shadow: none; }
+  .vc-risk__key > [data-size='sm']::before { width: 0.7rem; }
+  .vc-risk__key > [data-size='lg']::before { width: 1.15rem; }
 
   /* The numbers behind the chart, one click away. */
   .vc-risk__numbers > summary {
