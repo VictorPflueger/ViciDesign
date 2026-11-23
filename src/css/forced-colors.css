@@ -205,6 +205,18 @@
         calc(75% - 0.8660px) 1.5px, calc(25% + 0.8660px) 1.5px);
     }
 
+    /* The ring's cells draw their edge and face as two filled hexagons: the edge in the text colour,
+       the face in the page colour, a chosen or focused cell's edge in the highlight colour. A cell
+       under pressure keeps its wider edge, and every state keeps its mark and word. */
+    .vc-ring__centre::before,
+    .vc-ring__cell::before { forced-color-adjust: none; background-color: CanvasText; }
+    .vc-ring__centre::after,
+    .vc-ring__cell::after,
+    button.vc-ring__cell:hover::after { forced-color-adjust: none; background-color: Canvas; }
+    .vc-ring__cell[aria-pressed='true']::before,
+    .vc-ring__cell[aria-current='true']::before,
+    button.vc-ring__cell:focus-visible::before { background-color: Highlight; }
+
     /* Platform logos are filled in black or white; here they take the forced text colour
        (LinkText inside a link), so they never vanish on a forced background. An image logo
        can't be recoloured, so it keeps its black and sits on a white plate. */

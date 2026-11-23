@@ -211,6 +211,7 @@ const CSS_ORDER = [
   'src/css/components/overlays.css',
   'src/css/components/data.css',
   'src/css/components/framework.css',
+  'src/css/components/ring.css',
 ];
 
 function minifyCss(css) {
