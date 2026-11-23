@@ -58,7 +58,7 @@ description: The areas of a strategy framework, such as a SWOT's four fields, a 
 <!-- /demo -->
 
 <h2 id="states">States</h2>
-<p>An item has a source and, once challenged or answered, a status. Its mark shows the status if there is one, otherwise the source; its words name both. Lilac marks what the AI wrote, coral what the challenge questions, sage what a chosen answer addresses.</p>
+<p>An item has a source and, once challenged or answered, a status. Its mark shows the status if there is one, otherwise the source; its words name both. Lilac marks what the AI wrote, coral what the challenge questions, sage what a chosen answer addresses, and a quiet grey what a chosen answer removes.</p>
 <div class="vc-table-wrap">
   <table class="vc-table">
     <caption>Item states</caption>
@@ -68,10 +68,12 @@ description: The areas of a strategy framework, such as a SWOT's four fields, a 
       <tr><th scope="row">Written by the AI</th><td><code>data-source="ai"</code></td><td>Sparkle, lilac fill</td><td>"AI"</td></tr>
       <tr><th scope="row">Added by the challenge</th><td><code>data-source="added"</code></td><td>Plus, lilac fill</td><td>"Added"</td></tr>
       <tr><th scope="row">Challenged</th><td><code>data-status="challenged"</code></td><td>Warning, coral edge</td><td>The fault in words, such as "Misfiled" or "Not distinctive"</td></tr>
-      <tr><th scope="row">Addressed</th><td><code>data-status="addressed"</code></td><td>Check, sage edge</td><td>"Addressed", and the old value struck through beside the new one in the notes</td></tr>
+      <tr><th scope="row">Addressed</th><td><code>data-status="addressed"</code></td><td>Check, sage edge</td><td>"Addressed", or the tool's own word for it, such as "Adapted"; the old value struck through beside the new one in the notes</td></tr>
+      <tr><th scope="row">Removed</th><td><code>data-status="removed"</code></td><td>Minus, grey, the text struck through</td><td>"Removed"; it shows where the change is compared and is gone from the framework after the change</td></tr>
     </tbody>
   </table>
 </div>
+<p>A chosen answer that rewords an item keeps the old wording in the item's text, struck through above the new: <code>&lt;span class="vc-item__text"&gt;&lt;s class="vc-item__was"&gt;Old wording&lt;/s&gt; New wording&lt;/span&gt;</code>, with the item addressed.</p>
 <p>Put a legend near the grid, so a room that reads it from a distance learns the marks once.</p>
 <!-- demo -->
 <ul class="vc-framework__legend">
@@ -80,6 +82,51 @@ description: The areas of a strategy framework, such as a SWOT's four fields, a 
   <li data-mark="added"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--plus"></span></span>Added by the challenge</li>
   <li data-mark="challenged"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--warning"></span></span>Challenged</li>
   <li data-mark="addressed"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span>Addressed</li>
+  <li data-mark="removed"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--minus"></span></span>Removed</li>
+</ul>
+<!-- /demo -->
+
+<h2 id="area-states">Areas with a state</h2>
+<p>A canvas judges whole blocks as well as items: a block whose issues reach the medium band or worse is under pressure, one with low issues only is on watch, and one a chosen answer changed is addressed. <code>data-status="pressure"</code>, <code>"watch"</code> or <code>"addressed"</code> on the <code>.vc-framework__area</code> draws the coral, honey or sage edge, and a tag in <code>.vc-framework__states</code> under the title carries the mark and the words, such as "2 issues · high", so the state never rests on colour alone. <code>data-source="ai"</code> says the AI completed the area, with a lilac "AI" tag beside it.</p>
+<!-- demo -->
+<div class="vc-framework vc-framework--3">
+  <section class="vc-framework__area" data-status="pressure" aria-labelledby="fw-costs">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-costs">Cost structure</h3>
+      <p class="vc-framework__states"><span class="vc-tag vc-tag--sm vc-framework__state vc-framework__state--status"><span class="vc-icon vc-icon--warning" aria-hidden="true"></span>2 issues · high</span></p>
+    </header>
+    <ul class="vc-framework__items">
+      <li><details class="vc-item" data-source="entered"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"></span><span class="vc-item__text">Bunker fuel bought on the spot market</span><span class="vc-item__states"><span class="vc-item__state vc-visually-hidden">Entered</span></span></summary></details></li>
+    </ul>
+  </section>
+  <section class="vc-framework__area" data-status="watch" aria-labelledby="fw-channels">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-channels">Channels</h3>
+      <p class="vc-framework__states"><span class="vc-tag vc-tag--sm vc-framework__state vc-framework__state--status"><span class="vc-icon vc-icon--eye" aria-hidden="true"></span>1 issue · low</span></p>
+    </header>
+    <ul class="vc-framework__items">
+      <li><details class="vc-item" data-source="entered"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"></span><span class="vc-item__text">Sales offices in four ports</span><span class="vc-item__states"><span class="vc-item__state vc-visually-hidden">Entered</span></span></summary></details></li>
+    </ul>
+  </section>
+  <section class="vc-framework__area" data-status="addressed" data-source="ai" aria-labelledby="fw-revenue">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-revenue">Revenue streams</h3>
+      <p class="vc-framework__states"><span class="vc-tag vc-tag--sm vc-framework__state vc-framework__state--source"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI</span><span class="vc-tag vc-tag--sm vc-framework__state vc-framework__state--status"><span class="vc-icon vc-icon--check" aria-hidden="true"></span>Adapted</span></p>
+    </header>
+    <ul class="vc-framework__items">
+      <li><details class="vc-item" data-source="entered" data-status="addressed"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span><span class="vc-item__text"><s class="vc-item__was">Freight rates fixed for a year</s> Freight rates with a fuel and emissions clause</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--status">Adapted</span></span></summary><div class="vc-item__body"><p>Changed by the answer you chose.</p></div></details></li>
+      <li><details class="vc-item" data-source="ai" data-status="addressed"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span><span class="vc-item__text">Emissions statement per container, sold to shippers</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--source">AI</span><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--status">Adapted</span></span></summary><div class="vc-item__body"><p>Added by the answer you chose.</p></div></details></li>
+      <li><details class="vc-item" data-source="ai" data-status="removed"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--minus"></span></span><span class="vc-item__text">Spot bookings through the sales offices</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--source">AI</span><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--status">Removed</span></span></summary><div class="vc-item__body"><p>Removed by the answer you chose.</p></div></details></li>
+    </ul>
+  </section>
+</div>
+<!-- /demo -->
+<p>The legend names the block states as it names the item states, with the same marks.</p>
+<!-- demo -->
+<ul class="vc-framework__legend">
+  <li data-mark="pressure"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--warning"></span></span>Under pressure</li>
+  <li data-mark="watch"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--eye"></span></span>Watch</li>
+  <li data-mark="addressed"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span>Adapted</li>
 </ul>
 <!-- /demo -->
 
@@ -90,4 +137,4 @@ description: The areas of a strategy framework, such as a SWOT's four fields, a 
 <p>At 1280&nbsp;×&nbsp;720 a framework of four areas leaves little height for each item. <code>.vc-framework--compact</code> shows every closed item's first line only; opening it shows the rest. The state words stay visible either way.</p>
 
 <h2 id="check">Check it</h2>
-<p><code>frameworkProblems(html)</code> from <code>scripts/lib/framework.mjs</code> returns an empty list when every item has a mark and a state word, every item the AI wrote or the challenge added says so, every challenged item names its fault, and every area has a title. Prototypes run it on each screen's markup; <code>npm run check</code> runs it with a self-test on this page.</p>
+<p><code>frameworkProblems(html)</code> from <code>scripts/lib/framework.mjs</code> returns an empty list when every item has a mark and a state word, every item the AI wrote or the challenge added says so, every challenged item names its fault, every removed item says so, every area has a title, and every area with a state carries a tag with a mark and words for it. Prototypes run it on each screen's markup; <code>npm run check</code> runs it with a self-test on this page.</p>

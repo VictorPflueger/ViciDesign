@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Business Model Canvas Challenger 0.2.0: block states on the framework view. A whole area can be under pressure
+  (coral edge, the warning mark and its issues in words, such as "2 issues · high"), on watch (honey edge, the eye and
+  "1 issue · low") or addressed by a chosen answer (sage edge, the check and a word such as "Adapted"), and
+  `data-source="ai"` says the AI completed it. Each state is a tag with a mark and a word in `.vc-framework__states`
+  under the title, so it never rests on colour alone. Items gain a removed state (the minus mark, struck through,
+  "Removed"), and an item a chosen answer rewords keeps its old text struck through above the new. `frameworkProblems(html)`
+  checks the block states and removed items, and the Framework view page shows them.
 - From SWOT Challenger 0.2.0: the risk matrix, on Data display. Five by five, impact up and likelihood across,
   each cell in its band (low 1 to 4, medium 5 to 9, high 10 to 15, critical 16 to 25) in the status colours, with
   its score in the corner and the bands named in a key, so nothing rests on colour alone. Issues are numbered

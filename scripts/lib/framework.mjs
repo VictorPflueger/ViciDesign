@@ -5,11 +5,14 @@
 // A framework view (components/framework.html) shows the areas of a strategy framework and the items in
 // them. Every item carries its state with a mark and a word, never with colour alone: an entered item an
 // ink hexagon and a word for screen readers, an item the AI wrote "AI", an item the challenge added
-// "Added", a challenged item its fault in words, an addressed item "Addressed". The prototype hands this
-// function the HTML a screen shows; every item or area that breaks the rule comes back as a problem.
+// "Added", a challenged item its fault in words, an addressed item "Addressed", a removed item "Removed".
+// An area with a state (under pressure, on watch, addressed, or completed by the AI) shows it the same
+// way, as a tag with a mark and a word under its title. The prototype hands this function the HTML a
+// screen shows; every item or area that breaks the rule comes back as a problem.
 
 const SOURCES = new Set(['entered', 'ai', 'added']);
-const STATUSES = new Set(['challenged', 'addressed']);
+const STATUSES = new Set(['challenged', 'addressed', 'removed']);
+const AREA_STATUSES = new Set(['pressure', 'watch', 'addressed']);
 
 /** The text a person reads inside a piece of markup. */
 function textOf(html) {
@@ -57,6 +60,20 @@ export function frameworkProblems(html) {
   for (const area of elementsWithClass(source, 'vc-framework__area')) {
     const title = elementsWithClass(area.inner, 'vc-framework__title')[0];
     if (!title || !textOf(title.inner)) problems.push('an area has no title (.vc-framework__title)');
+    const where = `the area "${title ? textOf(title.inner).slice(0, 40) : '(no title)'}"`;
+    const status = attr(area.attrs, 'data-status');
+    const src = attr(area.attrs, 'data-source');
+    // The area's own state tags, not those of the items inside it.
+    const head = elementsWithClass(area.inner, 'vc-framework__head')[0]?.inner ?? '';
+    const tags = elementsWithClass(head, 'vc-framework__state').map((t) => ({ attrs: t.attrs, inner: t.inner, text: textOf(t.inner) }));
+    if (status !== undefined && !AREA_STATUSES.has(status)) problems.push(`${where} has data-status="${status}"; it is pressure, watch or addressed, or absent`);
+    if (AREA_STATUSES.has(status)) {
+      const tag = tags.find((t) => hasClass(t.attrs, 'vc-framework__state--status'));
+      if (!tag || !tag.text) problems.push(`${where} is ${status === 'pressure' ? 'under pressure' : status === 'watch' ? 'on watch' : status} but has no status word in its head (.vc-framework__state--status)`);
+      else if (!/class\s*=\s*["'][^"']*(?<![\w-])vc-icon(?![\w-])/.test(tag.inner)) problems.push(`${where} is ${status} but its status word "${tag.text}" has no mark (.vc-icon)`);
+    }
+    if (src !== undefined && src !== 'ai') problems.push(`${where} has data-source="${src}"; an area takes data-source="ai" when the AI completed it, or none`);
+    if (src === 'ai' && !tags.some((t) => hasClass(t.attrs, 'vc-framework__state--source') && t.text)) problems.push(`${where} was completed by the AI but has no source word in its head (.vc-framework__state--source)`);
   }
   for (const item of elementsWithClass(source, 'vc-item')) {
     const text = elementsWithClass(item.inner, 'vc-item__text')[0];
@@ -66,7 +83,7 @@ export function frameworkProblems(html) {
     const src = attr(item.attrs, 'data-source');
     const status = attr(item.attrs, 'data-status');
     if (!SOURCES.has(src)) problems.push(`${where} has data-source="${src ?? ''}"; it is entered, ai or added`);
-    if (status !== undefined && !STATUSES.has(status)) problems.push(`${where} has data-status="${status}"; it is challenged or addressed, or absent`);
+    if (status !== undefined && !STATUSES.has(status)) problems.push(`${where} has data-status="${status}"; it is challenged, addressed or removed, or absent`);
     if (!/class\s*=\s*["'][^"']*(?<![\w-])vc-item__mark(?![\w-])/.test(item.inner)) problems.push(`${where} has no mark (.vc-item__mark)`);
     const words = elementsWithClass(item.inner, 'vc-item__state').map((s) => ({ attrs: s.attrs, text: textOf(s.inner) }));
     if (!words.some((w) => w.text)) problems.push(`${where} has no word for its state (.vc-item__state)`);
