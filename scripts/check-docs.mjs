@@ -63,7 +63,7 @@ for (const page of pages) {
 // Required guideline topics, by page and section id.
 const REQUIRED = {
   'guidelines/principles.html': ['the-idea-a-honeycomb', 'principles', 'signed', 'explained'],
-  'guidelines/writing.html': ['voice', 'headings-and-labels', 'numbers-and-units', 'punctuation', 'patterns-vici-doesnt-use', 'stock-words', 'german'],
+  'guidelines/writing.html': ['voice', 'headings-and-labels', 'short-forms', 'numbers-and-units', 'punctuation', 'patterns-vici-doesnt-use', 'stock-words', 'german'],
   'guidelines/colour.html': ['the-base-colour', 'palette', 'colour-coding', 'status-separation', 'semantic-tokens', 'contrast', 'the-dark-theme'],
   'guidelines/typography.html': ['typefaces', 'type-scale', 'text-styles', 'capitals', 'numbers'],
   'guidelines/hexagon.html': ['anatomy', 'where-cells-appear', 'cells-carry-meaning', 'sizes', 'rectangles', 'recipes', 'honeycomb-layout'],
