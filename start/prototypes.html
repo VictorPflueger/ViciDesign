@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="vici-build">
   <title>Build a prototype · Vici Design System</title>
-  <meta name="description" content="The brief for an agent that builds a prototype, demo or tech showcase for Victor, and the rules behind it: who it is for, the byline, the talk track, key figures, the layout from top to bottom, the partner review and the checks.">
+  <meta name="description" content="The brief for an agent that builds a prototype, demo or tech showcase for Victor, and the rules behind it: who it is for, the byline, the talk track, key figures, the layout from top to bottom, what is never kept, the partner review and the checks.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
@@ -70,7 +70,7 @@
     </div>
   </div>
   <div class="doc-demo__code doc-brief__text">
-    <details><summary>Read the brief (55 lines)</summary><pre><code id="prototype-brief"># Brief: build a prototype with Vici 2.0
+    <details><summary>Read the brief (56 lines)</summary><pre><code id="prototype-brief"># Brief: build a prototype with Vici 2.0
 
 You are building a prototype, demo or tech showcase for Victor Pflüger with Vici, his design system: https://victorpflueger.github.io/ViciDesign/
 
@@ -99,7 +99,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 - The screen shows names, places and words, never the ids the data gives a record (vendor 10003, RA-CISCO, CC-1000). One module turns ids into words, for the agent's text and its drafts too: https://victorpflueger.github.io/ViciDesign/guidelines/writing.html#names-not-ids
 - A short form the room can't expand (BStatG) never carries a screen: write the name in words, or show the figure first and the short form on hover. A name the room has never heard (PflichtenLichten) says what it is where it first appears: https://victorpflueger.github.io/ViciDesign/guidelines/writing.html#short-forms
 - Use open-source or synthetic data only, never a client's or internal data, and label what is synthetic or simulated.
-- If it can run live, it asks at the start: simulation or live. Where the simulation starts by itself when the guide closes, the button for a live run says so, such as &quot;Run it live&quot;, and stands after the steps, where nobody takes it for the way to start. A live run takes an API key for this session only and never stores it.
+- If it can run live, it asks at the start: simulation or live. Where the simulation starts by itself when the guide closes, the button for a live run says so, such as &quot;Run it live&quot;, and stands after the steps, where nobody takes it for the way to start. A live run takes an API key for this session only. The key, everything a person enters or uploads and everything the agents make stay in the page's memory: never in local or session storage, IndexedDB, the Cache API or a cookie, a URL, a log or an export. Only vc-theme, &lt;prefix&gt;.lang and Vici's vc-guide: note may persist, and a result leaves only as a download the person starts: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#nothing-kept
 - Test it at 1920 × 1080 and 1280 × 720 in both themes, and keep text at Vici's sizes or larger: the room reads it from a distance.
 - Its favicon is its icon in a hexagon in the colour of its kind, as on its card on Victor's website: lilac for a prototype, fjord for a demo, teal for a tech showcase.
 - Write British English or German throughout, following https://victorpflueger.github.io/ViciDesign/guidelines/writing.html. Nothing may look generated.
@@ -110,6 +110,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 From the prototype's folder, with the ViciDesign clone beside it:
 
 - guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs, writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs and aiNoticeProblems(html) from ../ViciDesign/scripts/lib/ai.mjs each return an empty list for every page.
+- storageProblems(sources, { allow }) from ../ViciDesign/scripts/lib/storage.mjs returns an empty list for the prototype's scripts, and storedKeyProblems(keys, { prefix }) for what a full live run against a stand-in leaves in a fresh browser.
 - recordIdProblems(text, ids) from ../ViciDesign/scripts/lib/ids.mjs returns an empty list for the text of every screen, given the ids of the prototype's data.
 - node ../ViciDesign/scripts/check-guide-render.mjs http://localhost:8000/ tests the guide in a browser while the prototype is served there.
 
@@ -398,6 +399,51 @@ Report a verdict (ready or not ready), the One Thing, whether it keeps its promi
 <span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-92" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 <p class="vc-caption">The top of a single-screen prototype, with its guide behind How it works. It replays a recorded run and calls no model, so it needs no AI notice. In a prototype the guide also carries <code>data-vc-guide-auto</code>, so it opens when the prototype starts. Outside this site, the byline loads its images from the CDN or the prototype's own copy: see <a href="../brand/profile-links.html#byline-anywhere">the byline's markup for other sites</a>.</p>
 
+<h2 id="nothing-kept">Nothing is kept</h2>
+<p>A prototype that runs live takes an API key, and people type or upload their own material into it. All of that, and everything the agents make from it, lives in the page's memory only. It never goes to local storage, session storage, IndexedDB, the Cache API or a cookie, never into a URL, a log or an export, and it is gone when the tab closes or reloads. A result leaves the page only as a download the person starts, and while there is one they haven't downloaded, the browser warns before the page closes.</p>
+<p>Three keys may persist. None of them holds anything a person entered.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>What a prototype may keep in the browser</caption>
+  <thead><tr><th scope="col">Key</th><th scope="col">Where</th><th scope="col">What it holds</th></tr></thead>
+  <tbody>
+    <tr><td class="vc-nowrap"><code>vc-theme</code></td><td>Local storage</td><td>The theme the visitor chose with the header's toggle, shared by every Vici page on the site</td></tr>
+    <tr><td class="vc-nowrap"><code>&lt;prefix&gt;.lang</code></td><td>Local storage</td><td>The prototype's language choice, under its own prefix such as <code>pestel.lang</code>, because Victor's sites share one origin</td></tr>
+    <tr><td class="vc-nowrap"><code>vc-guide:…</code></td><td>Session storage</td><td>Vici's note that the guide has opened in this tab, so it opens once</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Hold the key in one variable of one module and show it masked, with a “Forget key” button beside it. Keep the field outside any form, with <code>autocomplete="off"</code>, <code>data-1p-ignore</code> and <code>data-lpignore="true"</code> so password managers leave it alone, and remove anything shaped like a key from error messages and downloads.</p>
+<div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
+<div class="vc-field">
+  <label class="vc-label" for="demo-key">API key</label>
+  <div class="vc-input-group">
+    <input class="vc-input" id="demo-key" type="password" autocomplete="off" spellcheck="false" data-1p-ignore data-lpignore="true" placeholder="Any test value, never a real key" aria-describedby="demo-key-help" data-doc-key>
+    <button type="button" class="vc-icon-button" aria-label="Show key" aria-pressed="false" data-doc-key-show><span class="vc-icon vc-icon--eye" aria-hidden="true"></span></button>
+  </div>
+  <p class="vc-help" id="demo-key-help">It stays in this tab's memory and is gone when you close or reload it.</p>
+</div>
+<div class="vc-cluster">
+  <button type="button" class="vc-button vc-button--sm" data-doc-key-hold>Hold in memory</button>
+  <button type="button" class="vc-button vc-button--secondary vc-button--sm" data-doc-key-forget>Forget key</button>
+</div>
+<p class="vc-help" aria-live="polite" data-doc-key-state>Nothing held.</p>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-93"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;demo-key&quot;</span><span class="tk-punct">&gt;</span>API key<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input-group&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-input&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;demo-key&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;password&quot;</span> <span class="tk-attr">autocomplete</span>=<span class="tk-str">&quot;off&quot;</span> <span class="tk-attr">spellcheck</span>=<span class="tk-str">&quot;false&quot;</span> <span class="tk-attr">data-1p-ignore</span> <span class="tk-attr">data-lpignore</span>=<span class="tk-str">&quot;true&quot;</span> <span class="tk-attr">placeholder</span>=<span class="tk-str">&quot;Any test value, never a real key&quot;</span> <span class="tk-attr">aria-describedby</span>=<span class="tk-str">&quot;demo-key-help&quot;</span> <span class="tk-attr">data-doc-key</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button&quot;</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Show key&quot;</span> <span class="tk-attr">aria-pressed</span>=<span class="tk-str">&quot;false&quot;</span> <span class="tk-attr">data-doc-key-show</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--eye&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-help&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;demo-key-help&quot;</span><span class="tk-punct">&gt;</span>It stays in this tab's memory and is gone when you close or reload it.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-cluster&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--sm&quot;</span> <span class="tk-attr">data-doc-key-hold</span><span class="tk-punct">&gt;</span>Hold in memory<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-button vc-button--secondary vc-button--sm&quot;</span> <span class="tk-attr">data-doc-key-forget</span><span class="tk-punct">&gt;</span>Forget key<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-help&quot;</span> <span class="tk-attr">aria-live</span>=<span class="tk-str">&quot;polite&quot;</span> <span class="tk-attr">data-doc-key-state</span><span class="tk-punct">&gt;</span>Nothing held.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-93" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<p class="vc-caption">What you hold lives in a variable of this page's script and nowhere else, so a reload forgets it. Type a test value, never a real key.</p>
+<p>Check it twice. <code>storageProblems(sources, { allow })</code> reads the prototype's scripts and finds storage outside the modules allowed it, usually the theme script and the one that remembers the language, and any IndexedDB, cache or cookie at all. <code>storedKeyProblems(keys, { prefix })</code> reads what the page left behind after a full run against a stand-in for the model. Read it in a fresh browser context, since all of Victor's sites share one origin.</p>
+
 <h2 id="partner-review">The partner review</h2>
 <p>Before a prototype goes to a customer, Victor reviews it the way a partner of a consultancy would, and an agent runs the same review on its own work before calling it done. It takes the view of the dumbest user possible, in this order:</p>
 <ol>
@@ -431,6 +477,7 @@ Keep list: the byline, the talk track, the key figures and whatever else must no
     <tr><td>The byline is complete, with both links</td><td><code>bylineProblems(html)</code> from <code>scripts/lib/byline.mjs</code></td></tr>
     <tr><td>The text avoids the <a href="../guidelines/writing.html#patterns-vici-doesnt-use">patterns Vici doesn't use</a></td><td><code>writingProblems(html)</code> from <code>scripts/lib/writing.mjs</code></td></tr>
     <tr><td>A page that can start a live run with a model says “You are interacting with an AI system”</td><td><code>aiNoticeProblems(html)</code> from <code>scripts/lib/ai.mjs</code></td></tr>
+    <tr><td>The key and everything a person enters stay in memory: storage only in the modules allowed it, and only the three keys after a run</td><td><code>storageProblems(sources, { allow })</code> and <code>storedKeyProblems(keys, { prefix })</code> from <code>scripts/lib/storage.mjs</code></td></tr>
     <tr><td>The guide opens, moves and closes as it should in a browser</td><td><code>node scripts/check-guide-render.mjs &lt;address&gt;</code></td></tr>
   </tbody>
 </table>
@@ -450,7 +497,7 @@ console.log('Vici checks passed');</code></pre>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../start/getting-started.html" rel="prev"><span class="vc-caption">Previous</span><span>Getting started</span></a><a class="doc-pager__link doc-pager__link--next" href="../start/theming.html" rel="next"><span class="vc-caption">Next</span><span>Theming</span></a></nav>
       </article>
-<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#agent-brief">The brief for agents</a></li><li><a href="#audience">Who it's for</a></li><li><a href="#three-things">Three things every prototype has</a></li><li><a href="#key-figures">Key figures</a></li><li><a href="#page-structure">From top to bottom</a></li><li><a href="#partner-review">The partner review</a></li><li><a href="#before-you-share">Before you share it</a></li></ul></nav>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#agent-brief">The brief for agents</a></li><li><a href="#audience">Who it's for</a></li><li><a href="#three-things">Three things every prototype has</a></li><li><a href="#key-figures">Key figures</a></li><li><a href="#page-structure">From top to bottom</a></li><li><a href="#nothing-kept">Nothing is kept</a></li><li><a href="#partner-review">The partner review</a></li><li><a href="#before-you-share">Before you share it</a></li></ul></nav>
     </main>
   </div>
 

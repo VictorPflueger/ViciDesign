@@ -4,7 +4,7 @@ nav: Build a prototype
 section: Start
 order: 2
 icon: cube
-description: The brief for an agent that builds a prototype, demo or tech showcase for Victor, and the rules behind it: who it is for, the byline, the talk track, key figures, the layout from top to bottom, the partner review and the checks.
+description: The brief for an agent that builds a prototype, demo or tech showcase for Victor, and the rules behind it: who it is for, the byline, the talk track, key figures, the layout from top to bottom, what is never kept, the partner review and the checks.
 -->
 <header class="doc-hero">
   <h1>Build a prototype</h1>
@@ -167,6 +167,39 @@ description: The brief for an agent that builds a prototype, demo or tech showca
 <!-- /demo -->
 <p class="vc-caption">The top of a single-screen prototype, with its guide behind How it works. It replays a recorded run and calls no model, so it needs no AI notice. In a prototype the guide also carries <code>data-vc-guide-auto</code>, so it opens when the prototype starts. Outside this site, the byline loads its images from the CDN or the prototype's own copy: see <a href="{{root}}brand/profile-links.html#byline-anywhere">the byline's markup for other sites</a>.</p>
 
+<h2 id="nothing-kept">Nothing is kept</h2>
+<p>A prototype that runs live takes an API key, and people type or upload their own material into it. All of that, and everything the agents make from it, lives in the page's memory only. It never goes to local storage, session storage, IndexedDB, the Cache API or a cookie, never into a URL, a log or an export, and it is gone when the tab closes or reloads. A result leaves the page only as a download the person starts, and while there is one they haven't downloaded, the browser warns before the page closes.</p>
+<p>Three keys may persist. None of them holds anything a person entered.</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>What a prototype may keep in the browser</caption>
+  <thead><tr><th scope="col">Key</th><th scope="col">Where</th><th scope="col">What it holds</th></tr></thead>
+  <tbody>
+    <tr><td class="vc-nowrap"><code>vc-theme</code></td><td>Local storage</td><td>The theme the visitor chose with the header's toggle, shared by every Vici page on the site</td></tr>
+    <tr><td class="vc-nowrap"><code>&lt;prefix&gt;.lang</code></td><td>Local storage</td><td>The prototype's language choice, under its own prefix such as <code>pestel.lang</code>, because Victor's sites share one origin</td></tr>
+    <tr><td class="vc-nowrap"><code>vc-guide:…</code></td><td>Session storage</td><td>Vici's note that the guide has opened in this tab, so it opens once</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Hold the key in one variable of one module and show it masked, with a “Forget key” button beside it. Keep the field outside any form, with <code>autocomplete="off"</code>, <code>data-1p-ignore</code> and <code>data-lpignore="true"</code> so password managers leave it alone, and remove anything shaped like a key from error messages and downloads.</p>
+<!-- demo stack narrow -->
+<div class="vc-field">
+  <label class="vc-label" for="demo-key">API key</label>
+  <div class="vc-input-group">
+    <input class="vc-input" id="demo-key" type="password" autocomplete="off" spellcheck="false" data-1p-ignore data-lpignore="true" placeholder="Any test value, never a real key" aria-describedby="demo-key-help" data-doc-key>
+    <button type="button" class="vc-icon-button" aria-label="Show key" aria-pressed="false" data-doc-key-show><span class="vc-icon vc-icon--eye" aria-hidden="true"></span></button>
+  </div>
+  <p class="vc-help" id="demo-key-help">It stays in this tab's memory and is gone when you close or reload it.</p>
+</div>
+<div class="vc-cluster">
+  <button type="button" class="vc-button vc-button--sm" data-doc-key-hold>Hold in memory</button>
+  <button type="button" class="vc-button vc-button--secondary vc-button--sm" data-doc-key-forget>Forget key</button>
+</div>
+<p class="vc-help" aria-live="polite" data-doc-key-state>Nothing held.</p>
+<!-- /demo -->
+<p class="vc-caption">What you hold lives in a variable of this page's script and nowhere else, so a reload forgets it. Type a test value, never a real key.</p>
+<p>Check it twice. <code>storageProblems(sources, { allow })</code> reads the prototype's scripts and finds storage outside the modules allowed it, usually the theme script and the one that remembers the language, and any IndexedDB, cache or cookie at all. <code>storedKeyProblems(keys, { prefix })</code> reads what the page left behind after a full run against a stand-in for the model. Read it in a fresh browser context, since all of Victor's sites share one origin.</p>
+
 <h2 id="partner-review">The partner review</h2>
 <p>Before a prototype goes to a customer, Victor reviews it the way a partner of a consultancy would, and an agent runs the same review on its own work before calling it done. It takes the view of the dumbest user possible, in this order:</p>
 <ol>
@@ -200,6 +233,7 @@ Keep list: the byline, the talk track, the key figures and whatever else must no
     <tr><td>The byline is complete, with both links</td><td><code>bylineProblems(html)</code> from <code>scripts/lib/byline.mjs</code></td></tr>
     <tr><td>The text avoids the <a href="{{root}}guidelines/writing.html#patterns-vici-doesnt-use">patterns Vici doesn't use</a></td><td><code>writingProblems(html)</code> from <code>scripts/lib/writing.mjs</code></td></tr>
     <tr><td>A page that can start a live run with a model says “You are interacting with an AI system”</td><td><code>aiNoticeProblems(html)</code> from <code>scripts/lib/ai.mjs</code></td></tr>
+    <tr><td>The key and everything a person enters stay in memory: storage only in the modules allowed it, and only the three keys after a run</td><td><code>storageProblems(sources, { allow })</code> and <code>storedKeyProblems(keys, { prefix })</code> from <code>scripts/lib/storage.mjs</code></td></tr>
     <tr><td>The guide opens, moves and closes as it should in a browser</td><td><code>node scripts/check-guide-render.mjs &lt;address&gt;</code></td></tr>
   </tbody>
 </table>
