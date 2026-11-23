@@ -3,8 +3,9 @@
 // in memory only, and only vc-theme, <prefix>.lang and Vici's vc-guide: note may persist. Prototypes
 // import storageProblems() and storedKeyProblems() from scripts/lib/storage.mjs. A self-test first proves
 // that the checker catches planted mistakes and passes code that keeps the rule. Then it holds Vici to
-// the rule too: vici.js keeps only the theme and the guide note, under the keys the rule allows, and no
-// other script of Vici's, the docs' demo of a key held in memory included, touches storage at all.
+// the rule too: vici.js keeps only the theme and the guide note and vici-theme.js reads only the theme,
+// under the keys the rule allows, and no other script of Vici's, the docs' demo of a key held in memory
+// included, touches storage at all.
 import { read, listFiles } from './lib/files.mjs';
 import { storageProblems, storedKeyProblems, allowedKeys, codeOnly, inlineScripts } from './lib/storage.mjs';
 
@@ -72,12 +73,14 @@ if (!allowed.session.includes(guideKey)) failures.push(`src/js/vici.js keeps the
 const sources = {};
 for (const f of listFiles('src', (r) => /\.(m?js|html)$/.test(r))) sources[f] = read(f);
 const themeLines = Object.keys(sources).filter((f) => /\.html$/.test(f) && /localStorage\.getItem\('vc-theme'\)/.test(inlineScripts(sources[f])));
-failures.push(...storageProblems(sources, { allow: ['src/js/vici.js', ...themeLines] }));
+const themeFileKey = (read('src/js/vici-theme.js').match(/localStorage\.getItem\('([^']+)'\)/) || [])[1];
+if (!allowed.local.includes(themeFileKey)) failures.push(`src/js/vici-theme.js reads the theme from "${themeFileKey}", which the rule does not allow`);
+failures.push(...storageProblems(sources, { allow: ['src/js/vici.js', 'src/js/vici-theme.js', ...themeLines] }));
 if (failures.length) {
   console.error(failures.map((f) => '✗ ' + f).join('\n'));
   console.error(`\n${failures.length} storage problem(s)`);
   process.exit(1);
 }
 console.log(`Self-test caught ${n}/${n} planted mistakes.`);
-console.log(`${Object.keys(sources).length} source files: vici.js keeps only "${themeKey}" and "${guideKey}…", ${themeLines.length} page${themeLines.length === 1 ? '' : 's'} read the theme, nothing else touches storage.`);
+console.log(`${Object.keys(sources).length} source files: vici.js keeps only "${themeKey}" and "${guideKey}…", vici-theme.js and ${themeLines.length} page${themeLines.length === 1 ? '' : 's'} read the theme, nothing else touches storage.`);
 console.log('STORAGE OK');

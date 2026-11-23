@@ -4,7 +4,7 @@
 //   node scripts/build.mjs          build everything (dist/, docs pages, exports)
 //   node scripts/build.mjs --check  build in memory and fail if any generated file is stale
 //
-// Sources:  src/tokens/tokens.json · src/css/** · src/js/vici.js · src/icons/*.svg
+// Sources:  src/tokens/tokens.json · src/css/** · src/js/vici.js · src/js/vici-theme.js · src/icons/*.svg
 //           src/docs/** (page partials + layout) · src/brand/** (logo geometry)
 // Outputs:  dist/** · index.html + start/ guidelines/ components/ brand/ (docs site)
 //           integrations/** (Streamlit, Power BI, Python, Tailwind) · assets/logo/**
@@ -488,6 +488,8 @@ emit('dist/vici-tokens.css', tokensCss());
 const viciJs = read('src/js/vici.js');
 if (!viciJs.includes("'__VICI_VERSION__'")) throw new Error('src/js/vici.js must carry the version placeholder');
 emit('dist/vici.js', viciJs.replace("'__VICI_VERSION__'", `'${VERSION}'`));
+// The theme before the first paint, as a file, for pages whose policy allows no inline script.
+emit('dist/vici-theme.js', read('src/js/vici-theme.js'));
 emit('dist/vici-icons.svg', iconSprite());
 emit('dist/tokens.json', tokensJson());
 emit('integrations/streamlit/config.toml', streamlit('light'));

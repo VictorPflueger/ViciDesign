@@ -234,6 +234,7 @@ Keep list: the byline, the talk track, the key figures and whatever else must no
     <tr><td>The text avoids the <a href="{{root}}guidelines/writing.html#patterns-vici-doesnt-use">patterns Vici doesn't use</a></td><td><code>writingProblems(html)</code> from <code>scripts/lib/writing.mjs</code></td></tr>
     <tr><td>A page that can start a live run with a model says “You are interacting with an AI system”</td><td><code>aiNoticeProblems(html)</code> from <code>scripts/lib/ai.mjs</code></td></tr>
     <tr><td>The key and everything a person enters stay in memory: storage only in the modules allowed it, and only the three keys after a run</td><td><code>storageProblems(sources, { allow })</code> and <code>storedKeyProblems(keys, { prefix })</code> from <code>scripts/lib/storage.mjs</code></td></tr>
+    <tr><td>The page runs under a strict security policy: no inline script, style or event handler</td><td><code>policyProblems(html)</code> from <code>scripts/lib/policy.mjs</code></td></tr>
     <tr><td>The guide opens, moves and closes as it should in a browser</td><td><code>node scripts/check-guide-render.mjs &lt;address&gt;</code></td></tr>
   </tbody>
 </table>
