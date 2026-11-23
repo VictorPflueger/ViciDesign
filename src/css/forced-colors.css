@@ -217,6 +217,13 @@
     .vc-ring__cell[aria-current='true']::before,
     button.vc-ring__cell:focus-visible::before { background-color: Highlight; }
 
+    /* The drop zone keeps its dashed edge in the text colour and turns it to the highlight colour
+       while files are dragged over it or its input has the focus; a refused file keeps its word. */
+    .vc-dropzone__target { border-color: CanvasText; }
+    .vc-dropzone[data-dragging] .vc-dropzone__target,
+    .vc-dropzone__input:focus-visible + .vc-dropzone__target { border-color: Highlight; }
+    .vc-dropzone__file[data-state='refused'],
+    .vc-dropzone__file[data-state='warning'] { border: 2px solid CanvasText; }
     /* The horizon strip's lanes lose their fill: an outline keeps each lane, and the arrow under them
        takes the text colour. */
     .vc-horizon__lane { outline: 1px solid CanvasText; outline-offset: -1px; }

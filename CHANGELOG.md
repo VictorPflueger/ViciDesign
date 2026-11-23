@@ -20,6 +20,15 @@ breaking changes to class names or token names bump the major version.
   lanes shows which way time runs, and the numbers sit in a table one click away. It is one compact row that fits
   under a matrix at 1280 × 720. `horizonProblems(html)` checks the name, the lanes, the empty lanes, every marker's
   words, an issue in one lane only, a key for sized markers and the table, with a self-test of planted mistakes.
+- From Prototype Ideator 0.2.0: the drop zone, on the Forms page. `.vc-dropzone` is the `<label>` of a real file
+  input that stays in the tab order but out of sight, so a click, the keyboard and a screen reader all open the file
+  dialog; `accept` names the kinds of file, and `.vc-dropzone__notice` says what may be uploaded. Dragged files turn
+  the dashed edge solid and the zone the soft accent. vici.js sends dropped and chosen files as one cancelable
+  `vc:files` event and clears the input; a page that checks files calls `preventDefault()` and lists them, otherwise
+  Vici lists each with its size and a remove button. While a zone is on the page, a file dropped beside it is caught
+  instead of opened, which would leave the page. Each file row has its name, kind and size, tags and a remove button
+  that names it; `data-state="refused"` or `"warning"` adds the reason in words. `dropzoneProblems(html)` checks the
+  input, its label, the notice, the list and every file, with a self-test of planted mistakes.
 - From PESTEL Challenger 0.2.0: the ring, on the Framework view page. `.vc-ring` puts a subject in the centre and the
   six areas of a framework around it as flat-top hexagons, clockwise from the top, such as a company and the six
   dimensions of PESTEL. The order of the markup is the layout, so a strict security policy needs no style attribute.

@@ -1,0 +1,156 @@
+/* ==========================================================================
+   Drop zone: where a person drops files or chooses them, with the notice on what may be uploaded
+   and the files listed under it. The input stays a real file input, visually hidden but in the tab
+   order, and the zone is its label, so a click, the keyboard and a screen reader all open the
+   browser's file dialog. Each file shows its name, kind, size and a remove button; a refused file
+   says why in words, never with colour alone. vici.js sends dropped and chosen files to the page as
+   one `vc:files` event.
+   ========================================================================== */
+
+@layer vici.components {
+  .vc-dropzone {
+    position: relative;
+    display: grid;
+    gap: var(--vc-space-3);
+    min-width: 0;
+  }
+  .vc-dropzone__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+  }
+  .vc-dropzone__target {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: var(--vc-space-2);
+    min-height: 8.5rem;
+    padding: var(--vc-space-5) var(--vc-space-6);
+    border: var(--vc-stroke-thick) dashed var(--vc-border-strong);
+    border-radius: var(--vc-radius-lg);
+    background-color: var(--vc-bg-subtle);
+    background-image: var(--vc-honeycomb-pattern);
+    background-size: var(--vc-honeycomb-pattern-size);
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    line-height: var(--vc-leading-snug);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--vc-duration-quick) var(--vc-ease-standard),
+      background-color var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  .vc-dropzone__target > .vc-cell { margin-bottom: var(--vc-space-1); }
+  .vc-dropzone__target:hover { border-color: var(--vc-accent); color: var(--vc-text); }
+  .vc-dropzone__input:focus-visible + .vc-dropzone__target {
+    outline: var(--vc-stroke-focus) solid var(--vc-focus);
+    outline-offset: 2px;
+    border-color: var(--vc-accent);
+  }
+  /* While files are dragged over it, the edge turns solid and the zone takes the soft accent. */
+  .vc-dropzone[data-dragging] .vc-dropzone__target {
+    border-style: solid;
+    border-color: var(--vc-accent);
+    background-color: var(--vc-accent-soft);
+    color: var(--vc-on-accent-soft);
+  }
+  .vc-dropzone__title {
+    color: var(--vc-text);
+    font-size: var(--vc-font-size-md);
+    font-weight: var(--vc-weight-semibold);
+  }
+  .vc-dropzone[data-dragging] .vc-dropzone__title { color: var(--vc-on-accent-soft); }
+  .vc-dropzone__browse {
+    color: var(--vc-text-link);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+  .vc-dropzone__hint { max-width: 46ch; }
+  .vc-dropzone[aria-disabled='true'] .vc-dropzone__target {
+    cursor: not-allowed;
+    border-color: var(--vc-border);
+    color: var(--vc-text-disabled);
+  }
+
+  /* The notice on what may be uploaded, with its mark, stays with the zone. */
+  .vc-dropzone__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--vc-space-2);
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    line-height: var(--vc-leading-snug);
+  }
+  .vc-dropzone__notice > .vc-icon { flex: none; margin-top: 0.1em; color: var(--vc-text); }
+
+  /* The files: one row each, name and details, any tags, and the remove button. */
+  .vc-dropzone__files {
+    display: grid;
+    gap: var(--vc-space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .vc-dropzone__files:empty { display: none; }
+  .vc-dropzone__file {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--vc-space-1) var(--vc-space-3);
+    padding: var(--vc-space-2) var(--vc-space-2) var(--vc-space-2) var(--vc-space-3);
+    border: 1px solid var(--vc-border-subtle);
+    border-radius: var(--vc-radius-md);
+    background: var(--vc-surface);
+  }
+  .vc-dropzone__file > .vc-icon:first-child { color: var(--vc-text-muted); }
+  .vc-dropzone__body {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+  .vc-dropzone__name {
+    color: var(--vc-text);
+    font-weight: var(--vc-weight-semibold);
+    overflow-wrap: anywhere;
+  }
+  .vc-dropzone__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--vc-space-1) var(--vc-space-2);
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+    font-variant-numeric: tabular-nums;
+  }
+  .vc-dropzone__error {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--vc-space-2);
+    margin: 0;
+    color: var(--vc-danger-text);
+    font-size: var(--vc-font-size-sm);
+    line-height: var(--vc-leading-snug);
+  }
+  .vc-dropzone__error > .vc-icon { flex: none; margin-top: 0.1em; }
+  .vc-dropzone__file[data-state='refused'] {
+    border-color: var(--vc-danger-border);
+    background: var(--vc-danger-bg);
+  }
+  .vc-dropzone__file[data-state='refused'] .vc-dropzone__name { text-decoration: line-through; text-decoration-thickness: 1px; }
+  .vc-dropzone__file[data-state='warning'] {
+    border-color: var(--vc-warning-border);
+    background: var(--vc-warning-bg);
+  }
+  .vc-dropzone__file[data-state='warning'] .vc-dropzone__error { color: var(--vc-warning-text); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vc-dropzone__target { transition: none; }
+  }
+}
