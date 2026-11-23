@@ -39,6 +39,7 @@ From the prototype's folder, with the ViciDesign clone beside it:
 
 - guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs, writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs and aiNoticeProblems(html) from ../ViciDesign/scripts/lib/ai.mjs each return an empty list for every page.
 - policyProblems(html) from ../ViciDesign/scripts/lib/policy.mjs returns an empty list for a page under a strict security policy.
+- riskMatrixProblems(html) from ../ViciDesign/scripts/lib/risk.mjs returns an empty list for every screen that shows a risk matrix: 25 cells in their bands, each marker in its cell, a key in words and a table of the numbers. https://victorpflueger.github.io/ViciDesign/components/data.html#risk-matrix
 - frameworkProblems(html) from ../ViciDesign/scripts/lib/framework.mjs returns an empty list for every screen that shows a framework view: each item carries a mark and a word for its state. https://victorpflueger.github.io/ViciDesign/components/framework.html
 - storageProblems(sources, { allow }) from ../ViciDesign/scripts/lib/storage.mjs returns an empty list for the prototype's scripts, and storedKeyProblems(keys, { prefix }) for what a full live run against a stand-in leaves in a fresh browser.
 - recordIdProblems(text, ids) from ../ViciDesign/scripts/lib/ids.mjs returns an empty list for the text of every screen, given the ids of the prototype's data.

@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From SWOT Challenger 0.2.0: the risk matrix, on Data display. Five by five, impact up and likelihood across,
+  each cell in its band (low 1 to 4, medium 5 to 9, high 10 to 15, critical 16 to 25) in the status colours, with
+  its score in the corner and the bands named in a key, so nothing rests on colour alone. Issues are numbered
+  hexagon markers in their cells, what is left after an answer a hollow marker, `aria-current` lights one, and the
+  numbers sit in a table one click away. The grid places everything in the order of the markup, so it needs no
+  style attribute under a strict policy. `scripts/lib/risk.mjs` gives prototypes `riskMatrixProblems(html)` and
+  `band(score)`, and `npm run check` runs them with a self-test on the page.
 - From SWOT Challenger 0.2.0: the framework view, a new component page. A strategy framework's areas (a SWOT's
   four fields, a PESTEL's six factors, a canvas's nine blocks) sit in `.vc-framework`, and every item is a `details`
   element whose state carries a mark and a word: entered, written by the AI (lilac, "AI"), added by the challenge
