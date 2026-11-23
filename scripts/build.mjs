@@ -210,6 +210,7 @@ const CSS_ORDER = [
   'src/css/components/feedback.css',
   'src/css/components/overlays.css',
   'src/css/components/data.css',
+  'src/css/components/framework.css',
 ];
 
 function minifyCss(css) {

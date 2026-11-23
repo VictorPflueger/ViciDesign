@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From SWOT Challenger 0.2.0: the framework view, a new component page. A strategy framework's areas (a SWOT's
+  four fields, a PESTEL's six factors, a canvas's nine blocks) sit in `.vc-framework`, and every item is a `details`
+  element whose state carries a mark and a word: entered, written by the AI (lilac, "AI"), added by the challenge
+  (lilac, "Added"), challenged (coral edge, the fault in words) and addressed (sage, "Addressed"). `aria-current`
+  points at the items a card elsewhere concerns, `.vc-framework--compact` shows first lines only, and a legend names
+  every mark. `scripts/lib/framework.mjs` gives prototypes `frameworkProblems(html)`, and `npm run check` runs it with
+  a self-test on the page. Build a prototype and the brief list the check.
 - From PESTEL Challenger 0.1.0: the blank starter runs under a strict security policy. It carries a content
   security policy that lets in only the site's own scripts and styles, and has no inline script or style, so a
   prototype built on it runs under the same policy unchanged. `dist/vici-theme.js` applies the remembered theme before
