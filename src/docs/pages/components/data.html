@@ -171,6 +171,7 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 <h2 id="risk-matrix">Risk matrix</h2>
 <p>Issues placed by how much they would hurt and how likely they are, both from 1 to 5: impact up, likelihood across. A cell's band follows impact times likelihood: low from 1 to 4, medium from 5 to 9, high from 10 to 15, critical from 16 to 25. Every cell shows its score in the corner and the key names the bands in words, so the bands never rest on colour alone. The bands use the status colours because the data really is good or bad.</p>
 <p>Each issue is a numbered hexagon marker in its cell. What is left of an issue after an answer is the same marker, hollow, in its new cell. Selecting a card elsewhere sets <code>aria-current="true"</code> on its marker. The numbers sit in a table one click away, as every chart in Vici offers them.</p>
+<p>Where a marker's size tells what the issue puts at stake, as a canvas's expected euros a year do, it takes <code>vc-risk__marker--sm</code> or <code>vc-risk__marker--lg</code> either side of the default: three steps the prototype draws from its own figures, such as thirds of the largest. The key names each size used in words and the table carries the figures, so a size never stands for a number on its own.</p>
 <!-- demo -->
 <figure class="vc-risk" aria-labelledby="rm-title">
   <figcaption>
@@ -183,14 +184,14 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
       <span class="vc-risk__tick">5</span>
       <div class="vc-risk__cell" data-impact="5" data-likelihood="1" data-band="medium"><span class="vc-risk__score">5</span></div>
       <div class="vc-risk__cell" data-impact="5" data-likelihood="2" data-band="high"><span class="vc-risk__score">10</span></div>
-      <div class="vc-risk__cell" data-impact="5" data-likelihood="3" data-band="high"><span class="vc-risk__score">15</span><span class="vc-risk__marker" data-impact="5" data-likelihood="3" aria-label="Issue 5: A sea route closes">5</span></div>
+      <div class="vc-risk__cell" data-impact="5" data-likelihood="3" data-band="high"><span class="vc-risk__score">15</span><span class="vc-risk__marker vc-risk__marker--lg" data-impact="5" data-likelihood="3" aria-label="Issue 5: A sea route closes">5</span></div>
       <div class="vc-risk__cell" data-impact="5" data-likelihood="4" data-band="critical"><span class="vc-risk__score">20</span></div>
       <div class="vc-risk__cell" data-impact="5" data-likelihood="5" data-band="critical"><span class="vc-risk__score">25</span></div>
       <span class="vc-risk__tick">4</span>
       <div class="vc-risk__cell" data-impact="4" data-likelihood="1" data-band="low"><span class="vc-risk__score">4</span></div>
-      <div class="vc-risk__cell" data-impact="4" data-likelihood="2" data-band="medium"><span class="vc-risk__score">8</span><span class="vc-risk__marker" data-impact="4" data-likelihood="2" aria-label="Issue 3: A key customer leaves">3</span><span class="vc-risk__marker vc-risk__marker--residual" data-impact="4" data-likelihood="2" aria-label="Issue 1 after the answer">1</span></div>
+      <div class="vc-risk__cell" data-impact="4" data-likelihood="2" data-band="medium"><span class="vc-risk__score">8</span><span class="vc-risk__marker" data-impact="4" data-likelihood="2" aria-label="Issue 3: A key customer leaves">3</span><span class="vc-risk__marker vc-risk__marker--residual vc-risk__marker--sm" data-impact="4" data-likelihood="2" aria-label="Issue 1 after the answer">1</span></div>
       <div class="vc-risk__cell" data-impact="4" data-likelihood="3" data-band="high"><span class="vc-risk__score">12</span></div>
-      <div class="vc-risk__cell" data-impact="4" data-likelihood="4" data-band="critical"><span class="vc-risk__score">16</span><span class="vc-risk__marker" data-impact="4" data-likelihood="4" aria-label="Issue 1: Freight rates fall">1</span></div>
+      <div class="vc-risk__cell" data-impact="4" data-likelihood="4" data-band="critical"><span class="vc-risk__score">16</span><span class="vc-risk__marker vc-risk__marker--lg" data-impact="4" data-likelihood="4" aria-label="Issue 1: Freight rates fall">1</span></div>
       <div class="vc-risk__cell" data-impact="4" data-likelihood="5" data-band="critical"><span class="vc-risk__score">20</span></div>
       <span class="vc-risk__tick">3</span>
       <div class="vc-risk__cell" data-impact="3" data-likelihood="1" data-band="low"><span class="vc-risk__score">3</span></div>
@@ -200,7 +201,7 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
       <div class="vc-risk__cell" data-impact="3" data-likelihood="5" data-band="high"><span class="vc-risk__score">15</span></div>
       <span class="vc-risk__tick">2</span>
       <div class="vc-risk__cell" data-impact="2" data-likelihood="1" data-band="low"><span class="vc-risk__score">2</span></div>
-      <div class="vc-risk__cell" data-impact="2" data-likelihood="2" data-band="low"><span class="vc-risk__score">4</span><span class="vc-risk__marker" data-impact="2" data-likelihood="2" aria-label="Issue 4: Port fees rise">4</span></div>
+      <div class="vc-risk__cell" data-impact="2" data-likelihood="2" data-band="low"><span class="vc-risk__score">4</span><span class="vc-risk__marker vc-risk__marker--sm" data-impact="2" data-likelihood="2" aria-label="Issue 4: Port fees rise">4</span></div>
       <div class="vc-risk__cell" data-impact="2" data-likelihood="3" data-band="medium"><span class="vc-risk__score">6</span></div>
       <div class="vc-risk__cell" data-impact="2" data-likelihood="4" data-band="medium"><span class="vc-risk__score">8</span></div>
       <div class="vc-risk__cell" data-impact="2" data-likelihood="5" data-band="high"><span class="vc-risk__score">10</span></div>
@@ -224,19 +225,21 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
     <li data-band="medium">Medium, 5 to 9</li>
     <li data-band="high">High, 10 to 15</li>
     <li data-band="critical">Critical, 16 to 25</li>
+    <li data-size="sm">Smaller: less at stake</li>
+    <li data-size="lg">Larger: more at stake</li>
   </ul>
   <details class="vc-risk__numbers">
     <summary>Show the numbers</summary>
     <div class="vc-table-wrap">
       <table class="vc-table vc-table--compact">
-        <thead><tr><th scope="col">Issue</th><th scope="col">Impact</th><th scope="col">Likelihood</th><th scope="col">Score</th><th scope="col">Band</th></tr></thead>
+        <thead><tr><th scope="col">Issue</th><th scope="col">Impact</th><th scope="col">Likelihood</th><th scope="col">Score</th><th scope="col">Band</th><th scope="col">At stake a year</th></tr></thead>
         <tbody>
-          <tr><th scope="row">1. Freight rates fall</th><td>4</td><td>4</td><td>16</td><td>Critical</td></tr>
-          <tr><th scope="row">2. Emission allowances</th><td>3</td><td>4</td><td>12</td><td>High</td></tr>
-          <tr><th scope="row">3. A key customer leaves</th><td>4</td><td>2</td><td>8</td><td>Medium</td></tr>
-          <tr><th scope="row">4. Port fees rise</th><td>2</td><td>2</td><td>4</td><td>Low</td></tr>
-          <tr><th scope="row">5. A sea route closes</th><td>5</td><td>3</td><td>15</td><td>High</td></tr>
-          <tr><th scope="row">1. After the answer</th><td>4</td><td>2</td><td>8</td><td>Medium</td></tr>
+          <tr><th scope="row">1. Freight rates fall</th><td>4</td><td>4</td><td>16</td><td>Critical</td><td>€2.8m</td></tr>
+          <tr><th scope="row">2. Emission allowances</th><td>3</td><td>4</td><td>12</td><td>High</td><td>€1.4m</td></tr>
+          <tr><th scope="row">3. A key customer leaves</th><td>4</td><td>2</td><td>8</td><td>Medium</td><td>€1.2m</td></tr>
+          <tr><th scope="row">4. Port fees rise</th><td>2</td><td>2</td><td>4</td><td>Low</td><td>€300k</td></tr>
+          <tr><th scope="row">5. A sea route closes</th><td>5</td><td>3</td><td>15</td><td>High</td><td>€2.5m</td></tr>
+          <tr><th scope="row">1. After the answer</th><td>4</td><td>2</td><td>8</td><td>Medium</td><td>€600k</td></tr>
         </tbody>
       </table>
     </div>

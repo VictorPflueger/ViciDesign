@@ -11,18 +11,18 @@ import { riskMatrixProblems, band } from './lib/risk.mjs';
 export { riskMatrixProblems, band };
 
 /** A clean matrix with markers at the given [impact, likelihood, label] places. */
-function matrix({ markers = [[4, 4, '1'], [3, 2, '2']], skip, bandOf = band, score = (s) => s, key = ['low', 'medium', 'high', 'critical'], table = true, caption = true, loose = '' } = {}) {
+function matrix({ markers = [[4, 4, '1'], [3, 2, '2']], skip, bandOf = band, score = (s) => s, key = ['low', 'medium', 'high', 'critical'], sizes = [], table = true, caption = true, loose = '' } = {}) {
   const rows = [];
   for (let i = 5; i >= 1; i--) {
     rows.push(`<span class="vc-risk__tick">${i}</span>`);
     for (let l = 1; l <= 5; l++) {
       if (skip && skip[0] === i && skip[1] === l) continue;
-      const m = markers.filter(([mi, ml]) => mi === i && ml === l).map(([mi, ml, t]) => `<span class="vc-risk__marker" data-impact="${mi}" data-likelihood="${ml}">${t}</span>`).join('');
+      const m = markers.filter(([mi, ml]) => mi === i && ml === l).map(([mi, ml, t, size]) => `<span class="vc-risk__marker${size ? ` vc-risk__marker--${size}` : ''}" data-impact="${mi}" data-likelihood="${ml}">${t}</span>`).join('');
       rows.push(`<div class="vc-risk__cell" data-impact="${i}" data-likelihood="${l}" data-band="${bandOf(i * l)}"><span class="vc-risk__score">${score(i * l)}</span>${m}</div>`);
     }
   }
   return `<figure class="vc-risk">${caption ? '<figcaption><p class="vc-chart__title">Issues</p></figcaption>' : ''}<div class="vc-risk__plot"><div class="vc-risk__grid">${rows.join('')}${loose}</div></div>`
-    + `<ul class="vc-risk__key">${key.map((b) => `<li data-band="${b}">${b}</li>`).join('')}</ul>${table ? '<details class="vc-risk__numbers"><summary>Numbers</summary><table><tr><td>1</td></tr></table></details>' : ''}</figure>`;
+    + `<ul class="vc-risk__key">${key.map((b) => `<li data-band="${b}">${b}</li>`).join('')}${sizes.map((s) => `<li data-size="${s}">${s === 'sm' ? 'Less at stake' : 'More at stake'}</li>`).join('')}</ul>${table ? '<details class="vc-risk__numbers"><summary>Numbers</summary><table><tr><td>1</td></tr></table></details>' : ''}</figure>`;
 }
 
 const selfFailures = [];
@@ -30,6 +30,8 @@ const bands = [[1, 'low'], [4, 'low'], [5, 'medium'], [9, 'medium'], [10, 'high'
 for (const [s, b] of bands) if (band(s) !== b) selfFailures.push(`band(${s}) is ${band(s)}, not ${b}`);
 const clean = riskMatrixProblems(matrix());
 if (clean.length) selfFailures.push(`a clean matrix was rejected: ${clean.join('; ')}`);
+const cleanSized = riskMatrixProblems(matrix({ markers: [[4, 4, '1', 'lg'], [3, 2, '2', 'sm']], sizes: ['sm', 'lg'] }));
+if (cleanSized.length) selfFailures.push(`a clean matrix with sized markers was rejected: ${cleanSized.join('; ')}`);
 const planted = {
   'a missing cell': matrix({ skip: [3, 3] }),
   'a cell in the wrong band': matrix({ bandOf: (s) => (s === 12 ? 'medium' : band(s)) }),
@@ -39,6 +41,7 @@ const planted = {
   'a key without critical': matrix({ key: ['low', 'medium', 'high'] }),
   'no table of the numbers': matrix({ table: false }),
   'no caption or label': matrix({ caption: false }),
+  'a sized marker the key does not explain': matrix({ markers: [[4, 4, '1', 'lg'], [3, 2, '2']], sizes: ['sm'] }),
 };
 for (const [name, html] of Object.entries(planted)) if (!riskMatrixProblems(html).length) selfFailures.push(`missed: ${name}`);
 if (selfFailures.length) {
@@ -46,7 +49,7 @@ if (selfFailures.length) {
   process.exit(1);
 }
 const n = Object.keys(planted).length;
-console.log(`Self-test: eight band boundaries right, ${n}/${n} planted mistakes caught, a clean matrix passed.`);
+console.log(`Self-test: eight band boundaries right, ${n}/${n} planted mistakes caught, a clean matrix passed, with sized markers too.`);
 
 const page = 'components/data.html';
 if (!existsSync(join(ROOT, page))) {
