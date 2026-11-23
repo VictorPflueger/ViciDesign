@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Framework view: the areas of a strategy framework (a SWOT's four fields, a
+   PESTEL's six factors, a business model canvas's nine blocks) and the items
+   in them, each with a state that carries a mark and a word.
+   ========================================================================== */
+
+@layer vici.components {
+  /* ---------- Grid of areas ---------- */
+  .vc-framework {
+    --vc-framework-cols: 2;
+    display: grid;
+    grid-template-columns: repeat(var(--vc-framework-cols), minmax(0, 1fr));
+    gap: var(--vc-space-3);
+    min-width: 0;
+  }
+  .vc-framework--3 { --vc-framework-cols: 3; }
+
+  .vc-framework__area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vc-space-2);
+    min-width: 0;
+    min-height: 0;
+    padding: var(--vc-space-3) var(--vc-space-4) var(--vc-space-4);
+    border: 1px solid var(--vc-border-subtle);
+    border-radius: var(--vc-radius-md);
+    background: var(--vc-surface);
+  }
+  /* A card elsewhere on the screen points at this area. */
+  .vc-framework__area[aria-current='true'] {
+    border-color: var(--vc-accent);
+    box-shadow: inset 0 0 0 1px var(--vc-accent);
+  }
+  .vc-framework__head { display: grid; gap: var(--vc-space-1); min-width: 0; }
+  .vc-framework__head > * { margin: 0; }
+  .vc-framework__title {
+    display: flex;
+    align-items: center;
+    gap: var(--vc-space-2);
+    font-family: var(--vc-font-display);
+    font-size: var(--vc-font-size-lg);
+    font-weight: var(--vc-weight-semibold);
+    line-height: var(--vc-leading-snug);
+  }
+  /* The area's letter or number in a flat-top hexagon: S, W, O and T spell out the framework. */
+  .vc-framework__letter {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 2.1rem;
+    aspect-ratio: var(--vc-hex-ratio);
+    background: var(--vc-bg-subtle);
+    color: var(--vc-text);
+    clip-path: var(--vc-hex);
+    font-size: var(--vc-font-size-sm);
+    line-height: 1;
+  }
+  .vc-framework__question {
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    line-height: 1.4;
+    text-wrap: pretty;
+  }
+  .vc-framework__items {
+    display: grid;
+    align-content: start;
+    gap: var(--vc-space-1);
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  /* An area with nothing in it yet says what belongs there. */
+  .vc-framework__empty {
+    margin: 0;
+    padding: var(--vc-space-2) var(--vc-space-3);
+    border: 1px dashed var(--vc-border);
+    border-radius: var(--vc-radius-sm);
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+  }
+
+  /* ---------- Item ----------
+     A details element: the summary shows the mark, the text and the state words; opened, it
+     shows the whole text and the notes. data-source is entered, ai or added; data-status is
+     challenged or addressed, or absent. */
+  .vc-item {
+    --_mark: var(--vc-text);
+    --_edge: var(--vc-border-subtle);
+    min-width: 0;
+    border: 1px solid var(--_edge);
+    border-radius: var(--vc-radius-sm);
+    background: var(--vc-surface);
+    color: var(--vc-text);
+    font-size: var(--vc-font-size-sm);
+    line-height: 1.4;
+  }
+  .vc-item[data-source='ai'],
+  .vc-item[data-source='added'] {
+    --_mark: var(--vc-feature-text);
+    --_edge: var(--vc-feature-border);
+    background: var(--vc-feature-bg);
+  }
+  .vc-item[data-status='challenged'] {
+    --_mark: var(--vc-danger-text);
+    --_edge: var(--vc-danger-border);
+    box-shadow: inset 0 0 0 1px var(--vc-danger-border);
+  }
+  .vc-item[data-status='addressed'] {
+    --_mark: var(--vc-success-text);
+    --_edge: var(--vc-success-border);
+  }
+  /* A card elsewhere points at this item: the issue it belongs to, the strategy that answers it. */
+  .vc-item[aria-current='true'] {
+    outline: var(--vc-stroke-focus, 2px) solid var(--vc-accent);
+    outline-offset: 1px;
+  }
+
+  /* Mark, text and state words on one line; in a narrow area the words wrap under the text rather
+     than squeeze it. */
+  .vc-item__summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--vc-space-1) var(--vc-space-2);
+    min-height: 2rem;
+    padding: var(--vc-space-1) var(--vc-space-2);
+    cursor: pointer;
+    list-style: none;
+  }
+  .vc-item__summary::-webkit-details-marker { display: none; }
+  .vc-item__summary:focus-visible {
+    outline: var(--vc-stroke-focus, 2px) solid var(--vc-focus);
+    outline-offset: 1px;
+    border-radius: var(--vc-radius-sm);
+  }
+  /* The mark: a small ink hexagon for an entered item, an icon for every other state. */
+  .vc-item__mark {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 1.1rem;
+    height: 1.4em;
+    color: var(--_mark);
+  }
+  .vc-item__mark:empty::before {
+    content: '';
+    width: 0.6rem;
+    aspect-ratio: var(--vc-hex-ratio);
+    background: currentColor;
+    clip-path: var(--vc-hex);
+  }
+  .vc-item__mark > .vc-icon { width: 1rem; height: 1rem; }
+  .vc-item__text {
+    flex: 1 1 9rem;
+    min-width: 0;
+    padding-block: 0.15em;
+    overflow-wrap: break-word;
+  }
+  .vc-item__states {
+    display: inline-flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--vc-space-1);
+    margin-inline-start: auto;
+    padding-block: 0.1em;
+  }
+  .vc-item__states:has(> .vc-visually-hidden:only-child) { display: contents; }
+  .vc-item__state { white-space: nowrap; }
+  .vc-item__state--source { --_bg: var(--vc-feature-bg); --_fg: var(--vc-feature-text); }
+  .vc-item[data-source='ai'] .vc-item__state--source,
+  .vc-item[data-source='added'] .vc-item__state--source { --_bg: var(--vc-surface); }
+  .vc-item[data-status='challenged'] .vc-item__state--status { --_bg: var(--vc-danger-bg); --_fg: var(--vc-danger-text); }
+  .vc-item[data-status='addressed'] .vc-item__state--status { --_bg: var(--vc-success-bg); --_fg: var(--vc-success-text); }
+
+  /* A tight area shows each item's first line until it is opened. */
+  .vc-framework--compact .vc-item:not([open]) .vc-item__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+
+  .vc-item__body {
+    display: grid;
+    gap: var(--vc-space-1);
+    padding: 0 var(--vc-space-2) var(--vc-space-2) calc(1.1rem + var(--vc-space-2) * 2);
+    color: var(--vc-text-muted);
+  }
+  .vc-item__body > * { margin: 0; }
+  /* An old value beside the new one, as the stat card shows it: the rating an addressed item had. */
+  .vc-item__was { color: var(--vc-text-muted); text-decoration: line-through; }
+
+  /* ---------- Legend: every mark and its word ---------- */
+  .vc-framework__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vc-space-1) var(--vc-space-4);
+    margin: 0;
+    padding: 0;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+    list-style: none;
+  }
+  .vc-framework__legend > li { display: inline-flex; align-items: center; gap: var(--vc-space-1); }
+  .vc-framework__legend .vc-item__mark { height: 1.2em; }
+  .vc-framework__legend [data-mark='entered'] .vc-item__mark { --_mark: var(--vc-text); }
+  .vc-framework__legend [data-mark='ai'] .vc-item__mark,
+  .vc-framework__legend [data-mark='added'] .vc-item__mark { --_mark: var(--vc-feature-text); }
+  .vc-framework__legend [data-mark='challenged'] .vc-item__mark { --_mark: var(--vc-danger-text); }
+  .vc-framework__legend [data-mark='addressed'] .vc-item__mark { --_mark: var(--vc-success-text); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .vc-item { transition: border-color var(--vc-duration-base) var(--vc-ease-standard), background-color var(--vc-duration-base) var(--vc-ease-standard); }
+  }
+}

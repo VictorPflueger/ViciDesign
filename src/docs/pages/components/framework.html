@@ -1,0 +1,93 @@
+<!--
+title: Framework view
+nav: Framework view
+section: Components
+order: 9
+icon: layout
+layout: wide
+description: The areas of a strategy framework, such as a SWOT's four fields, a PESTEL's six factors or a canvas's nine blocks, and the items in them, each with a mark and a word for its state.
+-->
+<header class="doc-hero">
+  <h1>Framework view</h1>
+  <p class="vc-lead">A strategy framework laid out as areas, with what a team wrote in each. When agents complete, challenge and answer it, every item shows its state with a mark and a word, never with colour alone.</p>
+</header>
+
+<h2 id="areas">Areas and items</h2>
+<p><code>.vc-framework</code> is a grid of <code>.vc-framework__area</code> sections. Each area has a title, the question it answers and a list of items. Two columns suit a SWOT, <code>.vc-framework--3</code> a PESTEL; a canvas sets its own <code>grid-template-areas</code> on the grid. An area with nothing in it yet shows its question and a <code>.vc-framework__empty</code> line instead of a blank box.</p>
+<p>An item is a <code>details</code> element. Its summary shows the mark, the text and the state words; opened, it shows the whole text and its notes, such as where an AI item comes from and how sure the agent is. No script is needed, and the keyboard opens it like any other <code>details</code>.</p>
+<!-- demo -->
+<div class="vc-framework">
+  <section class="vc-framework__area" aria-labelledby="fw-s">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-s"><span class="vc-framework__letter" aria-hidden="true">S</span>Strengths</h3>
+      <p class="vc-framework__question">What do we do better than rivals, as customers see it?</p>
+    </header>
+    <ul class="vc-framework__items">
+      <li><details class="vc-item" data-source="entered"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"></span><span class="vc-item__text">Drives for packaging lines, built to order</span><span class="vc-item__states"><span class="vc-item__state vc-visually-hidden">Entered</span></span></summary><div class="vc-item__body"><p>Entered by the team.</p></div></details></li>
+      <li><details class="vc-item" data-source="entered" data-status="challenged"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--warning"></span></span><span class="vc-item__text">Quality</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--status">Unsupported</span></span></summary><div class="vc-item__body"><p>Nothing measures it: no failure rate, no warranty cost, no customer score.</p></div></details></li>
+      <li><details class="vc-item" data-source="ai"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span><span class="vc-item__text">A large installed base of drives in customers' plants</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--source">AI</span></span></summary><div class="vc-item__body"><p>Basis: the team's note on spare-parts sales. Confidence: medium.</p></div></details></li>
+    </ul>
+  </section>
+  <section class="vc-framework__area" aria-labelledby="fw-w">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-w"><span class="vc-framework__letter" aria-hidden="true">W</span>Weaknesses</h3>
+      <p class="vc-framework__question">Where do we fall short, and who notices?</p>
+    </header>
+    <ul class="vc-framework__items">
+      <li><details class="vc-item" data-source="entered" data-status="challenged"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--warning"></span></span><span class="vc-item__text">Too few service technicians</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--status">Misfiled</span></span></summary><div class="vc-item__body"><p>The shortage comes from the labour market, outside the company: a threat, not a weakness.</p></div></details></li>
+      <li><details class="vc-item" data-source="entered" data-status="addressed"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span><span class="vc-item__text">Service software from 2014</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--status">Addressed</span></span></summary><div class="vc-item__body"><p>Rating <s class="vc-item__was">1</s> 2 after the strategy "Remote service first".</p></div></details></li>
+    </ul>
+  </section>
+  <section class="vc-framework__area" aria-labelledby="fw-o">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-o"><span class="vc-framework__letter" aria-hidden="true">O</span>Opportunities</h3>
+      <p class="vc-framework__question">Which developments outside the company could we use?</p>
+    </header>
+    <ul class="vc-framework__items">
+      <li><details class="vc-item" data-source="added"><summary class="vc-item__summary"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--plus"></span></span><span class="vc-item__text">Customers who pay for uptime rather than parts</span><span class="vc-item__states"><span class="vc-tag vc-tag--sm vc-item__state vc-item__state--source">Added</span></span></summary><div class="vc-item__body"><p>Nobody listed it; the challenge added it.</p></div></details></li>
+    </ul>
+  </section>
+  <section class="vc-framework__area" aria-labelledby="fw-t">
+    <header class="vc-framework__head">
+      <h3 class="vc-framework__title" id="fw-t"><span class="vc-framework__letter" aria-hidden="true">T</span>Threats</h3>
+      <p class="vc-framework__question">Which developments outside the company could hurt us?</p>
+    </header>
+    <p class="vc-framework__empty">Nothing here yet. The agents fill it, and you keep or remove what they add.</p>
+  </section>
+</div>
+<!-- /demo -->
+
+<h2 id="states">States</h2>
+<p>An item has a source and, once challenged or answered, a status. Its mark shows the status if there is one, otherwise the source; its words name both. Lilac marks what the AI wrote, coral what the challenge questions, sage what a chosen answer addresses.</p>
+<div class="vc-table-wrap">
+  <table class="vc-table">
+    <caption>Item states</caption>
+    <thead><tr><th scope="col">State</th><th scope="col">Markup</th><th scope="col">Mark</th><th scope="col">Word</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Entered</th><td><code>data-source="entered"</code></td><td>A small ink hexagon</td><td>In the legend, and for screen readers in a <code>.vc-visually-hidden</code> word</td></tr>
+      <tr><th scope="row">Written by the AI</th><td><code>data-source="ai"</code></td><td>Sparkle, lilac fill</td><td>"AI"</td></tr>
+      <tr><th scope="row">Added by the challenge</th><td><code>data-source="added"</code></td><td>Plus, lilac fill</td><td>"Added"</td></tr>
+      <tr><th scope="row">Challenged</th><td><code>data-status="challenged"</code></td><td>Warning, coral edge</td><td>The fault in words, such as "Misfiled" or "Not distinctive"</td></tr>
+      <tr><th scope="row">Addressed</th><td><code>data-status="addressed"</code></td><td>Check, sage edge</td><td>"Addressed", and the old value struck through beside the new one in the notes</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Put a legend near the grid, so a room that reads it from a distance learns the marks once.</p>
+<!-- demo -->
+<ul class="vc-framework__legend">
+  <li data-mark="entered"><span class="vc-item__mark" aria-hidden="true"></span>Entered by the team</li>
+  <li data-mark="ai"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--sparkle"></span></span>Written by the AI</li>
+  <li data-mark="added"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--plus"></span></span>Added by the challenge</li>
+  <li data-mark="challenged"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--warning"></span></span>Challenged</li>
+  <li data-mark="addressed"><span class="vc-item__mark" aria-hidden="true"><span class="vc-icon vc-icon--check"></span></span>Addressed</li>
+</ul>
+<!-- /demo -->
+
+<h2 id="pointing">Pointing at items</h2>
+<p>When a card elsewhere on the screen is selected, such as an issue or a strategy, set <code>aria-current="true"</code> on the items it concerns, or on a whole area. They take the accent outline, so the room sees which items the card is about.</p>
+
+<h2 id="compact">Tight spaces</h2>
+<p>At 1280&nbsp;×&nbsp;720 a framework of four areas leaves little height for each item. <code>.vc-framework--compact</code> shows every closed item's first line only; opening it shows the rest. The state words stay visible either way.</p>
+
+<h2 id="check">Check it</h2>
+<p><code>frameworkProblems(html)</code> from <code>scripts/lib/framework.mjs</code> returns an empty list when every item has a mark and a state word, every item the AI wrote or the challenge added says so, every challenged item names its fault, and every area has a title. Prototypes run it on each screen's markup; <code>npm run check</code> runs it with a self-test on this page.</p>
