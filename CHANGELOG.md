@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Navigator 2.1.1: the bar under the story never covers what it asks about, so at a decision every option, doing
+  nothing included, shows in full above it at 1280 × 720. Where the run starts by itself when the guide closes, the
+  button for a live run says so, such as “Run it live”, and stands after the steps with the AI notice beside it, since
+  a Start button before the steps invites a visitor to start what is already running. The guide page, Build a
+  prototype and the brief say so.
 - From the Sovereignty Assessment 2.0.0: Play holds until the story is over, on the last step too, so a decision that
   brings the next one (a lever, then its draft) keeps it playing; the talk track says a figure as its tile does, with
   the part of the data it rests on (“77 on 5 of 6 layers”). Numbers and units in the Writing guideline: a figure on part
