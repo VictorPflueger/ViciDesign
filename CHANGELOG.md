@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Business Model Canvas Challenger 0.2.0: risk-matrix markers sized by what an issue puts at stake.
+  `.vc-risk__marker--sm` and `--lg` either side of the default give three steps the prototype draws from its own
+  figures, such as thirds of the largest; the key names each size used in words and the table carries the figures, so
+  a size never stands for a number on its own. `riskMatrixProblems(html)` fails a sized marker whose size the key
+  leaves unnamed, and the Data display page shows the sizes.
 - From Business Model Canvas Challenger 0.2.0: block states on the framework view. A whole area can be under pressure
   (coral edge, the warning mark and its issues in words, such as "2 issues · high"), on watch (honey edge, the eye and
   "1 issue · low") or addressed by a chosen answer (sage edge, the check and a word such as "Adapted"), and
