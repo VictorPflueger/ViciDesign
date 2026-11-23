@@ -5,6 +5,9 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.2.0: the segmented control's radios take square corners. Each radio lies unseen over its
+  whole option, and the browser's own radio is round, so a check of rendered shapes found a round element the
+  size of every option. They now draw no radio of their own and have square corners.
 - From PESTEL Challenger 0.2.0: the horizon strip, on Data display. When the issues of a risk matrix arrive, in
   lanes for spans of time from left to right, such as now, in one to three years and later. Each lane names its
   span in words, an empty lane says so, and the issues sit in it as the risk matrix's own numbered markers, each
