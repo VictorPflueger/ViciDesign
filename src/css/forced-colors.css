@@ -224,6 +224,10 @@
     .vc-dropzone__input:focus-visible + .vc-dropzone__target { border-color: Highlight; }
     .vc-dropzone__file[data-state='refused'],
     .vc-dropzone__file[data-state='warning'] { border: 2px solid CanvasText; }
+    /* The horizon strip's lanes lose their fill: an outline keeps each lane, and the arrow under them
+       takes the text colour. */
+    .vc-horizon__lane { outline: 1px solid CanvasText; outline-offset: -1px; }
+    .vc-horizon__lanes::after { forced-color-adjust: none; background-color: CanvasText; }
 
     /* Platform logos are filled in black or white; here they take the forced text colour
        (LinkText inside a link), so they never vanish on a forced background. An image logo
