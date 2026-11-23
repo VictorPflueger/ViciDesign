@@ -5,7 +5,7 @@ section: Components
 order: 7
 icon: chart-bar
 layout: wide
-description: Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; legends with hexagon swatches; chart frames; a risk matrix of impact and likelihood.
+description: Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; legends with hexagon swatches; chart frames; a risk matrix of impact and likelihood, and a horizon strip of when its issues arrive.
 -->
 <header class="doc-hero">
   <h1>Data display</h1>
@@ -246,3 +246,54 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 <h3 id="risk-matrix-markup">Markup</h3>
 <p>The grid places everything in the order of the markup, so a page under a strict security policy needs no style attribute: row by row from impact 5 at the top, a tick and five cells each, then an empty corner and the five likelihood ticks. Every cell carries <code>data-impact</code>, <code>data-likelihood</code> and <code>data-band</code>, and every marker its own <code>data-impact</code> and <code>data-likelihood</code>, so a test can hold each marker to its cell.</p>
 <p><code>riskMatrixProblems(html)</code> from <code>scripts/lib/risk.mjs</code> returns an empty list when a matrix has its 25 cells, each in the band its score gives and showing that score, every marker in the cell its impact and likelihood name, a key that names all four bands and a table of the numbers. <code>band(score)</code> from the same file gives a score's band.</p>
+
+<h2 id="horizon">Horizon strip</h2>
+<p>When the issues of a risk matrix arrive, in lanes for spans of time from left to right. Each lane names its span in words, and the issues sit in it as the same numbered markers as on the matrix, so the room follows one issue across both views. A lane with no issue says so, and an arrow under the lanes shows which way time runs. It is one compact row, so it fits under a matrix on a laptop screen.</p>
+<p>Here a marker is an image named in words: <code>role="img"</code> and an <code>aria-label</code> with its number and the issue, such as "Issue 2: Emission allowances". What is left of an issue after an answer is the same hollow marker as on the matrix. The table one click away gives each issue's span with the figures behind it.</p>
+<!-- demo -->
+<figure class="vc-horizon" aria-labelledby="hz-title">
+  <figcaption>
+    <p class="vc-chart__title" id="hz-title">When the five issues arrive</p>
+    <p class="vc-chart__subtitle">Each issue in the span of years in which it starts to cost money</p>
+  </figcaption>
+  <ol class="vc-horizon__lanes">
+    <li class="vc-horizon__lane">
+      <p class="vc-horizon__label">Now<span class="vc-horizon__span">within a year</span></p>
+      <ul class="vc-horizon__markers">
+        <li><span class="vc-risk__marker" role="img" aria-label="Issue 1: Freight rates fall">1</span></li>
+        <li><span class="vc-risk__marker" role="img" aria-label="Issue 2: Emission allowances">2</span></li>
+      </ul>
+    </li>
+    <li class="vc-horizon__lane">
+      <p class="vc-horizon__label">Soon<span class="vc-horizon__span">in one to three years</span></p>
+      <ul class="vc-horizon__markers">
+        <li><span class="vc-risk__marker" role="img" aria-label="Issue 3: A key customer leaves">3</span></li>
+        <li><span class="vc-risk__marker" role="img" aria-label="Issue 4: Port fees rise">4</span></li>
+        <li><span class="vc-risk__marker" role="img" aria-label="Issue 5: A sea route closes">5</span></li>
+      </ul>
+    </li>
+    <li class="vc-horizon__lane">
+      <p class="vc-horizon__label">Later<span class="vc-horizon__span">after three years</span></p>
+      <p class="vc-horizon__empty">None</p>
+    </li>
+  </ol>
+  <details class="vc-risk__numbers">
+    <summary>Show the numbers</summary>
+    <div class="vc-table-wrap">
+      <table class="vc-table vc-table--compact">
+        <thead><tr><th scope="col">Issue</th><th scope="col">When</th><th scope="col">Score</th><th scope="col">Band</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">1. Freight rates fall</th><td>Now</td><td>16</td><td>Critical</td></tr>
+          <tr><th scope="row">2. Emission allowances</th><td>Now</td><td>12</td><td>High</td></tr>
+          <tr><th scope="row">3. A key customer leaves</th><td>Soon</td><td>8</td><td>Medium</td></tr>
+          <tr><th scope="row">4. Port fees rise</th><td>Soon</td><td>4</td><td>Low</td></tr>
+          <tr><th scope="row">5. A sea route closes</th><td>Soon</td><td>15</td><td>High</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+<!-- /demo -->
+<h3 id="horizon-markup">Markup</h3>
+<p>The lanes are an ordered list, earliest first: two to six <code>.vc-horizon__lane</code> items, each with a <code>.vc-horizon__label</code> and either a list of markers in <code>.vc-horizon__markers</code> or a <code>.vc-horizon__empty</code> line. The lanes share the width equally and need no style attribute. Each lane puts its name over its markers, and on a phone the years go under the name.</p>
+<p><code>horizonProblems(html)</code> from <code>scripts/lib/horizon.mjs</code> returns an empty list when a strip has a name, two to six lanes that name their span, a word in every empty lane, every marker an image named in words with its number and in one lane only, a key for any sized markers and a table of the numbers.</p>
