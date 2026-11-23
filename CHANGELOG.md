@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Business Model Canvas Challenger 0.2.0: risk-matrix markers sized by what an issue puts at stake.
+  `.vc-risk__marker--sm` and `--lg` either side of the default give three steps the prototype draws from its own
+  figures, such as thirds of the largest; the key names each size used in words and the table carries the figures, so
+  a size never stands for a number on its own. `riskMatrixProblems(html)` fails a sized marker whose size the key
+  leaves unnamed, and the Data display page shows the sizes.
 - From PESTEL Challenger 0.2.0: the horizon strip, on Data display. When the issues of a risk matrix arrive, in
   lanes for spans of time from left to right, such as now, in one to three years and later. Each lane names its
   span in words, an empty lane says so, and the issues sit in it as the risk matrix's own numbered markers, each
