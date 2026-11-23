@@ -40,7 +40,7 @@ description: Add Vici to any page with one stylesheet and an optional script, fr
 </div>
 
 <h2>Start from a blank page</h2>
-<p>This is the smallest complete page. The inline script in <code>&lt;head&gt;</code> applies a saved theme before the first paint, so dark mode never flashes white.</p>
+<p>This is the smallest complete page. <code>vici-theme.js</code>, loaded in <code>&lt;head&gt;</code> without <code>defer</code>, applies a saved theme before the first paint, so dark mode never flashes white.</p>
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -48,7 +48,7 @@ description: Add Vici to any page with one stylesheet and an optional script, fr
   &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
   &lt;title&gt;My prototype&lt;/title&gt;
   &lt;link rel="stylesheet" href="vici/dist/vici.min.css"&gt;
-  &lt;script&gt;try{var t=localStorage.getItem('vc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}&lt;/script&gt;
+  &lt;script src="vici/dist/vici-theme.js"&gt;&lt;/script&gt;
   &lt;script src="vici/dist/vici.js" defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -63,7 +63,7 @@ description: Add Vici to any page with one stylesheet and an optional script, fr
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 <p>Ready-made pages for an app prototype, a dashboard, a personal landing page and a blank prototype are on <a href="{{root}}start/starters.html">Starters</a>. For a prototype, demo or tech showcase, go on to <a href="{{root}}start/prototypes.html">Build a prototype</a>: it has the brief to give an agent and the review the prototype must pass.</p>
-<p><strong>With a content security policy</strong> that allows only the page's own files (<code>script-src 'self'; style-src 'self'</code>), inline scripts and <code>style</code> attributes are blocked. Vici's stylesheet, script, icons and fonts still work. Move the theme line into a small file that you load the same way, without <code>defer</code>, and keep your own styles in a stylesheet. For the logo in a header, use the colour and dark files as two images with <code>.vc-when-light</code> and <code>.vc-when-dark</code>. Victor's website works this way.</p>
+<p><strong>With a content security policy</strong> that allows only the page's own files (<code>script-src 'self'; style-src 'self'</code>), inline scripts and <code>style</code> attributes are blocked. Vici's stylesheet, scripts, icons and fonts still work, and the page above needs no change. Keep your own styles in a stylesheet and your own scripts in files. The <a href="{{root}}starters/blank.html">blank starter</a> carries such a policy, and <code>policyProblems(html)</code> from <code>scripts/lib/policy.mjs</code> finds what it would block. For the logo in a header, use the colour and dark files as two images with <code>.vc-when-light</code> and <code>.vc-when-dark</code>. Victor's website works this way.</p>
 
 <h2>Use the components</h2>
 <p>Every component is a class prefixed with <code>vc-</code> and uses BEM-style parts and modifiers: <code>.vc-card</code>, <code>.vc-card__title</code>, <code>.vc-card--elevated</code>. The demos throughout these pages are live, and each one has its exact HTML under <strong>HTML</strong>, ready to copy.</p>

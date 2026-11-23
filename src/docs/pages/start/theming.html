@@ -26,6 +26,7 @@ description: Light and dark themes, theme islands, and how to override tokens wi
   <button type="button" class="vc-button vc-button--outline vc-button--sm" data-vc-theme-set="system">System</button>
 </div>
 <!-- /demo -->
+<p>To apply a remembered choice before the first paint, load <code>dist/vici-theme.js</code> in <code>&lt;head&gt;</code> as a plain script, without <code>defer</code>. Where nobody has chosen yet, it follows the operating system, or the theme <code>&lt;html&gt;</code> names in <code>data-vc-theme-default</code>: a prototype shown on projectors in lit rooms sets <code>data-vc-theme-default="light"</code>.</p>
 <p><code>.vc-when-light</code> and <code>.vc-when-dark</code> show an element only in one page theme, which is how the toggle swaps its moon for a sun. From JavaScript: <code>Vici.theme.set('dark')</code>, <code>Vici.theme.get()</code>, and the <code>vc:themechange</code> event on <code>document</code>.</p>
 
 <h2>Theme islands</h2>

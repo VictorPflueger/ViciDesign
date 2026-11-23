@@ -17,7 +17,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 ## Build it
 
 - Clone https://github.com/VictorPflueger/ViciDesign beside the prototype. It has the starters, the files to copy and the checks.
-- Start from a starter: starters/app.html for a tool with a sidebar and tables, starters/blank.html for anything else. Both have the header with SIMULATION, the guide and the byline. https://victorpflueger.github.io/ViciDesign/start/starters.html
+- Start from a starter: starters/app.html for a tool with a sidebar and tables, starters/blank.html for anything else. Both have the header with SIMULATION, the guide and the byline. The blank starter carries a strict security policy and no inline script or style; keep it that way, with your own styles and scripts in files and the theme from vici/dist/vici-theme.js. https://victorpflueger.github.io/ViciDesign/start/starters.html
 - Copy dist/, assets/fonts/, assets/brand/portrait-96.jpg and assets/marks/ unchanged into a vici/ folder, and link vici/dist/vici.min.css and vici/dist/vici.js. Add no framework, no web font and no third-party request other than the AI service a live run calls. https://victorpflueger.github.io/ViciDesign/start/getting-started.html
 - The header shows the name with its icon, SIMULATION or LIVE in capitals, the How it works button and the theme toggle. The layout, with code: https://victorpflueger.github.io/ViciDesign/start/prototypes.html#page-structure
 - One sentence under the header says what the prototype does and whether its data is real.
@@ -38,6 +38,7 @@ The dumbest user possible: someone with no knowledge of the subject, no interest
 From the prototype's folder, with the ViciDesign clone beside it:
 
 - guideProblems(html) from ../ViciDesign/scripts/lib/guide.mjs, bylineProblems(html) from ../ViciDesign/scripts/lib/byline.mjs, writingProblems(html) from ../ViciDesign/scripts/lib/writing.mjs and aiNoticeProblems(html) from ../ViciDesign/scripts/lib/ai.mjs each return an empty list for every page.
+- policyProblems(html) from ../ViciDesign/scripts/lib/policy.mjs returns an empty list for a page under a strict security policy.
 - storageProblems(sources, { allow }) from ../ViciDesign/scripts/lib/storage.mjs returns an empty list for the prototype's scripts, and storedKeyProblems(keys, { prefix }) for what a full live run against a stand-in leaves in a fresh browser.
 - recordIdProblems(text, ids) from ../ViciDesign/scripts/lib/ids.mjs returns an empty list for the text of every screen, given the ids of the prototype's data.
 - node ../ViciDesign/scripts/check-guide-render.mjs http://localhost:8000/ tests the guide in a browser while the prototype is served there.

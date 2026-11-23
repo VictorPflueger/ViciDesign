@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.1.0: the blank starter runs under a strict security policy. It carries a content
+  security policy that lets in only the site's own scripts and styles, and has no inline script or style, so a
+  prototype built on it runs under the same policy unchanged. `dist/vici-theme.js` applies the remembered theme before
+  the first paint without an inline line, and `data-vc-theme-default="light"` on `<html>` sets the theme before anyone
+  has chosen. `scripts/lib/policy.mjs` gives prototypes `policyProblems(html)`, and `npm run check` holds the blank
+  starter to it. Getting started, Theming, Starters, Build a prototype and the brief say so. The app, dashboard and
+  landing starters still inline their theme line and a few styles.
 - From PESTEL Challenger 0.1.0: Nothing is kept, on Build a prototype. A prototype holds an API key, what a person
   enters or uploads and what its agents make in memory only: never in local or session storage, IndexedDB, the
   Cache API or a cookie, a URL, a log or an export. Only `vc-theme`, `<prefix>.lang` and the guide's `vc-guide:` note
