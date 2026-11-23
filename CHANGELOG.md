@@ -10,6 +10,21 @@ breaking changes to class names or token names bump the major version.
   figures, such as thirds of the largest; the key names each size used in words and the table carries the figures, so
   a size never stands for a number on its own. `riskMatrixProblems(html)` fails a sized marker whose size the key
   leaves unnamed, and the Data display page shows the sizes.
+- From PESTEL Challenger 0.2.0: the horizon strip, on Data display. When the issues of a risk matrix arrive, in
+  lanes for spans of time from left to right, such as now, in one to three years and later. Each lane names its
+  span in words, an empty lane says so, and the issues sit in it as the risk matrix's own numbered markers, each
+  an image named in words with its number, so the room follows one issue across both views. An arrow under the
+  lanes shows which way time runs, and the numbers sit in a table one click away. It is one compact row that fits
+  under a matrix at 1280 × 720. `horizonProblems(html)` checks the name, the lanes, the empty lanes, every marker's
+  words, an issue in one lane only, a key for sized markers and the table, with a self-test of planted mistakes.
+- From PESTEL Challenger 0.2.0: the ring, on the Framework view page. `.vc-ring` puts a subject in the centre and the
+  six areas of a framework around it as flat-top hexagons, clockwise from the top, such as a company and the six
+  dimensions of PESTEL. The order of the markup is the layout, so a strict security policy needs no style attribute.
+  A cell takes an area's states with the same marks and words: under pressure (coral face, wide coral edge, the
+  warning mark), on watch (honey, the eye) or addressed (sage, the check), in `.vc-ring__state`. Button cells select
+  the area a list beside the ring shows, with `aria-pressed` and the accent edge, and focus draws a ring outside the
+  cell. Forced colours repaint the edges and faces in system colours. `ringProblems(html)` checks the name, the
+  order, the six names and every state's mark and word, with a self-test of planted mistakes.
 - From Business Model Canvas Challenger 0.2.0: block states on the framework view. A whole area can be under pressure
   (coral edge, the warning mark and its issues in words, such as "2 issues · high"), on watch (honey edge, the eye and
   "1 issue · low") or addressed by a chosen answer (sage edge, the check and a word such as "Adapted"), and

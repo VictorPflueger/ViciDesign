@@ -5814,6 +5814,225 @@
   }
 }
 
+/* ==========================================================================
+   Ring: a subject in the centre and the six areas of a framework around it, such as a company and
+   the six dimensions of PESTEL. Every cell is a flat-top hexagon. A cell takes the states of a
+   framework area (under pressure, on watch, addressed) and shows each with a mark and a word,
+   never with colour alone.
+   ========================================================================== */
+
+@layer vici.components {
+  .vc-ring {
+    display: grid;
+    gap: var(--vc-space-3);
+    justify-items: center;
+    min-width: 0;
+    margin: 0;
+  }
+  .vc-ring > figcaption {
+    display: grid;
+    gap: var(--vc-space-2);
+    justify-items: center;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-sm);
+    text-align: center;
+  }
+  .vc-ring > figcaption > * { margin: 0; }
+
+  /* ---------- Cells ----------
+     The centre comes first in the markup, then the six cells clockwise from the top. The grid places
+     them by their order, so a page under a strict security policy needs no style attribute. */
+  .vc-ring__cells {
+    --_h: var(--vc-ring-cell, 8.5rem);
+    --_w: calc(var(--_h) * 1.1547);
+    --_gap: var(--vc-ring-gap, 6px);
+    display: grid;
+    grid-template-columns: repeat(3, calc(var(--_w) * 0.75 + var(--_gap) * 0.866));
+    grid-template-rows: repeat(6, calc((var(--_h) + var(--_gap)) / 2));
+    width: max-content;
+    margin: 0;
+    padding: 0 calc(var(--_w) * 0.25) 0 0;
+    list-style: none;
+  }
+  .vc-ring__cells > li { width: var(--_w); height: var(--_h); margin: 0; }
+  .vc-ring__cells > li:nth-child(1) { grid-column: 2; grid-row: 3 / span 2; }
+  .vc-ring__cells > li:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; }
+  .vc-ring__cells > li:nth-child(3) { grid-column: 3; grid-row: 2 / span 2; }
+  .vc-ring__cells > li:nth-child(4) { grid-column: 3; grid-row: 4 / span 2; }
+  .vc-ring__cells > li:nth-child(5) { grid-column: 2; grid-row: 5 / span 2; }
+  .vc-ring__cells > li:nth-child(6) { grid-column: 1; grid-row: 4 / span 2; }
+  .vc-ring__cells > li:nth-child(7) { grid-column: 1; grid-row: 2 / span 2; }
+
+  /* A cell's edge and face are two hexagons behind its words, so the edge can widen for a state, a
+     choice or focus without clipping the text. */
+  .vc-ring__centre,
+  .vc-ring__cell {
+    --_edge: var(--vc-border);
+    --_face: var(--vc-surface);
+    --_edge-w: 1.5px;
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 16%;
+    border: 0;
+    background: none;
+    color: var(--vc-text);
+    font: inherit;
+    text-align: center;
+  }
+  .vc-ring__centre::before,
+  .vc-ring__cell::before,
+  .vc-ring__centre::after,
+  .vc-ring__cell::after {
+    content: '';
+    position: absolute;
+    clip-path: var(--vc-hex);
+    pointer-events: none;
+  }
+  .vc-ring__centre::before,
+  .vc-ring__cell::before { inset: 0; z-index: -2; background: var(--_edge); }
+  .vc-ring__centre::after,
+  .vc-ring__cell::after { inset: var(--_edge-w); z-index: -1; background: var(--_face); }
+  .vc-ring__centre { --_edge: var(--vc-border-strong); --_face: var(--vc-bg-subtle); }
+
+  /* ---------- States ----------
+     data-status as on a framework area: the face and edge only add to the mark and word in
+     .vc-ring__state. */
+  .vc-ring__cell[data-status='pressure'] { --_face: var(--vc-danger-bg); --_edge: var(--vc-danger-solid); --_edge-w: 3px; }
+  .vc-ring__cell[data-status='watch'] { --_face: var(--vc-warning-bg); --_edge: var(--vc-warning-border); }
+  .vc-ring__cell[data-status='addressed'] { --_face: var(--vc-success-bg); --_edge: var(--vc-success-border); }
+
+  /* A cell as a button selects the area a list beside the ring shows. The person's choice takes the
+     accent edge; focus draws a ring outside the cell. */
+  button.vc-ring__cell { cursor: pointer; }
+  button.vc-ring__cell:hover { --_face-hover: color-mix(in oklab, var(--_face) 90%, var(--vc-text)); }
+  button.vc-ring__cell:hover::after { background: var(--_face-hover); }
+  .vc-ring__cell[aria-pressed='true'],
+  .vc-ring__cell[aria-current='true'] { --_edge: var(--vc-accent); --_edge-w: 3px; }
+  button.vc-ring__cell:focus-visible { outline: none; }
+  button.vc-ring__cell:focus-visible::before { inset: -3px; background: var(--vc-focus); }
+
+  /* ---------- Words ---------- */
+  .vc-ring__name {
+    font-size: var(--vc-font-size-sm);
+    font-weight: var(--vc-weight-semibold);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+  .vc-ring__centre .vc-ring__name { font-family: var(--vc-font-display); font-size: var(--vc-font-size-md); }
+  .vc-ring__note {
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+    line-height: 1.2;
+  }
+  .vc-ring__state {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+    font-weight: var(--vc-weight-semibold);
+    line-height: 1.15;
+  }
+  .vc-ring__state > .vc-icon { flex: none; width: 1.05em; height: 1.05em; }
+  .vc-ring__cell[data-status='pressure'] .vc-ring__state { color: var(--vc-danger-text); }
+  .vc-ring__cell[data-status='watch'] .vc-ring__state { color: var(--vc-warning-text); }
+  .vc-ring__cell[data-status='addressed'] .vc-ring__state { color: var(--vc-success-text); }
+
+  /* Phones: the ring takes the width of the screen less its margins, the words get smaller, and a long
+     name breaks with a hyphen. */
+  @media (max-width: 767px) {
+    .vc-ring__cells { --_h: var(--vc-ring-cell-sm, min(7rem, calc((100vw - 5rem) / 3.1))); }
+    .vc-ring__centre,
+    .vc-ring__cell { padding: 0 11%; }
+    .vc-ring__name { font-size: var(--vc-font-size-xs); }
+    .vc-ring__note,
+    .vc-ring__state { font-size: var(--vc-font-size-2xs); }
+    .vc-ring__centre .vc-ring__name { font-size: var(--vc-font-size-sm); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .vc-ring__cell::before,
+    .vc-ring__cell::after { transition: background-color var(--vc-duration-slow) var(--vc-ease-standard); }
+  }
+}
+
+/* ==========================================================================
+   Horizon strip: when issues arrive. Lanes for spans of time run left to right, each holding the
+   numbered markers of the risk matrix, so the room follows one issue across both views. Every lane
+   names its span in words, an empty lane says so, and the numbers sit in a table one click away.
+   ========================================================================== */
+
+@layer vici.components {
+  .vc-horizon { display: grid; gap: var(--vc-space-3); min-width: 0; margin: 0; }
+  .vc-horizon > figcaption > * { margin: 0; }
+
+  /* The lanes in the order of time, earliest first; an arrow under them says which way time runs. */
+  .vc-horizon__lanes {
+    position: relative;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    gap: 3px;
+    margin: 0;
+    padding: 0 0 14px;
+    list-style: none;
+  }
+  .vc-horizon__lanes::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 8px;
+    background: var(--vc-border-strong);
+    clip-path: polygon(0 3px, calc(100% - 9px) 3px, calc(100% - 9px) 0, 100% 50%, calc(100% - 9px) 100%, calc(100% - 9px) 5px, 0 5px);
+  }
+  /* A lane: the span's name over its markers, so the markers have the lane's whole width. */
+  .vc-horizon__lane {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: start;
+    gap: var(--vc-space-1);
+    min-width: 0;
+    padding: var(--vc-space-2) var(--vc-space-3) var(--vc-space-3);
+    border-radius: var(--vc-radius-sm);
+    background: var(--vc-bg-subtle);
+  }
+  /* The span a lane covers: its name, and beside it the years in words. */
+  .vc-horizon__label {
+    margin: 0;
+    color: var(--vc-text);
+    font-size: var(--vc-font-size-xs);
+    font-weight: var(--vc-weight-semibold);
+    line-height: 1.3;
+  }
+  .vc-horizon__span { margin-inline-start: 0.4em; color: var(--vc-text-muted); font-weight: var(--vc-weight-regular); }
+  .vc-horizon__markers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .vc-horizon__markers > li { display: inline-flex; margin: 0; }
+  .vc-horizon__empty { align-self: center; margin: 0; color: var(--vc-text-subtle); font-size: var(--vc-font-size-xs); }
+
+  /* Narrow screens: the years go under the span's name. */
+  @media (max-width: 767px) {
+    .vc-horizon__span { display: block; margin-inline-start: 0; }
+  }
+}
+
 /* Icons — 86 glyphs from src/icons, drawn on a 24px grid with 1.75px strokes.
    Usage: <span class="vc-icon vc-icon--search" aria-hidden="true"></span>  (colour = currentColor) */
 @layer vici.components {
@@ -6341,6 +6560,23 @@
         calc(75% - 0.8660px) calc(100% - 1.5px), calc(100% - 1.7321px) 50%,
         calc(75% - 0.8660px) 1.5px, calc(25% + 0.8660px) 1.5px);
     }
+
+    /* The ring's cells draw their edge and face as two filled hexagons: the edge in the text colour,
+       the face in the page colour, a chosen or focused cell's edge in the highlight colour. A cell
+       under pressure keeps its wider edge, and every state keeps its mark and word. */
+    .vc-ring__centre::before,
+    .vc-ring__cell::before { forced-color-adjust: none; background-color: CanvasText; }
+    .vc-ring__centre::after,
+    .vc-ring__cell::after,
+    button.vc-ring__cell:hover::after { forced-color-adjust: none; background-color: Canvas; }
+    .vc-ring__cell[aria-pressed='true']::before,
+    .vc-ring__cell[aria-current='true']::before,
+    button.vc-ring__cell:focus-visible::before { background-color: Highlight; }
+
+    /* The horizon strip's lanes lose their fill: an outline keeps each lane, and the arrow under them
+       takes the text colour. */
+    .vc-horizon__lane { outline: 1px solid CanvasText; outline-offset: -1px; }
+    .vc-horizon__lanes::after { forced-color-adjust: none; background-color: CanvasText; }
 
     /* Platform logos are filled in black or white; here they take the forced text colour
        (LinkText inside a link), so they never vanish on a forced background. An image logo
