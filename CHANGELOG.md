@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Duty Radar 2.1.0: Short forms and unfamiliar names in the Writing guideline. A short form the room can't
+  expand (BStatG, MiLoAufzV) never carries a screen: the name in words, or the figure first and the short form on
+  hover and for screen readers. A citation keeps its short form beside the name in words; a name the room has never
+  heard (PflichtenLichten) says what it is where it first appears; a reason code reads as its words. The docs check
+  requires the section, and the brief and Build a prototype point to it; the partner review puts any word you would
+  have to look up on the fix list. Presenting step by step: once the person has decided, the step's title states the
+  result.
 - From Repack Pilot 0.7.0: where the story runs on between two steps, as its night does from one clock time to the
   next, Play counts that stretch in the step's reading time. It holds the step's moment for at least four seconds,
   plays on to the next step and opens it, so the walk keeps one pace and stops only where a person acts. The bar that
