@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.2.0: the horizon strip, on Data display. When the issues of a risk matrix arrive, in
+  lanes for spans of time from left to right, such as now, in one to three years and later. Each lane names its
+  span in words, an empty lane says so, and the issues sit in it as the risk matrix's own numbered markers, each
+  an image named in words with its number, so the room follows one issue across both views. An arrow under the
+  lanes shows which way time runs, and the numbers sit in a table one click away. It is one compact row that fits
+  under a matrix at 1280 × 720. `horizonProblems(html)` checks the name, the lanes, the empty lanes, every marker's
+  words, an issue in one lane only, a key for sized markers and the table, with a self-test of planted mistakes.
 - From PESTEL Challenger 0.2.0: the ring, on the Framework view page. `.vc-ring` puts a subject in the centre and the
   six areas of a framework around it as flat-top hexagons, clockwise from the top, such as a company and the six
   dimensions of PESTEL. The order of the markup is the layout, so a strict security policy needs no style attribute.

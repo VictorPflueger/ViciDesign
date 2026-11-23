@@ -212,6 +212,7 @@ const CSS_ORDER = [
   'src/css/components/data.css',
   'src/css/components/framework.css',
   'src/css/components/ring.css',
+  'src/css/components/horizon.css',
 ];
 
 function minifyCss(css) {
