@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Repack Pilot 0.7.0: where the story runs on between two steps, as its night does from one clock time to the
+  next, Play counts that stretch in the step's reading time. It holds the step's moment for at least four seconds,
+  plays on to the next step and opens it, so the walk keeps one pace and stops only where a person acts. The bar that
+  asks says what pressing its action changes, in the visitor's words: “Confirm the agent's entry and the world model
+  knows this barcode from now on”, where the button alone says “Confirm entry”. The guide page and the brief say so,
+  and Build a prototype no longer names Repack Pilot for a Customer view and a Full view it dropped in 0.6.0.
 - From Navigator 2.1.1: the bar under the story never covers what it asks about, so at a decision every option, doing
   nothing included, shows in full above it at 1280 × 720. Where the run starts by itself when the guide closes, the
   button for a live run says so, such as “Run it live”, and stands after the steps with the AI notice beside it, since
