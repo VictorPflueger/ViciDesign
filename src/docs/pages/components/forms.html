@@ -4,7 +4,7 @@ section: Components
 order: 2
 icon: edit
 layout: wide
-description: Field anatomy, text inputs, textarea, select, combobox, date and file inputs, checkbox, hexagon radio, hex-capsule switch, slider, chips and hexagon rating.
+description: Field anatomy, text inputs, textarea, select, combobox, date and file inputs, a drop zone, checkbox, hexagon radio, hex-capsule switch, slider, chips and hexagon rating.
 -->
 <header class="doc-hero">
   <h1>Forms</h1>
@@ -214,6 +214,43 @@ description: Field anatomy, text inputs, textarea, select, combobox, date and fi
   <span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell vc-rating__cell--on"></span><span class="vc-rating__cell"></span><span class="vc-rating__cell"></span>
 </span>
 <!-- /demo -->
+
+<h2 id="drop-zone">Drop zone</h2>
+<p>Where people drop files or choose them. The zone is the <code>&lt;label&gt;</code> of a real file input, which stays in the tab order but out of sight, so a click, the keyboard and a screen reader all open the browser's file dialog. <code>accept</code> names the kinds of file it takes, and the notice under it says what may be uploaded. While files are dragged over it, the edge turns solid and the zone takes the soft accent.</p>
+<p>vici.js sends dropped and chosen files to the page as one cancelable <code>vc:files</code> event on the zone, with <code>detail.files</code>, and clears the input so the same file can come again. A page that checks files itself calls <code>preventDefault()</code> and lists them; otherwise Vici lists each file's name and size with a remove button (<code>data-vc-dropzone-remove="Entfernen: {name}"</code> changes the wording). While a zone is on the page, a file dropped beside it is caught instead of being opened by the browser, which would leave the page and lose its work.</p>
+<p>Each file is a row with its name, its kind and size, any tags and a remove button that names the file. A refused file says why in words, with <code>data-state="refused"</code> and a <code>.vc-dropzone__error</code>; <code>data-state="warning"</code> does the same for a file that may go ahead.</p>
+<!-- demo stack narrow -->
+<div class="vc-dropzone" data-vc-dropzone>
+  <input class="vc-dropzone__input" id="dz-files" type="file" multiple accept=".pdf,.md,.txt,.csv,.json">
+  <label class="vc-dropzone__target" for="dz-files">
+    <span class="vc-cell vc-cell--lg vc-cell--lilac" aria-hidden="true"><span class="vc-icon vc-icon--upload"></span></span>
+    <span class="vc-dropzone__title">Drop files here or <span class="vc-dropzone__browse">choose files</span></span>
+    <span class="vc-dropzone__hint">PDF, Markdown, text, CSV or a challenger's JSON report. Five files and 20 MB at most.</span>
+  </label>
+  <p class="vc-dropzone__notice"><span class="vc-icon vc-icon--shield" aria-hidden="true"></span>Public information only: never upload confidential, personal or otherwise protected data.</p>
+  <ul class="vc-dropzone__files" aria-live="polite" aria-label="Files">
+    <li class="vc-dropzone__file">
+      <span class="vc-icon vc-icon--memo" aria-hidden="true"></span>
+      <span class="vc-dropzone__body"><span class="vc-dropzone__name">annual-report-2025.pdf</span><span class="vc-dropzone__meta">PDF · 104 KB · 5 pages</span></span>
+      <button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="Remove annual-report-2025.pdf" onclick="this.closest('li').remove()"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+    </li>
+    <li class="vc-dropzone__file" data-state="warning">
+      <span class="vc-icon vc-icon--layers" aria-hidden="true"></span>
+      <span class="vc-dropzone__body"><span class="vc-dropzone__name">swot-report.json</span><span class="vc-dropzone__meta">Challenger's report · 11 KB <span class="vc-tag vc-tag--sm vc-tag--honey">Stand-in</span></span><span class="vc-dropzone__error"><span class="vc-icon vc-icon--warning" aria-hidden="true"></span>Written for a scenario until the challenger exports its own.</span></span>
+      <button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="Remove swot-report.json" onclick="this.closest('li').remove()"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+    </li>
+    <li class="vc-dropzone__file" data-state="refused">
+      <span class="vc-icon vc-icon--memo" aria-hidden="true"></span>
+      <span class="vc-dropzone__body"><span class="vc-dropzone__name">strategy.docx</span><span class="vc-dropzone__meta">Word · 48 KB</span><span class="vc-dropzone__error"><span class="vc-icon vc-icon--error" aria-hidden="true"></span>Save it as PDF first. This page reads PDF, Markdown, text and CSV.</span></span>
+      <button type="button" class="vc-icon-button vc-icon-button--sm" aria-label="Remove strategy.docx" onclick="this.closest('li').remove()"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+    </li>
+  </ul>
+</div>
+<!-- /demo -->
+<pre><code>zone.addEventListener('vc:files', (e) =&gt; {
+  e.preventDefault(); // this page checks and lists the files itself
+  for (const file of e.detail.files) addFile(file);
+});</code></pre>
 
 <h2>Putting it together</h2>
 <!-- demo block -->

@@ -217,6 +217,14 @@
     .vc-ring__cell[aria-current='true']::before,
     button.vc-ring__cell:focus-visible::before { background-color: Highlight; }
 
+    /* The drop zone keeps its dashed edge in the text colour and turns it to the highlight colour
+       while files are dragged over it or its input has the focus; a refused file keeps its word. */
+    .vc-dropzone__target { border-color: CanvasText; }
+    .vc-dropzone[data-dragging] .vc-dropzone__target,
+    .vc-dropzone__input:focus-visible + .vc-dropzone__target { border-color: Highlight; }
+    .vc-dropzone__file[data-state='refused'],
+    .vc-dropzone__file[data-state='warning'] { border: 2px solid CanvasText; }
+
     /* Platform logos are filled in black or white; here they take the forced text colour
        (LinkText inside a link), so they never vanish on a forced background. An image logo
        can't be recoloured, so it keeps its black and sits on a white plate. */

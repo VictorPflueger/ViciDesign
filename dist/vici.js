@@ -619,6 +619,116 @@
     return Promise.resolve(done(legacyCopy(value)));
   }
 
+  // A drop zone (.vc-dropzone[data-vc-dropzone]): files dropped on it, or chosen through its file input,
+  // reach the page as one cancelable `vc:files` event on the zone ({ files }); the input is cleared, so
+  // the same file can come again. A page that checks files itself calls preventDefault() and lists them;
+  // otherwise Vici lists each file's name and size with a remove button (wording from
+  // data-vc-dropzone-remove, "Remove {name}" by default). While a zone is on the page, a file dropped
+  // beside it is caught rather than opened by the browser, which would leave the page and lose its work.
+  // The listeners sit on the document, so zones drawn later need no init.
+  var dragDepth = new WeakMap();
+  function hasFiles(e) {
+    var types = e.dataTransfer && e.dataTransfer.types;
+    return !!types && Array.prototype.indexOf.call(types, 'Files') >= 0;
+  }
+  function zoneOf(target) {
+    return target instanceof Element ? target.closest('[data-vc-dropzone]') : null;
+  }
+  function fileSize(bytes) {
+    if (bytes >= 1048576) return (Math.round(bytes / 104857.6) / 10) + ' MB';
+    return Math.max(1, Math.round(bytes / 1024)) + ' KB';
+  }
+  function listFiles(zone, files) {
+    var list = zone.querySelector('.vc-dropzone__files');
+    if (!list) return;
+    var wording = zone.getAttribute('data-vc-dropzone-remove') || 'Remove {name}';
+    files.forEach(function (file) {
+      var li = document.createElement('li');
+      li.className = 'vc-dropzone__file';
+      var icon = document.createElement('span');
+      icon.className = 'vc-icon vc-icon--memo';
+      icon.setAttribute('aria-hidden', 'true');
+      var body = document.createElement('span');
+      body.className = 'vc-dropzone__body';
+      var name = document.createElement('span');
+      name.className = 'vc-dropzone__name';
+      name.textContent = file.name;
+      var meta = document.createElement('span');
+      meta.className = 'vc-dropzone__meta';
+      meta.textContent = fileSize(file.size);
+      body.appendChild(name);
+      body.appendChild(meta);
+      var remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'vc-icon-button vc-icon-button--sm';
+      remove.setAttribute('aria-label', wording.replace('{name}', file.name));
+      var x = document.createElement('span');
+      x.className = 'vc-icon vc-icon--close';
+      x.setAttribute('aria-hidden', 'true');
+      remove.appendChild(x);
+      remove.addEventListener('click', function () {
+        var next = focusAfterRemoval(li) || zone.querySelector('.vc-dropzone__input');
+        li.remove();
+        if (next) next.focus();
+      });
+      li.appendChild(icon);
+      li.appendChild(body);
+      li.appendChild(remove);
+      list.appendChild(li);
+    });
+  }
+  function sendFiles(zone, fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    if (!files.length || zone.getAttribute('aria-disabled') === 'true') return;
+    var ev = new CustomEvent('vc:files', { bubbles: true, cancelable: true, detail: { files: files } });
+    if (zone.dispatchEvent(ev)) listFiles(zone, files);
+  }
+  document.addEventListener('dragenter', function (e) {
+    var zone = zoneOf(e.target);
+    if (!zone || !hasFiles(e)) return;
+    e.preventDefault();
+    dragDepth.set(zone, (dragDepth.get(zone) || 0) + 1);
+    zone.setAttribute('data-dragging', '');
+  });
+  document.addEventListener('dragleave', function (e) {
+    var zone = zoneOf(e.target);
+    if (!zone || !hasFiles(e)) return;
+    var depth = Math.max(0, (dragDepth.get(zone) || 0) - 1);
+    dragDepth.set(zone, depth);
+    if (!depth) zone.removeAttribute('data-dragging');
+  });
+  document.addEventListener('dragover', function (e) {
+    if (!hasFiles(e)) return;
+    var zone = zoneOf(e.target);
+    if (zone) {
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = zone.getAttribute('aria-disabled') === 'true' ? 'none' : 'copy';
+    } else if (document.querySelector('[data-vc-dropzone]')) {
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = 'none';
+    }
+  });
+  document.addEventListener('drop', function (e) {
+    if (!hasFiles(e)) return;
+    var zone = zoneOf(e.target);
+    if (zone) {
+      e.preventDefault();
+      dragDepth.set(zone, 0);
+      zone.removeAttribute('data-dragging');
+      sendFiles(zone, e.dataTransfer && e.dataTransfer.files);
+    } else if (document.querySelector('[data-vc-dropzone]')) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('change', function (e) {
+    var input = e.target;
+    if (!(input instanceof HTMLInputElement) || input.type !== 'file') return;
+    var zone = zoneOf(input);
+    if (!zone) return;
+    sendFiles(zone, input.files);
+    input.value = '';
+  });
+
   function init(scope) {
     initTabs(scope);
     initSliders(scope);
