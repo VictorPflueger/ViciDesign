@@ -5,6 +5,9 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.2.0: the segmented control's radios take square corners. Each radio lies unseen over its
+  whole option, and the browser's own radio is round, so a check of rendered shapes found a round element the
+  size of every option. They now draw no radio of their own and have square corners.
 - From Business Model Canvas Challenger 0.2.0: risk-matrix markers sized by what an issue puts at stake.
   `.vc-risk__marker--sm` and `--lg` either side of the default give three steps the prototype draws from its own
   figures, such as thirds of the largest; the key names each size used in words and the table carries the figures, so
