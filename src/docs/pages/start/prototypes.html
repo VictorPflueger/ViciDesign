@@ -235,6 +235,7 @@ Keep list: the byline, the talk track, the key figures and whatever else must no
     <tr><td>A page that can start a live run with a model says “You are interacting with an AI system”</td><td><code>aiNoticeProblems(html)</code> from <code>scripts/lib/ai.mjs</code></td></tr>
     <tr><td>The key and everything a person enters stay in memory: storage only in the modules allowed it, and only the three keys after a run</td><td><code>storageProblems(sources, { allow })</code> and <code>storedKeyProblems(keys, { prefix })</code> from <code>scripts/lib/storage.mjs</code></td></tr>
     <tr><td>The page runs under a strict security policy: no inline script, style or event handler</td><td><code>policyProblems(html)</code> from <code>scripts/lib/policy.mjs</code></td></tr>
+    <tr><td>A <a href="{{root}}components/data.html#risk-matrix">risk matrix</a> puts each cell in its band and each issue in its cell, names the bands in words and offers the numbers as a table</td><td><code>riskMatrixProblems(html)</code> from <code>scripts/lib/risk.mjs</code></td></tr>
     <tr><td>Every item in a <a href="{{root}}components/framework.html">framework view</a> shows its state with a mark and a word</td><td><code>frameworkProblems(html)</code> from <code>scripts/lib/framework.mjs</code></td></tr>
     <tr><td>The guide opens, moves and closes as it should in a browser</td><td><code>node scripts/check-guide-render.mjs &lt;address&gt;</code></td></tr>
   </tbody>

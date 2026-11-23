@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Data — table, stat card, sparkline, legend, chart frame
+   Data — table, stat card, sparkline, legend, chart frame, risk matrix
    ========================================================================== */
 
 @layer vici.components {
@@ -332,4 +332,137 @@
     color: var(--vc-text-subtle);
     font-size: var(--vc-font-size-xs);
   }
+
+  /* ---------- Risk matrix ----------
+     Five by five: impact up (5 at the top), likelihood across (1 on the left). The rows come in
+     order in the markup, each a tick and five cells, then the likelihood ticks, so the grid places
+     everything without a style attribute. A cell's band follows impact × likelihood: low 1 to 4,
+     medium 5 to 9, high 10 to 15, critical 16 to 25. Its score shows in the corner, so the bands
+     never rest on colour alone, and the key names them in words. */
+  .vc-risk { display: grid; gap: var(--vc-space-3); min-width: 0; margin: 0; }
+  .vc-risk > figcaption > * { margin: 0; }
+  /* The impact label up the left, the grid, the likelihood label under it. */
+  .vc-risk__plot {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--vc-space-1);
+    min-width: 0;
+  }
+  .vc-risk__axis {
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+    font-weight: var(--vc-weight-semibold);
+    letter-spacing: var(--vc-tracking-caps);
+    text-transform: uppercase;
+  }
+  .vc-risk__axis--impact { align-self: center; writing-mode: vertical-rl; transform: rotate(180deg); }
+  .vc-risk__axis--likelihood { grid-column: 2; justify-self: center; }
+  /* In the markup, row by row from impact 5: a tick and five cells; then a corner and five ticks. */
+  .vc-risk__grid {
+    display: grid;
+    grid-template-columns: auto repeat(5, minmax(2.75rem, 1fr));
+    grid-template-rows: repeat(5, minmax(2.75rem, auto)) auto;
+    gap: 3px;
+    min-width: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .vc-risk__tick {
+    display: grid;
+    place-items: center;
+    min-width: 1.25rem;
+    margin: 0;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+  }
+  .vc-risk__cell {
+    --_band: var(--vc-success-bg);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+    padding: var(--vc-space-2) var(--vc-space-1) var(--vc-space-1);
+    border-radius: var(--vc-radius-sm);
+    background: var(--_band);
+  }
+  .vc-risk__cell[data-band='medium'] { --_band: var(--vc-warning-bg); }
+  .vc-risk__cell[data-band='high'] { --_band: var(--vc-danger-bg); }
+  .vc-risk__cell[data-band='critical'] { --_band: var(--vc-danger-border); }
+  .vc-risk__score {
+    position: absolute;
+    inset-block-start: 2px;
+    inset-inline-end: 4px;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-2xs);
+    line-height: 1;
+  }
+  .vc-risk__cell[data-band='critical'] .vc-risk__score { color: var(--vc-text); }
+
+  /* A marker: a flat-top hexagon with a ring in the surface colour, so neighbours stay apart. */
+  .vc-risk__marker {
+    --_fill: var(--vc-text);
+    --_ink: var(--vc-surface);
+    position: relative;
+    isolation: isolate;
+    display: inline-grid;
+    place-items: center;
+    width: 1.9rem;
+    aspect-ratio: var(--vc-hex-ratio);
+    color: var(--_ink);
+    font-size: var(--vc-font-size-2xs);
+    font-weight: var(--vc-weight-semibold);
+    line-height: 1;
+  }
+  .vc-risk__marker::before,
+  .vc-risk__marker::after {
+    content: '';
+    position: absolute;
+    clip-path: var(--vc-hex);
+    z-index: -1;
+  }
+  .vc-risk__marker::before { inset: -1.5px; background: var(--vc-surface); }
+  .vc-risk__marker::after { inset: 0; background: var(--_fill); }
+  /* What is left after an answer: the same marker, hollow. */
+  .vc-risk__marker--residual { --_ink: var(--vc-text); }
+  .vc-risk__marker--residual::before { inset: 0; background: var(--vc-text); }
+  .vc-risk__marker--residual::after { inset: 2px; background: var(--_band, var(--vc-surface)); }
+  /* A card elsewhere points at this issue. */
+  .vc-risk__marker[aria-current='true'] { --_fill: var(--vc-accent); --_ink: var(--vc-on-accent); transform: scale(1.18); }
+
+  .vc-risk__key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vc-space-1) var(--vc-space-4);
+    margin: 0;
+    padding: 0;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+    list-style: none;
+  }
+  .vc-risk__key > li { display: inline-flex; align-items: center; gap: var(--vc-space-1); }
+  .vc-risk__key > li::before {
+    content: '';
+    width: 0.9rem;
+    aspect-ratio: var(--vc-hex-ratio);
+    background: var(--vc-success-bg);
+    clip-path: var(--vc-hex);
+    box-shadow: inset 0 0 0 1px var(--vc-border);
+  }
+  .vc-risk__key > [data-band='medium']::before { background: var(--vc-warning-bg); }
+  .vc-risk__key > [data-band='high']::before { background: var(--vc-danger-bg); }
+  .vc-risk__key > [data-band='critical']::before { background: var(--vc-danger-border); }
+
+  /* The numbers behind the chart, one click away. */
+  .vc-risk__numbers > summary {
+    width: fit-content;
+    color: var(--vc-accent-text);
+    font-size: var(--vc-font-size-sm);
+    font-weight: var(--vc-weight-semibold);
+    cursor: pointer;
+  }
+  .vc-risk__numbers > summary:focus-visible { outline: var(--vc-stroke-focus) solid var(--vc-focus); outline-offset: 2px; }
+  .vc-risk__numbers[open] > summary { margin-bottom: var(--vc-space-2); }
 }

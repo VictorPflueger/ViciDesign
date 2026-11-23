@@ -17,7 +17,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "palette": "node scripts/palette.mjs --write && node scripts/build.mjs",
-    "check": "node scripts/check-tokens.mjs && node scripts/build.mjs --check && node scripts/check-hex.mjs && node scripts/check-fonts.mjs && node scripts/check-docs.mjs && node scripts/check-byline.mjs && node scripts/check-guide.mjs && node scripts/check-ai.mjs && node scripts/check-storage.mjs && node scripts/check-policy.mjs && node scripts/check-ids.mjs && node scripts/check-framework.mjs && node scripts/check-logo.mjs && node scripts/check-integrations.mjs",
+    "check": "node scripts/check-tokens.mjs && node scripts/build.mjs --check && node scripts/check-hex.mjs && node scripts/check-fonts.mjs && node scripts/check-docs.mjs && node scripts/check-byline.mjs && node scripts/check-guide.mjs && node scripts/check-ai.mjs && node scripts/check-storage.mjs && node scripts/check-policy.mjs && node scripts/check-ids.mjs && node scripts/check-framework.mjs && node scripts/check-risk.mjs && node scripts/check-logo.mjs && node scripts/check-integrations.mjs",
     "check:render": "node scripts/check-render.mjs && node scripts/check-guide-render.mjs . starters/app.html && node scripts/check-guide-render.mjs . starters/dashboard.html && node scripts/check-guide-render.mjs . starters/blank.html"
   }
 }
