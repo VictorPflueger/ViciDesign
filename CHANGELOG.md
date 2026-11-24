@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.3.0: a callout gives its content every text and surface token in its own ink. It
+  stays pastel in both themes, but `--vc-text-subtle`, `--vc-on-accent-soft`, `--vc-bg`, `--vc-bg-subtle`,
+  `--vc-surface-raised`, `--vc-surface-hover` and `--vc-border-strong` still followed the page theme, so in the
+  dark theme a note in subtle text, a hint in `--vc-on-accent-soft` or a box on `--vc-bg-subtle` turned pale on
+  the pastel and vanished, at 1:1 to 1.6:1. `scripts/check-callout.mjs`, part of the render checks, puts a probe
+  into a callout of every tone in the light theme and in both ways of setting the dark one, and fails when a text
+  token falls below the ratio the token check asks for on the page.
 - From SWOT Challenger 0.3.0: the live-run dialog, on the Overlays page. `.vc-live` is the dialog where a person
   hands a prototype their own API key and starts a live run, with its parts in a fixed order: the key, the setting,
   research and Advanced where a prototype has them, the budget cap, the acknowledgement, the estimate, and the start
