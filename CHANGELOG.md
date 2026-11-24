@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.4.0: a honeycomb's first column starts at the comb's edge. As a list it kept the
+  base style's 1.4em indent, so a comb sat 22 px right of where its box began and a comb sized to its box ran
+  past it. `.vc-honeycomb` now drops the indent, and the hexagon guideline says when an odd number of columns
+  works: in a single row, where every second cell is every second column, but not over two rows, where a cell
+  of the second row lands on one of the first. `scripts/check-render.mjs` fails when a honeycomb's first column
+  starts indented or two of its cells overlap.
 - From SWOT Challenger 1.0.0: a report printed from the dark theme with its background graphics on sat in a
   black frame. The page's margins print in the canvas colour of the root's colour scheme, which stayed dark. In
   print the root of a page with a report now takes the light scheme. `scripts/check-report-print.mjs` fails when

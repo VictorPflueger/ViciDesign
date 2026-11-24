@@ -110,7 +110,9 @@
   }
 
   /* Honeycomb: tessellated flat-top hexagon tiles.
-     Columns overlap by ¼ width; every second column drops by ½ height. */
+     Columns overlap by ¼ width; every second column drops by ½ height. The cells fill row by row and every
+     second cell drops, which is every second column in a single row or in rows of an even length. A list's
+     indent is dropped too, so the first column starts at the comb's edge. */
   .vc-honeycomb {
     --_h: var(--vc-honeycomb-cell, 9rem);
     --_w: calc(var(--_h) * 1.1547);
@@ -121,6 +123,7 @@
     grid-auto-rows: calc(var(--_h) + var(--_gap));
     padding-bottom: calc(var(--_h) / 2 + var(--_gap) / 2);
     padding-right: calc(var(--_w) * 0.25);
+    padding-left: 0;
     margin: 0;
     list-style: none;
   }
