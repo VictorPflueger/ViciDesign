@@ -4,7 +4,9 @@
 // dark theme and the text on it vanishes. Renders the Feedback page in the light theme, the dark theme the
 // system asks for and the dark theme the toggle sets, puts a probe into a callout of every tone, and fails
 // when a text token falls below the ratio Vici's token check asks for on the page (text 7:1, muted, subtle
-// and on-accent-soft text 4.5:1, strong borders and focus rings 3:1) on a surface token inside the callout.
+// and on-accent-soft text 4.5:1, strong borders and focus rings 3:1) on a surface token inside the callout,
+// or when its actions do: a soft button's or a button's text on its own fill, a link on the callout (4.5:1)
+// or a button's edge against the pastel (3:1).
 // Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
 import { createRequire } from 'node:module';
 import { execSync } from 'node:child_process';
@@ -36,6 +38,12 @@ const RULES = [
   ['--vc-on-accent-soft', ['tone', '--vc-bg', '--vc-surface'], 4.5],
   ['--vc-border-strong', ['tone', '--vc-bg', '--vc-surface', '--vc-surface-raised'], 3],
   ['--vc-focus', ['tone', '--vc-bg', '--vc-bg-subtle', '--vc-surface', '--vc-surface-raised'], 3],
+  // Its actions: a soft button's text on the soft accent, a button's text on the accent, a link on the
+  // callout, and a button's edge against the pastel.
+  ['--vc-on-accent-soft', ['--vc-accent-soft', '--vc-accent-soft-hover'], 4.5],
+  ['--vc-on-accent', ['--vc-accent', '--vc-accent-hover', '--vc-accent-pressed'], 4.5],
+  ['--vc-accent-text', ['tone', '--vc-bg', '--vc-surface'], 4.5],
+  ['--vc-accent', ['tone'], 3],
 ];
 const RUNS = [
   { label: 'light', scheme: 'light', attr: null },

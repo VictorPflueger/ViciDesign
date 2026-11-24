@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.3.0: a callout's actions keep to its ink as well. The callout already set its text and
+  surface tokens, but a button, a link and a secondary button still took the page theme's accent: in the dark
+  theme a secondary button put the callout's dark ink on the night's dark accent, at 1.4:1, and a link turned
+  pale pink on the pastel, at 1.2:1. Inside a callout a button now keeps the light theme's merlot, a link the
+  light theme's accent text, and a secondary button and its hover mix the callout's ink into its tone.
+  `scripts/check-callout.mjs` also measures a secondary button's and a button's text on their fills, a link on
+  the callout and a button's edge against the pastel, in every tone and theme.
 - From Prototype Ideator 0.3.0: tables set tabular figures in number cells only. `.vc-table` and the classless
   table set them on every cell, and Inter's tabular figures also give the hyphen a figure's width, so a text cell
   read "person - days". Number cells, marked `.vc-num` or `data-type="number"`, keep them, in the classless table
