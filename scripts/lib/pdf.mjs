@@ -1,8 +1,8 @@
 // The text of each page of a PDF that Chromium prints, read without a library: enough to prove that a
 // running footer stands on every page (the report pattern's render check, and the prototypes' own report
 // tests). It inflates the page streams, maps each font's glyph codes to text through its ToUnicode map,
-// and joins the strings the page shows, a line break where the text moves to another line. It reads the
-// PDFs Chromium writes; it is not a general PDF parser.
+// and joins the strings the page shows, a line break where the text moves to another line, with ligatures
+// read back as their letters. It reads the PDFs Chromium writes; it is not a general PDF parser.
 import { inflateSync } from 'node:zlib';
 
 /** Every indirect object of the file: { num, dict, stream } with the stream inflated where it can be. */
@@ -160,6 +160,7 @@ export function pdfPageTexts(bytes) {
     if (one !== null) contents.push(one);
     else for (const k of ((page.dict.match(/\/Contents\s*\[([^\]]*)\]/) || [])[1] || '').matchAll(/(\d+)\s+0\s+R/g)) contents.push(Number(k[1]));
     const text = contents.map((c) => objs.get(c)?.stream?.toString('latin1') || '').map((s) => showText(s, fonts)).join('\n');
-    return text.replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n').trim();
+    // NFKC: a font may set "fl" or "fi" as one ligature glyph, which reads back as "ﬂ"; here it reads as written.
+    return text.normalize('NFKC').replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n').trim();
   });
 }

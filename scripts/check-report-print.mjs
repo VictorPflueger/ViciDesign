@@ -50,7 +50,8 @@ const url = `http://127.0.0.1:${server.address().port}/components/report.html`;
 const { chromium } = loadPlaywright();
 const browser = await chromium.launch();
 const failures = [];
-const squeeze = (s) => String(s).replace(/\s+/g, '').normalize('NFC');
+// NFKC, since a font without the web fonts may set "fl" as one ligature glyph, which the PDF reads back as "ﬂ".
+const squeeze = (s) => String(s).replace(/\s+/g, '').normalize('NFKC');
 const START = squeeze('Created with PESTEL Challenger\nhttps://victorpflueger.github.io/PESTEL-challenger/');
 const NOTICE = 'Stopped at the budget cap: this report is incomplete.';
 
