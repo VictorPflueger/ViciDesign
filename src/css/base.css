@@ -435,7 +435,8 @@
     /* Spinners keep a slow sweep: they are the only cue that work is happening. */
     *:not(.vc-spinner),
     *::before,
-    *::after {
+    *::after,
+    *::backdrop {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;

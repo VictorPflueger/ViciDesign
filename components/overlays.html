@@ -127,6 +127,7 @@
   <span class="tk-punct">&lt;/</span><span class="tk-tag">footer</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-77" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 <p>Sizes: <code>--sm</code> (25rem), default (34rem), <code>--lg</code> (50rem). In destructive dialogs, put <code>autofocus</code> on the safe choice. Add <code>data-vc-dismissable="false"</code> to stop the backdrop from closing it.</p>
+<p>A body that holds only text and scrolls, such as a method or a glossary, takes the keyboard's focus so the arrow keys can scroll it: Chromium makes such a box focusable. Its focus ring sits just inside its edge, where the dialog doesn't cut it off, and the guide's rail and chapters do the same. With reduced motion the dialog and its backdrop appear without moving. <code>scripts/check-dialog-render.mjs</code>, part of the render checks, opens a dialog with reduced motion and fails when anything moves, and Tabs into a scrolling body and fails when its ring doesn't show along its side.</p>
 
 <h2 id="drawer">Drawer</h2>
 <p>A drawer is a dialog that slides in from the side. Use it for details and forms that need more room than a dialog but shouldn't leave the page.</p>
