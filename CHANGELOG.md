@@ -5,6 +5,18 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From SWOT Challenger 0.3.0: the live-run dialog, on the Overlays page. `.vc-live` is the dialog where a person
+  hands a prototype their own API key and starts a live run, with its parts in a fixed order: the key, the setting,
+  research and Advanced where a prototype has them, the budget cap, the acknowledgement, the estimate, and the start
+  button in the footer with "You are interacting with an AI system" beside it. The key field sits in no form,
+  carries `autocomplete="off"`, `spellcheck="false"`, `data-1p-ignore` and `data-lpignore="true"`, has a show
+  button and a note on where the key stays, and a held key shows masked with "Forget key". The box is unticked at
+  every opening and the start button disabled until the page enables it. Where the page finds what is usually
+  private, a warning lists it above the footer; it warns and does not block. The body scrolls and the footer
+  doesn't, so the start button and the notice stay in view at 1280 × 720. `liveDialogProblems(html)` in
+  `scripts/lib/live.mjs` checks the parts, their order and every rule, with a self-test of planted mistakes, and
+  Build a prototype and the brief list it. A slider's `<output>` with `data-vc-currency="EUR"` now shows its value
+  as money in the language of the page around it, such as "€0.50" or "0,50 €".
 - From PESTEL Challenger 0.2.0: the risk matrix and the horizon strip keep one column as wide as the figure. The
   figure's single column used to grow to the width of its numbers table once "Show the numbers" opened, so the
   grid above it stretched, its markers moved and the figure ran over whatever stood beside it. The table now

@@ -214,6 +214,7 @@ const CSS_ORDER = [
   'src/css/components/ring.css',
   'src/css/components/dropzone.css',
   'src/css/components/horizon.css',
+  'src/css/components/live.css',
 ];
 
 function minifyCss(css) {
