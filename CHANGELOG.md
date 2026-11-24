@@ -5,6 +5,10 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From SWOT Challenger 1.0.0: a report printed from the dark theme with its background graphics on sat in a
+  black frame. The page's margins print in the canvas colour of the root's colour scheme, which stayed dark. In
+  print the root of a page with a report now takes the light scheme. `scripts/check-report-print.mjs` fails when
+  the root keeps the dark scheme in print, with the system in dark mode or with `data-theme="dark"`.
 - From PESTEL Challenger 1.0.0: in the dark theme a report's sheets lie on the page's own background. As a
   theme island the report painted the light canvas behind them, so a light slab framed the white sheets on a
   dark page. `.vc-report` now paints no background; the sheets keep theirs. `scripts/check-report-print.mjs`
