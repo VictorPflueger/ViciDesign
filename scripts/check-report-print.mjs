@@ -2,7 +2,7 @@
 // A report prints alone with its footer on every page, and leaves as a file of its own that loads nothing.
 // Serves the site on a local port, opens the Report page in Chromium and:
 //   - checks that the sheets stay light in the dark theme, on the page's own background, and that the print
-//     copy stays hidden on screen;
+//     copy stays hidden on screen; in print, that the root takes the light scheme, so the margins print white;
 //   - prints the example through Vici.report.prepare() and reads the PDF: every page carries the footer's
 //     start, "page i of n" and, when the report has a notice, the notice, and none carries the fixed footer
 //     as well; removing the copy takes the footer's words off the root again;
@@ -125,6 +125,23 @@ const ground = await page.evaluate(() => [...document.querySelectorAll('body > [
 await page.emulateMedia({ media: null });
 await page.evaluate(() => window.__undo());
 if (ground.length) failures.push(`in print something paints behind the pages: ${ground.join(', ')}`);
+
+// In print the root takes the light scheme in the dark theme, set by the system or by data-theme: the page's
+// margins print in the canvas colour of the root's scheme, black in the dark one, around every sheet.
+for (const theme of [null, 'dark']) {
+  const scheme = await page.evaluate((th) => {
+    if (th) document.documentElement.setAttribute('data-theme', th);
+    window.__undo = Vici.report.prepare(document.getElementById('demo-report'));
+    return getComputedStyle(document.documentElement).colorScheme;
+  }, theme);
+  await page.emulateMedia({ media: 'print' });
+  const printedScheme = await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme);
+  await page.emulateMedia({ media: null });
+  await page.evaluate(() => { window.__undo(); document.documentElement.removeAttribute('data-theme'); });
+  const how = theme ? 'with data-theme="dark"' : 'with the system in dark mode';
+  if (scheme !== 'dark') failures.push(`self-test: ${how} the root's scheme on screen is ${scheme}, not dark, so the print scheme proves nothing`);
+  if (printedScheme !== 'light') failures.push(`${how}, the root keeps the scheme ${printedScheme} in print: the page's margins print black around every sheet`);
+}
 
 // In print: the footer on every page, with the notice when there is one, and the fixed footer hidden.
 // The fixed footer's first part ("Created with … · address") appears nowhere else, so it marks a fixed footer
@@ -265,5 +282,5 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each${atRule ? ' and once without @supports at-rule()' : ''}, never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages with its footer ${boxes ? 'in the margin boxes' : 'fixed, since this browser writes no margin rules out'}: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets on the dark page in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
+console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each${atRule ? ' and once without @supports at-rule()' : ''}, never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages with its footer ${boxes ? 'in the margin boxes' : 'fixed, since this browser writes no margin rules out'}: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets on the dark page in the dark theme, and in print the light scheme, so the margins print white; the print copy stays hidden on screen and leaves no trace.`);
 console.log('REPORT PRINT OK');
