@@ -1,0 +1,107 @@
+<!--
+title: Report
+nav: Report
+section: Components
+order: 10
+icon: memo
+layout: wide
+description: The document a run ends in: a cover and pages that read as sheets on screen, print on A4 with the prototype's footer on every page and leave as an HTML file of their own.
+-->
+<header class="doc-hero">
+  <h1>Report</h1>
+  <p class="vc-lead">The document a run ends in. On screen its pages are sheets of paper; printed or saved as PDF they run on A4, and every page carries the prototype's footer: what made it, where to find it, who built it and the page number.</p>
+</header>
+
+<h2 id="pages">Pages</h2>
+<p><code>.vc-report</code> is a column of <code>.vc-report__page</code> sections. The first is the cover, <code>.vc-report__cover</code>: the prototype at the top in <code>.vc-report__brand</code>, the title and one sentence in <code>.vc-report__heading</code>, and the facts of the run at the foot in <code>.vc-report__meta</code>. Each page after it starts a new sheet when printed, and a long page runs on over as many sheets as it needs.</p>
+<p>A report names its language with <code>lang</code> and carries <code>data-theme="light"</code>, so its sheets stay light in the dark theme too: it ends on paper. The title, <code>.vc-report__title</code>, is the report's one top heading. In a file of its own it is the <code>h1</code> and every page opens with an <code>h2</code>; inside a page that shows more, it sits one level below the heading around it, as in the example, where the title is an <code>h3</code> and the pages open with an <code>h4</code>.</p>
+<!-- demo -->
+<article class="vc-report" id="demo-report" lang="en-GB" data-theme="light" data-vc-footer-start="Created with PESTEL Challenger&#10;https://victorpflueger.github.io/PESTEL-challenger/" data-vc-footer-end="Built by Victor Pflüger · page " data-vc-footer-of=" of ">
+  <section class="vc-report__page vc-report__cover" aria-labelledby="demo-report-title">
+    <p class="vc-report__brand"><span class="vc-cell vc-cell--sm vc-cell--lilac" aria-hidden="true"><span class="vc-icon vc-icon--radar"></span></span>PESTEL Challenger</p>
+    <div class="vc-report__heading">
+      <h3 class="vc-report__title" id="demo-report-title">Kestrel Valves: the outside forces, challenged</h3>
+      <p class="vc-report__subtitle">Six dimensions rated, three under pressure, and what the team will do about each.</p>
+      <p class="vc-cluster vc-cluster--sm"><span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>AI-generated analysis for discussion</span><span class="vc-tag">Fictional company, illustrative figures</span></p>
+    </div>
+    <dl class="vc-report__meta">
+      <dt>Date</dt><dd>24 November 2026</dd>
+      <dt>Mode</dt><dd>Simulation, three recorded agents</dd>
+      <dt>Sector</dt><dd>Industrial valves, Germany</dd>
+      <dt>Language</dt><dd>English</dd>
+    </dl>
+  </section>
+  <section class="vc-report__page" aria-labelledby="demo-report-summary">
+    <h4 id="demo-report-summary">Management summary</h4>
+    <p>Three of six dimensions are under pressure. The largest threat is the carbon price on castings: about €1.9&nbsp;million a year at stake, of which the chosen responses leave €0.6&nbsp;million.</p>
+    <table class="vc-table">
+      <caption>Before and after the responses, estimated</caption>
+      <thead><tr><th scope="col">Figure</th><th scope="col" class="vc-num">Before</th><th scope="col" class="vc-num">After</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">At stake a year</th><td class="vc-num">€3.4&nbsp;m</td><td class="vc-num">€1.1&nbsp;m</td></tr>
+        <tr><th scope="row">Dimensions under pressure</th><td class="vc-num">3 of 6</td><td class="vc-num">1 of 6</td></tr>
+        <tr><th scope="row">Readiness</th><td class="vc-num">41 of 100</td><td class="vc-num">68 of 100</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="vc-report__page" aria-labelledby="demo-report-about">
+    <h4 id="demo-report-about">About this report</h4>
+    <p>Public information only: never enter confidential, personal or otherwise protected data. The figures are estimates the agents made from the inputs above; code computed every score and total.</p>
+    <p>Created with PESTEL Challenger, <a href="https://victorpflueger.github.io/PESTEL-challenger/">victorpflueger.github.io/PESTEL-challenger</a>.</p>
+    <p class="vc-byline">
+      <span class="vc-byline__label">Built by</span>
+      <a class="vc-byline__person" href="https://www.linkedin.com/in/victorpflueger" rel="author">
+        <span class="vc-avatar vc-avatar--xs"><img src="{{root}}assets/brand/portrait-96.jpg" alt="" width="96" height="96"></span>
+        <span class="vc-byline__name">Victor Pflüger</span>
+        <img class="vc-platform-mark" src="{{root}}assets/marks/linkedin.png" alt="" width="840" height="779">
+        <span class="vc-visually-hidden"> on LinkedIn</span>
+      </a>
+      <a class="vc-byline__icon" href="https://victorpflueger.github.io/VIP/index.html" rel="author" aria-label="Victor Pflüger's website"><span class="vc-icon vc-icon--globe-hex" aria-hidden="true"></span></a>
+    </p>
+  </section>
+  <footer class="vc-report__footer"><span>Created with PESTEL Challenger · https://victorpflueger.github.io/PESTEL-challenger/</span><span>Built by Victor Pflüger</span></footer>
+</article>
+<!-- /demo -->
+<p><button type="button" class="vc-button vc-button--secondary" data-vc-report-print="demo-report"><span class="vc-icon vc-icon--download" aria-hidden="true"></span>Print this example</button></p>
+
+<h2 id="printing">Printing and PDF</h2>
+<p>A report prints alone, whatever else the page shows. <code>Vici.report.print(report)</code> copies it into a container at the end of <code>body</code> marked <code>data-vc-print</code>, which the print styles show instead of the page, opens the browser's print dialog and takes the copy away afterwards. A button with <code>data-vc-report-print="&lt;report id&gt;"</code> does the same without a script of its own. Saving as PDF is the print dialog's own choice, so the button says what the person gets, such as “Save as PDF”.</p>
+<p>Someone who presses Ctrl+P instead should get the report too. <code>Vici.report.prepare(report)</code> makes the copy without printing and returns the function that removes it:</p>
+<pre><code>let undo = null;
+addEventListener('beforeprint', () => { if (report.isConnected) undo = Vici.report.prepare(report); });
+addEventListener('afterprint', () => { if (undo) undo(); undo = null; });</code></pre>
+<p>The pages run on A4 with margins of 16&nbsp;mm and 20&nbsp;mm at the foot. The footer's words live on the report, in its own language, and Vici writes them into the page's margin boxes:</p>
+<div class="vc-table-wrap">
+<table class="vc-table">
+  <caption>The footer's words, as attributes of the report</caption>
+  <thead><tr><th scope="col">Attribute</th><th scope="col">Where it prints</th><th scope="col">Example</th></tr></thead>
+  <tbody>
+    <tr><td class="vc-nowrap"><code>data-vc-footer-start</code></td><td>Bottom left; a line break starts a second line</td><td>Created with PESTEL Challenger, then the address on its own line</td></tr>
+    <tr><td class="vc-nowrap"><code>data-vc-footer-end</code></td><td>Bottom right, before the page number</td><td>“Built by Victor Pflüger · page ”, in German “Erstellt von Victor Pflüger · Seite ”</td></tr>
+    <tr><td class="vc-nowrap"><code>data-vc-footer-of</code></td><td>Between the page number and the count</td><td>“ of ”, in German “ von ”</td></tr>
+    <tr><td class="vc-nowrap"><code>data-vc-notice</code></td><td>Top of every page, in merlot</td><td>“Stopped at the budget cap: this report is incomplete.”</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Chrome and Edge print margin boxes from version 131, so there the footer carries the page number as “page 2 of 5”. Firefox and Safari have none: there <code>.vc-report__footer</code>, the report's last element, stands fixed at the foot of the page instead, without page numbers, and a browser that repeats fixed elements on every printed page, as Firefox does, prints it on each. Give it the same words, so no browser prints a page without its footer. CSS learns of margin boxes through <code>@supports at-rule(@bottom-left)</code>, which Chrome answers from version 148; for versions 131 to 147, <code>Vici.report.prepare()</code> marks the copy <code>data-vc-margin-boxes</code> itself, so those print one footer too.</p>
+<p>The notice is for a report that must say something on every page, such as a run that stopped before it was done.</p>
+
+<h2 id="file">A file of its own</h2>
+<p><code>Vici.report.html(report, { title })</code> returns the report as an HTML file that opens anywhere, offline, and prints with the same footer. The file holds the report's markup with absolute links, the title as its <code>h1</code> and every other heading moved up as far, its pictures as data, the page's style rules that reach the report and the footer's words. Headings look the same at any level, so the file reads as the page did. It holds no script and a policy that loads nothing, so it can travel by email. Web fonts stay out: a page under a strict policy cannot read their files, so the file names Inter and falls back to the reader's own fonts. Without a script it cannot mark itself for Chrome 131 to 147, which print its fixed footer beside the margin boxes.</p>
+<pre><code>const file = new Blob([Vici.report.html(report)], { type: 'text/html' });
+const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(file), download: 'report.html' });
+link.click();
+URL.revokeObjectURL(link.href);</code></pre>
+
+<h2 id="content">What goes in it</h2>
+<ul>
+  <li>The cover says what the report is about, when it was made, whether the run was simulated or live and in which language, and which model and setting a live run used.</li>
+  <li>What the AI wrote, suggested or estimated keeps its lilac tag, and every estimate says what it rests on. A simulated company says it is fictional on the cover.</li>
+  <li>Where people can type or upload, the report repeats “Public information only: never enter confidential, personal or otherwise protected data.”</li>
+  <li>A fact about the world shows its source and the date it was read. A run without research says once that the model's knowledge ends at its training cutoff.</li>
+  <li>Nothing needs a pointer: no buttons or fields, no tooltips that hold facts, no closed <code>details</code>, since closed content would not print. A chart has its numbers in a table beside it.</li>
+  <li>The last page ends with the byline, as <a href="{{root}}brand/profile-links.html#byline-anywhere">Byline anywhere</a> sets out.</li>
+</ul>
+
+<h2 id="check">Check</h2>
+<p><code>reportProblems(html)</code> from <code>scripts/lib/report.mjs</code> returns the rules a report breaks: no language, no light theme, a first page that is not a cover, a title that is not the one top heading, a page that opens at the wrong level, a script, a button or field, a closed <code>details</code>, no fixed footer naming Victor Pflüger, no byline on the last page, or a picture without a name. <code>scripts/check-report.mjs</code> proves it on planted mistakes and holds this page to it. <code>scripts/check-report-print.mjs</code>, part of the render checks, prints the example in Chromium and reads the PDF: it fails when a page lacks the footer, the page number or the notice, or prints the footer twice, and it opens the file from <code>Vici.report.html()</code> without a network and fails when it asks for anything or loses the report's look.</p>

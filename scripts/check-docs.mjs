@@ -75,6 +75,7 @@ const REQUIRED = {
   'guidelines/accessibility.html': ['focus', 'keyboard-patterns', 'semantics-checklist'],
   'brand/logo.html': ['symbol', 'lockup', 'app-icon-and-favicon', 'wordmark', 'monogram', 'monogram-ligature', 'monogram-stem', 'monogram-cell', 'monogram-seal', 'monogram-initials', 'monogram-compare', 'usage', 'earlier-concepts'],
   'brand/profile-links.html': ['every-surface', 'byline', 'byline-several', 'byline-anywhere', 'in-footers-and-contact-sections', 'personal-site', 'other-brands-logos', 'link-rules', 'portrait'],
+  'components/report.html': ['pages', 'printing', 'file', 'content', 'check'],
   'components/guide.html': ['title-pattern', 'chapters', 'copy-rules', 'content-format', 'german-example', 'behaviour', 'opening', 'presenting', 'key-figures', 'check'],
   // What every prototype, demo and tech showcase needs, with the agent brief.
   'start/prototypes.html': ['agent-brief', 'audience', 'three-things', 'key-figures', 'page-structure', 'partner-review', 'before-you-share'],

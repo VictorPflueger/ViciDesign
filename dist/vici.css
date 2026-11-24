@@ -6346,6 +6346,195 @@
   }
 }
 
+/* ==========================================================================
+   Report: the document a run ends in, read on screen and printed or saved as PDF. A report is a column of
+   pages: a cover, then pages that each start a new sheet when printed; a long page runs on over more
+   sheets. On screen each page is a sheet of paper, light in either theme (the report carries
+   data-theme="light"). In print the sheets fall away: the pages run on A4 with fixed margins, and the
+   prototype's footer stands on every page, in the page's margin boxes where the browser has them
+   (Chromium), or else as a fixed line that repeats without page numbers. The footer's words come from
+   custom properties on the root, so one stylesheet serves every prototype and both languages:
+     --vc-report-footer-start   left, such as "Created with <tool>\A <address>"
+     --vc-report-footer-end     right, before the page number, such as "Built by Victor Pflüger · page "
+     --vc-report-footer-of      between the page number and the count, such as " of "
+     --vc-report-notice         optional, at the top of every page, such as "Stopped early: …"
+   Vici.report.prepare() sets them from the report's data-vc-footer-start, data-vc-footer-end,
+   data-vc-footer-of and data-vc-notice, and puts a copy of the report in a direct child of body marked
+   data-vc-print: in print that element alone shows, and on screen it stays hidden. Vici.report.html()
+   writes the same words into the file it makes, whose body is .vc-report-file.
+   ========================================================================== */
+
+@layer vici.components {
+  .vc-report {
+    display: grid;
+    gap: var(--vc-space-5);
+    justify-items: center;
+    color: var(--vc-text);
+    page: vc-report;
+  }
+
+  /* A page: a sheet of A4's width at most, its margins as padding. */
+  .vc-report__page {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 210mm;
+    padding: clamp(1.25rem, 6%, 3.25rem) clamp(1.25rem, 7.5%, 3.5rem);
+    background: var(--vc-surface);
+    color: var(--vc-text);
+    border: 1px solid var(--vc-border-subtle);
+    box-shadow: var(--vc-shadow-sm);
+  }
+  .vc-report__page > :first-child { margin-top: 0; }
+  .vc-report__page > :last-child { margin-bottom: 0; }
+
+  /* The cover: the tool at the top, the title in the middle, the facts of the run at the foot. */
+  .vc-report__cover {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--vc-space-6);
+    min-height: min(36rem, 75vh);
+  }
+  .vc-report__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--vc-space-3);
+    margin: 0;
+    font-weight: var(--vc-weight-semibold);
+  }
+  .vc-report__heading { align-self: center; }
+  .vc-report__title {
+    margin: 0 0 var(--vc-space-3);
+    font-family: var(--vc-font-display);
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+    font-weight: var(--vc-weight-display);
+    letter-spacing: var(--vc-tracking-display);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  /* Headings look the same at any level: an h2 in a file of its own reads as the h3 or h4 it was inside the
+     page. A page's first heading names the page; any other heading inside a page names a part of it. */
+  .vc-report__page :is(h2, h3, h4, h5, h6):not(.vc-report__title) {
+    margin: var(--vc-space-5) 0 var(--vc-space-2);
+    font-family: var(--vc-font-display);
+    font-size: var(--vc-font-size-lg);
+    font-weight: var(--vc-weight-semibold);
+    letter-spacing: var(--vc-tracking-heading);
+    line-height: 1.25;
+  }
+  .vc-report__page:not(.vc-report__cover) > :is(h2, h3, h4, h5):first-child {
+    margin: 0 0 var(--vc-space-4);
+    font-size: var(--vc-font-size-2xl);
+    font-weight: var(--vc-weight-display);
+    line-height: 1.15;
+  }
+  .vc-report__subtitle {
+    margin: 0;
+    max-width: 60ch;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-lg);
+    text-wrap: pretty;
+  }
+  .vc-report__meta {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: var(--vc-space-1) var(--vc-space-5);
+    margin: 0;
+    font-size: var(--vc-font-size-sm);
+  }
+  .vc-report__meta dt { color: var(--vc-text-muted); }
+  .vc-report__meta dd { margin: 0; }
+
+  /* The fixed footer stands in print only, where a browser has no margin boxes. */
+  .vc-report__footer { display: none; }
+
+  /* A report that is a file of its own (Vici.report.html): the sheets on the report's own ground. */
+  .vc-report-file {
+    margin: 0;
+    padding: clamp(1rem, 4vw, 3rem) clamp(0.75rem, 3vw, 2rem);
+    background: var(--vc-bg);
+  }
+}
+
+/* The pages on A4, with the footer and the optional notice in the margin boxes. The words come from the
+   root's custom properties; the colours are the light theme's, since paper is light. */
+@page vc-report {
+  size: A4;
+  margin: 16mm 16mm 20mm;
+  @top-center {
+    content: var(--vc-report-notice, "");
+    font: 500 7.5pt/1.35 Inter, 'Segoe UI', system-ui, sans-serif;
+    color: #5c1230;
+  }
+  @bottom-left {
+    content: var(--vc-report-footer-start, "");
+    white-space: pre;
+    font: 400 7.5pt/1.35 Inter, 'Segoe UI', system-ui, sans-serif;
+    color: #5b4b4e;
+    vertical-align: top;
+    padding-top: 3mm;
+  }
+  @bottom-right {
+    content: var(--vc-report-footer-end, "") counter(page) var(--vc-report-footer-of, " / ") counter(pages);
+    font: 400 7.5pt/1.35 Inter, 'Segoe UI', system-ui, sans-serif;
+    color: #5b4b4e;
+    vertical-align: top;
+    padding-top: 3mm;
+  }
+}
+
+@media screen {
+  [data-vc-print] { display: none !important; }
+}
+
+@media print {
+  body:has(> [data-vc-print]) > :not([data-vc-print]) { display: none !important; }
+  html:has(.vc-report),
+  html:has(.vc-report) body { background: #ffffff !important; }
+  .vc-report-file { padding: 0; }
+  .vc-report {
+    display: block;
+    background: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .vc-report__page {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    break-before: page;
+  }
+  .vc-report__page:first-child { break-before: auto; }
+  .vc-report__cover { min-height: 255mm; }
+  .vc-report :is(h1, h2, h3, h4) { break-after: avoid; }
+  .vc-report table,
+  .vc-report figure,
+  .vc-report__keep { break-inside: avoid; }
+  .vc-report thead { display: table-header-group; }
+  .vc-report .vc-table-wrap { overflow: visible; max-height: none; }
+  .vc-report__footer {
+    display: flex;
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    justify-content: space-between;
+    gap: 6mm;
+    padding-top: 2mm;
+    border-top: 0.5pt solid #d6c9c6;
+    background: #ffffff;
+    color: #5b4b4e;
+    font-size: 7.5pt;
+    line-height: 1.35;
+  }
+  /* Where the margin boxes print, they carry the footer with its page numbers. CSS can ask for them from
+     Chromium 148; for Chromium 131 to 147, Vici.report.prepare() marks the copy data-vc-margin-boxes. */
+  [data-vc-margin-boxes] .vc-report__footer { display: none; }
+  @supports at-rule(@bottom-left) {
+    .vc-report__footer { display: none; }
+  }
+}
+
 /* Icons — 86 glyphs from src/icons, drawn on a 24px grid with 1.75px strokes.
    Usage: <span class="vc-icon vc-icon--search" aria-hidden="true"></span>  (colour = currentColor) */
 @layer vici.components {

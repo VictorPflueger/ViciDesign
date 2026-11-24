@@ -215,6 +215,7 @@ const CSS_ORDER = [
   'src/css/components/dropzone.css',
   'src/css/components/horizon.css',
   'src/css/components/live.css',
+  'src/css/components/report.css',
 ];
 
 function minifyCss(css) {
