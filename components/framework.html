@@ -316,7 +316,7 @@
 <p>When a card elsewhere on the screen is selected, such as an issue or a strategy, set <code>aria-current="true"</code> on the items it concerns, or on a whole area. They take the accent outline, so the room sees which items the card is about.</p>
 
 <h2 id="compact">Tight spaces</h2>
-<p>At 1280&nbsp;×&nbsp;720 a framework of four areas leaves little height for each item. <code>.vc-framework--compact</code> shows every closed item's first line only; opening it shows the rest. The state words stay visible either way.</p>
+<p>At 1280&nbsp;×&nbsp;720 a framework of four areas leaves little height for each item. <code>.vc-framework--compact</code> shows every closed item's first line only; opening it shows the rest. The state words stay visible either way. Where one area alone is short of room, such as a canvas block whose neighbours have space to spare, <code>.vc-framework__area--compact</code> on that area does the same for its items only, so it shows more of them before it has to hide any.</p>
 
 <h2 id="check">Check it</h2>
 <p><code>frameworkProblems(html)</code> from <code>scripts/lib/framework.mjs</code> returns an empty list when every item has a mark and a state word, every item the AI wrote or the challenge added says so, every challenged item names its fault, every removed item says so, every area has a title, and every area with a state carries a tag with a mark and words for it. <code>ringProblems(html)</code> from <code>scripts/lib/ring.mjs</code> does the same for a ring: it has a name, its centre comes first, six named cells follow, and every cell with a state carries a mark and a word for it. Prototypes run both on each screen's markup; <code>npm run check</code> runs them with a self-test on this page.</p>
