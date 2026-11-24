@@ -4,9 +4,9 @@
 //   - opens the demo dialog with reduced motion and fails when an animation or transition of a millisecond or
 //     more runs: on the dialog, its backdrop or anything in it (a spinner's slow sweep excepted, as the
 //     Motion guideline says);
-//   - opens a dialog whose body holds only text, longer than the dialog, so Chromium makes the body
-//     focusable; Tabs to it and fails unless its ring shows all round: along the body's left side, just
-//     inside the edge the dialog clips, the body must look different focused than not.
+//   - opens a dialog with a close button and a body that holds only text, longer than the dialog, so
+//     Chromium makes the body focusable; Tabs to it and fails unless its ring shows all round: along the
+//     body's left side, just inside the edge the dialog clips, the body must look different focused than not.
 // Self-tests: without reduced motion the dialog's entrance must be seen moving, and with the ring moved back
 // outside the edge, where the dialog cuts off all but its top, the left side must be caught unchanged, so the
 // check can fail. Needs Playwright with
@@ -75,7 +75,17 @@ async function bodyFocus({ ringOutside = false } = {}) {
     h.className = 'vc-dialog__title';
     h.id = 'check-dialog-title';
     h.textContent = 'Method';
-    header.append(h);
+    // A close button, as Vici's dialogs carry: the dialog opens with the focus on it, and Tab moves on to the
+    // body, as a person's keyboard does.
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'vc-icon-button';
+    close.setAttribute('aria-label', 'Close');
+    const x = document.createElement('span');
+    x.className = 'vc-icon vc-icon--close';
+    x.setAttribute('aria-hidden', 'true');
+    close.append(x);
+    header.append(h, close);
     const body = document.createElement('div');
     body.className = 'vc-dialog__body';
     for (let i = 0; i < 30; i += 1) {
@@ -94,19 +104,29 @@ async function bodyFocus({ ringOutside = false } = {}) {
     onBody = await page.evaluate(() => document.activeElement?.classList.contains('vc-dialog__body'));
   }
   if (!onBody) { await page.close(); return { onBody: false }; }
-  const r = await page.evaluate(() => { const b = document.activeElement.getBoundingClientRect(); return { x: b.left, y: b.top, w: b.width, h: b.height }; });
+  // Measure once the entrance has run. With reduced motion it lasts 0.01 ms, but only from the next frame
+  // drawn: measured before that, the dialog still sits at its starting scale, and the strip below misses the
+  // ring by the few pixels the dialog then grows.
+  await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+  await page.waitForTimeout(120);
+  const r = await page.evaluate(() => {
+    const e = document.activeElement;
+    const b = e.getBoundingClientRect();
+    const cs = getComputedStyle(e);
+    return { x: b.left, y: b.top, w: b.width, h: b.height, visible: e.matches(':focus-visible'),
+      outline: `${cs.outlineStyle} ${cs.outlineWidth} ${cs.outlineColor}, offset ${cs.outlineOffset}` };
+  });
   // The body's left side, inside the dialog: a ring drawn outside the body is cut off here.
   const clip = { x: Math.ceil(r.x), y: Math.ceil(r.y + 12), width: 8, height: Math.max(8, Math.min(720 - Math.ceil(r.y + 12), Math.floor(r.h - 24))) };
-  await page.waitForTimeout(120);
   const on = await page.screenshot({ clip, animations: 'disabled' });
   await page.evaluate(() => { window.__body = document.activeElement; document.activeElement.blur(); });
   const off = await page.screenshot({ clip, animations: 'disabled' });
   await page.close();
-  return { onBody: true, shows: !on.equals(off) };
+  return { onBody: true, shows: !on.equals(off), why: `:focus-visible ${r.visible ? 'matched' : 'did not match'}; outline ${r.outline}; body at ${Math.round(r.x)}, ${Math.round(r.y)}, ${Math.round(r.w)} × ${Math.round(r.h)} px` };
 }
 const focus = await bodyFocus();
 if (!focus.onBody) failures.push('Tab never reached the scrolling body of a dialog that holds only text');
-else if (!focus.shows) failures.push('a dialog\'s scrolling body does not show its focus ring along its side: the dialog cuts off a ring drawn outside it');
+else if (!focus.shows) failures.push(`a dialog's scrolling body does not show its focus ring along its side (${focus.why}; Chromium ${browser.version()})`);
 const planted = await bodyFocus({ ringOutside: true });
 if (planted.onBody && planted.shows) failures.push('self-test: a ring outside the body\'s edge was not caught along its side, so the focus check proves nothing');
 
