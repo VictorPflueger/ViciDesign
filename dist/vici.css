@@ -4392,6 +4392,16 @@
     --vc-border-subtle: color-mix(in oklab, var(--_ink) 16%, var(--_tone));
     --vc-border: color-mix(in oklab, var(--_ink) 28%, var(--_tone));
     --vc-border-strong: color-mix(in oklab, var(--_ink) 45%, var(--_tone));
+    /* Its actions too: a button keeps the light theme's merlot, as the pastel around it does, a link the
+       light theme's accent text, and a soft button or a hover mixes the callout's ink into its tone. Left
+       to the page, a soft button in the dark theme put the callout's dark ink on the night's dark accent. */
+    --vc-accent: var(--vc-merlot-950);
+    --vc-accent-hover: var(--vc-merlot-800);
+    --vc-accent-pressed: var(--vc-merlot-900);
+    --vc-on-accent: var(--vc-neutral-50);
+    --vc-accent-soft: color-mix(in oklab, var(--_ink) 9%, var(--_tone));
+    --vc-accent-soft-hover: color-mix(in oklab, var(--_ink) 15%, var(--_tone));
+    --vc-accent-text: var(--vc-merlot-800);
   }
   .vc-callout__cell {
     display: grid;
