@@ -2,7 +2,8 @@
 // Renders every documentation page and starter in Chromium (light and dark at 1280 px, light at
 // 375 px and 320 px) and fails on console errors, failed requests, horizontal overflow on phones, elements
 // that render as circles or pills, hexagon components without a polygon clip-path, a risk matrix or
-// horizon strip that grows wider once its numbers are open, or fonts that did not load. A second pass
+// horizon strip that grows wider once its numbers are open, a honeycomb whose first column starts indented or
+// whose cells overlap, or fonts that did not load. A second pass
 // at 1920 and 2560 px fails when the docs content drifts away from the sidebar, On this page runs past
 // the window, the page block is off centre or anything overflows (scripts/lib/layout-probe.mjs). Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
 import { createRequire } from 'node:module';
@@ -120,7 +121,23 @@ for (const run of runs) {
         .map((f, i) => [f, closed[i]])
         .filter(([f, before]) => f.getClientRects().length && f.scrollWidth > before + 1)
         .map(([f, before]) => `${f.tagName.toLowerCase()}.${[...f.classList].join('.')} lays out ${f.scrollWidth}px, ${before}px closed`);
-      // 5. fonts
+      // 5. a honeycomb's first column starts at its edge, and no two of its cells overlap: in a honeycomb two
+      //    cells' centres lie at least a cell's height apart (a list's indent or an odd column count with a
+      //    second row breaks that)
+      out.comb = [];
+      for (const comb of document.querySelectorAll('.vc-honeycomb')) {
+        const cells = [...comb.children].filter((c) => c.getClientRects().length).map((c) => c.getBoundingClientRect());
+        if (!cells.length) continue;
+        const box = comb.getBoundingClientRect();
+        const indent = Math.min(...cells.map((c) => c.left)) - box.left;
+        if (indent > 1) out.comb.push(`its first column starts ${Math.round(indent)}px in`);
+        for (let i = 0; i < cells.length; i++) for (let j = i + 1; j < cells.length; j++) {
+          const a = cells[i]; const b = cells[j];
+          const d = Math.hypot(a.left + a.width / 2 - b.left - b.width / 2, a.top + a.height / 2 - b.top - b.height / 2);
+          if (d < a.height * 0.99) out.comb.push(`cells ${i + 1} and ${j + 1} overlap (centres ${Math.round(d)}px apart, cells ${Math.round(a.height)}px high)`);
+        }
+      }
+      // 6. fonts
       out.fonts = {
         display: document.fonts.check('650 32px "Bricolage Grotesque"'),
         text: document.fonts.check('400 16px "Inter"'),
@@ -132,6 +149,7 @@ for (const run of runs) {
     for (const r of result.round.slice(0, 3)) failures.push(`${label}: renders round: ${r}`);
     for (const n of result.notHex.slice(0, 3)) failures.push(`${label}: not a hexagon: ${n}`);
     for (const w of result.wide.slice(0, 3)) failures.push(`${label}: its numbers widen the figure: ${w}`);
+    for (const c of result.comb.slice(0, 3)) failures.push(`${label}: honeycomb: ${c}`);
     if (!result.fonts.display || !result.fonts.text) failures.push(`${label}: fonts not loaded ${JSON.stringify(result.fonts)}`);
     hexChecked += result.hex;
   }
@@ -162,7 +180,7 @@ if (hexChecked === 0) {
   console.error('No hexagon components found on any page — the check could not run.');
   process.exit(1);
 }
-console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow; opening the numbers widens no risk matrix or horizon strip.`);
+console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow; opening the numbers widens no risk matrix or horizon strip; every honeycomb starts at its edge with no cell over another.`);
 console.log(`${hexChecked} rendered hexagon parts compute a polygon clip-path; nothing renders as a circle or pill; fonts loaded.`);
 console.log(`${wideRenders} wide renders (${pages.length} pages × 1920 and 2560 px): the content sits beside the sidebar, On this page fits, the page block is centred.`);
 console.log('RENDER OK');
