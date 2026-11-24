@@ -17,13 +17,14 @@
     outline: var(--vc-stroke-focus) solid var(--vc-focus);
     outline-offset: 2px;
   }
+  /* Tabular figures only in number cells (.vc-num and [data-type='number'] below): Inter's also give the
+     hyphen a figure's width, so a text cell that set them read "person - days". */
   .vc-table {
     width: 100%;
     margin: 0;
     border-collapse: separate;
     border-spacing: 0;
     font-size: var(--vc-font-size-sm);
-    font-variant-numeric: tabular-nums;
     line-height: 1.45;
   }
   .vc-table caption {

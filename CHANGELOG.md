@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.3.0: tables set tabular figures in number cells only. `.vc-table` and the classless
+  table set them on every cell, and Inter's tabular figures also give the hyphen a figure's width, so a text cell
+  read "person - days". Number cells, marked `.vc-num` or `data-type="number"`, keep them, in the classless table
+  too; a number column without either mark now sets proportional figures. `scripts/check-figures.mjs`, part of
+  the render checks, fails when a text cell sets a hyphenated word wider than a paragraph does, or when a number
+  cell's figures differ in width.
 - From PESTEL Challenger 0.2.0: the risk matrix and the horizon strip keep one column as wide as the figure. The
   figure's single column used to grow to the width of its numbers table once "Show the numbers" opened, so the
   grid above it stretched, its markers moved and the figure ran over whatever stood beside it. The table now
