@@ -76,6 +76,78 @@ description: Modal dialog and drawer on native <dialog>, menus and popovers on t
 </dialog>
 <!-- /demo -->
 
+<h2 id="live-run">Live-run dialog</h2>
+<p>A prototype that can run live opens this dialog before the first request: the person hands over their own API key, chooses how thorough the run is and how much it may spend, promises to enter public information only and starts the run. Its parts come in this order, so a person who has met one live prototype finds their way in the next.</p>
+<ol>
+  <li>The key goes in a password field with a show button. The note under it says where the key stays (in this tab's memory, gone on close or reload) and links to where keys come from. A key the page already holds shows masked, such as <code>sk-ant-…9fQx</code>, with <em>Forget key</em> beside it.</li>
+  <li>The setting is a <a href="{{root}}components/actions.html">segmented control</a> with the cheaper default chosen.</li>
+  <li>Research and Advanced follow where a prototype has them. Research is a switch, off, with what it adds to the cost; Advanced is closed and holds the model and the effort.</li>
+  <li>The budget cap for this run is a <a href="{{root}}components/forms.html">slider</a> with its value in words beside it.</li>
+  <li>In the acknowledgement the person promises to enter public information only. It is unticked at every opening.</li>
+  <li>The estimate gives cost and time with these settings and is announced as they change.</li>
+  <li>The start button sits in the footer, disabled until the key looks right and the box is ticked, with “You are interacting with an AI system” in a lilac tag beside it.</li>
+</ol>
+<p>Where the page finds what is usually private in what the person entered, such as an e-mail address or the word “confidential”, a warning lists it above the footer and asks them to remove it or confirm it is public. It warns; it does not block.</p>
+<!-- demo center -->
+<button type="button" class="vc-button" data-vc-open="demo-live"><span class="vc-icon vc-icon--zap" aria-hidden="true"></span>Run it live</button>
+<dialog class="vc-dialog vc-live" id="demo-live" aria-labelledby="demo-live-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="demo-live-title">Run it live</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body vc-live__body" data-doc-live>
+    <section class="vc-live__part vc-live__key">
+      <label class="vc-label" for="demo-live-key">Your API key</label>
+      <div class="vc-live__key-row">
+        <input class="vc-input" id="demo-live-key" type="password" autocomplete="off" spellcheck="false" data-1p-ignore data-lpignore="true" placeholder="Any test value, never a real key" aria-describedby="demo-live-note">
+        <button type="button" class="vc-icon-button" aria-controls="demo-live-key" aria-pressed="false" aria-label="Show key" data-doc-live-show><span class="vc-icon vc-icon--eye" aria-hidden="true"></span></button>
+      </div>
+      <p class="vc-help" id="demo-live-note">Needs a key from the Claude Console. It stays in this tab's memory and is gone when you close or reload it. <a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">Get a key</a></p>
+      <p class="vc-live__current" hidden>Key in memory: <span class="vc-live__masked" data-doc-live-masked></span> <button type="button" class="vc-button vc-button--ghost vc-button--sm vc-live__forget" data-doc-live-forget>Forget key</button></p>
+    </section>
+    <fieldset class="vc-live__part vc-live__setting">
+      <legend class="vc-label">Setting</legend>
+      <div class="vc-segmented" role="radiogroup" aria-label="Setting">
+        <label><input type="radio" name="demo-live-setting" value="fast"><span>Fast</span></label>
+        <label><input type="radio" name="demo-live-setting" value="balanced" checked><span>Balanced</span></label>
+        <label><input type="radio" name="demo-live-setting" value="thorough"><span>Thorough</span></label>
+      </div>
+      <p class="vc-help">Balanced suits most runs. Thorough uses a larger model and costs about twenty times as much.</p>
+    </fieldset>
+    <div class="vc-live__part vc-live__research">
+      <label class="vc-switch"><input type="checkbox" role="switch"> Look up recent news first</label>
+      <p class="vc-help">Adds about €0.05 for five searches. The models know the world up to their training cutoff.</p>
+    </div>
+    <details class="vc-live__part vc-live__advanced">
+      <summary>Advanced</summary>
+      <div>
+        <div class="vc-field"><label class="vc-label" for="demo-live-model">Model</label><select class="vc-select" id="demo-live-model"><option>The setting's model</option><option>A larger model</option></select></div>
+        <div class="vc-field"><label class="vc-label" for="demo-live-effort">Effort</label><select class="vc-select" id="demo-live-effort"><option>Low</option><option selected>Medium</option><option>High</option></select></div>
+      </div>
+    </details>
+    <div class="vc-live__part vc-live__cap">
+      <label class="vc-label" for="demo-live-cap">Budget cap for this run</label>
+      <div class="vc-slider-field">
+        <input class="vc-slider" id="demo-live-cap" type="range" min="0.05" max="3" step="0.05" value="0.5">
+        <output for="demo-live-cap" data-vc-currency="EUR">€0.50</output>
+      </div>
+    </div>
+    <label class="vc-checkbox vc-live__ack"><input type="checkbox" data-doc-live-ack> I will enter public information only: nothing confidential, personal or otherwise protected.</label>
+    <div class="vc-alert vc-alert--warning vc-live__warning" role="alert">
+      <span class="vc-icon vc-icon--warning" aria-hidden="true"></span>
+      <div>Usually private, found in what you entered:<ul><li>an e-mail address in Weaknesses</li><li>the word “internal” in Threats</li></ul>Remove it, or start the run if it is public.</div>
+    </div>
+    <p class="vc-live__estimate" aria-live="polite">Estimate with these settings: about <strong>€0.01</strong> and <strong>one to two minutes</strong>.</p>
+  </div>
+  <footer class="vc-dialog__footer vc-live__footer">
+    <span class="vc-tag vc-tag--feature"><span class="vc-icon vc-icon--sparkle" aria-hidden="true"></span>You are interacting with an AI system</span>
+    <button type="button" class="vc-button vc-live__start" disabled data-doc-live-start>Start the live run</button>
+  </footer>
+</dialog>
+<!-- /demo -->
+<p class="vc-caption">Type any test value and tick the box, and the start button turns on; it starts nothing here. The value lives in a variable of this page's script, so a reload forgets it. Never type a real key into a demo.</p>
+<p>Keep the key in one variable of one module, as <a href="{{root}}start/prototypes.html#nothing-kept">Nothing is kept</a> sets out, and check it with the provider's free call before the run, such as listing the models. The field sits in no <code>&lt;form&gt;</code>, carries <code>autocomplete="off"</code>, <code>spellcheck="false"</code>, <code>data-1p-ignore</code> and <code>data-lpignore="true"</code>, and the dialog refuses to work inside another page's frame. The start button stays disabled until the key looks right and the box is ticked, and the box is unticked every time the dialog opens. <code>liveDialogProblems(html)</code> from <code>scripts/lib/live.mjs</code> checks the parts, their order, the key field, the setting, the cap, the box, the estimate and the notice beside the start button, with a self-test of planted mistakes.</p>
+
 <h2>Menu</h2>
 <p>A menu is a list of actions in a <code>popover</code>. The browser handles light dismiss (click outside, <kbd>Esc</kbd>) and the top layer. <code>vici.js</code> places it under its trigger, moves focus into it, adds arrow-key navigation and returns focus when it closes.</p>
 <!-- demo center -->

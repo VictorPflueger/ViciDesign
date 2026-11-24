@@ -304,7 +304,7 @@
 <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-52" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
 <h2 id="slider">Slider</h2>
-<p>A native range input with a hexagon thumb. <code>vici.js</code> fills the track up to the thumb and updates a connected <code>&lt;output&gt;</code>.</p>
+<p>A native range input with a hexagon thumb. <code>vici.js</code> fills the track up to the thumb and updates a connected <code>&lt;output&gt;</code>. An output with <code>data-vc-currency="EUR"</code> shows the value as money in the language of the page around it, such as “€0.50” or “0,50&nbsp;€”.</p>
 <div class="doc-demo doc-demo--stack doc-demo--narrow"><div class="doc-demo__preview">
 <div class="vc-field">
   <label class="vc-label" for="f-conf">Confidence threshold</label>
@@ -320,6 +320,13 @@
     <output for="f-temp">0.7</output>
   </div>
 </div>
+<div class="vc-field">
+  <label class="vc-label" for="f-cap">Budget cap</label>
+  <div class="vc-slider-field">
+    <input class="vc-slider" id="f-cap" type="range" min="0.05" max="3" step="0.05" value="0.5">
+    <output for="f-cap" data-vc-currency="EUR">€0.50</output>
+  </div>
+</div>
 </div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-53"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-conf&quot;</span><span class="tk-punct">&gt;</span>Confidence threshold<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider-field&quot;</span><span class="tk-punct">&gt;</span>
@@ -332,6 +339,13 @@
   <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider-field&quot;</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-temp&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;range&quot;</span> <span class="tk-attr">min</span>=<span class="tk-str">&quot;0&quot;</span> <span class="tk-attr">max</span>=<span class="tk-str">&quot;2&quot;</span> <span class="tk-attr">step</span>=<span class="tk-str">&quot;0.1&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;0.7&quot;</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">output</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-temp&quot;</span><span class="tk-punct">&gt;</span>0.7<span class="tk-punct">&lt;/</span><span class="tk-tag">output</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-field&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">label</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-label&quot;</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-cap&quot;</span><span class="tk-punct">&gt;</span>Budget cap<span class="tk-punct">&lt;/</span><span class="tk-tag">label</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider-field&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">input</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-slider&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;f-cap&quot;</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;range&quot;</span> <span class="tk-attr">min</span>=<span class="tk-str">&quot;0.05&quot;</span> <span class="tk-attr">max</span>=<span class="tk-str">&quot;3&quot;</span> <span class="tk-attr">step</span>=<span class="tk-str">&quot;0.05&quot;</span> <span class="tk-attr">value</span>=<span class="tk-str">&quot;0.5&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">output</span> <span class="tk-attr">for</span>=<span class="tk-str">&quot;f-cap&quot;</span> <span class="tk-attr">data-vc-currency</span>=<span class="tk-str">&quot;EUR&quot;</span><span class="tk-punct">&gt;</span>€0.50<span class="tk-punct">&lt;/</span><span class="tk-tag">output</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-53" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 

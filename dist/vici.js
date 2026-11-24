@@ -241,8 +241,16 @@
     // CSS turns the ratio into a fill that ends under the centre of the thumb
     input.style.setProperty('--vc-slider-value', String(ratio));
     if (input.id) {
-      $all('output[for~="' + input.id + '"]').forEach(function (out) { out.textContent = input.value; });
+      $all('output[for~="' + input.id + '"]').forEach(function (out) { out.textContent = sliderText(out, input.value); });
     }
+  }
+  // An output with data-vc-currency="EUR" shows the value as money in the language of the page around it.
+  function sliderText(out, raw) {
+    var currency = out.getAttribute('data-vc-currency');
+    if (!currency) return raw;
+    var holder = out.closest('[lang]');
+    var lang = (holder && holder.getAttribute('lang')) || 'en';
+    try { return new Intl.NumberFormat(lang, { style: 'currency', currency: currency }).format(Number(raw)); } catch (e) { return raw; }
   }
   function initSliders(scope) {
     $all('input.vc-slider', scope).forEach(updateSlider);
