@@ -3,8 +3,9 @@
    parts come in a fixed order: the key, the setting, research and Advanced where a prototype has
    them, the budget cap, the acknowledgement, the estimate, and in the footer the start button with
    the AI notice beside it. The key field sits in no form and password managers leave it alone; the
-   start button stays disabled until the key looks right and the acknowledgement is ticked. The body
-   scrolls, the footer doesn't, so the start button and the notice stay in view at 1280 × 720.
+   start button stays disabled until the key looks right and the acknowledgement is ticked. At 1280 × 720
+   every part shows without scrolling, the estimate too, until a warning appears; then the body scrolls and
+   the footer doesn't, so the start button and the notice stay in view.
    ========================================================================== */
 
 @layer vici.components {
@@ -114,9 +115,11 @@
   }
   .vc-live__footer > .vc-tag--feature { flex: 0 1 auto; }
 
+  /* A short window: the dialog takes up to 94 % of it, not a dialog's 85 %, and its parts sit closer. */
   @media (max-height: 760px) {
+    .vc-live.vc-dialog { max-height: min(94vh, 52rem); }
     .vc-live .vc-dialog__header { padding-block: var(--vc-space-4) var(--vc-space-1); }
-    .vc-live__body { gap: var(--vc-space-3); }
+    .vc-live__body { gap: var(--vc-space-2); }
     .vc-live .vc-dialog__footer { padding-block: var(--vc-space-3); }
   }
 }

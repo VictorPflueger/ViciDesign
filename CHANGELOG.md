@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.3.0: the live-run dialog fits 1280 × 720. Below 760 px of height it took at most a
+  dialog's 85 % of the window, so with research and Advanced the body scrolled by 64 px and the estimate slid
+  under the footer: a person saw the start button but not what the run would cost. It now takes up to 94 % and
+  its parts sit 8 px apart, so every part shows until a warning appears; then the body scrolls and the footer
+  stays. `scripts/check-live-fit.mjs`, part of the render checks, opens the demo at 1280 × 720 and 1920 × 1080
+  with no warning and fails when the body has to scroll or the box, the estimate or the start button is out of
+  view, with a self-test that shows the warning.
 - From Prototype Ideator 0.3.0: a callout's actions keep to its ink as well. The callout already set its text and
   surface tokens, but a button, a link and a secondary button still took the page theme's accent: in the dark
   theme a secondary button put the callout's dark ink on the night's dark accent, at 1.4:1, and a link turned
