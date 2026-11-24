@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Live-run dialog: where a person hands a prototype their own API key and starts a live run. The
+   parts come in a fixed order: the key, the setting, research and Advanced where a prototype has
+   them, the budget cap, the acknowledgement, the estimate, and in the footer the start button with
+   the AI notice beside it. The key field sits in no form and password managers leave it alone; the
+   start button stays disabled until the key looks right and the acknowledgement is ticked. The body
+   scrolls, the footer doesn't, so the start button and the notice stay in view at 1280 × 720.
+   ========================================================================== */
+
+@layer vici.components {
+  .vc-live { --vc-dialog-width: 38rem; }
+  .vc-live__body {
+    display: grid;
+    gap: var(--vc-space-4);
+    align-content: start;
+    color: var(--vc-text);
+  }
+  .vc-live__part {
+    display: grid;
+    gap: var(--vc-space-2);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .vc-live__part > legend { padding: 0; margin-bottom: var(--vc-space-2); }
+  /* A note runs as one paragraph, its link inside the sentence. */
+  .vc-live__part > .vc-help { display: block; margin: 0; }
+  .vc-live__setting > .vc-segmented { justify-self: start; }
+
+  /* The key: the field and its show button in one row, the note under it, the held key masked. */
+  .vc-live__key-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--vc-space-2);
+    align-items: center;
+  }
+  .vc-live__current {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--vc-space-2) var(--vc-space-3);
+    margin: 0;
+    color: var(--vc-text);
+  }
+  .vc-live__current[hidden] { display: none; }
+  .vc-live__masked {
+    font-family: var(--vc-font-mono);
+    font-variant-ligatures: none;
+  }
+
+  /* Advanced folds away; its summary reads as a quiet control. */
+  .vc-live__advanced > summary {
+    width: fit-content;
+    min-height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vc-space-2);
+    color: var(--vc-text);
+    font-weight: var(--vc-weight-medium);
+    list-style: none;
+    cursor: pointer;
+    border-radius: var(--vc-radius-sm);
+  }
+  .vc-live__advanced > summary::-webkit-details-marker { display: none; }
+  .vc-live__advanced > summary::after {
+    content: '';
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    background: currentColor;
+    mask: var(--vc-svg-chevron-down) center / contain no-repeat;
+    transition: rotate var(--vc-duration-base) var(--vc-ease-standard);
+  }
+  .vc-live__advanced[open] > summary::after { rotate: 180deg; }
+  .vc-live__advanced > summary:hover { color: var(--vc-accent-text); }
+  .vc-live__advanced > summary:focus-visible {
+    outline: var(--vc-stroke-focus) solid var(--vc-focus);
+    outline-offset: 2px;
+  }
+  .vc-live__advanced[open] > summary { margin-bottom: var(--vc-space-2); }
+  .vc-live__advanced > :not(summary) { display: grid; gap: var(--vc-space-3); }
+
+  /* The cap: the slider with its value in words beside it. */
+  .vc-live__cap .vc-slider-field output,
+  .vc-live__value {
+    min-width: 4.5rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: var(--vc-weight-semibold);
+    color: var(--vc-text);
+    text-align: end;
+  }
+
+  /* The acknowledgement: its text wraps beside the box. */
+  .vc-live__ack { align-items: start; color: var(--vc-text); }
+
+  /* What the page found that is usually private, before the run. */
+  .vc-live__warning ul { margin: var(--vc-space-1) 0 0; padding-inline-start: 1.2em; }
+
+  /* The estimate: cost and time with these settings, announced when they change. */
+  .vc-live__estimate {
+    margin: 0;
+    padding: var(--vc-space-3) var(--vc-space-4);
+    border-radius: var(--vc-radius-lg);
+    background: var(--vc-bg-subtle);
+    color: var(--vc-text);
+  }
+  .vc-live__estimate strong { font-variant-numeric: tabular-nums; }
+
+  /* The footer: the AI notice first, the start button at the end. */
+  .vc-live__footer {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vc-live__footer > .vc-tag--feature { flex: 0 1 auto; }
+
+  @media (max-height: 760px) {
+    .vc-live .vc-dialog__header { padding-block: var(--vc-space-4) var(--vc-space-1); }
+    .vc-live__body { gap: var(--vc-space-3); }
+    .vc-live .vc-dialog__footer { padding-block: var(--vc-space-3); }
+  }
+}

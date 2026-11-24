@@ -91,6 +91,65 @@
     }
   });
 
+  // Overlays, Live-run dialog: a test value held in this variable turns the start button on once the box is
+  // ticked. Nothing runs, and a reload forgets it.
+  var liveKey = null;
+  function liveParts(el) {
+    var dlg = el.closest('.vc-live');
+    if (!dlg) return null;
+    return {
+      field: dlg.querySelector('.vc-live__key input'),
+      show: dlg.querySelector('[data-doc-live-show]'),
+      ack: dlg.querySelector('[data-doc-live-ack]'),
+      start: dlg.querySelector('[data-doc-live-start]'),
+      current: dlg.querySelector('.vc-live__current'),
+      masked: dlg.querySelector('[data-doc-live-masked]')
+    };
+  }
+  function liveSync(p) {
+    p.start.disabled = !((p.field.value.trim() || liveKey) && p.ack.checked);
+    p.current.hidden = !liveKey;
+    if (liveKey) p.masked.textContent = masked(liveKey);
+  }
+  document.addEventListener('input', function (e) {
+    var p = e.target instanceof Element ? liveParts(e.target) : null;
+    if (p) liveSync(p);
+  });
+  document.addEventListener('change', function (e) {
+    var p = e.target instanceof Element ? liveParts(e.target) : null;
+    if (p) liveSync(p);
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target instanceof Element ? e.target : null;
+    var p = t ? liveParts(t) : null;
+    if (!p) return;
+    if (t.closest('[data-doc-live-show]')) {
+      var reveal = p.field.type === 'password';
+      p.field.type = reveal ? 'text' : 'password';
+      p.show.setAttribute('aria-pressed', String(reveal));
+      p.show.setAttribute('aria-label', reveal ? 'Hide key' : 'Show key');
+    } else if (t.closest('[data-doc-live-forget]')) {
+      liveKey = null;
+      liveSync(p);
+    } else if (t.closest('[data-doc-live-start]')) {
+      if (p.field.value.trim()) liveKey = p.field.value.trim();
+      p.field.value = '';
+      p.field.type = 'password';
+      p.show.setAttribute('aria-pressed', 'false');
+      p.show.setAttribute('aria-label', 'Show key');
+      liveSync(p);
+      if (window.Vici) window.Vici.toast({ title: 'Nothing runs here', message: 'In a prototype the run starts now.', tone: 'info', duration: 2600 });
+    }
+  });
+  // The box is unticked at every opening.
+  document.addEventListener('click', function (e) {
+    var opener = e.target instanceof Element ? e.target.closest('[data-vc-open]') : null;
+    var dlg = opener ? document.getElementById(opener.getAttribute('data-vc-open')) : null;
+    if (!dlg || !dlg.classList.contains('vc-live')) return;
+    var p = liveParts(dlg.querySelector('.vc-live__key'));
+    if (p) { p.ack.checked = false; liveSync(p); }
+  }, true);
+
   // Highlight the current section in "On this page".
   var toc = document.querySelector('.doc-toc');
   if (toc && 'IntersectionObserver' in window) {
