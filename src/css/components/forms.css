@@ -371,6 +371,10 @@
     --_ki: calc((var(--_sh) - var(--_kh)) / 2 * 1.1547);   /* knob inset, parallel to the track's points */
     --_fh: calc(var(--_sh) + 8px);   /* focus ring height */
     align-items: center;
+    /* A target of at least 40 px: the label reaches 0.5rem above and below its 1.5rem track, and gives the
+       space back, so the line it stands on keeps its height. */
+    padding-block: 0.5rem;
+    margin-block: -0.5rem;
   }
   .vc-switch > input {
     width: var(--_sw);
@@ -442,14 +446,16 @@
   }
 
   /* ---------- Slider: native range with a hexagon thumb ---------- */
+  /* The thumb is 28 px; the slider's box is a 40 px target, centred on it, and gives the extra 6 px above and
+     below back to the layout. */
   .vc-slider {
     --_fill: var(--vc-accent);
     --_track: var(--vc-track);
     appearance: none;
     display: block;
     width: 100%;
-    height: 28px;
-    margin: 0;
+    height: 40px;
+    margin: -6px 0;
     background: transparent;
     cursor: pointer;
   }

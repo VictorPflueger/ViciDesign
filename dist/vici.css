@@ -2053,10 +2053,12 @@
   }
 
   /* ---------- Segmented control ---------- */
+  /* Each option is a target of at least 40 px: its radio reaches into the control's padding, which the
+     option's 32 px leave around it. */
   .vc-segmented {
     display: inline-flex;
     gap: 2px;
-    padding: 3px;
+    padding: 4px;
     border: 1px solid var(--vc-border);
     border-radius: var(--vc-radius-md);
     background: var(--vc-bg-subtle);
@@ -2070,7 +2072,7 @@
   .vc-segmented input {
     position: absolute;
     opacity: 0;
-    inset: 0;
+    inset: -4px 0;
     margin: 0;
     /* The radio covers its whole option. The browser's own radio is round, so even unseen it takes square
        corners: nothing in Vici is round. */
@@ -2479,6 +2481,10 @@
     --_ki: calc((var(--_sh) - var(--_kh)) / 2 * 1.1547);   /* knob inset, parallel to the track's points */
     --_fh: calc(var(--_sh) + 8px);   /* focus ring height */
     align-items: center;
+    /* A target of at least 40 px: the label reaches 0.5rem above and below its 1.5rem track, and gives the
+       space back, so the line it stands on keeps its height. */
+    padding-block: 0.5rem;
+    margin-block: -0.5rem;
   }
   .vc-switch > input {
     width: var(--_sw);
@@ -2550,14 +2556,16 @@
   }
 
   /* ---------- Slider: native range with a hexagon thumb ---------- */
+  /* The thumb is 28 px; the slider's box is a 40 px target, centred on it, and gives the extra 6 px above and
+     below back to the layout. */
   .vc-slider {
     --_fill: var(--vc-accent);
     --_track: var(--vc-track);
     appearance: none;
     display: block;
     width: 100%;
-    height: 28px;
-    margin: 0;
+    height: 40px;
+    margin: -6px 0;
     background: transparent;
     cursor: pointer;
   }
@@ -5588,15 +5596,19 @@
   .vc-risk__key > [data-size='lg']::before { width: 1.15rem; }
 
   /* The numbers behind the chart, one click away. */
+  /* A target of at least 40 px: the line reaches 0.625rem above and below and gives the space back. */
   .vc-risk__numbers > summary {
     width: fit-content;
+    padding-block: 0.625rem;
+    margin-block: -0.625rem;
     color: var(--vc-accent-text);
     font-size: var(--vc-font-size-sm);
     font-weight: var(--vc-weight-semibold);
+    line-height: 1.25rem;
     cursor: pointer;
   }
   .vc-risk__numbers > summary:focus-visible { outline: var(--vc-stroke-focus) solid var(--vc-focus); outline-offset: 2px; }
-  .vc-risk__numbers[open] > summary { margin-bottom: var(--vc-space-2); }
+  .vc-risk__numbers[open] > summary { margin-bottom: calc(var(--vc-space-2) - 0.625rem); }
 }
 
 /* ==========================================================================
