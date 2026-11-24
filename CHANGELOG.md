@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Business Model Canvas Challenger 1.0.0: the live-run dialog's acknowledgement takes 40 px each way,
+  as every target at the default size does. In a wide dialog its text fits on one line, and the line was a
+  20 px target: the label now reaches 0.625rem above and below its text and gives the space back, so the
+  dialog keeps its height. A checkbox's tick and a radio's focus ring follow such a reach (`--_reach`).
+  `scripts/check-targets.mjs` measures the acknowledgement with one line of text and catches it without its
+  reach.
 - From Prototype Ideator 0.4.0: a honeycomb's first column starts at the comb's edge. As a list it kept the
   base style's 1.4em indent, so a comb sat 22 px right of where its box began and a comb sized to its box ran
   past it. `.vc-honeycomb` now drops the indent, and the hexagon guideline says when an odd number of columns
