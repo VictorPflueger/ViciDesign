@@ -6501,6 +6501,9 @@
   body:has(> [data-vc-print]) > :not([data-vc-print]) { display: none !important; }
   html:has(.vc-report),
   html:has(.vc-report) body { background: #ffffff !important; }
+  /* Paper is light: the page's margins print in the canvas colour of the root's scheme, so in the dark
+     theme every sheet printed with its backgrounds sat in a black frame. */
+  html:has(.vc-report) { color-scheme: light !important; }
   .vc-report-file { padding: 0; }
   .vc-report {
     display: block;
