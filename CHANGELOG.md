@@ -5,6 +5,22 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.4.0: the report, the document a run ends in (`components/report.html`). `.vc-report`
+  is a column of pages, a cover first, that read as light sheets on screen in either theme and print on A4,
+  each page from a new sheet. The prototype's footer stands on every page: "Created with" the tool and its
+  address at the bottom left, "Built by Victor Pflüger · page 2 of 5" at the bottom right, and an optional
+  notice at the top, such as a run that stopped at its budget cap. They print in the page's margin boxes,
+  with the words from the report's own attributes, so one stylesheet serves both languages; Firefox and
+  Safari, which have no margin boxes, print the report's fixed footer instead. `Vici.report.print(report)`,
+  or a button with `data-vc-report-print`, prints the report alone through a copy at the end of `body`;
+  `Vici.report.prepare(report)` makes that copy for Ctrl+P and marks it for Chromium 131 to 147, which print
+  margin boxes but cannot say so to `@supports at-rule()`; `Vici.report.html(report)` returns the report as an
+  HTML file of its own, with its pictures as data, the style rules that reach it, no script and a policy that
+  loads nothing. `reportProblems(html)` in `scripts/lib/report.mjs` checks a report's structure, proved on
+  planted mistakes by `scripts/check-report.mjs`. `scripts/check-report-print.mjs`, part of the render checks,
+  prints the example in Chromium, reads the PDF with `scripts/lib/pdf.mjs` and fails when a page lacks the
+  footer, its page number or the notice, prints the footer twice, or when the file asks for anything or loses
+  the report's look.
 - From Prototype Ideator 0.3.0: the live-run dialog fits 1280 × 720. Below 760 px of height it took at most a
   dialog's 85 % of the window, so with research and Advanced the body scrolled by 64 px and the estimate slid
   under the footer: a person saw the start button but not what the run would cost. It now takes up to 94 % and
