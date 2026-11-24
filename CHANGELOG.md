@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 0.2.0: the risk matrix and the horizon strip keep one column as wide as the figure. The
+  figure's single column used to grow to the width of its numbers table once "Show the numbers" opened, so the
+  grid above it stretched, its markers moved and the figure ran over whatever stood beside it. The table now
+  scrolls in its own wrap and the grid stays where it was. The render check opens every figure's numbers and
+  fails when that makes a risk matrix or horizon strip wider than it was closed.
 - From PESTEL Challenger 0.2.0: the segmented control's radios take square corners. Each radio lies unseen over its
   whole option, and the browser's own radio is round, so a check of rendered shapes found a round element the
   size of every option. They now draw no radio of their own and have square corners.

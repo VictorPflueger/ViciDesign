@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // Renders every documentation page and starter in Chromium (light and dark at 1280 px, light at
 // 375 px and 320 px) and fails on console errors, failed requests, horizontal overflow on phones, elements
-// that render as circles or pills, hexagon components without a polygon clip-path, or fonts that
-// did not load. A second pass at 1920 and 2560 px fails when the docs content drifts away from the
-// sidebar, On this page runs past the window, the page block is off centre or anything overflows
-// (scripts/lib/layout-probe.mjs). Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
+// that render as circles or pills, hexagon components without a polygon clip-path, a risk matrix or
+// horizon strip that grows wider once its numbers are open, or fonts that did not load. A second pass
+// at 1920 and 2560 px fails when the docs content drifts away from the sidebar, On this page runs past
+// the window, the page block is off centre or anything overflows (scripts/lib/layout-probe.mjs). Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
 import { createRequire } from 'node:module';
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
@@ -65,11 +65,15 @@ for (const run of runs) {
     const label = `${p} [${run.scheme} ${run.width}px]`;
     await page.goto(pathToFileURL(join(ROOT, p)).href, { waitUntil: 'load' });
     await page.evaluate(() => document.fonts.ready);
+    // The numbers behind a risk matrix or a horizon strip are measured open: an opened table must
+    // scroll in its wrap, never widen its figure or the page.
+    const closed = await page.evaluate(() => [...document.querySelectorAll('.vc-risk, .vc-horizon')].map((f) => Math.max(f.scrollWidth, f.clientWidth)));
+    await page.evaluate(() => { for (const d of document.querySelectorAll('details.vc-risk__numbers')) d.open = true; });
     await page.waitForTimeout(60);
     renders++;
     for (const e of errors) failures.push(`${label}: ${e}`);
 
-    const result = await page.evaluate((HEX) => {
+    const result = await page.evaluate(([HEX, closed]) => {
       const out = { overflow: [], round: [], hex: 0, notHex: [], fonts: {} };
       // 1. horizontal overflow on narrow screens (ignore content inside scroll containers)
       const vw = document.documentElement.clientWidth;
@@ -110,17 +114,24 @@ for (const run of runs) {
           else out.notHex.push(`${sel}${pseudo || ''} → ${cp}`);
         }
       }
-      // 4. fonts
+      // 4. opening a risk matrix's or a horizon strip's numbers leaves the figure as wide as it was:
+      //    the table scrolls in its wrap and the grid above it stays where it was
+      out.wide = [...document.querySelectorAll('.vc-risk, .vc-horizon')]
+        .map((f, i) => [f, closed[i]])
+        .filter(([f, before]) => f.getClientRects().length && f.scrollWidth > before + 1)
+        .map(([f, before]) => `${f.tagName.toLowerCase()}.${[...f.classList].join('.')} lays out ${f.scrollWidth}px, ${before}px closed`);
+      // 5. fonts
       out.fonts = {
         display: document.fonts.check('650 32px "Bricolage Grotesque"'),
         text: document.fonts.check('400 16px "Inter"'),
       };
       return out;
-    }, HEX_PARTS);
+    }, [HEX_PARTS, closed]);
 
     if (run.width <= 375) for (const o of result.overflow) failures.push(`${label}: horizontal overflow ${o}`);
     for (const r of result.round.slice(0, 3)) failures.push(`${label}: renders round: ${r}`);
     for (const n of result.notHex.slice(0, 3)) failures.push(`${label}: not a hexagon: ${n}`);
+    for (const w of result.wide.slice(0, 3)) failures.push(`${label}: its numbers widen the figure: ${w}`);
     if (!result.fonts.display || !result.fonts.text) failures.push(`${label}: fonts not loaded ${JSON.stringify(result.fonts)}`);
     hexChecked += result.hex;
   }
@@ -151,7 +162,7 @@ if (hexChecked === 0) {
   console.error('No hexagon components found on any page — the check could not run.');
   process.exit(1);
 }
-console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow.`);
+console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow; opening the numbers widens no risk matrix or horizon strip.`);
 console.log(`${hexChecked} rendered hexagon parts compute a polygon clip-path; nothing renders as a circle or pill; fonts loaded.`);
 console.log(`${wideRenders} wide renders (${pages.length} pages × 1920 and 2560 px): the content sits beside the sidebar, On this page fits, the page block is centred.`);
 console.log('RENDER OK');
