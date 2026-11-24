@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.3.0: a callout gives its content every text and surface token in its own ink. It
+  stays pastel in both themes, but `--vc-text-subtle`, `--vc-on-accent-soft`, `--vc-bg`, `--vc-bg-subtle`,
+  `--vc-surface-raised`, `--vc-surface-hover` and `--vc-border-strong` still followed the page theme, so in the
+  dark theme a note in subtle text, a hint in `--vc-on-accent-soft` or a box on `--vc-bg-subtle` turned pale on
+  the pastel and vanished, at 1:1 to 1.6:1. `scripts/check-callout.mjs`, part of the render checks, puts a probe
+  into a callout of every tone in the light theme and in both ways of setting the dark one, and fails when a text
+  token falls below the ratio the token check asks for on the page.
 - From PESTEL Challenger 0.2.0: the risk matrix and the horizon strip keep one column as wide as the figure. The
   figure's single column used to grow to the width of its numbers table once "Show the numbers" opened, so the
   grid above it stretched, its markers moved and the figure ran over whatever stood beside it. The table now

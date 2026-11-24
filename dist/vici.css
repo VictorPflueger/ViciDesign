@@ -4371,15 +4371,24 @@
     border-radius: var(--vc-radius-lg);
     background: var(--_tone);
     color: var(--_ink);
-    /* A callout stays pastel in both themes, so the tokens its content uses (inline code, kbd,
-       borders, focus rings) follow the callout's ink instead of the page theme. */
+    /* A callout stays pastel in both themes, so every text and surface token its content may use (inline
+       code, kbd, notes, hints, borders, focus rings) follows the callout's ink instead of the page theme.
+       A token left to the page turns pale on the pastel in the dark theme, and the text on it vanishes;
+       scripts/check-callout.mjs measures every pair. */
     --vc-text: var(--_ink);
     --vc-text-muted: color-mix(in oklab, var(--_ink) 80%, var(--_tone));
+    --vc-text-subtle: color-mix(in oklab, var(--_ink) 72%, var(--_tone));
+    --vc-on-accent-soft: var(--_ink);
     --vc-focus: var(--_ink);
-    --vc-surface: color-mix(in oklab, #fff 60%, var(--_tone));
+    --vc-bg: var(--_tone);
+    --vc-bg-subtle: color-mix(in oklab, var(--_ink) 4%, var(--_tone));
     --vc-bg-sunken: color-mix(in oklab, var(--_ink) 7%, var(--_tone));
+    --vc-surface: color-mix(in oklab, #fff 60%, var(--_tone));
+    --vc-surface-raised: color-mix(in oklab, #fff 72%, var(--_tone));
+    --vc-surface-hover: color-mix(in oklab, var(--_ink) 10%, var(--_tone));
     --vc-border-subtle: color-mix(in oklab, var(--_ink) 16%, var(--_tone));
     --vc-border: color-mix(in oklab, var(--_ink) 28%, var(--_tone));
+    --vc-border-strong: color-mix(in oklab, var(--_ink) 45%, var(--_tone));
   }
   .vc-callout__cell {
     display: grid;
