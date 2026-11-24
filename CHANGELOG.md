@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From SWOT Challenger 1.0.0: reduced motion reaches a dialog's backdrop. The rule that cuts every animation to a
+  single frame matched every element and its `::before` and `::after`, but no `*` selector matches `::backdrop`,
+  so each dialog's backdrop still faded in over 210 ms. A rule of its own now cuts it too. `scripts/check-motion.mjs`,
+  part of the render checks, opens each dialog of the Overlays page with reduced motion asked for and fails when
+  anything on it, in it or behind it animates for longer than an instant; its self-test expects the dialog and
+  its backdrop to animate without reduced motion.
 - From SWOT Challenger 1.0.0: the live-run dialog fits every window from 1280 × 720 to 1920 × 1080. Its short-window
   rule stopped at 760 px of height, so from 761 to about 860 px the dialog fell back to a dialog's 85 % of the
   window: at 1366 × 768 the body scrolled by 63 px and the estimate slid under the footer. The rule now holds up to

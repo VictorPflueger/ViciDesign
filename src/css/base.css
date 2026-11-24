@@ -441,5 +441,12 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    /* A dialog's backdrop is no element's ::before or ::after, so it needs its own rule; its own rule also
+       keeps an engine that does not know ::backdrop from dropping the list above. */
+    ::backdrop {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

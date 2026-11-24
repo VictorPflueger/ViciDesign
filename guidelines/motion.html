@@ -103,6 +103,7 @@
 <pre><code>@media (prefers-reduced-motion: reduce) {
   .my-hero-animation { animation: none; }
 }</code></pre>
+<p>The rule reaches every element and its <code>::before</code> and <code>::after</code>, and a dialog's <code>::backdrop</code> through a rule of its own, since no <code>*</code> selector matches it. <code>scripts/check-motion.mjs</code>, part of the render checks, opens each dialog of the Overlays page with reduced motion asked for and fails when anything on it, in it or behind it animates for longer than an instant.</p>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../guidelines/elevation.html" rel="prev"><span class="vc-caption">Previous</span><span>Elevation &amp; surfaces</span></a><a class="doc-pager__link doc-pager__link--next" href="../guidelines/icons.html" rel="next"><span class="vc-caption">Next</span><span>Iconography</span></a></nav>
       </article>
