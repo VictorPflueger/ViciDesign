@@ -257,6 +257,9 @@
   :where(table) {
     width: 100%;
     border-collapse: collapse;
+  }
+  /* Tabular figures in number cells only: Inter's also widen the hyphen in words such as person-days. */
+  :where(td, th):where(.vc-num, [data-type='number']) {
     font-variant-numeric: tabular-nums;
   }
   :where(th) {

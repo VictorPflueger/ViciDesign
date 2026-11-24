@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.3.0: tables set tabular figures in number cells only. `.vc-table` and the classless
+  table set them on every cell, and Inter's tabular figures also give the hyphen a figure's width, so a text cell
+  read "person - days". Number cells, marked `.vc-num` or `data-type="number"`, keep them, in the classless table
+  too; a number column without either mark now sets proportional figures. `scripts/check-figures.mjs`, part of
+  the render checks, fails when a text cell sets a hyphenated word wider than a paragraph does, or when a number
+  cell's figures differ in width.
 - From Prototype Ideator 0.3.0: a callout gives its content every text and surface token in its own ink. It
   stays pastel in both themes, but `--vc-text-subtle`, `--vc-on-accent-soft`, `--vc-bg`, `--vc-bg-subtle`,
   `--vc-surface-raised`, `--vc-surface-hover` and `--vc-border-strong` still followed the page theme, so in the

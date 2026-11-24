@@ -13,7 +13,7 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 </header>
 
 <h2>Table</h2>
-<p>Wrap tables in <code>.vc-table-wrap</code> so they scroll sideways on small screens instead of breaking the layout. While a wrapper scrolls, <code>vici.js</code> makes it focusable and names it after the table's caption, so keyboard users can scroll it too. Right-align numeric columns with <code>.vc-num</code>. Add <code>data-vc-sortable</code> and a <code>.vc-table__sort</code> button in each sortable header, and <code>vici.js</code> sorts the rows and sets <code>aria-sort</code>. Cells can carry a <code>data-value</code> for exact sorting.</p>
+<p>Wrap tables in <code>.vc-table-wrap</code> so they scroll sideways on small screens instead of breaking the layout. While a wrapper scrolls, <code>vici.js</code> makes it focusable and names it after the table's caption, so keyboard users can scroll it too. Mark numeric columns with <code>.vc-num</code>: it right-aligns them and sets tabular figures, so the digits line up. Only number cells set them, because Inter's tabular figures also give the hyphen a figure's width, and a word such as person-days would read “person - days”. Add <code>data-vc-sortable</code> and a <code>.vc-table__sort</code> button in each sortable header, and <code>vici.js</code> sorts the rows and sets <code>aria-sort</code>. Cells can carry a <code>data-value</code> for exact sorting.</p>
 <!-- demo block -->
 <div class="vc-table-wrap">
   <table class="vc-table" data-vc-sortable>
