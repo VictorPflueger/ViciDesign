@@ -5819,8 +5819,9 @@
   .vc-item[data-status='addressed'] .vc-item__state--status { --_bg: var(--vc-success-bg); --_fg: var(--vc-success-text); }
   .vc-item[data-status='removed'] .vc-item__state--status { --_bg: var(--vc-surface); --_fg: var(--vc-neutral-text); }
 
-  /* A tight area shows each item's first line until it is opened. */
-  .vc-framework--compact .vc-item:not([open]) .vc-item__text {
+  /* A tight area shows each item's first line until it is opened: the whole framework, or one area alone. */
+  .vc-framework--compact .vc-item:not([open]) .vc-item__text,
+  .vc-framework__area--compact .vc-item:not([open]) .vc-item__text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;

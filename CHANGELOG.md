@@ -5,6 +5,10 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Business Model Canvas Challenger 1.0.0: `.vc-framework__area--compact` shows the first line of each closed
+  item in one area alone, as `.vc-framework--compact` does for the whole framework. A canvas block short of
+  room at 1920 × 1080 hid its items one by one while its neighbours showed theirs in full; it can now show
+  more of them, each on its first line, before it hides any. The framework page says when to use which.
 - From Business Model Canvas Challenger 1.0.0: the live-run dialog's acknowledgement takes 40 px each way,
   as every target at the default size does. In a wide dialog its text fits on one line, and the line was a
   20 px target: the label now reaches 0.625rem above and below its text and gives the space back, so the
