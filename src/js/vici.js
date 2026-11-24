@@ -852,6 +852,12 @@
       try { return !!doc.querySelector(bare); } catch (e) { return true; }
     });
   }
+  // Some engines leave a page rule's margin boxes out of its text, though they hold them as its child rules.
+  function pageRuleText(rule) {
+    var text = rule.cssText;
+    if (/@(top|bottom|left|right)-/.test(text) || !rule.cssRules || !rule.cssRules.length) return text;
+    return text.replace(/\}\s*$/, Array.prototype.map.call(rule.cssRules, function (r) { return r.cssText; }).join('\n') + '\n}');
+  }
   function rulesFor(list, doc) {
     var out = [];
     Array.prototype.forEach.call(list, function (rule) {
@@ -871,7 +877,7 @@
         out.push(head + ' {\n' + inner.join('\n') + '\n}');
         return;
       }
-      out.push(rule.cssText);
+      out.push(rule.type === CSSRule.PAGE_RULE ? pageRuleText(rule) : rule.cssText);
     });
     return out;
   }
@@ -934,10 +940,10 @@
       var media = sheet.media && sheet.media.mediaText;
       if (kept.length) css.push(media && media !== 'all' ? '@media ' + media + ' {\n' + kept.join('\n') + '\n}' : kept.join('\n'));
     });
-    var footer = footerOf(report);
-    if (footer.length) css.push(':root { ' + footer.map(function (pair) { return pair[0] + ': ' + pair[1] + ';'; }).join(' ') + ' }');
+    // The footer's words stand on the root as prepare() sets them, in its style attribute.
+    var footer = footerOf(report).map(function (pair) { return pair[0] + ': ' + pair[1]; }).join('; ');
     var title = options.title || (report.querySelector('.vc-report__title') || {}).textContent || document.title;
-    return '<!DOCTYPE html>\n<html lang="' + escHtml(lang) + '" data-theme="light">\n<head>\n<meta charset="utf-8">\n'
+    return '<!DOCTYPE html>\n<html lang="' + escHtml(lang) + '" data-theme="light"' + (footer ? ' style="' + escHtml(footer) + '"' : '') + '>\n<head>\n<meta charset="utf-8">\n'
       + '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
       + '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; img-src data:">\n'
       + '<title>' + escHtml(String(title).replace(/\s+/g, ' ').trim()) + '</title>\n'

@@ -62,7 +62,7 @@ function footerOf(pdf, { notice = '', fixed = '' } = {}) {
   if (n < 3) problems.push(`the example printed on ${n} page(s), expected 3 or more`);
   pages.forEach((text, i) => {
     const count = text.split(START).length - 1;
-    if (count !== 1) problems.push(`page ${i + 1} of ${n} shows the footer's start ${count} times`);
+    if (count !== 1) problems.push(`page ${i + 1} of ${n} shows the footer's start ${count} times${i ? '' : `; it reads: ${text.slice(0, 160)}…`}`);
     if (!text.includes(squeeze(`Built by Victor Pflüger · page ${i + 1} of ${n}`))) problems.push(`page ${i + 1} of ${n} lacks "Built by Victor Pflüger · page ${i + 1} of ${n}"`);
     if (notice && !text.includes(squeeze(notice))) problems.push(`page ${i + 1} of ${n} lacks the notice`);
     if (fixed && text.includes(squeeze(fixed))) problems.push(`page ${i + 1} of ${n} prints the fixed footer beside the margin boxes`);
@@ -141,28 +141,42 @@ const noticed = footerOf(await printed(() => {
   r.removeAttribute('data-vc-notice');
 }), { notice: NOTICE, fixed });
 failures.push(...noticed.problems.map((p) => `with a notice: ${p}`));
-// Chromium 131 to 147 cannot answer @supports at-rule(): without that rule, the copy's own mark must still
-// keep the fixed footer from printing beside the margin boxes.
-const unasked = footerOf(await printed(() => {
-  const drop = (list, owner) => {
-    for (let i = list.length - 1; i >= 0; i--) {
-      const rule = list[i];
-      if (rule instanceof CSSSupportsRule && /at-rule\(/.test(rule.conditionText)) { owner.deleteRule(i); window.__dropped = (window.__dropped || 0) + 1; }
-      else if (rule.cssRules) drop(rule.cssRules, rule);
-    }
-  };
-  for (const sheet of document.styleSheets) { try { drop(sheet.cssRules, sheet); } catch { /* another origin */ } }
+// Chromium 131 to 147 print margin boxes but cannot answer @supports at-rule(): Vici.report.prepare() marks the
+// copy from the browser's version instead. In such a Chromium the prints above already took that path; in a newer
+// one, it is taken here, with CSS.supports unable to answer and the @supports at-rule() rules taken away.
+const marked = await page.evaluate(() => {
   const asks = CSS.supports.bind(CSS);
   CSS.supports = (...a) => (/at-rule\(/.test(String(a[0])) ? false : asks(...a));
-  window.__undo = Vici.report.prepare(document.getElementById('demo-report'));
-  window.__marked = document.querySelector('body > [data-vc-print]').hasAttribute('data-vc-margin-boxes');
+  const undo = Vici.report.prepare(document.getElementById('demo-report'));
+  const mark = document.querySelector('body > [data-vc-print]').hasAttribute('data-vc-margin-boxes');
+  undo();
   CSS.supports = asks;
-}), { fixed });
-failures.push(...unasked.problems.map((p) => `without @supports at-rule(): ${p}`));
-if (!(await page.evaluate(() => window.__marked))) failures.push('without @supports at-rule(), Vici.report.prepare() did not mark the copy from the browser\'s version');
-if (!(await page.evaluate(() => window.__dropped)) && (await page.evaluate(() => CSS.supports('at-rule(@bottom-left)')))) failures.push('self-test: found no @supports at-rule() rule to take away');
-await page.reload({ waitUntil: 'load' });
-await page.evaluate(() => document.fonts.ready);
+  return mark;
+});
+if (!marked) failures.push('with CSS.supports unable to answer at-rule(), Vici.report.prepare() did not mark the copy from the browser\'s version');
+const atRule = await page.evaluate(() => CSS.supports('at-rule(@bottom-left)'));
+if (atRule) {
+  const unasked = footerOf(await printed(() => {
+    let dropped = 0;
+    const drop = (list, owner) => {
+      for (let i = list.length - 1; i >= 0; i--) {
+        const rule = list[i];
+        if (rule instanceof CSSSupportsRule && /at-rule\(/.test(rule.conditionText)) { owner.deleteRule(i); dropped += 1; }
+        else if (rule.cssRules) drop(rule.cssRules, rule);
+      }
+    };
+    for (const sheet of document.styleSheets) { try { drop(sheet.cssRules, sheet); } catch { /* another origin */ } }
+    window.__dropped = dropped;
+    const asks = CSS.supports.bind(CSS);
+    CSS.supports = (...a) => (/at-rule\(/.test(String(a[0])) ? false : asks(...a));
+    window.__undo = Vici.report.prepare(document.getElementById('demo-report'));
+    CSS.supports = asks;
+  }), { fixed });
+  failures.push(...unasked.problems.map((p) => `without @supports at-rule(): ${p}`));
+  if (!(await page.evaluate(() => window.__dropped))) failures.push('self-test: found no @supports at-rule() rule to take away');
+  await page.reload({ waitUntil: 'load' });
+  await page.evaluate(() => document.fonts.ready);
+}
 const bare = footerOf(await printed(() => {
   const r = document.getElementById('demo-report').cloneNode(true);
   r.id = 'demo-report-bare';
@@ -228,9 +242,14 @@ for (const [part, value] of Object.entries(made.look)) {
   if (opened.look[part] !== value) failures.push(`the file's ${part} looks different: ${opened.look[part]} instead of ${value}`);
 }
 if (opened.look.headings !== '1 true H2') failures.push(`in the file the title is not the one h1 with every page opening on an h2: ${opened.look.headings}`);
-// A file has no script: only a browser that answers @supports at-rule() keeps its fixed footer out.
+// A file has no script: only a browser that answers @supports at-rule() keeps its fixed footer out. And it
+// holds the margin boxes only where the browser that made it writes a page rule's margin rules out; where it
+// can't, the file prints its fixed footer on every page instead.
 const asks = await opened.p.evaluate(() => CSS.supports('at-rule(@bottom-left)'));
-const filePrint = footerOf(await opened.p.pdf({ preferCSSPageSize: true, printBackground: true }), { fixed: asks ? fixed : '' });
+const filePdf = await opened.p.pdf({ preferCSSPageSize: true, printBackground: true });
+const boxes = /@bottom-right/.test(file);
+const filePrint = boxes ? footerOf(filePdf, { fixed: asks ? fixed : '' }) : { pages: pdfPageTexts(filePdf).length, problems: [] };
+if (!boxes) pdfPageTexts(filePdf).map(squeeze).forEach((text, i, all) => { if (!text.includes(squeeze(fixed))) filePrint.problems.push(`page ${i + 1} of ${all.length} has no footer: the file holds no margin boxes, and its fixed footer did not print`); });
 failures.push(...filePrint.problems.map((p) => `the file, printed: ${p}`));
 const control = await openFile(`<!DOCTYPE html><html lang="en-GB"><body>${made.bareMarkup}</body></html>`);
 if (Object.entries(made.look).every(([part, value]) => control.look[part] === value)) failures.push('self-test: the bare markup without the file\'s styles passed the look test');
@@ -242,5 +261,5 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each and once without @supports at-rule(), never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
+console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each${atRule ? ' and once without @supports at-rule()' : ''}, never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages with its footer ${boxes ? 'in the margin boxes' : 'fixed, since this browser writes no margin rules out'}: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
 console.log('REPORT PRINT OK');
