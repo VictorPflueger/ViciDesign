@@ -792,7 +792,7 @@
   // footer, not two.
   function marginBoxes() {
     try { if (window.CSS && CSS.supports('at-rule(@bottom-left)')) return true; } catch (e) { /* older engines */ }
-    var m = /\bChrom(?:e|ium)\/(\d+)/.exec(navigator.userAgent || '');
+    var m = /Chrom(?:e|ium)\/(\d+)/.exec(navigator.userAgent || '');
     return !!m && Number(m[1]) >= 131;
   }
   var printing = null;

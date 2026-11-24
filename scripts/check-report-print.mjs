@@ -123,7 +123,9 @@ await page.evaluate(() => window.__undo());
 if (ground.length) failures.push(`in print something paints behind the pages: ${ground.join(', ')}`);
 
 // In print: the footer on every page, with the notice when there is one, and the fixed footer hidden.
-const fixed = await page.evaluate(() => document.querySelector('#demo-report .vc-report__footer').textContent);
+// The fixed footer's first part ("Created with … · address") appears nowhere else, so it marks a fixed footer
+// that printed; the PDF may give its parts apart, so the whole footer would be a weaker probe.
+const fixed = await page.evaluate(() => document.querySelector('#demo-report .vc-report__footer').firstElementChild.textContent);
 async function printed(prepare) {
   await page.evaluate(prepare);
   const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
@@ -150,9 +152,14 @@ const unasked = footerOf(await printed(() => {
     }
   };
   for (const sheet of document.styleSheets) { try { drop(sheet.cssRules, sheet); } catch { /* another origin */ } }
+  const asks = CSS.supports.bind(CSS);
+  CSS.supports = (...a) => (/at-rule\(/.test(String(a[0])) ? false : asks(...a));
   window.__undo = Vici.report.prepare(document.getElementById('demo-report'));
+  window.__marked = document.querySelector('body > [data-vc-print]').hasAttribute('data-vc-margin-boxes');
+  CSS.supports = asks;
 }), { fixed });
 failures.push(...unasked.problems.map((p) => `without @supports at-rule(): ${p}`));
+if (!(await page.evaluate(() => window.__marked))) failures.push('without @supports at-rule(), Vici.report.prepare() did not mark the copy from the browser\'s version');
 if (!(await page.evaluate(() => window.__dropped)) && (await page.evaluate(() => CSS.supports('at-rule(@bottom-left)')))) failures.push('self-test: found no @supports at-rule() rule to take away');
 await page.reload({ waitUntil: 'load' });
 await page.evaluate(() => document.fonts.ready);
