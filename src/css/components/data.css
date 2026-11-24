@@ -466,13 +466,17 @@
   .vc-risk__key > [data-size='lg']::before { width: 1.15rem; }
 
   /* The numbers behind the chart, one click away. */
+  /* A target of at least 40 px: the line reaches 0.625rem above and below and gives the space back. */
   .vc-risk__numbers > summary {
     width: fit-content;
+    padding-block: 0.625rem;
+    margin-block: -0.625rem;
     color: var(--vc-accent-text);
     font-size: var(--vc-font-size-sm);
     font-weight: var(--vc-weight-semibold);
+    line-height: 1.25rem;
     cursor: pointer;
   }
   .vc-risk__numbers > summary:focus-visible { outline: var(--vc-stroke-focus) solid var(--vc-focus); outline-offset: 2px; }
-  .vc-risk__numbers[open] > summary { margin-bottom: var(--vc-space-2); }
+  .vc-risk__numbers[open] > summary { margin-bottom: calc(var(--vc-space-2) - 0.625rem); }
 }

@@ -185,6 +185,7 @@
 
 <h2 id="density">Density</h2>
 <p>Components default to a comfortable density: 40&nbsp;px controls and 16–20&nbsp;px card padding. For data-heavy screens, use the small control size (<code>--sm</code> modifiers, 32&nbsp;px), <code>.vc-table--compact</code> and a <code>--vc-space-3</code> grid gap. Don't go below 32&nbsp;px for anything clickable on a touch screen. 44&nbsp;px is the comfortable minimum for touch targets.</p>
+<p>At the default size every target takes at least 40&nbsp;px each way, also where the control draws smaller: a segmented option's radio covers the control's padding around it, a switch's label reaches above and below its track, a slider's box is centred on its thumb, and the summary that opens a chart's numbers reaches above and below its line. Each gives the extra space back to the layout. <code>scripts/check-targets.mjs</code> measures them.</p>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../guidelines/hexagon.html" rel="prev"><span class="vc-caption">Previous</span><span>Hexagon geometry</span></a><a class="doc-pager__link doc-pager__link--next" href="../guidelines/elevation.html" rel="next"><span class="vc-caption">Next</span><span>Elevation &amp; surfaces</span></a></nav>
       </article>

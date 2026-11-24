@@ -288,10 +288,12 @@
   }
 
   /* ---------- Segmented control ---------- */
+  /* Each option is a target of at least 40 px: its radio reaches into the control's padding, which the
+     option's 32 px leave around it. */
   .vc-segmented {
     display: inline-flex;
     gap: 2px;
-    padding: 3px;
+    padding: 4px;
     border: 1px solid var(--vc-border);
     border-radius: var(--vc-radius-md);
     background: var(--vc-bg-subtle);
@@ -305,7 +307,7 @@
   .vc-segmented input {
     position: absolute;
     opacity: 0;
-    inset: 0;
+    inset: -4px 0;
     margin: 0;
     /* The radio covers its whole option. The browser's own radio is round, so even unseen it takes square
        corners: nothing in Vici is round. */

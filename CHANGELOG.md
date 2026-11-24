@@ -11,6 +11,14 @@ breaking changes to class names or token names bump the major version.
   works: in a single row, where every second cell is every second column, but not over two rows, where a cell
   of the second row lands on one of the first. `scripts/check-render.mjs` fails when a honeycomb's first column
   starts indented or two of its cells overlap.
+- From PESTEL Challenger 1.0.0: every target takes at least 40 px each way at the default size, as Layout's
+  Density sets for controls. A segmented option was a 32 px target inside its 40 px control: its radio now
+  reaches into the control's padding, which grows from 3 to 4 px, so the control stands 42 px tall. A
+  switch's label was 24 px and a slider 28 px: each now reaches above and below to 40 px and gives the extra
+  space back, so no layout moves. The summary that opens the numbers behind a risk matrix or a horizon strip
+  was a 21 px line and reaches 40 px the same way. `scripts/check-targets.mjs`, part of the render checks,
+  measures them on the Actions, Forms, Data and Overlays pages in both schemes, and catches the controls
+  without their reach.
 - From SWOT Challenger 1.0.0: a report printed from the dark theme with its background graphics on sat in a
   black frame. The page's margins print in the canvas colour of the root's colour scheme, which stayed dark. In
   print the root of a page with a report now takes the light scheme. `scripts/check-report-print.mjs` fails when
