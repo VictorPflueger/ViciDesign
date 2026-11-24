@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 0.4.0: a honeycomb's first column starts at the comb's edge. As a list it kept the
+  base style's 1.4em indent, so a comb sat 22 px right of where its box began and a comb sized to its box ran
+  past it. `.vc-honeycomb` now drops the indent, and the hexagon guideline says when an odd number of columns
+  works: in a single row, where every second cell is every second column, but not over two rows, where a cell
+  of the second row lands on one of the first. `scripts/check-render.mjs` fails when a honeycomb's first column
+  starts indented or two of its cells overlap.
 - From PESTEL Challenger 1.0.0: every target takes at least 40 px each way at the default size, as Layout's
   Density sets for controls. A segmented option was a 32 px target inside its 40 px control: its radio now
   reaches into the control's padding, which grows from 3 to 4 px, so the control stands 42 px tall. A
