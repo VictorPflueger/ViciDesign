@@ -6357,7 +6357,7 @@
    Report: the document a run ends in, read on screen and printed or saved as PDF. A report is a column of
    pages: a cover, then pages that each start a new sheet when printed; a long page runs on over more
    sheets. On screen each page is a sheet of paper, light in either theme (the report carries
-   data-theme="light"). In print the sheets fall away: the pages run on A4 with fixed margins, and the
+   data-theme="light"), lying on the page's own background. In print the sheets fall away: the pages run on A4 with fixed margins, and the
    prototype's footer stands on every page, in the page's margin boxes where the browser has them
    (Chromium), or else as a fixed line that repeats without page numbers. The footer's words come from
    custom properties on the root, so one stylesheet serves every prototype and both languages:
@@ -6378,6 +6378,9 @@
     justify-items: center;
     color: var(--vc-text);
     page: vc-report;
+    /* The sheets lie on the page's own background. As a theme island the report would paint the light
+       canvas behind them, a light slab on a dark page. */
+    background: none;
   }
 
   /* A page: a sheet of A4's width at most, its margins as padding. */
