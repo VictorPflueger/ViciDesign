@@ -115,8 +115,9 @@
   }
   .vc-live__footer > .vc-tag--feature { flex: 0 1 auto; }
 
-  /* A short window: the dialog takes up to 94 % of it, not a dialog's 85 %, and its parts sit closer. */
-  @media (max-height: 760px) {
+  /* A window up to 880 px high: the dialog takes up to 94 % of it, not a dialog's 85 %, and its parts sit
+     closer. Above 880 px, 85 % holds every part; below it, 85 % left the estimate under the footer. */
+  @media (max-height: 880px) {
     .vc-live.vc-dialog { max-height: min(94vh, 52rem); }
     .vc-live .vc-dialog__header { padding-block: var(--vc-space-4) var(--vc-space-1); }
     .vc-live__body { gap: var(--vc-space-2); }

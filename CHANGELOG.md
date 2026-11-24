@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From SWOT Challenger 1.0.0: the live-run dialog fits every window from 1280 × 720 to 1920 × 1080. Its short-window
+  rule stopped at 760 px of height, so from 761 to about 860 px the dialog fell back to a dialog's 85 % of the
+  window: at 1366 × 768 the body scrolled by 63 px and the estimate slid under the footer. The rule now holds up to
+  880 px, above which 85 % holds every part. `scripts/check-live-fit.mjs` opens the demo at 1280 × 720, 1366 × 768,
+  1440 × 900 and 1920 × 1080 in both schemes, and at every height from 720 to 1080 px in steps of 20 px with 761
+  and 881 px, where the spacing changes.
 - From PESTEL Challenger 1.0.0: reduced motion stills a dialog's backdrop too. Its fade escaped the rule,
   which shortened the animations of elements and their `::before` and `::after` only, so a method dialog still
   faded in its backdrop for a fifth of a second. And a dialog's body that holds only text and scrolls, which

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-// The live-run dialog shows every part without scrolling at 1280 × 720 and 1920 × 1080, the estimate too, until a
-// warning appears. Renders the Overlays page in Chromium, opens the demo with research and Advanced but no warning
+// The live-run dialog shows every part without scrolling at every window from 1280 × 720 to 1920 × 1080, the estimate
+// too, until a warning appears: at 1280 × 720, 1366 × 768, 1440 × 900 and 1920 × 1080 in both schemes, and at every
+// height from 720 to 1080 px in steps of 20 px, with 761 and 881 px, where its spacing changes, in the light scheme.
+// Renders the Overlays page in Chromium, opens the demo with research and Advanced but no warning
 // (a real dialog shows one only when the page finds something private), and fails when the body has to scroll or
 // when the box, the estimate or the start button lies outside the dialog's visible area. A self-test shows the
 // warning and expects the body to scroll at 1280 × 720, so the check can fail. Needs Playwright with Chromium:
@@ -54,13 +56,14 @@ async function measure(width, height, scheme, warning) {
 
 const failures = [];
 let checked = 0;
-for (const [width, height] of [[1280, 720], [1920, 1080]]) {
-  for (const scheme of ['light', 'dark']) {
-    const m = await measure(width, height, scheme, false);
-    checked += 1;
-    if (m.overflow > 0) failures.push(`${width} × ${height}, ${scheme}: with no warning the body scrolls by ${m.overflow} px`);
-    for (const p of m.parts) failures.push(`${width} × ${height}, ${scheme}: ${p} lies outside the dialog's visible area`);
-  }
+const sizes = [[1280, 720], [1366, 768], [1440, 900], [1920, 1080]].flatMap(([w, h]) => ['light', 'dark'].map((s) => [w, h, s]));
+const heights = [...new Set([...Array.from({ length: 19 }, (_, i) => 720 + i * 20), 761, 881])].sort((a, b) => a - b);
+for (const height of heights) sizes.push([1366, height, 'light']);
+for (const [width, height, scheme] of sizes) {
+  const m = await measure(width, height, scheme, false);
+  checked += 1;
+  if (m.overflow > 0) failures.push(`${width} × ${height}, ${scheme}: with no warning the body scrolls by ${m.overflow} px`);
+  for (const p of m.parts) failures.push(`${width} × ${height}, ${scheme}: ${p} lies outside the dialog's visible area`);
 }
 // Self-test: with the warning the parts no longer fit at 1280 × 720, so the body scrolls and the footer stays.
 const control = await measure(1280, 720, 'light', true);
@@ -72,4 +75,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`${checked} renders: with no warning the live-run dialog shows the box, the estimate and the start button without scrolling at 1280 × 720 and 1920 × 1080; with a warning the body scrolls and the footer stays.\nLIVE DIALOG FIT OK`);
+console.log(`${checked} renders: with no warning the live-run dialog shows the box, the estimate and the start button without scrolling from 1280 × 720 to 1920 × 1080, at every height from 720 to 1080 px; with a warning the body scrolls and the footer stays.\nLIVE DIALOG FIT OK`);
