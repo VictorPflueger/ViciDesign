@@ -5,6 +5,8 @@
 //   - a switch's label, which reaches above and below its track;
 //   - a slider, whose box is centred on its thumb;
 //   - the summary that opens the numbers behind a risk matrix or a horizon strip;
+//   - the live-run dialog's acknowledgement, whose label reaches above and below its text, measured with
+//     one line of text, as a wide dialog draws it;
 // in the light and the dark scheme. The small size (--sm modifiers, 32 px) is left out, as Density allows it
 // on data-heavy screens. Self-test: the same controls with their reach taken away must be caught, so the
 // check can fail. Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
@@ -35,6 +37,7 @@ const TARGETS = [
   ['a switch', '.vc-switch:not([class*="--sm"])'],
   ['a slider', '.vc-slider:not([class*="--sm"])'],
   ['the numbers\' summary', '.vc-risk__numbers > summary'],
+  ['the acknowledgement', '.vc-live__ack'],
 ];
 const failures = [];
 const counts = Object.fromEntries(TARGETS.map(([name]) => [name, 0]));
@@ -46,12 +49,17 @@ async function measure(file, scheme, { reach = true } = {}) {
     // Self-test: take the reach away, as the controls were drawn before.
     await page.evaluate(() => {
       const sheet = new CSSStyleSheet();
-      sheet.replaceSync('.vc-segmented input { inset: 0 !important } .vc-switch { padding-block: 0 !important; margin-block: 0 !important } .vc-slider { height: 28px !important; margin: 0 !important } .vc-risk__numbers > summary { padding-block: 0 !important; margin-block: 0 !important }');
+      sheet.replaceSync('.vc-segmented input { inset: 0 !important } .vc-switch { padding-block: 0 !important; margin-block: 0 !important } .vc-slider { height: 28px !important; margin: 0 !important } .vc-risk__numbers > summary { padding-block: 0 !important; margin-block: 0 !important } .vc-live__ack { padding-block: 0 !important; margin-block: 0 !important }');
       document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
     });
   }
-  // Open the live-run dialog the page demonstrates, so its controls render.
-  await page.evaluate(() => document.querySelector('dialog.vc-live')?.showModal?.());
+  // Open the live-run dialog the page demonstrates, so its controls render. The acknowledgement keeps one
+  // line of text, as a wide dialog draws it: two lines are 40 px without the reach.
+  await page.evaluate(() => {
+    const ack = document.querySelector('.vc-live__ack');
+    if (ack) ack.lastChild.textContent = ' Public information only';
+    document.querySelector('dialog.vc-live')?.showModal?.();
+  });
   await page.waitForTimeout(150);
   const found = await page.evaluate((targets) => targets.map(([name, sel]) => [name, [...document.querySelectorAll(sel)]
     .filter((el) => { const r = el.getBoundingClientRect(); return r.width > 0 && el.closest('dialog:not([open])') === null && getComputedStyle(el).visibility !== 'hidden' && !el.closest('[hidden]'); })
@@ -83,5 +91,5 @@ if (failures.length) {
   console.error(failures.map((f) => `FAIL  ${f}`).join('\n'));
   process.exit(1);
 }
-console.log(`${Object.entries(counts).map(([name, n]) => `${n} × ${name}`).join(', ')}, light and dark: every target at least 40 px each way; without their reach, all four kinds are caught.`);
+console.log(`${Object.entries(counts).map(([name, n]) => `${n} × ${name}`).join(', ')}, light and dark: every target at least 40 px each way; without their reach, every kind is caught.`);
 console.log('TARGETS OK');

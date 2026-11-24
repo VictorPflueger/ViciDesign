@@ -297,10 +297,12 @@
     outline: var(--vc-stroke-focus) solid var(--vc-focus);
     outline-offset: 2px;
   }
+  /* A label that reaches above its line, as the live-run dialog's acknowledgement does, sets --_reach to
+     that padding: the tick, and a radio's focus ring, move down with it. */
   .vc-checkbox::after {
     content: '';
     position: absolute;
-    top: 0.0625rem;
+    top: calc(var(--_reach, 0px) + 0.0625rem);
     left: 0;
     width: 1.125rem;
     height: 1.125rem;
@@ -348,7 +350,7 @@
   .vc-radio::before {
     content: '';
     position: absolute;
-    top: -4px;
+    top: calc(var(--_reach, 0px) - 4px);
     left: -4.6188px;
     width: calc(1.4434rem + 9.2376px);
     height: calc(1.25rem + 8px);

@@ -2410,10 +2410,12 @@
     outline: var(--vc-stroke-focus) solid var(--vc-focus);
     outline-offset: 2px;
   }
+  /* A label that reaches above its line, as the live-run dialog's acknowledgement does, sets --_reach to
+     that padding: the tick, and a radio's focus ring, move down with it. */
   .vc-checkbox::after {
     content: '';
     position: absolute;
-    top: 0.0625rem;
+    top: calc(var(--_reach, 0px) + 0.0625rem);
     left: 0;
     width: 1.125rem;
     height: 1.125rem;
@@ -2461,7 +2463,7 @@
   .vc-radio::before {
     content: '';
     position: absolute;
-    top: -4px;
+    top: calc(var(--_reach, 0px) - 4px);
     left: -4.6188px;
     width: calc(1.4434rem + 9.2376px);
     height: calc(1.25rem + 8px);
@@ -6335,8 +6337,16 @@
     text-align: end;
   }
 
-  /* The acknowledgement: its text wraps beside the box. */
-  .vc-live__ack { align-items: start; color: var(--vc-text); }
+  /* The acknowledgement: its text wraps beside the box. It takes 40 px each way, as every target at the
+     default size does: one line is 1.25rem, so the label reaches 0.625rem above and below its text and gives
+     the space back, and the dialog keeps its height. */
+  .vc-live__ack {
+    --_reach: 0.625rem;
+    align-items: start;
+    padding-block: var(--_reach);
+    margin-block: calc(var(--_reach) * -1);
+    color: var(--vc-text);
+  }
 
   /* What the page found that is usually private, before the run. */
   .vc-live__warning ul { margin: var(--vc-space-1) 0 0; padding-inline-start: 1.2em; }
