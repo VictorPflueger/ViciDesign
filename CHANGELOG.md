@@ -5,6 +5,10 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 1.0.0: in the dark theme a report's sheets lie on the page's own background. As a
+  theme island the report painted the light canvas behind them, so a light slab framed the white sheets on a
+  dark page. `.vc-report` now paints no background; the sheets keep theirs. `scripts/check-report-print.mjs`
+  fails when the report paints anything behind its sheets in the dark theme.
 - From SWOT Challenger 1.0.0: the live-run dialog fits every window from 1280 × 720 to 1920 × 1080. Its short-window
   rule stopped at 760 px of height, so from 761 to about 860 px the dialog fell back to a dialog's 85 % of the
   window: at 1366 × 768 the body scrolled by 63 px and the estimate slid under the footer. The rule now holds up to

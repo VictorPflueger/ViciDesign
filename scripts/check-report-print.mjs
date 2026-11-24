@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // A report prints alone with its footer on every page, and leaves as a file of its own that loads nothing.
 // Serves the site on a local port, opens the Report page in Chromium and:
-//   - checks that the sheets stay light in the dark theme and that the print copy stays hidden on screen;
+//   - checks that the sheets stay light in the dark theme, on the page's own background, and that the print
+//     copy stays hidden on screen;
 //   - prints the example through Vici.report.prepare() and reads the PDF: every page carries the footer's
 //     start, "page i of n" and, when the report has a notice, the notice, and none carries the fixed footer
 //     as well; removing the copy takes the footer's words off the root again;
@@ -92,6 +93,7 @@ const screen = await page.evaluate(() => {
   const root = getComputedStyle(document.documentElement);
   const out = {
     pageBg: getComputedStyle(document.body).backgroundColor,
+    reportBg: getComputedStyle(report).backgroundColor,
     sheetBg: getComputedStyle(sheet).backgroundColor,
     titleColor: getComputedStyle(title).color,
     copyShown: box ? getComputedStyle(box).display !== 'none' : null,
@@ -106,6 +108,7 @@ const screen = await page.evaluate(() => {
   return out;
 });
 if (screen.sheetBg !== 'rgb(255, 255, 255)') failures.push(`in the dark theme a sheet is ${screen.sheetBg}, not white`);
+if (screen.reportBg !== 'rgba(0, 0, 0, 0)') failures.push(`in the dark theme the report paints ${screen.reportBg} behind its sheets, a light slab on the dark page, where the page's own background should show`);
 if (screen.titleColor !== 'rgb(37, 0, 16)') failures.push(`in the dark theme the title is ${screen.titleColor}, not merlot`);
 if (screen.pageBg === 'rgb(255, 255, 255)') failures.push('self-test: the dark theme did not take, so the light sheets prove nothing');
 if (screen.copyShown !== false) failures.push(screen.copyShown === null ? 'Vici.report.prepare() made no copy at the end of body' : 'the print copy shows on screen');
@@ -262,5 +265,5 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each${atRule ? ' and once without @supports at-rule()' : ''}, never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages with its footer ${boxes ? 'in the margin boxes' : 'fixed, since this browser writes no margin rules out'}: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
+console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each${atRule ? ' and once without @supports at-rule()' : ''}, never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages with its footer ${boxes ? 'in the margin boxes' : 'fixed, since this browser writes no margin rules out'}: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets on the dark page in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
 console.log('REPORT PRINT OK');
