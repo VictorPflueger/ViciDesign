@@ -339,7 +339,9 @@
      everything without a style attribute. A cell's band follows impact × likelihood: low 1 to 4,
      medium 5 to 9, high 10 to 15, critical 16 to 25. Its score shows in the corner, so the bands
      never rest on colour alone, and the key names them in words. */
-  .vc-risk { display: grid; gap: var(--vc-space-3); min-width: 0; margin: 0; }
+  /* One column as wide as the figure: the numbers table, once opened, scrolls in its wrap instead of
+     widening the figure and the page with it. */
+  .vc-risk { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--vc-space-3); min-width: 0; margin: 0; }
   .vc-risk > figcaption > * { margin: 0; }
   /* The impact label up the left, the grid, the likelihood label under it. */
   .vc-risk__plot {

@@ -5,7 +5,8 @@
    ========================================================================== */
 
 @layer vici.components {
-  .vc-horizon { display: grid; gap: var(--vc-space-3); min-width: 0; margin: 0; }
+  /* One column as wide as the figure, as in the risk matrix: the opened numbers scroll in their wrap. */
+  .vc-horizon { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--vc-space-3); min-width: 0; margin: 0; }
   .vc-horizon > figcaption > * { margin: 0; }
 
   /* The lanes in the order of time, earliest first; an arrow under them says which way time runs. */
