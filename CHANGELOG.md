@@ -5,6 +5,15 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From PESTEL Challenger 1.0.0: reduced motion stills a dialog's backdrop too. Its fade escaped the rule,
+  which shortened the animations of elements and their `::before` and `::after` only, so a method dialog still
+  faded in its backdrop for a fifth of a second. And a dialog's body that holds only text and scrolls, which
+  Chromium makes focusable, showed only the top edge of its focus ring: the dialog cut off the rest, drawn
+  outside the body. The ring of `.vc-dialog__body`, `.vc-guide__rail` and `.vc-guide__chapters` now sits just
+  inside their edge. `scripts/check-dialog-render.mjs`, part of the render checks, opens the demo dialog with
+  reduced motion and fails when anything moves (without reduced motion its entrance must be seen moving), and
+  Tabs into a dialog whose body holds only text and fails when the ring doesn't show along the body's side (a
+  ring moved back outside the edge must be caught).
 - From PESTEL Challenger 0.4.0: the report, the document a run ends in (`components/report.html`). `.vc-report`
   is a column of pages, a cover first, that read as light sheets on screen in either theme and print on A4,
   each page from a new sheet. The prototype's footer stands on every page: "Created with" the tool and its

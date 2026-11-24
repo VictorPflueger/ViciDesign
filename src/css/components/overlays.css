@@ -68,6 +68,11 @@
     color: var(--vc-text-muted);
   }
   .vc-dialog__body > :last-child { margin-bottom: 0; }
+  /* A body that scrolls takes the keyboard's focus (Chromium makes a scrolling box focusable when nothing in
+     it is). The dialog clips whatever lies outside its edge, so the ring sits inside. */
+  .vc-dialog__body:focus-visible,
+  .vc-guide__rail:focus-visible,
+  .vc-guide__chapters:focus-visible { outline-offset: calc(-1 * var(--vc-stroke-focus)); }
   .vc-dialog__footer {
     display: flex;
     flex-wrap: wrap;
