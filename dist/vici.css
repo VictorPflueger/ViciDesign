@@ -6406,8 +6406,27 @@
     margin: 0 0 var(--vc-space-3);
     font-family: var(--vc-font-display);
     font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+    font-weight: var(--vc-weight-display);
+    letter-spacing: var(--vc-tracking-display);
     line-height: 1.08;
     text-wrap: balance;
+  }
+
+  /* Headings look the same at any level: an h2 in a file of its own reads as the h3 or h4 it was inside the
+     page. A page's first heading names the page; any other heading inside a page names a part of it. */
+  .vc-report__page :is(h2, h3, h4, h5, h6):not(.vc-report__title) {
+    margin: var(--vc-space-5) 0 var(--vc-space-2);
+    font-family: var(--vc-font-display);
+    font-size: var(--vc-font-size-lg);
+    font-weight: var(--vc-weight-semibold);
+    letter-spacing: var(--vc-tracking-heading);
+    line-height: 1.25;
+  }
+  .vc-report__page:not(.vc-report__cover) > :is(h2, h3, h4, h5):first-child {
+    margin: 0 0 var(--vc-space-4);
+    font-size: var(--vc-font-size-2xl);
+    font-weight: var(--vc-weight-display);
+    line-height: 1.15;
   }
   .vc-report__subtitle {
     margin: 0;

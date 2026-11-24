@@ -15,8 +15,8 @@ breaking changes to class names or token names bump the major version.
   or a button with `data-vc-report-print`, prints the report alone through a copy at the end of `body`;
   `Vici.report.prepare(report)` makes that copy for Ctrl+P and marks it for Chromium 131 to 147, which print
   margin boxes but cannot say so to `@supports at-rule()`; `Vici.report.html(report)` returns the report as an
-  HTML file of its own, with its pictures as data, the style rules that reach it, no script and a policy that
-  loads nothing. `reportProblems(html)` in `scripts/lib/report.mjs` checks a report's structure, proved on
+  HTML file of its own, with the title as its h1, its pictures as data, the style rules that reach it, no
+  script and a policy that loads nothing; report headings look the same at any level. `reportProblems(html)` in `scripts/lib/report.mjs` checks a report's structure, proved on
   planted mistakes by `scripts/check-report.mjs`. `scripts/check-report-print.mjs`, part of the render checks,
   prints the example in Chromium, reads the PDF with `scripts/lib/pdf.mjs` and fails when a page lacks the
   footer, its page number or the notice, prints the footer twice, or when the file asks for anything or loses

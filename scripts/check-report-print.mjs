@@ -185,6 +185,7 @@ const made = await page.evaluate(() => {
       tag: look(r.querySelector('.vc-tag--feature')),
       cell: look(r.querySelector('.vc-report__brand .vc-cell')),
       table: look(r.querySelector('.vc-table th')),
+      'page heading': look(r.querySelectorAll('.vc-report__page')[1].firstElementChild),
     },
   };
 });
@@ -208,12 +209,15 @@ async function openFile(html) {
   await p.setContent(html, { waitUntil: 'load' });
   const look = await p.evaluate(() => {
     const r = document.querySelector('.vc-report');
+    const firsts = [...r.querySelectorAll('.vc-report__page')].slice(1).map((pg) => pg.querySelector('h1, h2, h3, h4, h5, h6')?.tagName);
     const lk = (el) => { const s = getComputedStyle(el); return [s.fontSize, s.fontWeight, s.color, s.backgroundColor].join(' '); };
     return {
       title: lk(r.querySelector('.vc-report__title')),
       tag: lk(r.querySelector('.vc-tag--feature')),
       cell: lk(r.querySelector('.vc-report__brand .vc-cell')),
       table: lk(r.querySelector('.vc-table th')),
+      'page heading': lk(r.querySelectorAll('.vc-report__page')[1].firstElementChild),
+      headings: `${document.querySelectorAll('h1').length} ${document.querySelector('h1')?.classList.contains('vc-report__title')} ${[...new Set(firsts)].join(' ')}`,
     };
   });
   return { p, look };
@@ -223,6 +227,7 @@ if (asked.length) failures.push(`the file asked for ${asked.length} thing(s), su
 for (const [part, value] of Object.entries(made.look)) {
   if (opened.look[part] !== value) failures.push(`the file's ${part} looks different: ${opened.look[part]} instead of ${value}`);
 }
+if (opened.look.headings !== '1 true H2') failures.push(`in the file the title is not the one h1 with every page opening on an h2: ${opened.look.headings}`);
 // A file has no script: only a browser that answers @supports at-rule() keeps its fixed footer out.
 const asks = await opened.p.evaluate(() => CSS.supports('at-rule(@bottom-left)'));
 const filePrint = footerOf(await opened.p.pdf({ preferCSSPageSize: true, printBackground: true }), { fixed: asks ? fixed : '' });
@@ -237,5 +242,5 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each and once without @supports at-rule(), never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages: it asked for nothing and kept the look of the title, the AI tag, the brand cell and the table. Light sheets in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
+console.log(`Printed the example on ${plain.pages} pages with the footer and "page i of n" on each, once more with the notice on each and once without @supports at-rule(), never with the fixed footer beside it, and the file of its own (${kb} KB) on ${filePrint.pages} pages: it asked for nothing, made the title its one h1 and kept the look of the title, a page heading, the AI tag, the brand cell and the table. Light sheets in the dark theme; the print copy stays hidden on screen and leaves no trace.`);
 console.log('REPORT PRINT OK');

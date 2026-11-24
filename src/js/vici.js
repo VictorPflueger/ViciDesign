@@ -746,8 +746,8 @@
   // data-vc-notice above every page. It returns a function that takes the copy away again.
   // Vici.report.print(report) does that around the browser's print dialog, and a button with
   // data-vc-report-print="<report id>" calls it. Vici.report.html(report, { title }) returns the report as an
-  // HTML file of its own: its markup with absolute links, its pictures as data, the page's style rules that
-  // reach it without web fonts, a policy that loads nothing, and no script.
+  // HTML file of its own: its markup with absolute links and the title as its h1, its pictures as data, the
+  // page's style rules that reach it without web fonts, a policy that loads nothing, and no script.
   var REPORT_FOOTER = [
     ['data-vc-footer-start', '--vc-report-footer-start'],
     ['data-vc-footer-end', '--vc-report-footer-end'],
@@ -908,6 +908,15 @@
       else img.remove();
     });
     $all('picture > source, script, noscript, template', copy).forEach(function (el) { el.remove(); });
+    // In a file of its own the title is the h1, so every heading moves up as far as the title does.
+    var top = copy.querySelector('.vc-report__title');
+    var shift = top && /^H[1-6]$/.test(top.tagName) ? Number(top.tagName.charAt(1)) - 1 : 0;
+    if (shift > 0) $all('h1, h2, h3, h4, h5, h6', copy).forEach(function (el) {
+      var up = document.createElement('h' + Math.max(1, Number(el.tagName.charAt(1)) - shift));
+      Array.prototype.forEach.call(el.attributes, function (a) { up.setAttribute(a.name, a.value); });
+      while (el.firstChild) up.appendChild(el.firstChild);
+      el.replaceWith(up);
+    });
     $all('a[href]', copy).forEach(function (a) {
       if (a.getAttribute('href').charAt(0) !== '#') a.setAttribute('href', a.href);
     });
