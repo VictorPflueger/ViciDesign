@@ -3,7 +3,8 @@
 // 375 px and 320 px) and fails on console errors, failed requests, horizontal overflow on phones, elements
 // that render as circles or pills, hexagon components without a polygon clip-path, a risk matrix or
 // horizon strip that grows wider once its numbers are open, a honeycomb whose first column starts indented or
-// whose cells overlap, or fonts that did not load. A second pass
+// whose cells overlap, a honeycomb that prints other columns than a wide screen shows (at A4's page area,
+// 673 px), or fonts that did not load. A second pass
 // at 1920 and 2560 px fails when the docs content drifts away from the sidebar, On this page runs past
 // the window, the page block is off centre or anything overflows (scripts/lib/layout-probe.mjs). Needs Playwright with Chromium: `npm i -D playwright && npx playwright install chromium`.
 import { createRequire } from 'node:module';
@@ -156,6 +157,30 @@ for (const run of runs) {
   await context.close();
 }
 
+// Print: a page is no phone. A print dialog reports A4's page area to the media queries, 178 mm or 673 px
+// between a report's margins, which is below the phone breakpoint; a honeycomb keeps the columns it lays out
+// on a wide screen.
+let printRenders = 0;
+{
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const page = await context.newPage();
+  const columns = () => [...document.querySelectorAll('.vc-honeycomb')].map((c) => getComputedStyle(c).gridTemplateColumns.split(' ').filter(Boolean).length);
+  for (const p of pages) {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.emulateMedia({ media: 'screen' });
+    await page.goto(pathToFileURL(join(ROOT, p)).href, { waitUntil: 'load' });
+    const wide = await page.evaluate(columns);
+    if (!wide.length) continue;
+    await page.setViewportSize({ width: 673, height: 1123 });
+    await page.emulateMedia({ media: 'print' });
+    const printed = await page.evaluate(columns);
+    printRenders++;
+    wide.forEach((n, i) => { if (printed[i] !== n) failures.push(`${p} [print, 673px]: honeycomb ${i + 1} prints ${printed[i]} columns, ${n} on a wide screen`); });
+  }
+  await context.close();
+}
+if (printRenders === 0) failures.push('no page with a honeycomb was printed: the print pass could not run');
+
 // Wide screens: the docs content stays beside the sidebar inside a centred page block.
 let wideRenders = 0;
 for (const width of [1920, 2560]) {
@@ -182,5 +207,6 @@ if (hexChecked === 0) {
 }
 console.log(`${renders} renders (${pages.length} pages × light, dark, 375 px, 320 px): no console errors, no failed requests, no phone overflow; opening the numbers widens no risk matrix or horizon strip; every honeycomb starts at its edge with no cell over another.`);
 console.log(`${hexChecked} rendered hexagon parts compute a polygon clip-path; nothing renders as a circle or pill; fonts loaded.`);
+console.log(`${printRenders} pages with a honeycomb printed at 673 px: every comb keeps the columns it has on a wide screen.`);
 console.log(`${wideRenders} wide renders (${pages.length} pages × 1920 and 2560 px): the content sits beside the sidebar, On this page fits, the page block is centred.`);
 console.log('RENDER OK');

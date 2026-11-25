@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Prototype Ideator 1.0.0: a honeycomb keeps its columns on paper. A print dialog reports A4's page area
+  to the media queries, 178 mm or 673 px between a report's margins, so the phone rule below 768 px took over
+  a printed comb: a report's cover of five ideas in a row printed in two columns of phone-sized cells. The
+  phone rule now applies to screens only, and the hexagon guideline says so. `scripts/check-render.mjs` prints
+  every page with a honeycomb at 673 px and fails when a comb lays out other columns than on a wide screen.
 - From Business Model Canvas Challenger 1.0.0: `.vc-framework__area--compact` shows the first line of each closed
   item in one area alone, as `.vc-framework--compact` does for the whole framework. A canvas block short of
   room at 1920 × 1080 hid its items one by one while its neighbours showed theirs in full; it can now show

@@ -1757,8 +1757,9 @@
     height: 100%;
   }
   /* Phones: two columns of slightly smaller cells by default. Small labels can keep four
-     columns with --vc-honeycomb-cols-sm: 4 and a cell of about 5rem. */
-  @media (max-width: 767px) {
+     columns with --vc-honeycomb-cols-sm: 4 and a cell of about 5rem. Screens only: a print dialog reports
+     A4's page area, 673 px between a report's margins, and a printed comb keeps its columns. */
+  @media screen and (max-width: 767px) {
     .vc-honeycomb {
       --_cols: var(--vc-honeycomb-cols-sm, 2);
       --_h: var(--vc-honeycomb-cell-sm, 7.5rem);
