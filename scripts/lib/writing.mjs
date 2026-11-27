@@ -13,6 +13,9 @@ const snippet = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().sli
 // keyboard never bring up. On a control it can repeat the control's name; on anything else its text lives
 // nowhere on the screen. Frames and the document's own elements need their title for another purpose.
 const TITLE_OK = new Set(['a', 'button', 'input', 'select', 'textarea', 'summary', 'label', 'iframe', 'frame', 'object', 'embed', 'link', 'style', 'meta', 'area']);
+// A tooltip (role="tooltip") shows on hover and on focus; on an element that takes no focus a pointer alone
+// brings it up, so it hangs on a control or on an element with a tabindex (components/overlays.html).
+const FOCUSABLE = new Set(['a', 'button', 'input', 'select', 'textarea', 'summary', 'iframe']);
 
 /** Problems with one page against the Writing guideline's checkable rules; empty when it keeps them. */
 export function writingProblems(html) {
@@ -23,6 +26,15 @@ export function writingProblems(html) {
   if (/class="[^"]*\bvc-bg-aurora\b/.test(page)) out.push('uses the aurora background (.vc-bg-aurora)');
   const hover = [...page.matchAll(/<([a-z][\w-]*)\b[^>]*?\stitle="([^"]*)"/gi)].find((m) => !TITLE_OK.has(m[1].toLowerCase()) && m[2].trim());
   if (hover) out.push(`text on hover only: title "${snippet(hover[2])}" on <${hover[1].toLowerCase()}> (see guidelines/writing.html#short-forms)`);
+  const tips = new Map([...page.matchAll(/<([a-z][\w-]*)\b([^>]*\brole="tooltip"[^>]*)>([\s\S]*?)<\/\1>/gi)]
+    .map((m) => [(m[2].match(/\bid="([^"]+)"/) || [])[1], m[3]]).filter(([id]) => id));
+  for (const m of page.matchAll(/<([a-z][\w-]*)\b([^>]*\baria-(?:describedby|labelledby)="([^"]+)"[^>]*)>/gi)) {
+    const [, tag, attrs, ids] = m;
+    const tip = ids.split(/\s+/).find((id) => tips.has(id));
+    if (!tip) continue;
+    const focusable = (FOCUSABLE.has(tag.toLowerCase()) && (tag.toLowerCase() !== 'a' || /\shref=/.test(attrs))) || /\stabindex="(?:0|[1-9]\d*)"/.test(attrs) || /\scontenteditable(?:="true")?[\s>]/.test(attrs);
+    if (!focusable) { out.push(`text on hover only: tooltip "${snippet(tips.get(tip))}" on <${tag.toLowerCase()}>, which takes no focus (see components/overlays.html#tooltip)`); break; }
+  }
   const numbered = page.match(/<h[1-6]\b[^>]*>\s*\d+\s*·[^<]*/);
   if (numbered) out.push(`numbered heading "${snippet(numbered[0])}"`);
   const label = page.match(/<li\b[^>]*>\s*<strong>[^<]{1,40}(?::<\/strong>|<\/strong>\s*(?:\((?:<code>)?[^<)]*(?:<\/code>)?\)\s*)?:)/);
