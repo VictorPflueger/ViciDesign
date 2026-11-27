@@ -5,13 +5,20 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Sovereignty Assessment 2.1.0: in a simulation the cost tile's label says what its figure is (How it works
+  guide, Key figures; Build a prototype, Key figures; prototype brief item 3). Three cold reads of the
+  prototype, in English and German, took "Session cost ≈ €0.62 for a live run" for money spent at first glance,
+  though each answered that the replay was free once it read the note. The label now reads "A live run would
+  cost" over the estimate, with "this replay: €0" under it, and a live run shows its measured cost under
+  "Session cost", the figure's name; the example on Build a prototype follows it. `keyFigureProblems(html)`
+  checks the same words as before.
 - From Sovereignty Assessment 2.1.0: two scales on one screen meet once, in words (Data visualisation, Rules;
   prototype brief item 3). The score step showed levels from 0 to 4 beside layer scores from 0 to 100, and how
   one became the other was written only in the README and the guide, so the reviewer read the 4 and the 100 as
   two verdicts. Where two scales show together, one line at the size of the text around them now says how one
   becomes the other. No check: whether two numbers on a page are scales of one thing takes reading.
 - From Sovereignty Assessment 2.1.0: nothing the story needs lives only in a hover or a tooltip (Overlays,
-  Tooltip; Writing, Short forms). It builds on Duty Radar's "hover only adds": in the domain review, what a
+  Tooltip; Writing, Short forms). It builds on Duty Radar's "hover only adds": in the review, what a
   level and a critical block meant stood in small type and behind hover, and the reviewer found neither. A
   tooltip now hangs on a control or on an element that takes the focus, so a keyboard brings it up as well as
   a pointer, and what the story needs stands in a key at the story's size, with a figure's make-up one click or
@@ -26,7 +33,7 @@ breaking changes to class names or token names bump the major version.
   live run and the replay's €0, and `scripts/check-guide.mjs` plants the old example in its self-test.
 - From Sovereignty Assessment 2.1.0: a key figure never contradicts the screen (How it works guide, Key
   figures; Data display, Stat card). The weakest critical link counts only the blocks a service can't run
-  without, so a tile read level 4 of 4 while the stage showed a block at 0, and the domain review stopped
+  without, so a tile read level 4 of 4 while the stage showed a block at 0, and the review stopped
   there. A figure that covers part of the data on purpose now names that part in `data-vc-part` and says in a
   `vc-stat__also` line under its value what lies lower outside it. `keyFigureProblems(html)` from
   `scripts/lib/guide.mjs`, which `guideProblems(html)` runs too, reports such a tile without the line, and
