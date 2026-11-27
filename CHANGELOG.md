@@ -5,6 +5,11 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Sovereignty Assessment 2.1.0: two scales on one screen meet once, in words (Data visualisation, Rules;
+  prototype brief item 3). The score step showed levels from 0 to 4 beside layer scores from 0 to 100, and how
+  one became the other was written only in the README and the guide, so the reviewer read the 4 and the 100 as
+  two verdicts. Where two scales show together, one line at the size of the text around them now says how one
+  becomes the other. No check: whether two numbers on a page are scales of one thing takes reading.
 - From Sovereignty Assessment 2.1.0: nothing the story needs lives only in a hover or a tooltip (Overlays,
   Tooltip; Writing, Short forms). It builds on Duty Radar's "hover only adds": in the domain review, what a
   level and a critical block meant stood in small type and behind hover, and the reviewer found neither. A
