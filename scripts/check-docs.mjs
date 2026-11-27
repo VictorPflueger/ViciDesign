@@ -3,8 +3,8 @@
 // basic document metadata, ids are unique, and every internal link and anchor resolves. The docs
 // pages and starters also keep to the Writing guideline's checkable rules: no eyebrows or aurora,
 // no numbered headings with a middle dot, no list items that start with a bold label and a colon,
-// no em dashes as punctuation, no stock words from src/docs/banned-words.json and no escaped quotes
-// left in the text by a script. A self-test first proves that each of those rules catches a planted
+// no em dashes as punctuation, no stock words from src/docs/banned-words.json, no escaped quotes
+// left in the text by a script and no text that shows on hover alone (a title on anything but a control). A self-test first proves that each of those rules catches a planted
 // example and passes a clean one.
 import { existsSync } from 'node:fs';
 import { join, dirname, posix } from 'node:path';
@@ -27,10 +27,13 @@ const PLANTED = {
   'stock word, inflected': '<p>It streamlines the review.</p>',
   'stock phrase': '<p>In today’s world, pages matter.</p>',
   'escaped quote': "<p>There the globe links to the site\\'s own home page.</p>",
+  'short form on hover': '<p>The duty sits in <abbr title="Bundesstatistikgesetz">BStatG</abbr>.</p>',
+  'name on hover': '<ul><li><span title="Trade and services statistics">HdlDlStatG</span> 3</li></ul>',
 };
 const CLEAN = '<table class="vc-table" data-doc-banned><tr><td>seamless — robust</td><td><strong>Performance:</strong> x</td></tr></table>'
   + '<h3>Cells carry meaning</h3><ul><li><strong>Keep the same order everywhere.</strong> LinkedIn first.</li></ul>'
-  + '<table><tr><td>4</td><td>—</td></tr></table><pre><code>a — b</code></pre><p>10–20&nbsp;px, a robustness test in a landscape layout.</p>';
+  + '<table><tr><td>4</td><td>—</td></tr></table><pre><code>a — b</code></pre><p>10–20&nbsp;px, a robustness test in a landscape layout.</p>'
+  + '<button type="button" lang="de" title="Deutsch">DE</button><iframe src="a.html" title="The app starter"></iframe><p data-title="x">Trade and services statistics, HdlDlStatG</p>';
 const selfFailures = [];
 for (const [name, html] of Object.entries(PLANTED)) if (!writingProblems(html).length) selfFailures.push(`missed the planted ${name}`);
 const cleanProblems = writingProblems(CLEAN);

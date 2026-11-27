@@ -5,6 +5,16 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Duty Radar 2.2.0: hover only adds. Short forms and unfamiliar names in the Writing guideline offered the
+  short form on hover as an equal choice and took Duty Radar's law map as its example, but a projector and a
+  touch screen show no hover, and a visitor who doesn't know to point never finds it. The rule now asks for
+  the name in words on the element, with the law map's names in words as the example; a citation keeps its
+  short form on the screen, and a tooltip's text also stands on the screen or in the control's name.
+  `writingProblems(html)` reports a `title` on anything that isn't a control, so the palette strips on the
+  Data visualisation page no longer keep their values on hover: the Tokens page lists them.
+- From Duty Radar 2.2.0: every number carries its unit, on the element or in a legend in words (Writing,
+  Numbers and units). A bare count beside a name leaves the room to guess what it counts. No check: whether a
+  heading or a legend names a number's unit takes reading.
 - From Prototype Ideator 1.0.0: a honeycomb keeps its columns on paper. A print dialog reports A4's page area
   to the media queries, 178 mm or 673 px between a report's margins, so the phone rule below 768 px took over
   a printed comb: a report's cover of five ideas in a row printed in two columns of phone-sized cells. The
