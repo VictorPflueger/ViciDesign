@@ -5358,6 +5358,16 @@
     color: var(--vc-text-subtle);
     font-size: var(--vc-font-size-xs);
   }
+  /* What a figure leaves out on purpose, where the screen shows it: a figure that covers part of the data
+     (data-vc-part) says under its value, in words, what lies lower outside that part. */
+  .vc-stat__also {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35em;
+    color: var(--vc-text-muted);
+    font-size: var(--vc-font-size-xs);
+  }
   .vc-stat > .vc-sparkline { margin-top: var(--vc-space-3); }
 
   /* ---------- A count that opens what it counts ---------- */

@@ -9,7 +9,9 @@
 // and every key figure the page marks with data-vc-kpi explained in a row of the How it works
 // chapter's table: the figure, what it measures and its value. A page in two languages may carry one
 // such guide per language, each saying its language in lang, titled in it, with its own header button
-// and a row for every key figure under its name in that language (data-vc-kpi-de and so on).
+// and a row for every key figure under its name in that language (data-vc-kpi-de and so on). A key
+// figure that covers part of the data on purpose (data-vc-part) says in a vc-stat__also line what lies
+// outside it, so it never contradicts the screen.
 // A self-test first proves that the checker catches planted mistakes.
 import { read } from './lib/files.mjs';
 import { guideProblems } from './lib/guide.mjs';
@@ -57,6 +59,7 @@ const planted = {
   'a German guide with an English title': twoLanguages.replace('id="guide-de-title">So funktioniert der Prototyp<', 'id="guide-de-title">How the prototype works<'),
   'a key figure the German guide has no row for': twoLanguages.replace('data-vc-kpi-de="Wert im Risiko"', 'data-vc-kpi-de="Gefährdeter Wert"'),
   'a second guide without its own button': twoLanguages.replace(/<button\b[^>]*data-vc-guide-open="guide-de"[^>]*>[\s\S]*?<\/button>/, ''),
+  'a key figure for part of the data that says nothing of the rest': good.replace('data-vc-kpi="Open exceptions"', 'data-vc-kpi="Open exceptions" data-vc-part="exceptions over €1,000"'),
 };
 const selfFailures = [];
 const goodProblems = guideProblems(good);
@@ -70,6 +73,12 @@ const named = planted['key figure the guide never names'].replace('<tr><th scope
 const namedProblems = guideProblems(named);
 if (named === planted['key figure the guide never names']) selfFailures.push('the control changed nothing');
 else if (namedProblems.length) selfFailures.push(`a key figure with its row in How it works was rejected: ${namedProblems.join('; ')}`);
+// A key figure for part of the data passes once a vc-stat__also line says what lies outside it.
+const partPage = planted['a key figure for part of the data that says nothing of the rest'];
+const withAlso = partPage.replace(/(data-vc-part="exceptions over €1,000"[^>]*>[\s\S]*?)(<\/article>)/, '$1<p class="vc-stat__also">3 more under €1,000</p>$2');
+const alsoProblems = guideProblems(withAlso);
+if (withAlso === partPage) selfFailures.push('the also-line control changed nothing');
+else if (alsoProblems.length) selfFailures.push(`a key figure for part of the data with its also line was rejected: ${alsoProblems.join('; ')}`);
 // And a page with one complete guide per language passes.
 const twoProblems = guideProblems(twoLanguages);
 if (twoLanguages.split('class="vc-dialog vc-guide"').length !== 3) selfFailures.push('the two-language page has no second guide');

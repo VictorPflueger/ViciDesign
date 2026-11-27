@@ -5,6 +5,13 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Sovereignty Assessment 2.1.0: a key figure never contradicts the screen (How it works guide, Key
+  figures; Data display, Stat card). The weakest critical link counts only the blocks a service can't run
+  without, so a tile read level 4 of 4 while the stage showed a block at 0, and the domain review stopped
+  there. A figure that covers part of the data on purpose now names that part in `data-vc-part` and says in a
+  `vc-stat__also` line under its value what lies lower outside it. `keyFigureProblems(html)` from
+  `scripts/lib/guide.mjs`, which `guideProblems(html)` runs too, reports such a tile without the line, and
+  `scripts/check-guide.mjs` plants one in its self-test. The prototype brief's item 3 says so.
 - From Duty Radar 2.2.0: a count opens what it counts (Data display). A number that stands for a set of things
   on the screen, such as 745 duties or 48 clusters, is a button that opens that set beside the content, by
   click, Enter or Space, and gives the focus back when Esc closes it; a figure that isn't a set opens where it
