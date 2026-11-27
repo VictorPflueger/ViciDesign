@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="vici-build">
   <title>Data display · Vici Design System</title>
-  <meta name="description" content="Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; legends with hexagon swatches; chart frames; a risk matrix of impact and likelihood, and a horizon strip of when its issues arrive.">
+  <meta name="description" content="Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; counts that open what they count; legends with hexagon swatches; chart frames; a risk matrix of impact and likelihood, and a horizon strip of when its issues arrive.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbf7f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#250010" media="(prefers-color-scheme: dark)">
@@ -258,6 +258,91 @@
   <span class="tk-punct">&lt;/</span><span class="tk-tag">article</span><span class="tk-punct">&gt;</span>
 <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-29" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
+<h2 id="count">A count that opens what it counts</h2>
+<p>A number that stands for a set of things on the screen, such as 5 duties or 48 clusters, opens that set. A click, <kbd>Enter</kbd> or <kbd>Space</kbd> shows the list beside the content, and <kbd>Esc</kbd> closes it and puts the focus back on the count. Whoever reads “48 clusters” can then check all 48 without asking.</p>
+<div class="doc-demo"><div class="doc-demo__preview">
+<div class="vc-stack">
+  <p>The agent read 3 laws and kept <button type="button" class="vc-count" data-vc-open="count-duties" aria-haspopup="dialog">5&nbsp;duties</button>, 2 of them reporting duties.</p>
+  <div class="vc-grid" style="--vc-grid-min: 13rem; max-width: 30rem">
+    <button type="button" class="vc-stat" data-vc-open="count-reporting" aria-haspopup="dialog">
+      <span class="vc-stat__label">Reporting duties</span>
+      <span class="vc-stat__value">2</span>
+      <span class="vc-stat__note">of 5 duties</span>
+    </button>
+  </div>
+</div>
+<dialog class="vc-dialog vc-dialog--drawer" id="count-duties" aria-labelledby="count-duties-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="count-duties-title">5 duties</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close the duties"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body">
+    <ol class="vc-stack">
+      <li>Report the month's turnover to the statistics office</li>
+      <li>Report the persons employed at the end of the month</li>
+      <li>Keep the time records of every employee for two years</li>
+      <li>Register the packaging before it goes on sale</li>
+      <li>Keep the register entry up to date</li>
+    </ol>
+  </div>
+</dialog>
+<dialog class="vc-dialog vc-dialog--drawer" id="count-reporting" aria-labelledby="count-reporting-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="count-reporting-title">2 reporting duties</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close the reporting duties"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body">
+    <ol class="vc-stack">
+      <li>Report the month's turnover to the statistics office</li>
+      <li>Report the persons employed at the end of the month</li>
+    </ol>
+  </div>
+</dialog>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-30"><span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stack&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>The agent read 3 laws and kept <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-count&quot;</span> <span class="tk-attr">data-vc-open</span>=<span class="tk-str">&quot;count-duties&quot;</span> <span class="tk-attr">aria-haspopup</span>=<span class="tk-str">&quot;dialog&quot;</span><span class="tk-punct">&gt;</span>5&amp;nbsp;duties<span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>, 2 of them reporting duties.<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-grid&quot;</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;--vc-grid-min: 13rem; max-width: 30rem&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat&quot;</span> <span class="tk-attr">data-vc-open</span>=<span class="tk-str">&quot;count-reporting&quot;</span> <span class="tk-attr">aria-haspopup</span>=<span class="tk-str">&quot;dialog&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__label&quot;</span><span class="tk-punct">&gt;</span>Reporting duties<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__value&quot;</span><span class="tk-punct">&gt;</span>2<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stat__note&quot;</span><span class="tk-punct">&gt;</span>of 5 duties<span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">dialog</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog vc-dialog--drawer&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;count-duties&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;count-duties-title&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">header</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__header&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">h2</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__title&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;count-duties-title&quot;</span><span class="tk-punct">&gt;</span>5 duties<span class="tk-punct">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button&quot;</span> <span class="tk-attr">data-vc-close</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Close the duties&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--close&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">header</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__body&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">ol</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stack&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Report the month's turnover to the statistics office<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Report the persons employed at the end of the month<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Keep the time records of every employee for two years<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Register the packaging before it goes on sale<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Keep the register entry up to date<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">ol</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;</span><span class="tk-tag">dialog</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog vc-dialog--drawer&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;count-reporting&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;count-reporting-title&quot;</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">header</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__header&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">h2</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__title&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;count-reporting-title&quot;</span><span class="tk-punct">&gt;</span>2 reporting duties<span class="tk-punct">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">button</span> <span class="tk-attr">type</span>=<span class="tk-str">&quot;button&quot;</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon-button&quot;</span> <span class="tk-attr">data-vc-close</span> <span class="tk-attr">aria-label</span>=<span class="tk-str">&quot;Close the reporting duties&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;</span><span class="tk-tag">span</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-icon vc-icon--close&quot;</span> <span class="tk-attr">aria-hidden</span>=<span class="tk-str">&quot;true&quot;</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">span</span><span class="tk-punct">&gt;</span><span class="tk-punct">&lt;/</span><span class="tk-tag">button</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">header</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;</span><span class="tk-tag">div</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-dialog__body&quot;</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;</span><span class="tk-tag">ol</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-stack&quot;</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Report the month's turnover to the statistics office<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+      <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Report the persons employed at the end of the month<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
+    <span class="tk-punct">&lt;/</span><span class="tk-tag">ol</span><span class="tk-punct">&gt;</span>
+  <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">dialog</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-30" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<ul>
+  <li>The count is a <code>&lt;button type="button" class="vc-count"&gt;</code> whose text is the number with its unit, “5 duties”. A keyboard reaches it, its name says what opens, and <code>aria-haspopup="dialog"</code> tells a screen reader that a dialog opens. A stat card that opens what it counts is itself the button, <code>button.vc-stat</code>, with spans for its parts.</li>
+  <li>What opens is that set and nothing else: as many things as the count says, under a title that repeats the count. A list too long for one screen gets filters, each with its own count.</li>
+  <li>A figure that isn't a set, such as a price or a share, opens where it comes from instead: its inputs, their sources and the arithmetic.</li>
+  <li>Pointing at a count may mark where its things are on the screen, but the mark only adds: the list itself opens on a click or a key.</li>
+  <li><code>countProblems(html)</code> from <code>scripts/lib/counts.mjs</code> reports a count that isn't a button, holds no number or opens nothing on the page. <code>scripts/check-dialog-render.mjs</code> opens the count above with <kbd>Enter</kbd>, counts what its list holds and closes it with <kbd>Esc</kbd>.</li>
+</ul>
+
 <h2 id="legend">Legend</h2>
 <p>Series swatches are hexagons that follow the categorical order automatically, or take any colour through <code>--vc-series</code>.</p>
 <div class="doc-demo"><div class="doc-demo__preview">
@@ -268,13 +353,13 @@
   <li>Consulting</li>
   <li style="--vc-series: var(--vc-data-7)">Other</li>
 </ul>
-</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-30"><span class="tk-punct">&lt;</span><span class="tk-tag">ul</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-legend&quot;</span><span class="tk-punct">&gt;</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-31"><span class="tk-punct">&lt;</span><span class="tk-tag">ul</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-legend&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Hardware<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Services<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Software<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>Consulting<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">li</span> <span class="tk-attr">style</span>=<span class="tk-str">&quot;--vc-series: var(--vc-data-7)&quot;</span><span class="tk-punct">&gt;</span>Other<span class="tk-punct">&lt;/</span><span class="tk-tag">li</span><span class="tk-punct">&gt;</span>
-<span class="tk-punct">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-30" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-31" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
 <h2 id="chart-frame">Chart frame</h2>
 <p><code>.vc-chart</code> is a <code>&lt;figure&gt;</code> with a title, a subtitle, the chart, a legend and a source line. Vici doesn't include a charting library. Draw with SVG, D3, Observable Plot or Vega-Lite and use the <code>--vc-data-*</code> tokens for colour. Recommended chart types and the palettes are on <a href="../guidelines/data-viz.html">Data visualisation</a>.</p>
@@ -304,7 +389,7 @@
   </div>
   <p class="vc-chart__source">Source: help desk export, sample data</p>
 </figure>
-</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-31"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart&quot;</span><span class="tk-punct">&gt;</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-32"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">figcaption</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__title&quot;</span><span class="tk-punct">&gt;</span>Tickets by channel<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__subtitle&quot;</span><span class="tk-punct">&gt;</span>Share of this month’s volume<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
@@ -324,7 +409,7 @@
     <span class="tk-punct">&lt;/</span><span class="tk-tag">svg</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__source&quot;</span><span class="tk-punct">&gt;</span>Source: help desk export, sample data<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
-<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-31" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-32" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 
 <h2 id="risk-matrix">Risk matrix</h2>
 <p>Issues placed by how much they would hurt and how likely they are, both from 1 to 5: impact up, likelihood across. A cell's band follows impact times likelihood: low from 1 to 4, medium from 5 to 9, high from 10 to 15, critical from 16 to 25. Every cell shows its score in the corner and the key names the bands in words, so the bands never rest on colour alone. The bands use the status colours because the data really is good or bad.</p>
@@ -403,7 +488,7 @@
     </div>
   </details>
 </figure>
-</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-32"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-risk&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;rm-title&quot;</span><span class="tk-punct">&gt;</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-33"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-risk&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;rm-title&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">figcaption</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__title&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;rm-title&quot;</span><span class="tk-punct">&gt;</span>Five issues by impact and likelihood<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__subtitle&quot;</span><span class="tk-punct">&gt;</span>Impact and likelihood from 1 to 5; each cell shows its score, impact times likelihood<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
@@ -474,7 +559,7 @@
       <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;/</span><span class="tk-tag">details</span><span class="tk-punct">&gt;</span>
-<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-32" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-33" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 <h3 id="risk-matrix-markup">Markup</h3>
 <p>The grid places everything in the order of the markup, so a page under a strict security policy needs no style attribute: row by row from impact 5 at the top, a tick and five cells each, then an empty corner and the five likelihood ticks. Every cell carries <code>data-impact</code>, <code>data-likelihood</code> and <code>data-band</code>, and every marker its own <code>data-impact</code> and <code>data-likelihood</code>, so a test can hold each marker to its cell.</p>
 <p><code>riskMatrixProblems(html)</code> from <code>scripts/lib/risk.mjs</code> returns an empty list when a matrix has its 25 cells, each in the band its score gives and showing that score, every marker in the cell its impact and likelihood name, a key that names all four bands and a table of the numbers. <code>band(score)</code> from the same file gives a score's band.</p>
@@ -525,7 +610,7 @@
     </div>
   </details>
 </figure>
-</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-33"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-horizon&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;hz-title&quot;</span><span class="tk-punct">&gt;</span>
+</div><div class="doc-demo__code"><details><summary>HTML</summary><pre><code id="demo-code-34"><span class="tk-punct">&lt;</span><span class="tk-tag">figure</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-horizon&quot;</span> <span class="tk-attr">aria-labelledby</span>=<span class="tk-str">&quot;hz-title&quot;</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;</span><span class="tk-tag">figcaption</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__title&quot;</span> <span class="tk-attr">id</span>=<span class="tk-str">&quot;hz-title&quot;</span><span class="tk-punct">&gt;</span>When the five issues arrive<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;</span><span class="tk-tag">p</span> <span class="tk-attr">class</span>=<span class="tk-str">&quot;vc-chart__subtitle&quot;</span><span class="tk-punct">&gt;</span>Each issue in the span of years in which it starts to cost money<span class="tk-punct">&lt;/</span><span class="tk-tag">p</span><span class="tk-punct">&gt;</span>
@@ -566,14 +651,14 @@
       <span class="tk-punct">&lt;/</span><span class="tk-tag">table</span><span class="tk-punct">&gt;</span>
     <span class="tk-punct">&lt;/</span><span class="tk-tag">div</span><span class="tk-punct">&gt;</span>
   <span class="tk-punct">&lt;/</span><span class="tk-tag">details</span><span class="tk-punct">&gt;</span>
-<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-33" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
+<span class="tk-punct">&lt;/</span><span class="tk-tag">figure</span><span class="tk-punct">&gt;</span></code></pre></details><button type="button" class="vc-button vc-button--ghost vc-button--sm doc-demo__copy" data-vc-copy="#demo-code-34" data-vc-label="Copy code" aria-label="Copy code"><span class="vc-icon vc-icon--copy" aria-hidden="true"></span>Copy</button></div></div>
 <h3 id="horizon-markup">Markup</h3>
 <p>The lanes are an ordered list, earliest first: two to six <code>.vc-horizon__lane</code> items, each with a <code>.vc-horizon__label</code> and either a list of markers in <code>.vc-horizon__markers</code> or a <code>.vc-horizon__empty</code> line. The lanes share the width equally and need no style attribute. Each lane puts its name over its markers, and on a phone the years go under the name.</p>
 <p><code>horizonProblems(html)</code> from <code>scripts/lib/horizon.mjs</code> returns an empty list when a strip has a name, two to six lanes that name their span, a word in every empty lane, every marker an image named in words with its number and in one lane only, a key for any sized markers and a table of the numbers.</p>
 
 <nav class="doc-pager" aria-label="Previous and next page"><a class="doc-pager__link" href="../components/overlays.html" rel="prev"><span class="vc-caption">Previous</span><span>Overlays</span></a><a class="doc-pager__link doc-pager__link--next" href="../components/guide.html" rel="next"><span class="vc-caption">Next</span><span>How it works guide</span></a></nav>
       </article>
-<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#table">Table</a></li><li><a href="#stat-card">Stat card</a></li><li><a href="#legend">Legend</a></li><li><a href="#chart-frame">Chart frame</a></li><li><a href="#risk-matrix">Risk matrix</a></li><li><a href="#horizon">Horizon strip</a></li></ul></nav>
+<nav class="doc-toc" aria-label="On this page"><p class="vc-sidenav__title">On this page</p><ul><li><a href="#table">Table</a></li><li><a href="#stat-card">Stat card</a></li><li><a href="#count">A count that opens what it counts</a></li><li><a href="#legend">Legend</a></li><li><a href="#chart-frame">Chart frame</a></li><li><a href="#risk-matrix">Risk matrix</a></li><li><a href="#horizon">Horizon strip</a></li></ul></nav>
     </main>
   </div>
 

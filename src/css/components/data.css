@@ -224,6 +224,38 @@
   }
   .vc-stat > .vc-sparkline { margin-top: var(--vc-space-3); }
 
+  /* ---------- A count that opens what it counts ---------- */
+  /* A number that stands for a set of things on screen is a button that opens that set. In a sentence it reads
+     as the number and its unit, underlined; it keeps the line's height, as a text link does (the inline
+     exception of WCAG 2.5.8). A stat card that opens what it counts is the button itself. */
+  .vc-count {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-weight: var(--vc-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    text-align: inherit;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, currentColor 45%, transparent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+    transition: background-color var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  .vc-count:hover { background: var(--vc-surface-hover); text-decoration-color: currentColor; }
+  button.vc-stat {
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    transition: border-color var(--vc-duration-quick) var(--vc-ease-standard);
+  }
+  button.vc-stat:hover { border-color: var(--vc-border-strong); }
+
   /* ---------- Sparkline (inline SVG) ---------- */
   .vc-sparkline {
     display: block;

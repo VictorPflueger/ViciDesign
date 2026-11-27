@@ -5,6 +5,14 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Duty Radar 2.2.0: a count opens what it counts (Data display). A number that stands for a set of things
+  on the screen, such as 745 duties or 48 clusters, is a button that opens that set beside the content, by
+  click, Enter or Space, and gives the focus back when Esc closes it; a figure that isn't a set opens where it
+  comes from. `.vc-count` sets a count in a sentence, and `button.vc-stat` makes a stat card the button.
+  `countProblems(html)` from `scripts/lib/counts.mjs` reports a count that isn't a button, holds no number or
+  opens nothing on the page; `scripts/check-counts.mjs` runs it over every page and starter, and
+  `scripts/check-dialog-render.mjs` opens the Data page's count with Enter, compares its number with what its
+  list holds and closes it with Esc. The prototype brief and its page list the check.
 - From Duty Radar 2.2.0: hover only adds. Short forms and unfamiliar names in the Writing guideline offered the
   short form on hover as an equal choice and took Duty Radar's law map as its example, but a projector and a
   touch screen show no hover, and a visitor who doesn't know to point never finds it. The rule now asks for
