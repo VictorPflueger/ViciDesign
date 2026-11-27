@@ -5,6 +5,14 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Sovereignty Assessment 2.1.0: nothing the story needs lives only in a hover or a tooltip (Overlays,
+  Tooltip; Writing, Short forms). It builds on Duty Radar's "hover only adds": in the domain review, what a
+  level and a critical block meant stood in small type and behind hover, and the reviewer found neither. A
+  tooltip now hangs on a control or on an element that takes the focus, so a keyboard brings it up as well as
+  a pointer, and what the story needs stands in a key at the story's size, with a figure's make-up one click or
+  Enter away. `writingProblems(html)` reports a tooltip (role="tooltip") described from an element that takes
+  no focus, and `scripts/check-docs.mjs` plants one in its self-test beside a focusable tag and an icon button
+  that pass.
 - From Sovereignty Assessment 2.1.0: session cost in a simulation never reads as money spent (How it works
   guide, Key figures; Build a prototype, Key figures; prototype brief item 3). After a replay the reviewer
   thought he had spent the €0.52 the tile showed as "estimated". The value now says what a live run would
