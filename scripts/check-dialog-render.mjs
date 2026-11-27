@@ -7,6 +7,8 @@
 //   - opens a dialog with a close button and a body that holds only text, longer than the dialog, so
 //     Chromium makes the body focusable; Tabs to it and fails unless its ring shows all round: along the
 //     body's left side, just inside the edge the dialog clips, the body must look different focused than not.
+//   - opens the Data page's count with Enter and fails unless its dialog lists as many things as the count says,
+//     Esc closes it and the focus is back on the count.
 // Self-tests: without reduced motion the dialog's entrance must be seen moving, and with the ring moved back
 // outside the edge, where the dialog cuts off all but its top, the left side must be caught unchanged, so the
 // check can fail. Needs Playwright with
@@ -130,10 +132,41 @@ else if (!focus.shows) failures.push(`a dialog's scrolling body does not show it
 const planted = await bodyFocus({ ringOutside: true });
 if (planted.onBody && planted.shows) failures.push('self-test: a ring outside the body\'s edge was not caught along its side, so the focus check proves nothing');
 
+// A count opens what it counts (Data page): Enter on the count opens its dialog, which lists as many things as
+// the count says; Esc closes it and the focus is back on the count. Self-test: a list one item short is caught.
+async function countOpens({ short = false } = {}) {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, reducedMotion: 'reduce' });
+  await page.goto(pathToFileURL(join(ROOT, 'components/data.html')).href, { waitUntil: 'load' });
+  const count = page.locator('button.vc-count').first();
+  await count.focus();
+  await page.keyboard.press('Enter');
+  const opened = await page.waitForFunction(() => document.querySelector('dialog[open]'), null, { timeout: 2000 }).then(() => true, () => false);
+  const said = Number(((await count.textContent()) || '').replace(/\D+/g, ' ').trim().split(' ')[0]);
+  const held = await page.evaluate((cut) => {
+    const list = document.querySelector('dialog[open] :is(ol, ul)');
+    if (cut && list?.lastElementChild) list.lastElementChild.remove();
+    return list ? list.children.length : 0;
+  }, short);
+  await page.keyboard.press('Escape');
+  const closed = await page.waitForFunction(() => !document.querySelector('dialog[open]'), null, { timeout: 2000 }).then(() => true, () => false);
+  const back = await count.evaluate((el) => document.activeElement === el);
+  await page.close();
+  return { opened, said, held, closed, back };
+}
+const c = await countOpens();
+if (!c.opened) failures.push('Enter on the Data page\'s count opened no dialog');
+else {
+  if (c.said !== c.held) failures.push(`the Data page's count says ${c.said}, its list holds ${c.held}`);
+  if (!c.closed) failures.push('Esc left the count\'s dialog open');
+  else if (!c.back) failures.push('after Esc the focus is not back on the count');
+}
+const cShort = await countOpens({ short: true });
+if (cShort.opened && cShort.said === cShort.held) failures.push('self-test: a list one item short of its count was not caught, so the count check proves nothing');
+
 await browser.close();
 if (failures.length) {
   console.error(failures.map((f) => `FAIL  ${f}`).join('\n'));
   process.exit(1);
 }
-console.log(`With reduced motion an open dialog keeps still, backdrop included (without it, ${moves.length} animation${moves.length === 1 ? '' : 's'} ran); a scrolling body that holds only text takes the focus and shows its ring all round, inside the dialog's edge, and a ring outside it is caught.`);
+console.log(`With reduced motion an open dialog keeps still, backdrop included (without it, ${moves.length} animation${moves.length === 1 ? '' : 's'} ran); a scrolling body that holds only text takes the focus and shows its ring all round, inside the dialog's edge, and a ring outside it is caught. A count opens with Enter a list of the ${c.held} things it counts, closes with Esc and gets the focus back; a list one short is caught.`);
 console.log('DIALOG RENDER OK');

@@ -5,7 +5,7 @@ section: Components
 order: 7
 icon: chart-bar
 layout: wide
-description: Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; legends with hexagon swatches; chart frames; a risk matrix of impact and likelihood, and a horizon strip of when its issues arrive.
+description: Tables with sorting, sticky headers and tabular numbers; KPI stat cards with sparklines; counts that open what they count; legends with hexagon swatches; chart frames; a risk matrix of impact and likelihood, and a horizon strip of when its issues arrive.
 -->
 <header class="doc-hero">
   <h1>Data display</h1>
@@ -125,6 +125,55 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
   </article>
 </div>
 <!-- /demo -->
+
+<h2 id="count">A count that opens what it counts</h2>
+<p>A number that stands for a set of things on the screen, such as 5 duties or 48 clusters, opens that set. A click, <kbd>Enter</kbd> or <kbd>Space</kbd> shows the list beside the content, and <kbd>Esc</kbd> closes it and puts the focus back on the count. Whoever reads “48 clusters” can then check all 48 without asking.</p>
+<!-- demo -->
+<div class="vc-stack">
+  <p>The agent read 3 laws and kept <button type="button" class="vc-count" data-vc-open="count-duties" aria-haspopup="dialog">5&nbsp;duties</button>, 2 of them reporting duties.</p>
+  <div class="vc-grid" style="--vc-grid-min: 13rem; max-width: 30rem">
+    <button type="button" class="vc-stat" data-vc-open="count-reporting" aria-haspopup="dialog">
+      <span class="vc-stat__label">Reporting duties</span>
+      <span class="vc-stat__value">2</span>
+      <span class="vc-stat__note">of 5 duties</span>
+    </button>
+  </div>
+</div>
+<dialog class="vc-dialog vc-dialog--drawer" id="count-duties" aria-labelledby="count-duties-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="count-duties-title">5 duties</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close the duties"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body">
+    <ol class="vc-stack">
+      <li>Report the month's turnover to the statistics office</li>
+      <li>Report the persons employed at the end of the month</li>
+      <li>Keep the time records of every employee for two years</li>
+      <li>Register the packaging before it goes on sale</li>
+      <li>Keep the register entry up to date</li>
+    </ol>
+  </div>
+</dialog>
+<dialog class="vc-dialog vc-dialog--drawer" id="count-reporting" aria-labelledby="count-reporting-title">
+  <header class="vc-dialog__header">
+    <h2 class="vc-dialog__title" id="count-reporting-title">2 reporting duties</h2>
+    <button type="button" class="vc-icon-button" data-vc-close aria-label="Close the reporting duties"><span class="vc-icon vc-icon--close" aria-hidden="true"></span></button>
+  </header>
+  <div class="vc-dialog__body">
+    <ol class="vc-stack">
+      <li>Report the month's turnover to the statistics office</li>
+      <li>Report the persons employed at the end of the month</li>
+    </ol>
+  </div>
+</dialog>
+<!-- /demo -->
+<ul>
+  <li>The count is a <code>&lt;button type="button" class="vc-count"&gt;</code> whose text is the number with its unit, “5 duties”. A keyboard reaches it, its name says what opens, and <code>aria-haspopup="dialog"</code> tells a screen reader that a dialog opens. A stat card that opens what it counts is itself the button, <code>button.vc-stat</code>, with spans for its parts.</li>
+  <li>What opens is that set and nothing else: as many things as the count says, under a title that repeats the count. A list too long for one screen gets filters, each with its own count.</li>
+  <li>A figure that isn't a set, such as a price or a share, opens where it comes from instead: its inputs, their sources and the arithmetic.</li>
+  <li>Pointing at a count may mark where its things are on the screen, but the mark only adds: the list itself opens on a click or a key.</li>
+  <li><code>countProblems(html)</code> from <code>scripts/lib/counts.mjs</code> reports a count that isn't a button, holds no number or opens nothing on the page. <code>scripts/check-dialog-render.mjs</code> opens the count above with <kbd>Enter</kbd>, counts what its list holds and closes it with <kbd>Esc</kbd>.</li>
+</ul>
 
 <h2>Legend</h2>
 <p>Series swatches are hexagons that follow the categorical order automatically, or take any colour through <code>--vc-series</code>.</p>
