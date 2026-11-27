@@ -434,7 +434,7 @@ function makeWidgets(ctx) {
 
     'data-palette': () => {
       const strip = (T, keys, label) =>
-        `<div class="doc-data-strip" role="img" aria-label="${esc(label)}">${keys.map((k) => `<span class="doc-data-cell" style="--sw:${T[k]};color:${readable(T[k])}" title="${k}: ${T[k]}"><span>${k.replace('data-', '').replace('seq-', '').replace('div-', '')}</span></span>`).join('')}</div>`;
+        `<div class="doc-data-strip" role="img" aria-label="${esc(label)}">${keys.map((k) => `<span class="doc-data-cell" style="--sw:${T[k]};color:${readable(T[k])}"><span>${k.replace('data-', '').replace('seq-', '').replace('div-', '')}</span></span>`).join('')}</div>`;
       const cat = ['data-1', 'data-2', 'data-3', 'data-4', 'data-5', 'data-6', 'data-7', 'data-8'];
       const seq = ['seq-1', 'seq-2', 'seq-3', 'seq-4', 'seq-5', 'seq-6', 'seq-7'];
       const div = ['div-1', 'div-2', 'div-3', 'div-4', 'div-5', 'div-6', 'div-7'];

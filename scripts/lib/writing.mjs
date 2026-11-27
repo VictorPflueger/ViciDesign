@@ -9,6 +9,10 @@ const ALLOW = new Set((WORDS.allow || []).map((w) => w.toLowerCase()));
 const forms = (w) => (w.includes(' ') ? [w] : [w, w + 's', w + 'es', w + 'd', w + 'ed', w + 'ing', w.replace(/e$/, '') + 'ing', w + 'ly']);
 const STOCK = new RegExp(`\\b(${[...new Set(BANNED.flatMap(forms))].filter((f) => !ALLOW.has(f.toLowerCase())).map((f) => f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/'/g, "['’]")).join('|')})\\b`, 'i');
 const snippet = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
+// Short forms: hover only adds. A title shows on hover alone, which a projector, a touch screen and a
+// keyboard never bring up. On a control it can repeat the control's name; on anything else its text lives
+// nowhere on the screen. Frames and the document's own elements need their title for another purpose.
+const TITLE_OK = new Set(['a', 'button', 'input', 'select', 'textarea', 'summary', 'label', 'iframe', 'frame', 'object', 'embed', 'link', 'style', 'meta', 'area']);
 
 /** Problems with one page against the Writing guideline's checkable rules; empty when it keeps them. */
 export function writingProblems(html) {
@@ -17,6 +21,8 @@ export function writingProblems(html) {
   const page = html.replace(/<table\b[^>]*\bdata-doc-banned\b[\s\S]*?<\/table>/g, '');
   if (/class="[^"]*\bvc-eyebrow\b/.test(page)) out.push('uses an eyebrow (.vc-eyebrow)');
   if (/class="[^"]*\bvc-bg-aurora\b/.test(page)) out.push('uses the aurora background (.vc-bg-aurora)');
+  const hover = [...page.matchAll(/<([a-z][\w-]*)\b[^>]*?\stitle="([^"]*)"/gi)].find((m) => !TITLE_OK.has(m[1].toLowerCase()) && m[2].trim());
+  if (hover) out.push(`text on hover only: title "${snippet(hover[2])}" on <${hover[1].toLowerCase()}> (see guidelines/writing.html#short-forms)`);
   const numbered = page.match(/<h[1-6]\b[^>]*>\s*\d+\s*·[^<]*/);
   if (numbered) out.push(`numbered heading "${snippet(numbered[0])}"`);
   const label = page.match(/<li\b[^>]*>\s*<strong>[^<]{1,40}(?::<\/strong>|<\/strong>\s*(?:\((?:<code>)?[^<)]*(?:<\/code>)?\)\s*)?:)/);
