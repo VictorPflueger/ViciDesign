@@ -126,6 +126,18 @@ description: Tables with sorting, sticky headers and tabular numbers; KPI stat c
 </div>
 <!-- /demo -->
 
+<p id="stat-also">A figure that covers part of the data on purpose never contradicts the screen. The weakest critical link counts only the blocks a service can't run without; when a block outside that part sits lower, a <code>p.vc-stat__also</code> line under the value says so in words, and the tile names the part it covers in <code>data-vc-part</code>. A visitor who sees level 4 on the tile and level 0 on the stage then reads why, instead of doubting both.</p>
+<!-- demo -->
+<div class="vc-grid" style="--vc-grid-min: 18rem; max-width: 34rem">
+  <article class="vc-stat" data-vc-part="critical blocks">
+    <p class="vc-stat__label">Weakest critical link</p>
+    <p class="vc-stat__value">Level 4<span class="vc-stat__unit">of 4</span></p>
+    <p class="vc-stat__note">Data centre and 4 more at this level</p>
+    <p class="vc-stat__also">Lowest overall: SDK distribution, level 0, not critical</p>
+  </article>
+</div>
+<!-- /demo -->
+
 <h2 id="count">A count that opens what it counts</h2>
 <p>A number that stands for a set of things on the screen, such as 5 duties or 48 clusters, opens that set. A click, <kbd>Enter</kbd> or <kbd>Space</kbd> shows the list beside the content, and <kbd>Esc</kbd> closes it and puts the focus back on the count. Whoever reads “48 clusters” can then check all 48 without asking.</p>
 <!-- demo -->

@@ -2,7 +2,9 @@
 // the docs checks: import { guideProblems } from '<ViciDesign>/scripts/lib/guide.mjs'.
 // scripts/check-guide.mjs runs it with a self-test over the starters. It also holds the key-figure rule:
 // the How it works chapter explains every tile marked data-vc-kpi="<name>" in a table row of its own,
-// whose header names the figure and whose cells say what it measures and its value.
+// whose header names the figure and whose cells say what it measures and its value; and keyFigureProblems,
+// which guideProblems runs too: a figure that covers part of the data on purpose (data-vc-part) says under
+// its value, in a vc-stat__also line, what lies lower outside that part.
 //
 // A page in two languages carries one guide per language: each dialog says its language in lang, no two
 // share one, each follows the whole standard, has its own header button and a title in its language, and
@@ -18,8 +20,36 @@ const text = (html) => html.replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, '
 /** The primary language of a lang attribute, lower case: "en-GB" gives "en"; null without one. */
 const primary = (attrs) => ((attrs.match(/\blang="([^"]+)"/) || [])[1] || '').split('-')[0].toLowerCase() || null;
 
+/**
+ * Problems with the key figures themselves, wherever the guide is: a figure that covers part of the data on
+ * purpose (data-vc-part="<the part>") says under its value what lies lower outside that part, in a
+ * vc-stat__also line (components/guide.html#key-figures), so it never contradicts the screen.
+ */
+export function keyFigureProblems(html) {
+  const out = [];
+  for (const m of html.matchAll(/<(article|div|section|button|p)\b([^>]*\bclass="[^"]*\bvc-stat\b[^"]*"[^>]*)>/g)) {
+    const [, tag, attrs] = m;
+    const name = (attrs.match(/\bdata-vc-kpi="([^"]+)"/) || attrs.match(/\bdata-vc-part="([^"]+)"/) || [])[1] || 'a stat card';
+    const start = m.index + m[0].length;
+    // The tile's own content: up to its closing tag, counting nested tags of the same name.
+    let depth = 1;
+    let end = start;
+    const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, 'g');
+    re.lastIndex = start;
+    for (let t; depth && (t = re.exec(html)); ) { depth += t[1] ? -1 : 1; end = t.index; }
+    const body = html.slice(start, end);
+    if (/\bdata-vc-part="[^"]+"/.test(attrs) && !/\bclass="[^"]*\bvc-stat__also\b/.test(body)) out.push(`key figure "${name}" covers part of the data (data-vc-part) but has no vc-stat__also line to say what lies outside it`);
+  }
+  return out;
+}
+
 /** Problems with the guide in one HTML page; an empty list means it follows the standard. */
 export function guideProblems(html) {
+  const guide = guideOnly(html);
+  return [...guide, ...keyFigureProblems(html)];
+}
+
+function guideOnly(html) {
   const dialogs = [...html.matchAll(/<dialog\b([^>]*\bclass="[^"]*\bvc-guide\b[^"]*"[^>]*)>([\s\S]*?)<\/dialog>/g)];
   if (!dialogs.length) return ['no How it works guide'];
   if (dialogs.length === 1) {
