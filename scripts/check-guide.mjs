@@ -11,7 +11,8 @@
 // such guide per language, each saying its language in lang, titled in it, with its own header button
 // and a row for every key figure under its name in that language (data-vc-kpi-de and so on). A key
 // figure that covers part of the data on purpose (data-vc-part) says in a vc-stat__also line what lies
-// outside it, so it never contradicts the screen.
+// outside it, so it never contradicts the screen; and a session cost that is an estimate says it is what a
+// live run would cost and that the replay costs nothing.
 // A self-test first proves that the checker catches planted mistakes.
 import { read } from './lib/files.mjs';
 import { guideProblems } from './lib/guide.mjs';
@@ -60,6 +61,8 @@ const planted = {
   'a key figure the German guide has no row for': twoLanguages.replace('data-vc-kpi-de="Wert im Risiko"', 'data-vc-kpi-de="Gefährdeter Wert"'),
   'a second guide without its own button': twoLanguages.replace(/<button\b[^>]*data-vc-guide-open="guide-de"[^>]*>[\s\S]*?<\/button>/, ''),
   'a key figure for part of the data that says nothing of the rest': good.replace('data-vc-kpi="Open exceptions"', 'data-vc-kpi="Open exceptions" data-vc-part="exceptions over €1,000"'),
+  'a session cost that reads as money spent': good.replace('<main', '<article class="vc-stat" data-vc-kpi="Session cost"><p class="vc-stat__label">Session cost</p><p class="vc-stat__value">€0.38</p><p class="vc-stat__note">Estimated, simulated run</p></article><main')
+    .replace('<tr><th scope="row">Open exceptions</th>', '<tr><th scope="row">Session cost</th><td>What a live run would cost</td><td class="vc-num">€0.38</td></tr><tr><th scope="row">Open exceptions</th>'),
 };
 const selfFailures = [];
 const goodProblems = guideProblems(good);
@@ -79,6 +82,12 @@ const withAlso = partPage.replace(/(data-vc-part="exceptions over €1,000"[^>]*
 const alsoProblems = guideProblems(withAlso);
 if (withAlso === partPage) selfFailures.push('the also-line control changed nothing');
 else if (alsoProblems.length) selfFailures.push(`a key figure for part of the data with its also line was rejected: ${alsoProblems.join('; ')}`);
+// A session cost that says what a live run would cost and that the replay is free passes.
+const costPage = planted['a session cost that reads as money spent'];
+const costSaid = costPage.replace('<p class="vc-stat__value">€0.38</p><p class="vc-stat__note">Estimated, simulated run</p>', '<p class="vc-stat__value">≈ €0.38<span class="vc-stat__unit">for a live run</span></p><p class="vc-stat__note">this replay: €0</p>');
+const costProblems = guideProblems(costSaid);
+if (costSaid === costPage) selfFailures.push('the session-cost control changed nothing');
+else if (costProblems.length) selfFailures.push(`a session cost that says what a live run would cost and that the replay is free was rejected: ${costProblems.join('; ')}`);
 // And a page with one complete guide per language passes.
 const twoProblems = guideProblems(twoLanguages);
 if (twoLanguages.split('class="vc-dialog vc-guide"').length !== 3) selfFailures.push('the two-language page has no second guide');

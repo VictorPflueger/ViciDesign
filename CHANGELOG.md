@@ -5,6 +5,12 @@ breaking changes to class names or token names bump the major version.
 
 ## Unreleased
 
+- From Sovereignty Assessment 2.1.0: session cost in a simulation never reads as money spent (How it works
+  guide, Key figures; Build a prototype, Key figures; prototype brief item 3). After a replay the reviewer
+  thought he had spent the €0.52 the tile showed as "estimated". The value now says what a live run would
+  cost, "≈ €0.52 for a live run", and the note that the replay is free, "this replay: €0"; the example on Build
+  a prototype follows it. `keyFigureProblems(html)` reports a cost figure that is an estimate without naming a
+  live run and the replay's €0, and `scripts/check-guide.mjs` plants the old example in its self-test.
 - From Sovereignty Assessment 2.1.0: a key figure never contradicts the screen (How it works guide, Key
   figures; Data display, Stat card). The weakest critical link counts only the blocks a service can't run
   without, so a tile read level 4 of 4 while the stage showed a block at 0, and the domain review stopped

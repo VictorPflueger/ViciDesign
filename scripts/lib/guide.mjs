@@ -4,7 +4,8 @@
 // the How it works chapter explains every tile marked data-vc-kpi="<name>" in a table row of its own,
 // whose header names the figure and whose cells say what it measures and its value; and keyFigureProblems,
 // which guideProblems runs too: a figure that covers part of the data on purpose (data-vc-part) says under
-// its value, in a vc-stat__also line, what lies lower outside that part.
+// its value, in a vc-stat__also line, what lies lower outside that part; and a cost figure that is an
+// estimate says what a live run would cost and that the replay costs nothing.
 //
 // A page in two languages carries one guide per language: each dialog says its language in lang, no two
 // share one, each follows the whole standard, has its own header button and a title in its language, and
@@ -27,6 +28,7 @@ const primary = (attrs) => ((attrs.match(/\blang="([^"]+)"/) || [])[1] || '').sp
  */
 export function keyFigureProblems(html) {
   const out = [];
+  const words = (s) => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim();
   for (const m of html.matchAll(/<(article|div|section|button|p)\b([^>]*\bclass="[^"]*\bvc-stat\b[^"]*"[^>]*)>/g)) {
     const [, tag, attrs] = m;
     const name = (attrs.match(/\bdata-vc-kpi="([^"]+)"/) || attrs.match(/\bdata-vc-part="([^"]+)"/) || [])[1] || 'a stat card';
@@ -39,6 +41,14 @@ export function keyFigureProblems(html) {
     for (let t; depth && (t = re.exec(html)); ) { depth += t[1] ? -1 : 1; end = t.index; }
     const body = html.slice(start, end);
     if (/\bdata-vc-part="[^"]+"/.test(attrs) && !/\bclass="[^"]*\bvc-stat__also\b/.test(body)) out.push(`key figure "${name}" covers part of the data (data-vc-part) but has no vc-stat__also line to say what lies outside it`);
+    // Session cost in a simulation never reads as money spent: an estimate says it is what a live run would
+    // cost and that the replay costs nothing (components/guide.html#key-figures).
+    const names = [...attrs.matchAll(/\bdata-vc-kpi(?:-[a-z]{2})?="([^"]+)"/g)].map((x) => x[1]).join(' ');
+    const said = words(body);
+    if (/\bcosts?\b|kosten/i.test(names) && /estimat|simulat|replay|geschätzt|simuliert|wiedergabe/i.test(said)) {
+      if (!/live run|live-lauf/i.test(said)) out.push(`key figure "${name}" is an estimate but doesn't say it is what a live run would cost`);
+      if (!/(€\s?0(?![.,]?\d)|\b0\s?€|costs nothing|kostet nichts|free\b|kostenlos)/i.test(said)) out.push(`key figure "${name}" is an estimate but doesn't say the replay costs nothing ("this replay: €0")`);
+    }
   }
   return out;
 }
